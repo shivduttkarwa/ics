@@ -1267,6 +1267,7 @@ height: 73rem; /* 1168px: enough to accommodate the bleed of the card and media 
   gap: 2.5rem; /* 40px */
   max-width: 100%;
   background-color: var(--color-background);
+  color: var(--color-text); /* resets the white text color .ics-rf-discover sets for its dark backdrop */
   border-radius: var(--radius-lg);
   padding: 5rem; /* 80px */
   box-shadow: var(--shadow-lg);
