@@ -832,14 +832,15 @@ h5,
   position: relative;
   z-index: 1;
   margin-inline: auto;
-  width: min(39rem, 90vw);
-  aspect-ratio: 1 / 1;
-  border-radius: 50%;
-  background-color: var(--color-primary);
   display: flex;
+  width: min(39rem, 90vw);
+  height: min(39rem, 90vw);
+  padding: clamp(var(--space-6), 5vw, 6.25rem);
   align-items: center;
   justify-content: center;
-  padding: var(--space-6);
+  gap: 0.5rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-primary);
 }
 
 .ics-rf-quote-mark {
@@ -847,15 +848,19 @@ h5,
   font-weight: 900;
   color: var(--color-accent);
   font-size: clamp(3.75rem, 3rem + 3vw, 7.5rem);
-  line-height: 1;
+  line-height: 1.4;
+  letter-spacing: -0.03em;
+  margin-bottom: -0.21em;
   display: block;
 }
 
 .ics-rf-quote-banner__text {
   font-family: var(--font-secondary);
   font-style: italic;
+  font-weight: var(--font-medium);
   font-size: var(--font-size-xl);
-  line-height: 1.3;
+  line-height: 1.4;
+  letter-spacing: -0.06563rem;
 }
 
 .ics-rf-quote-banner__cite {
