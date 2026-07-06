@@ -325,7 +325,7 @@ h1, h2, h3, h4, h5,
 }
 
 .ics-rf-site-header__logo {
-  height: 3.375rem;
+  height: 4.05rem;
   width: auto;
 }
 
@@ -1028,3 +1028,9 @@ h1, h2, h3, h4, h5,
     margin-bottom: 0.25rem;
   }
 }
+
+/* @media (min-width: 1920px) {
+  .ics-rf-site-header__logo {
+    height: 4.86rem;
+  }
+} */
