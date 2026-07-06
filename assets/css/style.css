@@ -771,44 +771,19 @@ h5,
   }
 }
 
-/* image overscan lets the parallax mechanism pan without exposing edges */
+/* slight horizontal overscan lets the parallax pan without exposing edges;
+   no vertical overscan so the original top/bottom crop is unchanged */
 .ics-rf-story-row__media img {
   position: absolute;
-  inset: -14% -8%;
-  width: 128%;
-  height: 128%;
+  inset: 0 -6%;
+  width: 112%;
+  height: 100%;
   max-width: none;
   object-fit: cover;
   will-change: transform;
 }
 
-/* ---- HUD + progress ---- */
-.ics-rf-story-hud {
-  position: absolute;
-  top: 2rem;
-  right: 2.2rem;
-  z-index: 6;
-  display: flex;
-  align-items: baseline;
-  gap: .35rem;
-  font-variant-numeric: tabular-nums;
-  font-family: var(--font-secondary);
-  font-weight: var(--font-bold);
-  color: var(--color-heading);
-}
-
-.ics-rf-story-hud__index {
-  font-size: 1.7rem;
-  color: var(--color-accent);
-  letter-spacing: -.02em;
-}
-
-.ics-rf-story-hud__sep,
-.ics-rf-story-hud__total {
-  color: var(--color-muted);
-  font-size: .9rem;
-}
-
+/* ---- progress ---- */
 .ics-rf-story-progress {
   position: absolute;
   left: 0;
@@ -825,7 +800,7 @@ h5,
   width: 100%;
   transform: scaleX(0);
   transform-origin: left;
-  background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
+  background: var(--color-accent);
 }
 
 .ics-rf-quote-banner {

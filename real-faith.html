@@ -54,11 +54,6 @@
     <div class="ics-rf-story-spacer" aria-hidden="true"></div>
 
         <section class="ics-rf-story-section" id="ics-rf-story-section" aria-label="A day of faith at ICS">
-      <div class="ics-rf-story-hud">
-        <span class="ics-rf-story-hud__index" id="ics-rf-story-index">01</span>
-        <span class="ics-rf-story-hud__sep">/</span>
-        <span class="ics-rf-story-hud__total" id="ics-rf-story-total">03</span>
-      </div>
       <div class="ics-rf-story-progress"><span class="ics-rf-story-progress__bar" id="ics-rf-story-bar"></span></div>
 
       <div class="ics-rf-story-track" id="ics-rf-story-track">
@@ -408,9 +403,7 @@
       const track   = document.getElementById("ics-rf-story-track");
       const section = document.getElementById("ics-rf-story-section");
       const bar     = document.getElementById("ics-rf-story-bar");
-      const indexEl = document.getElementById("ics-rf-story-index");
       const rows    = gsap.utils.toArray(".ics-rf-story-row");
-      document.getElementById("ics-rf-story-total").textContent = String(rows.length).padStart(2, "0");
 
       const distance = () => track.scrollWidth - window.innerWidth;
 
@@ -438,7 +431,6 @@
           onUpdate: (self) => {
             const p = gsap.utils.clamp(0, 1, self.progress * TOTAL_RATIO - HOLD_RATIO);
             gsap.set(bar, { scaleX: p });
-            indexEl.textContent = String(Math.round(p * (rows.length - 1)) + 1).padStart(2, "0");
             updateScales();
           }
         }
@@ -450,8 +442,8 @@
       rows.forEach((row) => {
         const img = row.querySelector(".ics-rf-story-row__media img");
 
-        gsap.fromTo(img, { xPercent: -12 }, {
-          xPercent: 12, ease: "none",
+        gsap.fromTo(img, { xPercent: -5 }, {
+          xPercent: 5, ease: "none",
           scrollTrigger: { trigger: row, containerAnimation: horizontal, start: "left right", end: "right left", scrub: true }
         });
 
