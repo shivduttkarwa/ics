@@ -478,7 +478,7 @@ h5,
   text-decoration: none;
   border: 0;
   border-radius: var(--radius-sm);
-  padding: var(--space-2) var(--space-3);
+  padding: 0.9375rem 1.5625rem; /* 15px 25px */
   background-color: var(--color-accent);
   color: var(--color-primary);
   cursor: pointer;
@@ -878,7 +878,8 @@ h5,
   position: relative;
   z-index: 2; /* stacks above .ics-rf-discover which follows it in the DOM, so the bleeding card isn't covered */
   overflow: visible; /* overrides .ics-rf-section's overflow:hidden so the bleed isn't clipped */
-padding-bottom: 12rem; /* 192px: adds extra space below the section so the bleed isn't clipped */
+padding-bottom: 12rem; 
+height: 73rem; /* 1168px: enough to accommodate the bleed of the card and media */
 }
 
 .ics-rf-testimonial-section__stage {
@@ -906,7 +907,7 @@ padding-bottom: 12rem; /* 192px: adds extra space below the section so the bleed
   left: 0;
   bottom: 0;
   z-index: 3;
-  transform: translateY(0%); /* independent: adjust to push this image up/down */
+  transform: translateY(95%); /* independent: adjust to push this image up/down */
 }
 
 .ics-rf-testimonial-section__card {
@@ -914,7 +915,7 @@ padding-bottom: 12rem; /* 192px: adds extra space below the section so the bleed
   bottom: 0;
   right: 0;
   z-index: 3;
-  transform: translateY(20%); /* independent: adjust to push the card up/down */
+  transform: translateY(130%); /* independent: adjust to push the card up/down */
 }
 
 @media (max-width: 767.98px) {
@@ -1209,6 +1210,7 @@ padding-bottom: 12rem; /* 192px: adds extra space below the section so the bleed
 .ics-rf-discover {
   position: relative;
   color: var(--color-on-dark);
+  height: 72.56rem;
 }
 
 .ics-rf-discover__media {
@@ -1258,34 +1260,65 @@ padding-bottom: 12rem; /* 192px: adds extra space below the section so the bleed
 }
 
 .ics-rf-prospectus-card {
+  display: flex;
+  width: 45.625rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2.5rem; /* 40px */
+  max-width: 100%;
   background-color: var(--color-background);
   border-radius: var(--radius-lg);
-  padding: var(--space-6) var(--space-5);
+  padding: 5rem; /* 80px */
   box-shadow: var(--shadow-lg);
+}
+
+.ics-rf-prospectus-card__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1875rem; /* 19px */
+  width: 100%;
 }
 
 .ics-rf-prospectus-card__title {
   font-style: italic;
-  margin-bottom: var(--space-3);
+  font-size: clamp(2.5rem, 2rem + 3vw, 3.75rem); /* caps at 60px */
+  line-height: 1;
+  margin: 0;
 }
 
 .ics-rf-prospectus-card__lead {
-  margin-bottom: var(--space-2);
+  letter-spacing: -0.02em;
+  margin: 0;
 }
 
 .ics-rf-prospectus-card__body {
   font-weight: var(--font-light);
-  margin-bottom: var(--space-5);
+  margin: 0;
+}
+
+.ics-rf-prospectus-card__form {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem; /* 40px */
+  width: 100%;
+}
+
+.ics-rf-prospectus-card__fields {
+  display: flex;
+  gap: 1.25rem; /* 20px */
+  width: 100%;
 }
 
 .ics-rf-form-field {
-  margin-bottom: 0;
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 .ics-rf-form-field__label {
   display: block;
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-sm);
   font-weight: var(--font-bold);
+  letter-spacing: 0.01em;
   color: var(--color-primary);
   margin-bottom: 0.4375rem;
 }
@@ -1295,15 +1328,28 @@ padding-bottom: 12rem; /* 192px: adds extra space below the section so the bleed
   border: 0;
   border-radius: var(--radius-sm);
   background-color: var(--color-surface);
-  padding: var(--space-3) var(--space-3);
+  padding: 0.9375rem 1.25rem; /* 15px 20px */
   font-family: var(--font-primary);
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-medium);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
   color: var(--color-text);
 }
 
 .ics-rf-form-field__input:focus-visible {
   outline: 0.125rem solid var(--color-accent);
   outline-offset: 0.125rem;
+}
+
+@media (max-width: 767.98px) {
+  .ics-rf-prospectus-card {
+    padding: var(--space-5);
+  }
+
+  .ics-rf-prospectus-card__fields {
+    flex-direction: column;
+  }
 }
 
 .ics-rf-prospectus-media {
