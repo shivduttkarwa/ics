@@ -874,20 +874,6 @@ h5,
   font-style: normal;
 }
 
-.ics-rf-testimonial-section {
-  position: relative;
-  overflow: hidden;
-}
-
-.ics-rf-testimonial-section__decor {
-  position: absolute;
-  top: -2.5rem;
-  left: -9.25rem;
-  width: 9.5rem;
-  height: auto;
-  z-index: 0;
-}
-
 .ics-rf-testimonial-block {
   text-align: center;
   max-width: 55rem;
@@ -1097,37 +1083,64 @@ h5,
   margin: 0;
 }
 
+.ics-rf-comparison-section__inner {
+  width: 100%;
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .ics-rf-comparison-section__inner {
+    padding-left: var(--space-9); /* 80px */
+    padding-right: var(--space-9); /* 80px */
+  }
+}
+
 .ics-rf-comparison {
   width: 100%;
+  max-width: 66.125rem; /* 1058px */
+  margin-inline: auto;
   border-collapse: collapse;
+  table-layout: fixed;
 }
 
 .ics-rf-comparison th {
   font-family: var(--font-secondary);
   font-size: var(--font-size-xl);
   font-weight: var(--font-bold);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
   color: var(--color-heading);
   text-align: left;
-  padding-bottom: var(--space-4);
+  padding-right: 2.5rem; /* 40px */
+  padding-bottom: 1.625rem; /* 26px */
+  border-bottom: 0.25rem solid var(--color-accent);
   width: 50%;
 }
 
 .ics-rf-comparison td {
-  padding-block: var(--space-3);
+  padding-block: 1.25rem; /* 20px */
   border-top: 1px solid var(--color-border);
   font-size: var(--font-size-base);
+  line-height: 1.4;
+  letter-spacing: -0.03em;
   vertical-align: top;
+}
+
+.ics-rf-comparison tbody tr:first-child td {
+  border-top: 0;
 }
 
 .ics-rf-comparison td:first-child {
   font-weight: var(--font-light);
   color: var(--color-text);
-  padding-right: var(--space-4);
+  padding-right: 2.5rem; /* 40px */
 }
 
 .ics-rf-comparison td:last-child {
   font-family: var(--font-secondary);
   font-style: italic;
+  font-weight: var(--font-medium);
   color: var(--color-primary);
 }
 
@@ -1440,15 +1453,6 @@ h5,
 @media (min-width: 768px) {
   .ics-rf-hero__copy {
     font-size: var(--font-size-base);
-  }
-}
-
-@media (min-width: 992px) {
-
-  .ics-rf-comparison th,
-  .ics-rf-comparison td:first-child,
-  .ics-rf-comparison td:last-child {
-    padding-right: var(--space-6);
   }
 }
 
