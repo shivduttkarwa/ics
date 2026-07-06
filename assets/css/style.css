@@ -921,6 +921,12 @@ h5,
   --bs-gutter-y: var(--space-6);
 }
 
+@media (min-width: 992px) {
+  .ics-rf-child-focus-section--media-right .ics-rf-child-focus-section__grid {
+    flex-direction: row-reverse;
+  }
+}
+
 .ics-rf-child-focus-section__features {
   display: flex;
   flex-direction: column;
