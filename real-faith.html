@@ -51,7 +51,17 @@
       </div>
     </section>
 
-        <section class="ics-rf-story-section" aria-label="A day of faith at ICS">
+    <div class="ics-rf-story-spacer" aria-hidden="true"></div>
+
+        <section class="ics-rf-story-section" id="ics-rf-story-section" aria-label="A day of faith at ICS">
+      <div class="ics-rf-story-hud">
+        <span class="ics-rf-story-hud__index" id="ics-rf-story-index">01</span>
+        <span class="ics-rf-story-hud__sep">/</span>
+        <span class="ics-rf-story-hud__total" id="ics-rf-story-total">03</span>
+      </div>
+      <div class="ics-rf-story-progress"><span class="ics-rf-story-progress__bar" id="ics-rf-story-bar"></span></div>
+
+      <div class="ics-rf-story-track" id="ics-rf-story-track">
       <article class="ics-rf-story-row ics-rf-story-row--tint">
         <div class="row ics-rf-story-row__grid align-items-center">
           <div class="col-lg-auto ics-rf-story-row__media-col">
@@ -114,6 +124,7 @@
           </div>
         </div>
       </article>
+      </div>
     </section>
 
         <section class="ics-rf-quote-banner ics-rf-section">
@@ -386,5 +397,74 @@
       </div>
     </div>
   </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+    ScrollTrigger.config({ ignoreMobileResize: true });
+
+    window.addEventListener("load", () => {
+      const track   = document.getElementById("ics-rf-story-track");
+      const section = document.getElementById("ics-rf-story-section");
+      const bar     = document.getElementById("ics-rf-story-bar");
+      const indexEl = document.getElementById("ics-rf-story-index");
+      const rows    = gsap.utils.toArray(".ics-rf-story-row");
+      const imgs    = rows.map((r) => r.querySelector(".ics-rf-story-row__media img"));
+      document.getElementById("ics-rf-story-total").textContent = String(rows.length).padStart(2, "0");
+
+      const distance = () => track.scrollWidth - window.innerWidth;
+
+      const skewSetter   = gsap.quickTo(imgs, "skewX",  { duration: 0.5, ease: "power3" });
+      const squashSetter = gsap.quickTo(imgs, "scaleY", { duration: 0.5, ease: "power3" });
+
+      const scaleSetters = rows.map((r) => gsap.quickTo(r, "scale", { duration: 0.45, ease: "power3" }));
+      const MIN = 0.9, MAX = 1;
+      const updateScales = () => {
+        const cx = window.innerWidth / 2;
+        rows.forEach((r, i) => {
+          const rect = r.getBoundingClientRect();
+          const dist = Math.abs((rect.left + rect.width / 2) - cx) / window.innerWidth;
+          scaleSetters[i](gsap.utils.clamp(MIN, MAX, MAX - dist * 0.16));
+        });
+      };
+
+      const horizontal = gsap.to(track, {
+        x: () => -distance(),
+        ease: "none",
+        scrollTrigger: {
+          trigger: section, pin: true, scrub: 1.2,
+          start: "top top", end: () => "+=" + distance(),
+          invalidateOnRefresh: true, onRefresh: updateScales,
+          onUpdate: (self) => {
+            gsap.set(bar, { scaleX: self.progress });
+            indexEl.textContent = String(Math.round(self.progress * (rows.length - 1)) + 1).padStart(2, "0");
+            const v = self.getVelocity();
+            skewSetter(gsap.utils.clamp(-16, 16, v / -140));
+            squashSetter(gsap.utils.clamp(0.93, 1, 1 - Math.abs(v) / 16000));
+            updateScales();
+          }
+        }
+      });
+
+      rows.forEach((row) => {
+        const img = row.querySelector(".ics-rf-story-row__media img");
+
+        gsap.fromTo(img, { xPercent: -12 }, {
+          xPercent: 12, ease: "none",
+          scrollTrigger: { trigger: row, containerAnimation: horizontal, start: "left right", end: "right left", scrub: true }
+        });
+
+        gsap.fromTo(row.querySelector(".ics-rf-story-row__media"),
+          { clipPath: "inset(0% 0% 0% 100%)" },
+          { clipPath: "inset(0% 0% 0% 0%)", ease: "none",
+            scrollTrigger: { trigger: row, containerAnimation: horizontal, start: "left right", end: "left center", scrub: true } }
+        );
+      });
+
+      updateScales();
+      ScrollTrigger.refresh();
+    });
+  </script>
 </body>
 </html>

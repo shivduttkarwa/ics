@@ -1,0 +1,282 @@
+<header class="intro">
+  <p class="eyebrow">Made for Award · ScrollTrigger</p>
+  <h1 class="intro__title" data-split>Horizontal<br>Showcase</h1>
+  <p class="hint">↓ scroll</p>
+</header>
+
+<section class="showcase" id="showcase">
+  <div class="hud">
+    <span class="hud__index" id="index">01</span>
+    <span class="hud__sep">/</span>
+    <span class="hud__total" id="total">04</span>
+  </div>
+  <div class="progress"><span class="progress__bar" id="bar"></span></div>
+
+  <div class="track" id="track">
+    <article class="panel" data-bg="#10243f" data-accent="#7cb6ff">
+      <div class="panel__media"><div class="panel__img" style="background-image:url(https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1600&h=2000&fit=crop)"></div></div>
+      <div class="panel__copy">
+        <span class="panel__num" data-reveal>01</span>
+        <h2 data-split>Pinned Motion</h2>
+        <p data-reveal>The section locks and scrubs each frame to your scroll.</p>
+        <a class="cta" data-reveal href="https://www.madeforaward.com" target="_blank" rel="noopener">
+          <span>Made for Award</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+        </a>
+      </div>
+    </article>
+
+    <article class="panel" data-bg="#3a1620" data-accent="#ff9bb0">
+      <div class="panel__media"><div class="panel__img" style="background-image:url(https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1600&h=2000&fit=crop)"></div></div>
+      <div class="panel__copy">
+        <span class="panel__num" data-reveal>02</span>
+        <h2 data-split>Velocity Skew</h2>
+        <p data-reveal>Images shear with scroll speed, then settle — pure momentum.</p>
+        <a class="cta" data-reveal href="https://www.madeforaward.com" target="_blank" rel="noopener">
+          <span>Made for Award</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+        </a>
+      </div>
+    </article>
+
+    <article class="panel" data-bg="#142a1f" data-accent="#8ff0b8">
+      <div class="panel__media"><div class="panel__img" style="background-image:url(https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1600&h=2000&fit=crop)"></div></div>
+      <div class="panel__copy">
+        <span class="panel__num" data-reveal>03</span>
+        <h2 data-split>Active Focus</h2>
+        <p data-reveal>The centered panel scales up; neighbours recede in depth.</p>
+        <a class="cta" data-reveal href="https://www.madeforaward.com" target="_blank" rel="noopener">
+          <span>Made for Award</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+        </a>
+      </div>
+    </article>
+
+    <article class="panel" data-bg="#2a1c3f" data-accent="#c9a6ff">
+      <div class="panel__media"><div class="panel__img" style="background-image:url(https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=1600&h=2000&fit=crop)"></div></div>
+      <div class="panel__copy">
+        <span class="panel__num" data-reveal>04</span>
+        <h2 data-split>Ship in Minutes</h2>
+        <p data-reveal>Copy, paste, customize. Award-winning, production-ready.</p>
+        <a class="cta" data-reveal href="https://www.madeforaward.com" target="_blank" rel="noopener">
+          <span>Made for Award</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+        </a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<footer class="outro">
+  <h2 data-split>That's the scroll.</h2>
+  <a class="cta cta--lg" href="https://www.madeforaward.com" target="_blank" rel="noopener">
+    <span>Visit Made for Award</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+  </a>
+</footer>
+
+
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=satoshi@400,500,700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #0a0a0a;
+  --fg: #ffffff;
+  --muted: rgba(255,255,255,.6);
+  --accent: #ea580c;
+  --accent-2: #fdba74;
+  --display: "Clash Display", sans-serif;
+  --body: "Satoshi", sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--body);
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, .hud, .cta, .panel__num, .eyebrow { font-family: var(--display); }
+
+/* ---- intro / outro ---- */
+.intro, .outro {
+  min-height: 100svh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; gap: 1.5rem; padding: 2rem;
+}
+.eyebrow { font-size: .72rem; letter-spacing: .24em; text-transform: uppercase; color: var(--accent-2); font-weight: 600; }
+.intro__title { font-size: clamp(2.8rem, 10vw, 9rem); font-weight: 700; line-height: .88; letter-spacing: -.045em; }
+.hint { font-family: var(--body); color: var(--muted); font-size: .85rem; letter-spacing: .08em; }
+.outro h2 { font-size: clamp(2.2rem, 7vw, 6rem); font-weight: 700; letter-spacing: -.045em; }
+
+/* ---- buttons ---- */
+.cta {
+  display: inline-flex; align-items: center; gap: .65rem;
+  margin-top: 1.8rem;
+  color: #0a0a0a;
+  background: linear-gradient(135deg, var(--accent-2), var(--accent));
+  text-decoration: none;
+  font-weight: 600; font-size: .9rem; letter-spacing: -.01em;
+  padding: .8rem 1.3rem; border-radius: 999px;
+  transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease;
+  box-shadow: 0 10px 30px rgba(234,88,12,.25);
+}
+.cta svg { width: 16px; height: 16px; transition: transform .35s cubic-bezier(.2,.8,.2,1); }
+.cta:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(234,88,12,.4); }
+.cta:hover svg { transform: translate(3px,-3px); }
+.cta--lg { font-size: 1rem; padding: 1rem 1.6rem; }
+
+/* ---- showcase ---- */
+.showcase { position: relative; height: 100svh; overflow: hidden; background: #10243f; }
+.track { display: flex; height: 100%; will-change: transform; }
+.panel {
+  position: relative; flex: 0 0 86vw; height: 100%;
+  display: grid; grid-template-columns: 1.15fr 1fr;
+  align-items: center; gap: clamp(1rem, 4vw, 4rem);
+  padding: clamp(1.5rem, 5vw, 6rem);
+  transform: scale(.86); will-change: transform;
+}
+.panel__media {
+  position: relative; height: 74%;
+  border-radius: 20px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: 0 40px 120px rgba(0,0,0,.5);
+}
+.panel__img { position: absolute; inset: -14% -8%; background-size: cover; background-position: center; will-change: transform; }
+.panel__num { font-size: .85rem; font-weight: 600; letter-spacing: .2em; color: var(--accent-2); }
+.panel__copy h2 {
+  font-size: clamp(2.2rem, 5vw, 5rem); font-weight: 700;
+  line-height: .95; letter-spacing: -.045em;
+  margin: .7rem 0 1rem;
+}
+.panel__copy p { color: var(--muted); max-width: 38ch; line-height: 1.55; letter-spacing: -.01em; }
+
+/* ---- HUD + progress ---- */
+.hud { position: absolute; top: 2rem; right: 2.2rem; z-index: 6; display: flex; align-items: baseline; gap: .35rem; font-variant-numeric: tabular-nums; font-weight: 600; }
+.hud__index { font-size: 1.7rem; color: var(--accent-2); letter-spacing: -.02em; }
+.hud__sep, .hud__total { color: var(--muted); font-size: .9rem; }
+.progress { position: absolute; left: 0; bottom: 0; z-index: 6; width: 100%; height: 3px; background: rgba(255,255,255,.1); }
+.progress__bar { display: block; height: 100%; width: 100%; transform: scaleX(0); transform-origin: left; background: linear-gradient(90deg, var(--accent-2), var(--accent)); }
+
+.line-mask { overflow: hidden; }
+
+@media (max-width: 768px) {
+  .panel { flex-basis: 92vw; grid-template-columns: 1fr; align-content: center; }
+  .panel__media { height: 44%; }
+}
+
+
+
+gsap.registerPlugin(ScrollTrigger, SplitText);
+ScrollTrigger.config({ ignoreMobileResize: true });
+
+if (typeof Lenis !== "undefined") {
+  const lenis = new Lenis({
+    duration: 1.15,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true, wheelMultiplier: 0.9, syncTouch: true,
+  });
+  lenis.on("scroll", ScrollTrigger.update);
+  gsap.ticker.add((time) => lenis.raf(time * 1000));
+  gsap.ticker.lagSmoothing(0);
+}
+
+// split a heading into masked, animatable inner line-spans
+function splitLines(el) {
+  const split = new SplitText(el, { type: "lines", linesClass: "line-mask" });
+  return split.lines.map((line) => {
+    const inner = document.createElement("span");
+    inner.style.display = "block";
+    inner.append(...line.childNodes);
+    line.append(inner);
+    return inner;
+  });
+}
+
+document.fonts.ready.then(() => {
+  /* intro + outro headings reveal on enter */
+  document.querySelectorAll(".intro [data-split], .outro [data-split]").forEach((el) => {
+    const inners = splitLines(el);
+    gsap.from(inners, {
+      yPercent: 115, rotate: 2, opacity: 0,
+      duration: 1.1, ease: "expo.out", stagger: 0.09,
+      scrollTrigger: { trigger: el, start: "top 85%" }
+    });
+  });
+
+  /* ---------- core horizontal pin ---------- */
+  const track    = document.getElementById("track");
+  const panels   = gsap.utils.toArray(".panel");
+  const imgs     = panels.map(p => p.querySelector(".panel__img"));
+  const showcase = document.getElementById("showcase");
+  const bar      = document.getElementById("bar");
+  const indexEl  = document.getElementById("index");
+  document.getElementById("total").textContent = String(panels.length).padStart(2, "0");
+
+  const distance = () => track.scrollWidth - window.innerWidth;
+
+  const bgColors = panels.map(p => p.dataset.bg);
+  const setBg = (progress) => {
+    const seg = progress * (panels.length - 1);
+    const i = Math.min(panels.length - 2, Math.floor(seg));
+    showcase.style.backgroundColor =
+      gsap.utils.interpolate(bgColors[i], bgColors[i + 1], seg - i);
+  };
+
+  const skewSetter   = gsap.quickTo(imgs, "skewX",  { duration: 0.5, ease: "power3" });
+  const squashSetter = gsap.quickTo(imgs, "scaleY", { duration: 0.5, ease: "power3" });
+
+  const scaleSetters = panels.map((p) => gsap.quickTo(p, "scale", { duration: 0.45, ease: "power3" }));
+  const MIN = 0.86, MAX = 1;
+  const updateScales = () => {
+    const cx = window.innerWidth / 2;
+    panels.forEach((p, i) => {
+      const r = p.getBoundingClientRect();
+      const dist = Math.abs((r.left + r.width / 2) - cx) / window.innerWidth;
+      scaleSetters[i](gsap.utils.clamp(MIN, MAX, MAX - dist * 0.16));
+    });
+  };
+
+  const horizontal = gsap.to(track, {
+    x: () => -distance(),
+    ease: "none",
+    scrollTrigger: {
+      trigger: "#showcase", pin: true, scrub: 1.2,
+      start: "top top", end: () => "+=" + distance(),
+      invalidateOnRefresh: true, onRefresh: updateScales,
+      onUpdate: (self) => {
+        gsap.set(bar, { scaleX: self.progress });
+        setBg(self.progress);
+        indexEl.textContent =
+          String(Math.round(self.progress * (panels.length - 1)) + 1).padStart(2, "0");
+        const v = self.getVelocity();
+        skewSetter(gsap.utils.clamp(-16, 16, v / -140));
+        squashSetter(gsap.utils.clamp(0.93, 1, 1 - Math.abs(v) / 16000));
+        updateScales();
+      }
+    }
+  });
+
+  /* ---------- per-panel: parallax, clip reveal, premium copy reveal ---------- */
+    panels.forEach((panel) => {
+    const img = panel.querySelector(".panel__img");
+
+    gsap.fromTo(img, { xPercent: -12 }, {
+      xPercent: 12, ease: "none",
+      scrollTrigger: { trigger: panel, containerAnimation: horizontal, start: "left right", end: "right left", scrub: true }
+    });
+
+    gsap.fromTo(panel.querySelector(".panel__media"),
+      { clipPath: "inset(0% 0% 0% 100%)" },
+      { clipPath: "inset(0% 0% 0% 0%)", ease: "none",
+        scrollTrigger: { trigger: panel, containerAnimation: horizontal, start: "left right", end: "left center", scrub: true } }
+    );
+  });
+
+  updateScales();
+  ScrollTrigger.refresh();
+});

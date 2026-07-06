@@ -338,6 +338,7 @@ body {
   line-height: 1.5;
   color: var(--color-text);
   background-color: var(--color-background);
+  overflow-x: hidden;
 }
 
 h1,
@@ -669,16 +670,34 @@ h5,
   letter-spacing: -0.0375rem;
 }
 
-.ics-rf-story-section {
-  position: relative;
-  z-index: 1;
-  padding-top: 5rem;
+.ics-rf-story-spacer {
+  height: 5rem;
   background-color: var(--color-surface);
 }
 
+.ics-rf-story-section {
+  position: relative;
+  z-index: 1;
+  height: 100svh;
+  overflow: hidden;
+  background-color: var(--color-surface);
+}
+
+.ics-rf-story-track {
+  display: flex;
+  height: 100%;
+  will-change: transform;
+}
+
 .ics-rf-story-row {
+  position: relative;
+  flex: 0 0 100vw;
+  height: 100%;
+  display: flex;
+  align-items: center;
   padding: var(--space-6);
   background-color: var(--color-background);
+  will-change: transform;
 }
 
 .ics-rf-story-row--tint {
@@ -688,6 +707,7 @@ h5,
 .ics-rf-story-row__grid {
   --bs-gutter-x: 0;
   --bs-gutter-y: var(--space-4);
+  width: 100%;
 }
 
 @media (min-width: 992px) {
@@ -749,6 +769,63 @@ h5,
   .ics-rf-story-row {
     padding: var(--space-9);
   }
+}
+
+/* image overscan lets the parallax mechanism pan without exposing edges */
+.ics-rf-story-row__media img {
+  position: absolute;
+  inset: -14% -8%;
+  width: 128%;
+  height: 128%;
+  max-width: none;
+  object-fit: cover;
+  will-change: transform;
+}
+
+/* ---- HUD + progress ---- */
+.ics-rf-story-hud {
+  position: absolute;
+  top: 2rem;
+  right: 2.2rem;
+  z-index: 6;
+  display: flex;
+  align-items: baseline;
+  gap: .35rem;
+  font-variant-numeric: tabular-nums;
+  font-family: var(--font-secondary);
+  font-weight: var(--font-bold);
+  color: var(--color-heading);
+}
+
+.ics-rf-story-hud__index {
+  font-size: 1.7rem;
+  color: var(--color-accent);
+  letter-spacing: -.02em;
+}
+
+.ics-rf-story-hud__sep,
+.ics-rf-story-hud__total {
+  color: var(--color-muted);
+  font-size: .9rem;
+}
+
+.ics-rf-story-progress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 6;
+  width: 100%;
+  height: 3px;
+  background: var(--color-border);
+}
+
+.ics-rf-story-progress__bar {
+  display: block;
+  height: 100%;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
 }
 
 .ics-rf-quote-banner {
