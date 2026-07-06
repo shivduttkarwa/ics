@@ -230,13 +230,13 @@ h5,
 }
 
 .ics-rf-decorative-line--hero-2 {
-  --ics-rf-hero-leaf-2-x: 5vw;
-  --ics-rf-hero-leaf-2-y: 5vh;
-  --ics-rf-hero-leaf-2-rotate: -85deg;
-  --ics-rf-hero-leaf-2-scale: 1;
-  transform: translate(var(--ics-rf-hero-leaf-2-x), var(--ics-rf-hero-leaf-2-y)) rotate(var(--ics-rf-hero-leaf-2-rotate)) scale(var(--ics-rf-hero-leaf-2-scale));
+    --ics-rf-hero-leaf-2-x: -9vw;
+    --ics-rf-hero-leaf-2-y: -11vh;
+    --ics-rf-hero-leaf-2-rotate: 181deg;
+    --ics-rf-hero-leaf-2-scale: 1;
+    --ics-rf-hero-leaf-2-flip: -1;
+    transform: translate(var(--ics-rf-hero-leaf-2-x), var(--ics-rf-hero-leaf-2-y)) rotate(var(--ics-rf-hero-leaf-2-rotate)) scale(var(--ics-rf-hero-leaf-2-scale)) scaleX(var(--ics-rf-hero-leaf-2-flip));
 }
-
 .ics-rf-section>.container,
 .ics-rf-section>.container-fluid {
   position: relative;
