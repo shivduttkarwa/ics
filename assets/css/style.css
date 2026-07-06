@@ -350,6 +350,7 @@ h5,
   text-align: center;
   overflow: visible;
   padding-top: 3rem;
+  padding-bottom: 1rem;
 }
 
 .ics-rf-hero__eyebrow {
@@ -381,7 +382,9 @@ h5,
 
 .ics-rf-hero__media {
   position: relative;
+  z-index: 2;
   margin-top: var(--space-6);
+  margin-bottom: -6rem;
   padding-inline: 5rem;
 }
 
@@ -432,39 +435,10 @@ h5,
   line-height: 1.3;
 }
 
-.ics-rf-story-card {
-  height: 100%;
-  padding: var(--space-4);
-  border-radius: var(--radius-lg);
-  background-color: var(--color-background);
-}
-
-.ics-rf-story-card--tint {
-  background-color: var(--color-surface);
-}
-
-.ics-rf-story-card__media {
-  margin-bottom: var(--space-4);
-}
-
-.ics-rf-story-card__time {
-  font-family: var(--font-secondary);
-  font-size: var(--font-size-lg);
-  display: block;
-}
-
-.ics-rf-story-card__title {
-  font-size: var(--font-size-xl);
-  display: block;
-  margin-bottom: var(--space-2);
-}
-
-.ics-rf-story-card__body+.ics-rf-story-card__quote {
-  margin-top: var(--space-2);
-}
-
-.ics-rf-story-card__quote {
-  color: var(--color-heading);
+.ics-rf-placeholder-section {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
 }
 
 .ics-rf-quote-banner {
