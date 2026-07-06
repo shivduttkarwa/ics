@@ -902,7 +902,11 @@ padding-bottom: 12rem; /* 192px: adds extra space below the section so the bleed
 }
 
 .ics-rf-testimonial-section__media--b {
-  margin-top: var(--space-6);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 3;
+  transform: translateY(0%); /* independent: adjust to push this image up/down */
 }
 
 .ics-rf-testimonial-section__card {
@@ -910,7 +914,7 @@ padding-bottom: 12rem; /* 192px: adds extra space below the section so the bleed
   bottom: 0;
   right: 0;
   z-index: 3;
-  transform: translateY(20%); /* bleeds 20% of its own height below the section */
+  transform: translateY(20%); /* independent: adjust to push the card up/down */
 }
 
 @media (max-width: 767.98px) {
@@ -922,13 +926,10 @@ padding-bottom: 12rem; /* 192px: adds extra space below the section so the bleed
   }
 
   .ics-rf-testimonial-section__media--a,
+  .ics-rf-testimonial-section__media--b,
   .ics-rf-testimonial-section__card {
     position: static;
     transform: none;
-  }
-
-  .ics-rf-testimonial-section__media--b {
-    margin-top: 0;
   }
 }
 
