@@ -709,12 +709,14 @@ h5,
 .ics-rf-story-row__content {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1.25rem;
 }
 
 @media (min-width: 992px) {
   .ics-rf-story-row__content {
-    padding-left: var(--space-9);
+    padding: 0 var(--space-9);
   }
 }
 
