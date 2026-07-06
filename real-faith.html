@@ -425,20 +425,27 @@
         });
       };
 
-      const horizontal = gsap.to(track, {
-        x: () => -distance(),
-        ease: "none",
+      // small pinned holds before/after the track moves, so the first and last
+      // panels' settle animation (scale focus) completes before the pin releases
+      const HOLD_RATIO = 0.06;
+      const TOTAL_RATIO = 1 + HOLD_RATIO * 2;
+
+      const horizontal = gsap.timeline({
         scrollTrigger: {
           trigger: section, pin: true, scrub: 1.2,
-          start: "top top", end: () => "+=" + distance(),
+          start: "top top", end: () => "+=" + Math.round(distance() * TOTAL_RATIO),
           invalidateOnRefresh: true, onRefresh: updateScales,
           onUpdate: (self) => {
-            gsap.set(bar, { scaleX: self.progress });
-            indexEl.textContent = String(Math.round(self.progress * (rows.length - 1)) + 1).padStart(2, "0");
+            const p = gsap.utils.clamp(0, 1, self.progress * TOTAL_RATIO - HOLD_RATIO);
+            gsap.set(bar, { scaleX: p });
+            indexEl.textContent = String(Math.round(p * (rows.length - 1)) + 1).padStart(2, "0");
             updateScales();
           }
         }
-      });
+      })
+        .to({}, { duration: HOLD_RATIO })
+        .to(track, { x: () => -distance(), ease: "none" })
+        .to({}, { duration: HOLD_RATIO });
 
       rows.forEach((row) => {
         const img = row.querySelector(".ics-rf-story-row__media img");
