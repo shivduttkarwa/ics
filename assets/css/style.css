@@ -214,6 +214,20 @@ h1, h2, h3, h4, h5,
   z-index: 0;
 }
 
+.ics-rf-decorative-line--hero-1 {
+  --ics-rf-hero-leaf-1-x: 0px;
+  --ics-rf-hero-leaf-1-y: 0px;
+  --ics-rf-hero-leaf-1-rotate: 60deg;
+  transform: translate(var(--ics-rf-hero-leaf-1-x), var(--ics-rf-hero-leaf-1-y)) rotate(var(--ics-rf-hero-leaf-1-rotate));
+}
+
+.ics-rf-decorative-line--hero-2 {
+  --ics-rf-hero-leaf-2-x: 0px;
+  --ics-rf-hero-leaf-2-y: 0px;
+  --ics-rf-hero-leaf-2-rotate: 0deg;
+  transform: translate(var(--ics-rf-hero-leaf-2-x), var(--ics-rf-hero-leaf-2-y)) rotate(var(--ics-rf-hero-leaf-2-rotate));
+}
+
 .ics-rf-section > .container,
 .ics-rf-section > .container-fluid {
   position: relative;
