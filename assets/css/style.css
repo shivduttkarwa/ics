@@ -216,14 +216,17 @@ h5,
 }
 
 .ics-rf-decorative-line--hero-1 {
+  z-index: 2;
   --ics-rf-hero-leaf-1-x: -29vw;
   --ics-rf-hero-leaf-1-y: -85vh;
   --ics-rf-hero-leaf-1-rotate: 60deg;
   --ics-rf-hero-leaf-1-scale: 0.9;
-  transform: translate(var(--ics-rf-hero-leaf-1-x), var(--ics-rf-hero-leaf-1-y)) rotate(var(--ics-rf-hero-leaf-1-rotate)) scale(var(--ics-rf-hero-leaf-1-scale));
+  --ics-rf-hero-leaf-1-flip: 1;
+  transform: translate(var(--ics-rf-hero-leaf-1-x), var(--ics-rf-hero-leaf-1-y)) rotate(var(--ics-rf-hero-leaf-1-rotate)) scale(var(--ics-rf-hero-leaf-1-scale)) scaleX(var(--ics-rf-hero-leaf-1-flip));
 }
 
 .ics-rf-decorative-line--hero-2 {
+    z-index: 2;
     --ics-rf-hero-leaf-2-x: -9vw;
     --ics-rf-hero-leaf-2-y: -11vh;
     --ics-rf-hero-leaf-2-rotate: 181deg;
@@ -446,7 +449,7 @@ h5,
   position: relative;
   z-index: 1;
   padding-top: 5rem;
-  background-color: var(--color-background);
+  background-color: var(--color-surface);
 }
 
 .ics-rf-story-row {
