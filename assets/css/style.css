@@ -957,6 +957,8 @@ h5,
   .ics-rf-child-focus-section__grid {
     flex-direction: row;
     gap: 8.5rem; /* 136px */
+    max-width: 73.75rem; /* 550 + 136 + 494px: keeps the block a fixed size, centered, instead of stretching */
+    margin-inline: auto;
   }
 
   .ics-rf-child-focus-section__media {
