@@ -685,7 +685,14 @@ h5,
 }
 
 .ics-rf-story-row__grid {
-  --bs-gutter-x: 2.5rem;
+  --bs-gutter-x: 0;
+  --bs-gutter-y: var(--space-4);
+}
+
+@media (min-width: 992px) {
+  .ics-rf-story-row__grid > .ics-rf-story-row__media-col {
+    padding-right: 2.5rem;
+  }
 }
 
 .ics-rf-story-row__media {
@@ -695,6 +702,7 @@ h5,
 @media (min-width: 992px) {
   .ics-rf-story-row__media {
     width: 31.875rem;
+    height: 39.8125rem;
   }
 }
 
