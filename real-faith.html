@@ -410,13 +410,9 @@
       const bar     = document.getElementById("ics-rf-story-bar");
       const indexEl = document.getElementById("ics-rf-story-index");
       const rows    = gsap.utils.toArray(".ics-rf-story-row");
-      const imgs    = rows.map((r) => r.querySelector(".ics-rf-story-row__media img"));
       document.getElementById("ics-rf-story-total").textContent = String(rows.length).padStart(2, "0");
 
       const distance = () => track.scrollWidth - window.innerWidth;
-
-      const skewSetter   = gsap.quickTo(imgs, "skewX",  { duration: 0.5, ease: "power3" });
-      const squashSetter = gsap.quickTo(imgs, "scaleY", { duration: 0.5, ease: "power3" });
 
       const scaleSetters = rows.map((r) => gsap.quickTo(r, "scale", { duration: 0.45, ease: "power3" }));
       const MIN = 0.9, MAX = 1;
@@ -439,9 +435,6 @@
           onUpdate: (self) => {
             gsap.set(bar, { scaleX: self.progress });
             indexEl.textContent = String(Math.round(self.progress * (rows.length - 1)) + 1).padStart(2, "0");
-            const v = self.getVelocity();
-            skewSetter(gsap.utils.clamp(-16, 16, v / -140));
-            squashSetter(gsap.utils.clamp(0.93, 1, 1 - Math.abs(v) / 16000));
             updateScales();
           }
         }
