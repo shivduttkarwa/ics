@@ -920,6 +920,19 @@ h5,
   padding-top: 5.5625rem; /* 89px */
 }
 
+.ics-rf-child-focus-section__inner {
+  width: 100%;
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+}
+
+@media (min-width: 992px) {
+  .ics-rf-child-focus-section__inner {
+    padding-left: 8.12rem;
+    padding-right: 8.12rem;
+  }
+}
+
 .ics-rf-child-focus-section__grid {
   display: flex;
   flex-direction: column;
