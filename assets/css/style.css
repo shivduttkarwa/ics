@@ -59,39 +59,33 @@ html {
   font-size: 16px;
 }
 
-@media (min-width: 576px) {
-  html {
-    font-size: 16px;
-  }
-}
-
 @media (min-width: 768px) {
   html {
-    font-size: 16px;
+    font-size: 12px;
   }
 }
 
 @media (min-width: 992px) {
   html {
-    font-size: 17px;
+    font-size: 12px;
   }
 }
 
 @media (min-width: 1200px) {
   html {
-    font-size: 18px;
+    font-size: 12px;
   }
 }
 
 @media (min-width: 1400px) {
   html {
-    font-size: 19px;
+    font-size: 14px;
   }
 }
 
 @media (min-width: 1600px) {
   html {
-    font-size: 20px;
+    font-size: 16px;
   }
 }
 
@@ -141,8 +135,9 @@ h5,
 }
 
 .ics-rf-display-heading {
-  font-size: clamp(2.1875rem, 1.6rem + 2.6vw, var(--font-size-3xl));
+  font-size: clamp(2.1875rem, 1.25rem + 3.8vw, 4.6875rem);
   font-style: italic;
+  letter-spacing: -0.04em;
 }
 
 .ics-rf-section-heading {
@@ -168,7 +163,6 @@ h5,
   font-family: var(--font-secondary);
   font-style: italic;
   font-weight: var(--font-medium);
-  color: var(--color-heading);
 }
 
 .ics-rf-eyebrow {
@@ -355,16 +349,18 @@ h5,
 .ics-rf-hero {
   text-align: center;
   overflow: visible;
+  padding-top: 3rem;
 }
 
 .ics-rf-hero__eyebrow {
   color: var(--color-on-dark);
   font-family: var(--font-secondary);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-base);
+  line-height: 1.1;
   letter-spacing: -0.04em;
 }
 
-.ics-rf-hero__title {
+.ics-rf-hero h1.ics-rf-hero__title {
   color: var(--color-accent);
   margin-block: var(--space-3);
 }
@@ -386,10 +382,14 @@ h5,
 .ics-rf-hero__media {
   position: relative;
   margin-top: var(--space-6);
+  padding-inline: 5rem;
 }
 
 .ics-rf-hero__media .ics-rf-media-frame {
-  aspect-ratio: 16 / 10;
+  width: 100%;
+ 
+  aspect-ratio: 1280 / 758;
+  margin-inline: auto;
   box-shadow: var(--shadow-lg);
 }
 
@@ -461,6 +461,10 @@ h5,
 
 .ics-rf-story-card__body+.ics-rf-story-card__quote {
   margin-top: var(--space-2);
+}
+
+.ics-rf-story-card__quote {
+  color: var(--color-heading);
 }
 
 .ics-rf-quote-banner {

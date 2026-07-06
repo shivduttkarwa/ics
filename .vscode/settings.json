@@ -1,4 +1,5 @@
 {
   "editor.tabCompletion": "off",
-  "emmet.triggerExpansionOnTab": false
+  "emmet.triggerExpansionOnTab": false,
+  "editor.acceptSuggestionOnTab": false
 }
