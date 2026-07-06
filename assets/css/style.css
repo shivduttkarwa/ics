@@ -1,3 +1,227 @@
+@font-face {
+  font-family: "Museo Sans";
+  src: url("../fonts/museo-sans/MuseoSans-100.otf") format("opentype");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Museo Sans";
+  src: url("../fonts/museo-sans/MuseoSans-100Italic.otf") format("opentype");
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Museo Sans";
+  src: url("../fonts/museo-sans/MuseoSans-300.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Museo Sans";
+  src: url("../fonts/museo-sans/MuseoSans-300Italic.otf") format("opentype");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Museo Sans";
+  src: url("../fonts/museo-sans/MuseoSans_500.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Museo Sans";
+  src: url("../fonts/museo-sans/MuseoSans_500_Italic.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Museo Sans";
+  src: url("../fonts/museo-sans/MuseoSans_700.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Museo Sans";
+  src: url("../fonts/museo-sans/MuseoSans-700Italic.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Museo Sans";
+  src: url("../fonts/museo-sans/MuseoSans_900.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Museo Sans";
+  src: url("../fonts/museo-sans/MuseoSans-900Italic.otf") format("opentype");
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Ulises";
+  src: url("../fonts/ulises/Ulises-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Ulises";
+  src: url("../fonts/ulises/Ulises-ThinItalic.ttf") format("truetype");
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Ulises";
+  src: url("../fonts/ulises/Ulises-ExtraLight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Ulises";
+  src: url("../fonts/ulises/Ulises-ExtraLightItalic.ttf") format("truetype");
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Ulises";
+  src: url("../fonts/ulises/Ulises-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Ulises";
+  src: url("../fonts/ulises/Ulises-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Ulises";
+  src: url("../fonts/ulises/Ulises-Book.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Ulises";
+  src: url("../fonts/ulises/Ulises-BookItalic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Ulises";
+  src: url("../fonts/ulises/Ulises-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Ulises";
+  src: url("../fonts/ulises/Ulises-MediumItalic.ttf") format("truetype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Ulises";
+  src: url("../fonts/ulises/Ulises-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Ulises";
+  src: url("../fonts/ulises/Ulises-SemiBoldItalic.ttf") format("truetype");
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Ulises";
+  src: url("../fonts/ulises/Ulises-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Ulises";
+  src: url("../fonts/ulises/Ulises-BoldItalic.ttf") format("truetype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Ulises";
+  src: url("../fonts/ulises/Ulises-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Ulises";
+  src: url("../fonts/ulises/Ulises-ExtraBoldItalic.ttf") format("truetype");
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Ulises";
+  src: url("../fonts/ulises/Ulises-Heavy.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Ulises";
+  src: url("../fonts/ulises/Ulises-HeavyItalic.ttf") format("truetype");
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
 :root {
 
   --color-primary: #0c4b40;
@@ -13,8 +237,8 @@
   --color-border: rgba(12, 75, 64, 0.14);
   --color-on-dark: #ffffff;
 
-  --font-primary: "Mulish", "Segoe UI", sans-serif;
-  --font-secondary: "Fraunces", "Georgia", serif;
+  --font-primary: "Museo Sans", "Segoe UI", sans-serif;
+  --font-secondary: "Ulises", "Georgia", serif;
 
   --font-size-xs: 0.875rem;
   --font-size-sm: 1rem;
@@ -420,7 +644,7 @@ h5,
 .ics-rf-hero__stat-number {
   font-family: var(--font-secondary);
   font-style: italic;
-  font-weight: 400;
+  font-weight: var(--font-light);
   font-size: 7.5rem;
   line-height: 1.1;
   letter-spacing: -0.3rem;
@@ -429,7 +653,7 @@ h5,
 .ics-rf-hero__stat-title {
   font-family: var(--font-secondary);
   font-style: normal;
-  font-weight: 400;
+  font-weight: var(--font-bold);
   font-size: var(--font-size-lg);
   line-height: 1.1;
   letter-spacing: -0.0625rem;
@@ -438,7 +662,7 @@ h5,
 .ics-rf-hero__stat-text {
   font-family: var(--font-secondary);
   font-style: italic;
-  font-weight: 400;
+  font-weight: var(--font-medium);
   font-size: var(--font-size-base);
   margin-top: var(--space-1);
   line-height: 1.4;
@@ -453,9 +677,6 @@ h5,
 }
 
 .ics-rf-story-row {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
   padding: var(--space-6);
 }
 
@@ -463,16 +684,30 @@ h5,
   background-color: var(--color-surface);
 }
 
+.ics-rf-story-row__grid {
+  --bs-gutter-x: 2.5rem;
+}
+
 .ics-rf-story-row__media {
-  flex-shrink: 0;
+  width: 100%;
+}
+
+@media (min-width: 992px) {
+  .ics-rf-story-row__media {
+    width: 31.875rem;
+  }
 }
 
 .ics-rf-story-row__content {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
-  flex: 1 0 0;
-  min-width: 0;
+}
+
+@media (min-width: 992px) {
+  .ics-rf-story-row__content {
+    padding-left: var(--space-9);
+  }
 }
 
 .ics-rf-story-row__heading {
@@ -501,19 +736,7 @@ h5,
 
 @media (min-width: 992px) {
   .ics-rf-story-row {
-    flex-direction: row;
-    align-items: center;
-    gap: var(--space-5);
     padding: var(--space-9);
-  }
-
-  .ics-rf-story-row__media {
-    width: 31.875rem;
-  }
-
-  .ics-rf-story-row__content {
-    padding-left: var(--space-9);
-    gap: var(--space-3);
   }
 }
 
