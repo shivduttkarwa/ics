@@ -58,10 +58,10 @@
 
     <div class="ics-rf-story-spacer" aria-hidden="true"></div>
 
-        <section class="ics-rf-story-section" id="ics-rf-story-section" aria-label="A day of faith at ICS">
-      <div class="ics-rf-story-progress"><span class="ics-rf-story-progress__bar" id="ics-rf-story-bar"></span></div>
+        <section class="ics-rf-story-section" aria-label="A day of faith at ICS">
+      <div class="ics-rf-story-progress"><span class="ics-rf-story-progress__bar"></span></div>
 
-      <div class="ics-rf-story-track" id="ics-rf-story-track">
+      <div class="ics-rf-story-track">
       <article class="ics-rf-story-row ics-rf-story-row--tint">
         <div class="row ics-rf-story-row__grid align-items-center">
           <div class="col-lg-auto ics-rf-story-row__media-col">
@@ -395,68 +395,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script>
-    gsap.registerPlugin(ScrollTrigger);
-    ScrollTrigger.config({ ignoreMobileResize: true });
-
-    window.addEventListener("load", () => {
-      const track   = document.getElementById("ics-rf-story-track");
-      const section = document.getElementById("ics-rf-story-section");
-      const bar     = document.getElementById("ics-rf-story-bar");
-      const rows    = gsap.utils.toArray(".ics-rf-story-row");
-
-      const distance = () => track.scrollWidth - window.innerWidth;
-
-      const scaleSetters = rows.map((r) => gsap.quickTo(r, "scale", { duration: 0.45, ease: "power3" }));
-      const MIN = 0.9, MAX = 1;
-      const updateScales = () => {
-        const cx = window.innerWidth / 2;
-        rows.forEach((r, i) => {
-          const rect = r.getBoundingClientRect();
-          const dist = Math.abs((rect.left + rect.width / 2) - cx) / window.innerWidth;
-          scaleSetters[i](gsap.utils.clamp(MIN, MAX, MAX - dist * 0.16));
-        });
-      };
-
-      // small pinned holds before/after the track moves, so the first and last
-      // panels' settle animation (scale focus) completes before the pin releases
-      const HOLD_RATIO = 0.06;
-      const TOTAL_RATIO = 1 + HOLD_RATIO * 2;
-
-      const horizontal = gsap.timeline({
-        scrollTrigger: {
-          trigger: section, pin: true, scrub: 1.2,
-          start: "top top", end: () => "+=" + Math.round(distance() * TOTAL_RATIO),
-          invalidateOnRefresh: true, onRefresh: updateScales,
-          onUpdate: (self) => {
-            const p = gsap.utils.clamp(0, 1, self.progress * TOTAL_RATIO - HOLD_RATIO);
-            gsap.set(bar, { scaleX: p });
-            updateScales();
-          }
-        }
-      })
-        .to({}, { duration: HOLD_RATIO })
-        .to(track, { x: () => -distance(), ease: "none" })
-        .to({}, { duration: HOLD_RATIO });
-
-      rows.forEach((row) => {
-        const img = row.querySelector(".ics-rf-story-row__media img");
-
-        gsap.fromTo(img, { xPercent: -5 }, {
-          xPercent: 5, ease: "none",
-          scrollTrigger: { trigger: row, containerAnimation: horizontal, start: "left right", end: "right left", scrub: true }
-        });
-
-        gsap.fromTo(row.querySelector(".ics-rf-story-row__media"),
-          { clipPath: "inset(0% 0% 0% 100%)" },
-          { clipPath: "inset(0% 0% 0% 0%)", ease: "none",
-            scrollTrigger: { trigger: row, containerAnimation: horizontal, start: "left right", end: "left center", scrub: true } }
-        );
-      });
-
-      updateScales();
-      ScrollTrigger.refresh();
-    });
-  </script>
+  <script src="assets/js/story-section.js"></script>
 </body>
 </html>
