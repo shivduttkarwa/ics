@@ -1225,14 +1225,14 @@ h5,
   height: 72.56rem;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .ics-rf-discover {
-    height: 1250px;
+    height: 89.2857rem; /* 1250px at the 1440px design scale */
   }
 
   .ics-rf-discover .container,
   .ics-rf-site-footer .container {
-    max-width: 1280px; /* Figma uses 80px side gutters on 1440px */
+    max-width: 91.4286rem; /* 1280px at the 1440px design scale */
     padding-left: 0;
     padding-right: 0;
   }
@@ -1300,12 +1300,12 @@ h5,
   margin-top: 20rem; /* independent control: push the card down, tune freely */
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .ics-rf-prospectus-card {
-    width: min(100%, 730px);
-    gap: 40px;
-    padding: 80px;
-    margin-top: 600px;
+    width: min(100%, 52.1429rem);
+    gap: 2.8571rem;
+    padding: 5.7143rem;
+    margin-top: 42.8571rem;
   }
 }
 
@@ -1402,11 +1402,11 @@ h5,
   overflow: hidden;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .ics-rf-prospectus-media {
-    width: 402px;
-    height: 506px;
-    margin-top: 600px; /* keeps the image paired with the form card */
+    width: 28.7143rem;
+    height: 36.1429rem;
+    margin-top: 42.8571rem; /* keeps the image paired with the form card */
     margin-left: auto;
   }
 }
@@ -1460,22 +1460,22 @@ h5,
   max-width: 38.5625rem;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .ics-rf-site-footer {
-    padding-block: 80px 40px;
+    padding-block: 5.7143rem 2.8571rem;
   }
 
   .ics-rf-site-footer__top {
-    margin-bottom: 90px;
+    margin-bottom: 6.4286rem;
   }
 
   .ics-rf-site-footer__logo {
-    height: 90px;
+    height: 6.4286rem;
   }
 
   .ics-rf-site-footer__tagline {
-    font-size: 45px;
-    max-width: 617px;
+    font-size: 3.2143rem;
+    max-width: 44.0714rem;
   }
 }
 
@@ -1483,14 +1483,14 @@ h5,
   --bs-gutter-x: 2rem;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .ics-rf-footer-content-row {
     --bs-gutter-x: 0;
     display: grid;
-    grid-template-columns: minmax(0, 520px) minmax(0, 1fr);
-    column-gap: 120px;
+    grid-template-columns: minmax(0, 37.1429rem) minmax(0, 1fr);
+    column-gap: 8.5714rem;
     align-items: start;
-    margin-bottom: 88px !important;
+    margin-bottom: 6.2857rem !important;
   }
 
   .ics-rf-footer-content-row > [class*="col-"] {
@@ -1510,7 +1510,7 @@ h5,
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .ics-rf-footer-links-row {
     --bs-gutter-x: 0;
   }
@@ -1632,11 +1632,11 @@ h5,
   margin-bottom: var(--space-5);
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .ics-rf-site-footer__marks-row {
     flex-wrap: nowrap;
-    gap: 140px;
-    margin-bottom: 80px;
+    gap: 10rem;
+    margin-bottom: 5.7143rem;
   }
 }
 
@@ -1647,7 +1647,7 @@ h5,
   gap: var(--space-6);
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .ics-rf-accreditations {
     flex: 1 1 auto;
     justify-content: space-between;
