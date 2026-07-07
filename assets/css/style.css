@@ -487,6 +487,26 @@ h5,
     transform: translate(var(--ics-rf-child-focus-line-2-x), var(--ics-rf-child-focus-line-2-y)) rotate(var(--ics-rf-child-focus-line-2-rotate)) scale(var(--ics-rf-child-focus-line-2-scale)) scaleX(var(--ics-rf-child-focus-line-2-flip));
 }
 
+.ics-rf-decorative-line--footer-1 {
+  z-index: 0;
+  --ics-rf-footer-line-1-x: -29vw;
+  --ics-rf-footer-line-1-y: -13vh;
+  --ics-rf-footer-line-1-rotate: 70deg;
+  --ics-rf-footer-line-1-scale: 1;
+  --ics-rf-footer-line-1-flip: 1;
+  transform: translate(var(--ics-rf-footer-line-1-x), var(--ics-rf-footer-line-1-y)) rotate(var(--ics-rf-footer-line-1-rotate)) scale(var(--ics-rf-footer-line-1-scale)) scaleX(var(--ics-rf-footer-line-1-flip));
+}
+
+.ics-rf-decorative-line--footer-2 {
+  z-index: 0;
+  --ics-rf-footer-line-2-x: 0vw;
+  --ics-rf-footer-line-2-y: 33vh;
+  --ics-rf-footer-line-2-rotate: 160deg;
+  --ics-rf-footer-line-2-scale: 1;
+  --ics-rf-footer-line-2-flip: -1;
+  transform: translate(var(--ics-rf-footer-line-2-x), var(--ics-rf-footer-line-2-y)) rotate(var(--ics-rf-footer-line-2-rotate)) scale(var(--ics-rf-footer-line-2-scale)) scaleX(var(--ics-rf-footer-line-2-flip));
+}
+
 .ics-rf-section>.container,
 .ics-rf-section>.container-fluid {
   position: relative;
