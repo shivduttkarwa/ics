@@ -839,9 +839,15 @@ h5,
   padding: clamp(var(--space-6), 5vw, 6.25rem);
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
   border-radius: var(--radius-pill);
   background: var(--color-primary);
+}
+
+.ics-rf-quote-banner__circle blockquote {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .ics-rf-quote-mark {
@@ -851,8 +857,20 @@ h5,
   font-size: clamp(3.75rem, 3rem + 3vw, 7.5rem);
   line-height: 1.4;
   letter-spacing: -0.03em;
-  margin-bottom: -0.21em;
   display: block;
+}
+
+@supports not (text-box-trim: trim-both) {
+  .ics-rf-quote-mark {
+    margin-bottom: -0.21em; /* approximates the cap-height trim by clawing back the font's built-in leading */
+  }
+}
+
+@supports (text-box-trim: trim-both) {
+  .ics-rf-quote-mark {
+    text-box-trim: trim-both;
+    text-box-edge: cap alphabetic;
+  }
 }
 
 .ics-rf-quote-banner__text {
@@ -862,11 +880,12 @@ h5,
   font-size: var(--font-size-xl);
   line-height: 1.4;
   letter-spacing: -0.06563rem;
+  max-width: 19ch; /* forces the quote to wrap across 4 lines instead of 3, to better fill the circle */
+  margin: 0;
 }
 
 .ics-rf-quote-banner__cite {
   display: block;
-  margin-top: var(--space-3);
   font-size: var(--font-size-sm);
   font-weight: var(--font-medium);
   letter-spacing: 0.08em;
