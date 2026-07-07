@@ -690,6 +690,14 @@ h5,
   box-shadow: var(--shadow-lg);
 }
 
+.ics-rf-hero__stat--left-center {
+  right: auto;
+  left: 9%;
+  bottom: auto;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 .ics-rf-hero__stat-number {
   font-family: var(--font-secondary);
   font-style: italic;
