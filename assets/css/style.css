@@ -794,7 +794,7 @@ h5,
   object-fit: cover;
 }
 
-/* Slot positions are nth-child based so Wagtail can loop the same item markup. */
+/* Wagtail: keep item loop order stable; desktop masonry slots are mapped by nth-child. */
 .ics-l3-parent-voices__item:nth-child(1) {
   top: 14.625rem;
   left: 0.9375rem;
@@ -894,14 +894,16 @@ h5,
     height: auto;
   }
 
-  .ics-l3-parent-voices__item {
+  .ics-l3-parent-voices__inner > .ics-l3-parent-voices__item {
     position: relative;
     top: auto;
     left: auto;
+    width: 100%;
+    height: auto;
   }
 
-  .ics-l3-parent-voices__quote,
-  .ics-l3-parent-voices__media {
+  .ics-l3-parent-voices__inner > .ics-l3-parent-voices__quote,
+  .ics-l3-parent-voices__inner > .ics-l3-parent-voices__media {
     width: 100%;
   }
 
@@ -915,21 +917,45 @@ h5,
     margin-bottom: var(--space-3);
   }
 
-  .ics-l3-parent-voices__media {
+  .ics-l3-parent-voices__inner > .ics-l3-parent-voices__media {
     height: auto;
     aspect-ratio: var(--ics-l3-parent-voices-ratio);
   }
 }
 
 @media (max-width: 767.98px) {
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  main {
+    overflow-x: clip;
+  }
+
   .ics-l3-parent-voices {
     padding-block: var(--space-7);
+    overflow-x: hidden;
   }
 
   .ics-l3-parent-voices__inner {
     grid-template-columns: 1fr;
     gap: var(--space-6);
-    width: min(100% - 2rem, 32rem);
+    width: calc(100% - 2rem);
+    max-width: 32rem;
+    min-width: 0;
+    overflow-x: hidden;
+  }
+
+  .ics-l3-parent-voices__inner > .ics-l3-parent-voices__item {
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .ics-l3-parent-voices__quote-text,
+  .ics-l3-parent-voices__quote-cite {
+    overflow-wrap: anywhere;
   }
 
   .ics-l3-parent-voices__quote-text {
@@ -2684,7 +2710,9 @@ h5,
   }
 
   .ics-rf-pill-link {
-    white-space: nowrap;
+    max-width: 100%;
+    white-space: normal;
+    text-align: center;
     font-size: clamp(0.5625rem, 2.5vw, 0.8125rem);
     letter-spacing: 0.03em;
     gap: 0.625rem;
