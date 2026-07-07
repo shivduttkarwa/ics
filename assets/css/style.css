@@ -1411,7 +1411,7 @@ h5,
 
 @media (min-width: 1200px) {
   .ics-rf-prospectus-media {
-    margin-top: 44.8571rem; /* keeps the image paired with the form card */
+    margin-top: 49.2857rem; /* centers the image against the prospectus card */
     margin-left: auto;
   }
 }
