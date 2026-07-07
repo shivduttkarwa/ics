@@ -1225,6 +1225,19 @@ h5,
   height: 72.56rem;
 }
 
+@media (min-width: 992px) {
+  .ics-rf-discover {
+    height: 1250px;
+  }
+
+  .ics-rf-discover .container,
+  .ics-rf-site-footer .container {
+    max-width: 1280px; /* Figma uses 80px side gutters on 1440px */
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
 .ics-rf-discover__media {
   position: absolute;
   inset: 0;
@@ -1277,6 +1290,7 @@ h5,
   flex-direction: column;
   align-items: flex-start;
   gap: 2.5rem; /* 40px */
+  height: auto;
   max-width: 100%;
   background-color: var(--color-background);
   color: var(--color-text); /* resets the white text color .ics-rf-discover sets for its dark backdrop */
@@ -1284,6 +1298,15 @@ h5,
   padding: 5rem; /* 80px */
   box-shadow: var(--shadow-lg);
   margin-top: 20rem; /* independent control: push the card down, tune freely */
+}
+
+@media (min-width: 992px) {
+  .ics-rf-prospectus-card {
+    width: min(100%, 730px);
+    gap: 40px;
+    padding: 80px;
+    margin-top: 600px;
+  }
 }
 
 .ics-rf-prospectus-card__intro {
@@ -1379,6 +1402,15 @@ h5,
   overflow: hidden;
 }
 
+@media (min-width: 992px) {
+  .ics-rf-prospectus-media {
+    width: 402px;
+    height: 506px;
+    margin-top: 600px; /* keeps the image paired with the form card */
+    margin-left: auto;
+  }
+}
+
 .ics-rf-prospectus-media img {
   width: 100%;
   height: 100%;
@@ -1389,7 +1421,7 @@ h5,
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.55) 100%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.40) 12.63%, rgba(0, 0, 0, 0.00) 24.1%), linear-gradient(180deg, rgba(0, 0, 0, 0.00) 54.42%, rgba(0, 0, 0, 0.40) 76.1%, rgba(0, 0, 0, 0.65) 100%);
 }
 
 .ics-rf-prospectus-media__logo {
@@ -1428,13 +1460,43 @@ h5,
   max-width: 38.5625rem;
 }
 
+@media (min-width: 992px) {
+  .ics-rf-site-footer {
+    padding-block: 80px 40px;
+  }
+
+  .ics-rf-site-footer__top {
+    margin-bottom: 90px;
+  }
+
+  .ics-rf-site-footer__logo {
+    height: 90px;
+  }
+
+  .ics-rf-site-footer__tagline {
+    font-size: 45px;
+    max-width: 617px;
+  }
+}
+
 .ics-rf-footer-content-row {
   --bs-gutter-x: 2rem;
 }
 
 @media (min-width: 992px) {
   .ics-rf-footer-content-row {
-    --bs-gutter-x: 13.875rem;
+    --bs-gutter-x: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 520px) minmax(0, 1fr);
+    column-gap: 120px;
+    align-items: start;
+    margin-bottom: 88px !important;
+  }
+
+  .ics-rf-footer-content-row > [class*="col-"] {
+    width: auto;
+    max-width: none;
+    padding-inline: 0;
   }
 }
 
@@ -1445,6 +1507,12 @@ h5,
 @media (min-width: 576px) {
   .ics-rf-footer-links-row {
     --bs-gutter-x: 4.4375rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .ics-rf-footer-links-row {
+    --bs-gutter-x: 0;
   }
 }
 
@@ -1556,11 +1624,35 @@ h5,
   transform: translateY(-0.125rem);
 }
 
+.ics-rf-site-footer__marks-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+@media (min-width: 992px) {
+  .ics-rf-site-footer__marks-row {
+    flex-wrap: nowrap;
+    gap: 140px;
+    margin-bottom: 80px;
+  }
+}
+
 .ics-rf-accreditations {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: var(--space-6);
+}
+
+@media (min-width: 992px) {
+  .ics-rf-accreditations {
+    flex: 1 1 auto;
+    justify-content: space-between;
+    gap: 2rem;
+  }
 }
 
 .ics-rf-accreditation-mark {
@@ -1577,7 +1669,7 @@ h5,
 
 .ics-rf-site-footer__divider {
   border: 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-top: 1px solid var(--color-accent);
   margin-block: var(--space-5);
 }
 
