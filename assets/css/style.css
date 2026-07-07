@@ -967,6 +967,10 @@ h5,
     padding-inline: var(--space-2);
   }
 
+  .ics-rf-testimonial-section {
+    height: auto;
+  }
+
   .ics-rf-testimonial-section__media--a,
   .ics-rf-testimonial-section__media--b,
   .ics-rf-testimonial-section__card {
@@ -1324,8 +1328,13 @@ h5,
 .ics-rf-discover-card__title {
   font-style: italic;
   margin: 0;
-  font-size: var(--font-size-3xl);
-  line-height: 1;
+}
+
+@media (min-width: 768px) {
+  .ics-rf-discover-card__title {
+    font-size: var(--font-size-3xl);
+    line-height: 1;
+  }
 }
 
 .ics-rf-discover-card__lead {
@@ -1881,6 +1890,10 @@ h5,
 
   .ics-rf-testimonial-block__text {
     font-size: 1.559375rem;
+  }
+
+  .ics-rf-discover-card {
+    padding: 2rem;
   }
 
   .ics-rf-quote-banner__circle {
