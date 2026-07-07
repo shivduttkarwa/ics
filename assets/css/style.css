@@ -1484,6 +1484,14 @@ h5,
   }
 }
 
+@media (min-width: 1920px) and (max-width: 2559.98px) {
+  .ics-rf-site-footer__tagline {
+    margin-left: auto;
+    max-width: 38rem;
+    text-align: right;
+  }
+}
+
 .ics-rf-footer-content-row {
   --bs-gutter-x: 2rem;
 }
@@ -1674,7 +1682,7 @@ h5,
 
 .ics-rf-site-footer__divider {
   border: 0;
-  height: 0.125rem;
+  height: 1px;
   background: var(--premium-bright-moss, #a6d222);
   opacity: 1;
   margin-block: var(--space-5);
