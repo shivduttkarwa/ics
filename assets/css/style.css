@@ -908,6 +908,273 @@ h5,
   }
 }
 
+.ics-l2-senior-outcomes {
+  position: relative;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  overflow: hidden;
+}
+
+.ics-l2-senior-outcomes__inner {
+  position: relative;
+  width: min(100% - 10rem, 80rem);
+  margin-inline: auto;
+  padding-top: 6.4375rem;
+  padding-bottom: 6.25rem;
+}
+
+.ics-l2-senior-outcomes__grid {
+  display: grid;
+  grid-template-columns: 44.8125rem 33.125rem;
+  column-gap: 1.875rem;
+  align-items: start;
+}
+
+.ics-l2-senior-outcomes__main {
+  width: 44.8125rem;
+}
+
+.ics-l2-senior-outcomes__copy {
+  display: flex;
+  width: 100%;
+  min-height: 46.1875rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2.53125rem 5rem 2.53125rem 2.5rem;
+}
+
+.ics-l2-senior-outcomes__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  color: var(--color-heading);
+  font-size: 0.875rem;
+  font-weight: var(--font-bold);
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+
+.ics-l2-senior-outcomes__eyebrow-dot,
+.ics-l2-senior-outcomes__button-dot {
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.ics-l2-senior-outcomes__eyebrow-dot {
+  background-color: var(--color-accent);
+}
+
+.ics-l2-senior-outcomes__title {
+  color: var(--color-heading);
+  font-family: var(--font-secondary);
+  font-size: 3.75rem;
+  font-style: italic;
+  font-weight: var(--font-bold);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  margin: 0 0 1.25rem;
+}
+
+.ics-l2-senior-outcomes__body {
+  color: var(--color-text);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-light);
+  line-height: 1.4;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.25rem;
+}
+
+.ics-l2-senior-outcomes__body p {
+  margin: 0;
+}
+
+.ics-l2-senior-outcomes__body p + p {
+  margin-top: 1.4em;
+}
+
+.ics-l2-senior-outcomes__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9375rem;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-accent);
+  color: var(--color-primary);
+  padding: 0.9375rem 1.5625rem;
+  font-size: 1rem;
+  font-weight: var(--font-bold);
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.ics-l2-senior-outcomes__button:hover,
+.ics-l2-senior-outcomes__button:focus-visible {
+  color: var(--color-primary);
+  transform: translateY(-0.125rem);
+}
+
+.ics-l2-senior-outcomes__button-dot {
+  background-color: var(--color-primary);
+}
+
+.ics-l2-senior-outcomes__stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 15.625rem));
+  gap: 4.875rem 2.5rem;
+  width: 33.75rem;
+  margin: 1.875rem 0 0 2.5rem;
+}
+
+.ics-l2-senior-outcomes__stat {
+  margin: 0;
+}
+
+.ics-l2-senior-outcomes__stat dt {
+  color: var(--color-heading);
+  font-family: var(--font-secondary);
+  font-size: 3.75rem;
+  font-style: italic;
+  font-weight: var(--font-light);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  border-bottom: 0.0625rem solid var(--color-accent);
+  padding-bottom: 0.5625rem;
+  margin: 0 0 0.75rem;
+}
+
+.ics-l2-senior-outcomes__stat dd {
+  color: var(--color-text);
+  font-family: var(--font-secondary);
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: var(--font-medium);
+  line-height: 1.4;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.ics-l2-senior-outcomes__portrait {
+  position: relative;
+  width: 33.125rem;
+  height: 46.1875rem;
+  margin: 8.25rem 0 0;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background-color: var(--color-secondary);
+}
+
+.ics-l2-senior-outcomes__portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ics-l2-senior-outcomes__red-dot {
+  position: absolute;
+  top: 8rem;
+  right: 3.8125rem;
+  z-index: 2;
+  width: 9.5625rem;
+  height: 9.5625rem;
+  border-radius: 50%;
+  background-color: #ed171f;
+}
+
+@media (max-width: 1199.98px) {
+  .ics-l2-senior-outcomes__inner {
+    width: min(100% - 4rem, 58rem);
+    min-height: 0;
+    padding-block: var(--space-8);
+  }
+
+  .ics-l2-senior-outcomes__grid {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--space-6);
+  }
+
+  .ics-l2-senior-outcomes__main,
+  .ics-l2-senior-outcomes__copy,
+  .ics-l2-senior-outcomes__stats,
+  .ics-l2-senior-outcomes__portrait {
+    width: 100%;
+  }
+
+  .ics-l2-senior-outcomes__copy {
+    min-height: 0;
+    padding: 0;
+  }
+
+  .ics-l2-senior-outcomes__title {
+    max-width: 11em;
+  }
+
+  .ics-l2-senior-outcomes__stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: var(--space-8) 0 0;
+  }
+
+  .ics-l2-senior-outcomes__portrait {
+    height: auto;
+    aspect-ratio: 530 / 739;
+    margin-top: 0;
+    max-width: 33.125rem;
+    justify-self: center;
+  }
+
+  .ics-l2-senior-outcomes__red-dot {
+    top: calc(var(--space-8) + 2rem);
+    right: max(2rem, calc((100% - 33.125rem) / 2 - 1.5rem));
+    width: 7rem;
+    height: 7rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .ics-l2-senior-outcomes__inner {
+    width: min(100% - 2rem, 32rem);
+    padding-block: var(--space-7);
+  }
+
+  .ics-l2-senior-outcomes__eyebrow {
+    font-size: var(--font-size-xs);
+  }
+
+  .ics-l2-senior-outcomes__title {
+    font-size: clamp(2.4rem, 1.45rem + 8vw, 3.75rem);
+  }
+
+  .ics-l2-senior-outcomes__button {
+    width: 100%;
+    justify-content: center;
+    padding-inline: 1rem;
+    text-align: center;
+    white-space: normal;
+  }
+
+  .ics-l2-senior-outcomes__stats {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .ics-l2-senior-outcomes__stat dt {
+    font-size: 3.25rem;
+  }
+
+  .ics-l2-senior-outcomes__red-dot {
+    top: 47%;
+    right: 0.75rem;
+    width: 5rem;
+    height: 5rem;
+  }
+}
+
 .ics-rf-story-spacer {
   height: 5rem;
   background-color: var(--color-surface);
@@ -1225,7 +1492,7 @@ h5,
   text-align: center;
   max-width: 55rem;
   margin-inline: auto;
-  padding-top: 9cqh;
+  padding-top: 9rem;
   padding-bottom: 5rem;
 }
 
