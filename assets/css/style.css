@@ -1225,7 +1225,7 @@ h5,
   text-align: center;
   max-width: 55rem;
   margin-inline: auto;
-  padding-top: 9rem;
+  padding-top: 9cqh;
   padding-bottom: 5rem;
 }
 
@@ -1677,6 +1677,9 @@ h5,
   .ics-rf-prospectus-card {
     padding: var(--space-5);
     gap: 1.5rem;
+  }
+
+  .ics-rf-discover__prospectus-card {
     margin-top: 30rem;
   }
 
