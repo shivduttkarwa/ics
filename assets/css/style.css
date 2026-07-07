@@ -692,7 +692,7 @@ h5,
 
 .ics-rf-hero__stat--left-center {
   right: auto;
-  left: 9%;
+  left: 3%;
   bottom: auto;
   top: 50%;
   transform: translateY(-50%);
@@ -724,6 +724,188 @@ h5,
   margin-top: var(--space-1);
   line-height: 1.4;
   letter-spacing: -0.0375rem;
+}
+
+.ics-l2-fee-includes {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  min-height: 91.125rem;
+  padding-block: 11.5625rem 9.4375rem;
+}
+
+.ics-l2-fee-includes__inner {
+  width: min(100% - 10rem, 80rem);
+  margin-inline: auto;
+}
+
+.ics-l2-fee-includes__intro {
+  display: flex;
+  width: min(100%, 41.75rem);
+  flex-direction: column;
+  align-items: center;
+  gap: 0.625rem;
+  margin-inline: auto;
+  margin-bottom: 4.1875rem;
+  text-align: center;
+}
+
+.ics-l2-fee-includes__title {
+  color: var(--color-heading);
+  font-family: var(--font-secondary);
+  font-size: 2.8125rem;
+  font-weight: var(--font-bold);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.ics-l2-fee-includes__lead {
+  color: var(--color-text);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-light);
+  line-height: 1.4;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.ics-l2-fee-includes__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 25rem));
+  column-gap: 2.5rem;
+  row-gap: 7.0625rem;
+  align-items: start;
+}
+
+.ics-l2-fee-card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1.25rem;
+  width: 100%;
+  margin: 0;
+}
+
+.ics-l2-fee-card:nth-child(3n + 2) {
+  transform: translateY(2.625rem);
+}
+
+.ics-l2-fee-card:nth-child(3n) {
+  transform: translateY(5.1875rem);
+}
+
+.ics-l2-fee-card__media {
+  position: relative;
+  width: 100%;
+  height: 16.5rem;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background-color: var(--color-secondary);
+}
+
+.ics-l2-fee-card__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ics-l2-fee-card__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.3125rem;
+  text-align: center;
+}
+
+.ics-l2-fee-card__title {
+  color: var(--color-heading);
+  font-family: var(--font-secondary);
+  font-size: 1.5625rem;
+  font-weight: var(--font-bold);
+  line-height: 1.2;
+  margin: 0;
+}
+
+.ics-l2-fee-card__text {
+  color: var(--color-text);
+  font-family: var(--font-primary);
+  font-size: 1.125rem;
+  font-weight: var(--font-light);
+  line-height: 1.4;
+  margin: 0;
+}
+
+@media (max-width: 1199.98px) {
+  .ics-l2-fee-includes {
+    min-height: 0;
+    padding-block: var(--space-9);
+  }
+
+  .ics-l2-fee-includes__inner {
+    width: min(100% - 4rem, 58rem);
+  }
+
+  .ics-l2-fee-includes__intro {
+    margin-bottom: var(--space-8);
+  }
+
+  .ics-l2-fee-includes__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-7) var(--space-4);
+  }
+
+  .ics-l2-fee-card,
+  .ics-l2-fee-card:nth-child(3n + 2),
+  .ics-l2-fee-card:nth-child(3n) {
+    transform: none;
+  }
+
+  .ics-l2-fee-card__media {
+    height: auto;
+    aspect-ratio: 400 / 264;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .ics-l2-fee-includes {
+    padding-block: var(--space-8);
+  }
+
+  .ics-l2-fee-includes__inner {
+    width: min(100% - 2rem, 25rem);
+  }
+
+  .ics-l2-fee-includes__intro {
+    gap: var(--space-2);
+    margin-bottom: var(--space-6);
+  }
+
+  .ics-l2-fee-includes__title {
+    font-size: clamp(2rem, 1.4rem + 7vw, 2.8125rem);
+  }
+
+  .ics-l2-fee-includes__lead {
+    font-size: var(--font-size-base);
+  }
+
+  .ics-l2-fee-includes__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .ics-l2-fee-card {
+    gap: var(--space-3);
+  }
+
+  .ics-l2-fee-card__title {
+    font-size: 1.45rem;
+  }
+
+  .ics-l2-fee-card__text {
+    font-size: var(--font-size-base);
+  }
 }
 
 .ics-rf-story-spacer {
@@ -1043,7 +1225,7 @@ h5,
   text-align: center;
   max-width: 55rem;
   margin-inline: auto;
-  padding-top: 0rem;
+  padding-top: 9rem;
   padding-bottom: 5rem;
 }
 
