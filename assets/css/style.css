@@ -964,6 +964,7 @@ h5,
     flex-direction: column;
     align-items: center;
     gap: var(--space-6);
+    padding-inline: var(--space-4);
   }
 
   .ics-rf-testimonial-section__media--a,
@@ -971,6 +972,10 @@ h5,
   .ics-rf-testimonial-section__card {
     position: static;
     transform: none;
+  }
+
+  .ics-rf-testimonial-section__media--a {
+    margin-top: -6rem;
   }
 }
 
@@ -1819,7 +1824,12 @@ h5,
     font-size: clamp(2.25rem, 9vw, 3.25rem);
   }
 
+  .ics-rf-story-section {
+    height: auto;
+  }
+
   .ics-rf-story-row {
+    height: auto;
     padding: var(--space-4);
     align-items: flex-start;
   }
@@ -1851,6 +1861,32 @@ h5,
 
   .ics-rf-story-row__heading {
     gap: var(--space-1);
+  }
+
+  .ics-rf-child-focus-section__heading {
+    font-size: clamp(1.575rem, 1.26rem + 2.34vw, 3.375rem);
+  }
+
+  .ics-rf-pill-link {
+    white-space: nowrap;
+    font-size: clamp(0.5625rem, 2.5vw, 0.8125rem);
+    letter-spacing: 0.03em;
+    gap: 0.625rem;
+    padding: 0.75rem 1.125rem;
+  }
+
+  .ics-rf-quote-banner__circle {
+    width: 85vw;
+    min-height: 85vw;
+    padding: 2rem 1.75rem;
+  }
+
+  .ics-rf-quote-mark {
+    font-size: 3rem;
+  }
+
+  .ics-rf-quote-banner__text {
+    font-size: 1.5rem;
   }
 
   .ics-rf-comparison thead {
