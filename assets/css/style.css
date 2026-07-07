@@ -471,18 +471,18 @@ h5,
 .ics-rf-decorative-line--child-focus-1 {
     z-index: 0;
     --ics-rf-child-focus-line-1-x: 0vw;
-    --ics-rf-child-focus-line-1-y: 0vh;
-    --ics-rf-child-focus-line-1-rotate: 108deg;
-    --ics-rf-child-focus-line-1-scale: 0.7;
+    --ics-rf-child-focus-line-1-y: 17vh;
+    --ics-rf-child-focus-line-1-rotate: -31deg;
+    --ics-rf-child-focus-line-1-scale: 1;
     --ics-rf-child-focus-line-1-flip: -1;
     transform: translate(var(--ics-rf-child-focus-line-1-x), var(--ics-rf-child-focus-line-1-y)) rotate(var(--ics-rf-child-focus-line-1-rotate)) scale(var(--ics-rf-child-focus-line-1-scale)) scaleX(var(--ics-rf-child-focus-line-1-flip));
 }
 .ics-rf-decorative-line--child-focus-2 {
     z-index: 0;
-    --ics-rf-child-focus-line-2-x: -17vw;
-    --ics-rf-child-focus-line-2-y: 3vh;
-    --ics-rf-child-focus-line-2-rotate: 137deg;
-    --ics-rf-child-focus-line-2-scale: 0.6;
+    --ics-rf-child-focus-line-2-x: -26vw;
+    --ics-rf-child-focus-line-2-y: -34vh;
+    --ics-rf-child-focus-line-2-rotate: -245deg;
+    --ics-rf-child-focus-line-2-scale: 1;
     --ics-rf-child-focus-line-2-flip: -1;
     transform: translate(var(--ics-rf-child-focus-line-2-x), var(--ics-rf-child-focus-line-2-y)) rotate(var(--ics-rf-child-focus-line-2-rotate)) scale(var(--ics-rf-child-focus-line-2-scale)) scaleX(var(--ics-rf-child-focus-line-2-flip));
 }
@@ -1045,6 +1045,8 @@ h5,
 
 .ics-rf-child-focus-section {
   padding-top: 5.5625rem;
+  overflow: visible;
+  clip-path: inset(0 0 -100vh 0);
 }
 
 .ics-rf-child-focus-section__inner {
