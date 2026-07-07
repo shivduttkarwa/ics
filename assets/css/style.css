@@ -1411,9 +1411,7 @@ h5,
 
 @media (min-width: 1200px) {
   .ics-rf-prospectus-media {
-    width: 28.7143rem;
-    height: 36.1429rem;
-    margin-top: 42.8571rem; /* keeps the image paired with the form card */
+    margin-top: 44.8571rem; /* keeps the image paired with the form card */
     margin-left: auto;
   }
 }
