@@ -1819,6 +1819,40 @@ h5,
     font-size: clamp(2.25rem, 9vw, 3.25rem);
   }
 
+  .ics-rf-story-row {
+    padding: var(--space-4);
+    align-items: flex-start;
+  }
+
+  .ics-rf-story-row__media {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+  }
+
+  .ics-rf-story-row__grid {
+    --bs-gutter-y: var(--space-3);
+  }
+
+  .ics-rf-story-row .ics-rf-eyebrow {
+    font-size: 0.7875rem;
+  }
+
+  .ics-rf-story-row__heading {
+    font-size: clamp(1.575rem, 1.26rem + 2.34vw, 3.375rem);
+  }
+
+  .ics-rf-story-row .ics-rf-body-text {
+    font-size: 1.125rem;
+  }
+
+  .ics-rf-story-row__content {
+    gap: 0.75rem;
+  }
+
+  .ics-rf-story-row__heading {
+    gap: var(--space-1);
+  }
+
   .ics-rf-comparison thead {
     display: none;
   }
