@@ -967,6 +967,228 @@ h5,
   }
 }
 
+.ics-l3-location {
+  position: relative;
+  min-height: 58.0625rem;
+  overflow: hidden;
+  background-color: var(--color-background);
+}
+
+.ics-l3-location::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 24.5rem;
+  background: linear-gradient(to bottom, var(--color-surface) 0%, rgba(247, 244, 239, 0) 100%);
+  pointer-events: none;
+}
+
+.ics-l3-location__lines {
+  position: absolute;
+  top: -6.4375rem;
+  left: 87.5544rem;
+  z-index: 0;
+  width: 107.0546rem;
+  height: 111.9375rem;
+  pointer-events: none;
+}
+
+.ics-l3-location__inner {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 90rem);
+  min-height: 58.0625rem;
+  margin-inline: auto;
+}
+
+.ics-l3-location__map {
+  position: absolute;
+  top: 11.875rem;
+  left: 0;
+  width: 38.125rem;
+  height: 46.1875rem;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background-color: var(--color-secondary);
+}
+
+.ics-l3-location__map img {
+  position: absolute;
+  top: 0;
+  left: -50.94%;
+  width: 185.82%;
+  height: 100%;
+  max-width: none;
+}
+
+.ics-l3-location__content {
+  position: absolute;
+  top: 11.875rem;
+  left: 40.375rem;
+  display: flex;
+  width: 44.8125rem;
+  height: 46.1875rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-inline: 5rem;
+}
+
+.ics-l3-location__copy {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.ics-l3-location__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  color: var(--color-heading);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-bold);
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.ics-l3-location__eyebrow-dot,
+.ics-l3-location__button-dot {
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.ics-l3-location__eyebrow-dot {
+  background-color: var(--color-accent);
+}
+
+.ics-l3-location__title {
+  color: var(--color-heading);
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-3xl);
+  font-style: italic;
+  font-weight: var(--font-bold);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+
+.ics-l3-location__text {
+  color: var(--color-text);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-light);
+  line-height: 1.4;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.ics-l3-location__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9375rem;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-accent);
+  color: var(--color-primary);
+  padding: 0.9375rem 1.5625rem;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-bold);
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.ics-l3-location__button:hover,
+.ics-l3-location__button:focus-visible {
+  color: var(--color-primary);
+  transform: translateY(-0.125rem);
+}
+
+.ics-l3-location__button-dot {
+  background-color: var(--color-primary);
+}
+
+@media (max-width: 1199.98px) {
+  .ics-l3-location {
+    min-height: 0;
+    padding-block: var(--space-8);
+  }
+
+  .ics-l3-location::before {
+    height: 14rem;
+  }
+
+  .ics-l3-location__lines {
+    display: none;
+  }
+
+  .ics-l3-location__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--space-6);
+    width: min(100% - 4rem, 58rem);
+    min-height: 0;
+    margin-inline: auto;
+  }
+
+  .ics-l3-location__map,
+  .ics-l3-location__content {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+  }
+
+  .ics-l3-location__map {
+    height: auto;
+    aspect-ratio: 610 / 739;
+  }
+
+  .ics-l3-location__content {
+    height: auto;
+    padding-inline: 0;
+  }
+
+  .ics-l3-location__title {
+    max-width: 11em;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .ics-l3-location {
+    padding-block: var(--space-7);
+  }
+
+  .ics-l3-location__inner {
+    width: calc(100% - 2rem);
+    max-width: 32rem;
+    min-width: 0;
+  }
+
+  .ics-l3-location__map,
+  .ics-l3-location__content,
+  .ics-l3-location__copy {
+    min-width: 0;
+  }
+
+  .ics-l3-location__title {
+    font-size: clamp(2.4rem, 1.45rem + 8vw, var(--font-size-3xl));
+  }
+
+  .ics-l3-location__button {
+    width: 100%;
+    justify-content: center;
+    padding-inline: 1rem;
+    text-align: center;
+    white-space: normal;
+  }
+}
+
 .ics-l2-fee-includes {
   background-color: var(--color-surface);
   color: var(--color-text);
