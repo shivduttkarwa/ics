@@ -1785,11 +1785,27 @@ h5,
     padding-block: var(--space-6);
   }
 
+  .ics-rf-hero__media {
+    padding-inline: 1rem;
+    margin-bottom: 0;
+  }
+
   .ics-rf-hero__stat {
-    position: static;
+    position: relative;
+    right: auto;
+    bottom: auto;
+    z-index: 2;
     margin-top: -3rem;
+    margin-bottom: -1.5rem;
     margin-inline: auto;
-    width: 11rem;
+    width: min(18rem, 78vw);
+    height: auto;
+    min-height: min(18rem, 78vw);
+    padding: 1.75rem 1.5rem;
+  }
+
+  .ics-rf-hero__stat-number {
+    font-size: clamp(2.25rem, 9vw, 3.25rem);
   }
 
   .ics-rf-comparison thead {
