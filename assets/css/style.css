@@ -1238,6 +1238,13 @@ h5,
   }
 }
 
+@media (min-width: 1920px) and (max-width: 2559.98px) {
+  .ics-rf-discover .container,
+  .ics-rf-site-footer .container {
+    max-width: calc(100% - 10rem);
+  }
+}
+
 .ics-rf-discover__media {
   position: absolute;
   inset: 0;
