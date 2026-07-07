@@ -726,6 +726,220 @@ h5,
   letter-spacing: -0.0375rem;
 }
 
+.ics-l3-parent-voices {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-surface);
+  color: var(--color-heading);
+}
+
+.ics-l3-parent-voices__inner {
+  position: relative;
+  width: min(100% - 10rem, 80rem);
+  height: 129.6875rem;
+  margin-inline: auto;
+}
+
+.ics-l3-parent-voices__item {
+  position: absolute;
+  margin: 0;
+}
+
+.ics-l3-parent-voices__quote {
+  width: 25rem;
+}
+
+.ics-l3-parent-voices__quote::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 0.25rem;
+  margin-top: -0.25rem;
+  margin-bottom: 1.9375rem;
+  background-color: var(--color-accent);
+}
+
+.ics-l3-parent-voices__quote-text {
+  color: var(--color-heading);
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-lg);
+  font-style: italic;
+  font-weight: var(--font-medium);
+  line-height: 1.4;
+  letter-spacing: -0.03em;
+  margin: 0 0 1.125rem;
+}
+
+.ics-l3-parent-voices__quote-cite {
+  color: var(--color-heading);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  font-style: normal;
+  font-weight: var(--font-medium);
+  line-height: 1.4;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.ics-l3-parent-voices__media {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background-color: var(--color-secondary);
+}
+
+.ics-l3-parent-voices__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ics-l3-parent-voices__quote--one {
+  top: 14.625rem;
+  left: 0.9375rem;
+}
+
+.ics-l3-parent-voices__quote--two {
+  top: 48.6875rem;
+  left: 0.9375rem;
+}
+
+.ics-l3-parent-voices__quote--delight {
+  top: 39.3125rem;
+  left: 27.5rem;
+}
+
+.ics-l3-parent-voices__quote--delight-lower {
+  top: 75.4375rem;
+  left: 27.5rem;
+}
+
+.ics-l3-parent-voices__quote--safe {
+  top: 14.9375rem;
+  left: 55.0625rem;
+}
+
+.ics-l3-parent-voices__quote--safe-lower {
+  top: 64.875rem;
+  left: 55.0625rem;
+}
+
+.ics-l3-parent-voices__media--primary {
+  top: 11.3125rem;
+  left: 27.5rem;
+  width: 25rem;
+  height: 25.1875rem;
+  --ics-l3-parent-voices-ratio: 400 / 403;
+}
+
+.ics-l3-parent-voices__media--sport {
+  top: 30.625rem;
+  left: 0.5rem;
+  width: 24.5rem;
+  height: 15.5rem;
+  --ics-l3-parent-voices-ratio: 392 / 248;
+}
+
+.ics-l3-parent-voices__media--community {
+  top: 57.125rem;
+  left: 27.5rem;
+  width: 24.5rem;
+  height: 15.5rem;
+  --ics-l3-parent-voices-ratio: 392 / 248;
+}
+
+.ics-l3-parent-voices__media--conversation {
+  top: 93.25rem;
+  left: 27.5rem;
+  width: 24.5rem;
+  height: 21.0625rem;
+  --ics-l3-parent-voices-ratio: 392 / 337;
+}
+
+.ics-l3-parent-voices__media--friends {
+  top: 78.875rem;
+  left: 55.5625rem;
+  width: 24.5rem;
+  height: 15.5rem;
+  --ics-l3-parent-voices-ratio: 392 / 248;
+}
+
+.ics-l3-parent-voices__media--netball {
+  top: 30.625rem;
+  left: 55rem;
+  width: 24.5rem;
+  height: 30.875rem;
+  --ics-l3-parent-voices-ratio: 392 / 494;
+}
+
+.ics-l3-parent-voices__media--welcome {
+  top: 68rem;
+  left: 0.5rem;
+  width: 24.5rem;
+  height: 30.875rem;
+  --ics-l3-parent-voices-ratio: 392 / 494;
+}
+
+@media (max-width: 1199.98px) {
+  .ics-l3-parent-voices {
+    padding-block: var(--space-8);
+  }
+
+  .ics-l3-parent-voices__inner {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-6) var(--space-5);
+    width: min(100% - 4rem, 58rem);
+    height: auto;
+  }
+
+  .ics-l3-parent-voices__item {
+    position: relative;
+    top: auto;
+    left: auto;
+  }
+
+  .ics-l3-parent-voices__quote,
+  .ics-l3-parent-voices__media {
+    width: 100%;
+  }
+
+  .ics-l3-parent-voices__quote {
+    align-self: center;
+  }
+
+  .ics-l3-parent-voices__quote::before {
+    height: 0.2rem;
+    margin-top: 0;
+    margin-bottom: var(--space-3);
+  }
+
+  .ics-l3-parent-voices__media {
+    height: auto;
+    aspect-ratio: var(--ics-l3-parent-voices-ratio);
+  }
+}
+
+@media (max-width: 767.98px) {
+  .ics-l3-parent-voices {
+    padding-block: var(--space-7);
+  }
+
+  .ics-l3-parent-voices__inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    width: min(100% - 2rem, 32rem);
+  }
+
+  .ics-l3-parent-voices__quote-text {
+    font-size: clamp(1.35rem, 1.1rem + 4vw, var(--font-size-lg));
+  }
+
+  .ics-l3-parent-voices__quote-cite {
+    font-size: var(--font-size-xs);
+  }
+}
+
 .ics-l2-fee-includes {
   background-color: var(--color-surface);
   color: var(--color-text);
