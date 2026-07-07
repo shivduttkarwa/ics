@@ -879,8 +879,8 @@ h5,
   position: relative;
   z-index: 2; /* stacks above .ics-rf-discover which follows it in the DOM, so the bleeding card isn't covered */
   overflow: visible; /* overrides .ics-rf-section's overflow:hidden so the bleed isn't clipped */
-padding-bottom: 12rem; 
-height: 73rem; /* 1168px: enough to accommodate the bleed of the card and media */
+  padding-bottom: 12rem;
+  height: 73rem; /* 1168px: enough to accommodate the bleed of the card and media */
 }
 
 .ics-rf-testimonial-section__stage {
@@ -917,6 +917,17 @@ height: 73rem; /* 1168px: enough to accommodate the bleed of the card and media 
   right: 0;
   z-index: 3;
   transform: translateY(130%); /* independent: adjust to push the card up/down */
+}
+
+@media (min-width: 1600px) {
+  .ics-rf-testimonial-section__media--a,
+  .ics-rf-testimonial-section__card {
+    right: calc(5rem - ((100vw - 100%) / 2));
+  }
+
+  .ics-rf-testimonial-section__media--b {
+    left: calc(5rem - ((100vw - 100%) / 2));
+  }
 }
 
 @media (max-width: 767.98px) {
