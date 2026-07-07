@@ -374,6 +374,7 @@ h5,
   font-size: var(--font-size-lg);
   font-weight: var(--font-regular);
   line-height: 1.4;
+  letter-spacing: -0.03125rem;
   color: var(--color-heading);
 }
 
@@ -980,9 +981,11 @@ h5,
 .ics-rf-testimonial-block__text {
   font-family: var(--font-secondary);
   font-style: italic;
+  font-weight: var(--font-medium);
   color: var(--color-primary);
   font-size: var(--font-size-xl);
-  line-height: 1.3;
+  line-height: 1.4;
+  letter-spacing: -0.06563rem;
 }
 
 .ics-rf-testimonial-block__cite {
@@ -1304,6 +1307,8 @@ h5,
 .ics-rf-discover-card__title {
   font-style: italic;
   margin: 0;
+  font-size: var(--font-size-3xl);
+  line-height: 1;
 }
 
 .ics-rf-discover-card__lead {
