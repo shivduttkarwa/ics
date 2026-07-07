@@ -1679,7 +1679,7 @@ h5,
 @media (min-width: 1200px) {
   .ics-rf-site-footer__marks-row {
     flex-wrap: nowrap;
-    gap: 10rem;
+    gap: 6.8571rem; /* 96px at the 1440px design scale (20% less than Figma's 120px) */
     margin-bottom: 5.7143rem;
   }
 }
@@ -1693,9 +1693,9 @@ h5,
 
 @media (min-width: 1200px) {
   .ics-rf-accreditations {
-    flex: 1 1 auto;
+    flex: 1 1 71.6429rem; /* 1003px at the 1440px design scale, but shrinks to fit if the row is ever narrower */
     justify-content: space-between;
-    gap: 2rem;
+    gap: 0;
   }
 }
 
@@ -1707,8 +1707,10 @@ h5,
 
 .ics-rf-accreditation-mark img {
   display: block;
-  height: 2.75rem;
-  width: auto;
+  width: 9.375rem;
+  height: 3.63475rem;
+  flex-shrink: 0;
+  object-fit: contain;
 }
 
 .ics-rf-site-footer__divider {
