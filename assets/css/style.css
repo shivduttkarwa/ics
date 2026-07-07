@@ -1065,7 +1065,8 @@ h5,
 
 .ics-rf-child-focus-section {
   padding-top: 5.5625rem;
-  overflow: visible;
+  overflow-x: clip;
+  overflow-y: visible;
   clip-path: inset(0 0 -100vh 0);
 }
 
