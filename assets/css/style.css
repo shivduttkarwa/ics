@@ -1897,43 +1897,49 @@ h5,
   }
 
   .ics-rf-hero {
-    overflow: hidden;
+    overflow: visible;
+  }
+
+  .ics-rf-decorative-line {
+    object-fit: contain;
   }
 
   .ics-rf-decorative-line--hero-1 {
-    --ics-rf-hero-leaf-1-x: -10vw;
-    --ics-rf-hero-leaf-1-y: -20vh;
-    --ics-rf-hero-leaf-1-scale: 0.5;
+    z-index: 3;
+    --ics-rf-hero-leaf-1-x: -36vw;
+    --ics-rf-hero-leaf-1-y: -46vh;
+    --ics-rf-hero-leaf-1-scale: 1;
   }
 
   .ics-rf-decorative-line--hero-2 {
-    --ics-rf-hero-leaf-2-x: -5vw;
-    --ics-rf-hero-leaf-2-y: -5vh;
-    --ics-rf-hero-leaf-2-scale: 0.6;
+    z-index: 3;
+    --ics-rf-hero-leaf-2-x: 12vw;
+    --ics-rf-hero-leaf-2-y: -8vh;
+    --ics-rf-hero-leaf-2-scale: 1;
   }
 
   .ics-rf-decorative-line--child-focus-1 {
     --ics-rf-child-focus-line-1-x: 0vw;
     --ics-rf-child-focus-line-1-y: 10vh;
-    --ics-rf-child-focus-line-1-scale: 0.5;
+    --ics-rf-child-focus-line-1-scale: 1;
   }
 
   .ics-rf-decorative-line--child-focus-2 {
     --ics-rf-child-focus-line-2-x: -10vw;
     --ics-rf-child-focus-line-2-y: -15vh;
-    --ics-rf-child-focus-line-2-scale: 0.5;
+    --ics-rf-child-focus-line-2-scale: 1;
   }
 
   .ics-rf-decorative-line--footer-1 {
-    --ics-rf-footer-line-1-x: -10vw;
-    --ics-rf-footer-line-1-y: -8vh;
-    --ics-rf-footer-line-1-scale: 0.5;
+    --ics-rf-footer-line-1-x: -42vw;
+    --ics-rf-footer-line-1-y: -18vh;
+    --ics-rf-footer-line-1-scale: 1;
   }
 
   .ics-rf-decorative-line--footer-2 {
-    --ics-rf-footer-line-2-x: 0vw;
-    --ics-rf-footer-line-2-y: 15vh;
-    --ics-rf-footer-line-2-scale: 0.5;
+    --ics-rf-footer-line-2-x: 22vw;
+    --ics-rf-footer-line-2-y: 18vh;
+    --ics-rf-footer-line-2-scale: 1;
   }
 
   .ics-rf-hero__media {
