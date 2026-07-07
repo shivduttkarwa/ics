@@ -985,6 +985,10 @@ h5,
   .ics-rf-testimonial-section__media--b {
     margin-top: -6rem;
   }
+
+  .ics-rf-testimonial-section__card {
+    margin-bottom: -8rem;
+  }
 }
 
 .ics-rf-testimonial-block {
