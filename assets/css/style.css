@@ -283,53 +283,60 @@ html {
   font-size: 16px;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 12px;
-  }
-}
-
-@media (min-width: 992px) {
-  html {
-    font-size: 12px;
-  }
-}
-
-@media (min-width: 1200px) {
-  html {
-    font-size: 12px;
-  }
-}
-
-@media (min-width: 1400px) {
-  html {
-    font-size: 14px;
-  }
-}
-
-@media (min-width: 1600px) {
+@media (min-width: 576px) and (max-width: 767px) {
   html {
     font-size: 16px;
   }
 }
 
-@media (min-width: 1920px) {
+@media (min-width: 768px) and (max-width: 991px) {
   html {
-    font-size: 21px;
+    font-size: 16px;
   }
 }
 
-@media (min-width: 2560px) {
+@media (min-width: 992px) and (max-width: 1280px) {
+  html {
+    font-size: 12.8px;
+  }
+}
+
+@media (min-width: 1281px) and (max-width: 1399px) {
+  html {
+    font-size: 14.4px;
+  }
+}
+
+@media (min-width: 1400px) and (max-width: 1599px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 1600px) and (max-width: 1919px) {
+  html {
+    font-size: 17px;
+  }
+}
+
+@media (min-width: 1920px) and (max-width: 2199px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 2200px) and (max-width: 2439px) {
+  html {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 2440px) {
   html {
     font-size: 22px;
   }
 }
 
-@media (min-width: 3000px) {
-  html {
-    font-size: 24px;
-  }
-}
 
 body {
   font-family: var(--font-primary);
@@ -1783,6 +1790,10 @@ h5,
 @media (max-width: 767.98px) {
   .ics-rf-section {
     padding-block: var(--space-6);
+  }
+
+  .ics-rf-hero {
+    overflow: hidden;
   }
 
   .ics-rf-hero__media {
