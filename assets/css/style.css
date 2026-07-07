@@ -1443,10 +1443,24 @@ h5,
 @media (max-width: 767.98px) {
   .ics-rf-prospectus-card {
     padding: var(--space-5);
+    gap: 1.5rem;
+    margin-top: 30rem;
+  }
+
+  .ics-rf-prospectus-card__title {
+    font-size: clamp(1.575rem, 1.26rem + 2.34vw, 3.375rem);
   }
 
   .ics-rf-prospectus-card__fields {
     flex-direction: column;
+  }
+
+  .ics-rf-discover__content .container {
+    padding-inline: var(--space-4);
+  }
+
+  .ics-rf-discover {
+    height: auto;
   }
 }
 
@@ -1467,6 +1481,15 @@ h5,
   .ics-rf-prospectus-media {
     margin-top: 49.2857rem;
     margin-left: auto;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .ics-rf-prospectus-media {
+    height: auto;
+    aspect-ratio: 4 / 5;
+    margin-top: 2rem;
+    margin-bottom: var(--space-2);
   }
 }
 
@@ -1898,6 +1921,53 @@ h5,
 
   .ics-rf-discover-card {
     padding: 2rem;
+  }
+
+  .ics-rf-site-footer {
+    padding-block: var(--space-2) var(--space-5);
+  }
+
+  .ics-rf-site-footer__top {
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center;
+    margin-bottom: var(--space-2);
+  }
+
+  .ics-rf-site-footer__intro {
+    font-size: 1.0625rem;
+  }
+
+  .ics-rf-site-footer__tagline {
+    font-size: 2rem;
+  }
+
+  .ics-rf-site-footer__intro-group {
+    align-items: center;
+    text-align: center;
+  }
+
+  .ics-rf-site-footer__marks-row {
+    justify-content: center;
+  }
+
+  .ics-rf-site-footer__legal {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .ics-rf-site-footer__legal-left {
+    justify-content: center;
+  }
+
+  .ics-rf-footer-content-row {
+    text-align: center;
+  }
+
+  .ics-rf-footer-col__body {
+    align-items: center;
   }
 
   .ics-rf-quote-banner__circle {
