@@ -1550,6 +1550,13 @@ h5,
 @media (min-width: 1200px) {
   .ics-rf-footer-links-row {
     --bs-gutter-x: 0;
+    justify-content: space-between;
+  }
+
+  .ics-rf-footer-links-row > .ics-rf-footer-col {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none;
   }
 }
 
