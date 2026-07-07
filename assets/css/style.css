@@ -964,7 +964,7 @@ h5,
     flex-direction: column;
     align-items: center;
     gap: var(--space-6);
-    padding-inline: var(--space-4);
+    padding-inline: var(--space-2);
   }
 
   .ics-rf-testimonial-section__media--a,
@@ -975,6 +975,10 @@ h5,
   }
 
   .ics-rf-testimonial-section__media--a {
+    margin-top: -14rem;
+  }
+
+  .ics-rf-testimonial-section__media--b {
     margin-top: -6rem;
   }
 }
@@ -983,7 +987,7 @@ h5,
   text-align: center;
   max-width: 55rem;
   margin-inline: auto;
-  padding-top: 5rem;
+  padding-top: 0rem;
   padding-bottom: 5rem;
 }
 
@@ -1873,6 +1877,10 @@ h5,
     letter-spacing: 0.03em;
     gap: 0.625rem;
     padding: 0.75rem 1.125rem;
+  }
+
+  .ics-rf-testimonial-block__text {
+    font-size: 1.559375rem;
   }
 
   .ics-rf-quote-banner__circle {
