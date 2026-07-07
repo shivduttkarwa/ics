@@ -302,30 +302,38 @@
   <footer class="ics-rf-site-footer">
     <img src="assets/images/decorative-line-footer.svg" alt="" class="ics-rf-decorative-line" aria-hidden="true" loading="lazy">
     <div class="container position-relative">
-      <div class="d-inline-flex align-items-center gap-3 ics-rf-site-footer__logo">
-        <img src="assets/images/footer-logo-crest.svg" alt="" width="103" height="103" loading="lazy">
-        <img src="assets/images/footer-logo-wordmark.svg" alt="Illawarra Christian School" width="142" height="68" loading="lazy">
+
+      <div class="d-flex flex-wrap justify-content-between align-items-start gap-4 ics-rf-site-footer__top">
+        <div class="d-inline-flex align-items-center gap-3 ics-rf-site-footer__logo">
+          <img src="assets/images/footer-logo-crest.svg" alt="" width="103" height="103" loading="lazy">
+          <img src="assets/images/footer-logo-wordmark.svg" alt="Illawarra Christian School" width="142" height="68" loading="lazy">
+        </div>
+        <p class="ics-rf-site-footer__tagline mb-0">Exceptional Christian Education where every student is known.</p>
       </div>
 
-      <p class="ics-rf-site-footer__tagline mb-5">Exceptional Christian Education where every student is known.</p>
-
-      <div class="row g-4 mb-5">
-        <div class="col-lg-4">
-          <p class="ics-rf-site-footer__intro">We&rsquo;re a Christ-centred K&ndash;12 Christian parent-controlled community in Cordeaux Heights, Wollongong, right in the heart of the Illawarra.</p>
-          <p class="ics-rf-site-footer__intro-note">Operated by Illawarra Christian Education</p>
+      <div class="row ics-rf-footer-content-row gy-4 mb-5">
+        <div class="col-12 col-lg-4">
+          <div class="ics-rf-site-footer__intro-group">
+            <p class="ics-rf-site-footer__intro">We&rsquo;re a Christ-centred K&ndash;12 Christian parent-controlled community in Cordeaux Heights, Wollongong, right in the heart of the Illawarra.</p>
+            <p class="ics-rf-site-footer__intro-note">Operated by Illawarra Christian Education</p>
+          </div>
         </div>
-        <div class="col-lg-8">
-          <div class="row g-4">
+        <div class="col-12 col-lg-8">
+          <div class="row ics-rf-footer-links-row gy-4">
             <div class="col-sm-4 ics-rf-footer-col">
               <h3 class="ics-rf-footer-col__title">Visit Us</h3>
-              <span class="ics-rf-footer-col__heading">College Campus</span>
-              <p class="ics-rf-footer-col__text">4 Tyalla Place<br>Cordeaux Heights NSW 2526</p>
+              <div class="ics-rf-footer-col__body">
+                <span class="ics-rf-footer-col__heading">College Campus</span>
+                <p class="ics-rf-footer-col__text">4 Tyalla Place<br>Cordeaux Heights NSW 2526</p>
+              </div>
             </div>
             <div class="col-sm-4 ics-rf-footer-col">
               <h3 class="ics-rf-footer-col__title">Contact Us</h3>
-              <span class="ics-rf-footer-col__heading">Office Reception</span>
-              <p class="ics-rf-footer-col__text mb-2">8.30am&ndash;4pm (Mon&ndash;Fri)<br>Phone: (02) 4239 5200</p>
-              <a href="mailto:reception@ics.nsw.edu.au" class="ics-rf-footer-col__email">reception@ics.nsw.edu.au</a>
+              <div class="ics-rf-footer-col__body">
+                <span class="ics-rf-footer-col__heading">Office Reception</span>
+                <p class="ics-rf-footer-col__text mb-2">8.30am&ndash;4pm (Mon&ndash;Fri)<br>Phone: (02) 4239 5200</p>
+                <a href="mailto:reception@ics.nsw.edu.au" class="ics-rf-footer-col__email">reception@ics.nsw.edu.au</a>
+              </div>
             </div>
             <div class="col-sm-4 ics-rf-footer-col">
               <h3 class="ics-rf-footer-col__title">Next Steps</h3>
@@ -349,21 +357,19 @@
         </ul>
         <div class="ics-rf-accreditations" role="list" aria-label="School ics-rf-accreditations and memberships">
           <span class="ics-rf-accreditation-mark" role="listitem">
-            <img src="assets/images/footer-accreditation-1.svg" alt="" loading="lazy">
-            <img src="assets/images/footer-accreditation-2.svg" alt="" loading="lazy">
+            <img src="assets/images/footer-logo-ice.svg" alt="Illawarra Christian Education" loading="lazy">
           </span>
           <span class="ics-rf-accreditation-mark" role="listitem">
-            <img src="assets/images/footer-cen-logo.png" alt="Christian Education National member" loading="lazy">
+            <img src="assets/images/footer-logo-cen.svg" alt="Christian Education National member" loading="lazy">
           </span>
           <span class="ics-rf-accreditation-mark" role="listitem">
-            <img src="assets/images/footer-accreditation-3.svg" alt="" loading="lazy">
-            <img src="assets/images/footer-accreditation-4.svg" alt="" loading="lazy">
+            <img src="assets/images/footer-logo-aacs.svg" alt="Australian Association of Christian Schools member" loading="lazy">
           </span>
           <span class="ics-rf-accreditation-mark" role="listitem">
             <img src="assets/images/footer-logo-isnsw.svg" alt="Independent Schools NSW member" loading="lazy">
           </span>
           <span class="ics-rf-accreditation-mark" role="listitem">
-            <img src="assets/images/footer-accreditation-5.svg" alt="" loading="lazy">
+            <img src="assets/images/footer-logo-exceeding.svg" alt="Exceeding National Quality Standard rating" loading="lazy">
           </span>
           <span class="ics-rf-accreditation-mark" role="listitem">
             <img src="assets/images/footer-logo-nesa.svg" alt="NESA registered" loading="lazy">
@@ -374,7 +380,7 @@
       <hr class="ics-rf-site-footer__divider">
 
       <div class="ics-rf-site-footer__legal">
-        <div class="d-flex gap-4 flex-wrap">
+        <div class="d-flex flex-wrap ics-rf-site-footer__legal-left">
           <span>&copy; 2026 Illawarra Christian School</span>
           <span>ABN 66 001 998 385</span>
         </div>
