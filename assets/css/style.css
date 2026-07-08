@@ -651,6 +651,11 @@ html.ics-js-loading .ics-hero__media {
   margin-block: var(--space-3);
 }
 
+.ics-hero-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
 .ics-hero__copy {
   max-width: 50rem;
   margin-inline: auto;
