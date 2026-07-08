@@ -557,13 +557,13 @@ h5,
   text-decoration: none;
   color: var(--color-primary);
   background-color: var(--color-accent);
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
 }
 
 .ics-pill-link:hover,
 .ics-pill-link:focus-visible {
-  transform: translateY(-0.125rem);
-  box-shadow: var(--shadow-md);
+  transform: scale(0.96);
+  opacity: 0.9;
   color: var(--color-primary);
 }
 
