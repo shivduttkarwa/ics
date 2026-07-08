@@ -629,6 +629,15 @@ h5,
   padding-bottom: 1rem;
 }
 
+html.ics-js-loading .ics-hero__eyebrow,
+html.ics-js-loading .ics-hero__title,
+html.ics-js-loading .ics-hero__copy,
+html.ics-js-loading .ics-hero__cta,
+html.ics-js-loading .ics-hero__media {
+  opacity: 0;
+  visibility: hidden;
+}
+
 .ics-hero__eyebrow {
   color: var(--color-on-dark);
   font-family: var(--font-secondary);

@@ -1,11 +1,22 @@
 (function () {
+    if (typeof gsap !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger, SplitText);
+    }
+
     const ICSAnimations = {
         initHeroTimeline() {
-            if (typeof gsap === 'undefined') return;
-            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            const releasePreHiddenHero = () => document.documentElement.classList.remove('ics-js-loading');
+
+            if (typeof gsap === 'undefined' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                releasePreHiddenHero();
+                return;
+            }
 
             const heroes = document.querySelectorAll('.ics-hero');
-            if (!heroes.length) return;
+            if (!heroes.length) {
+                releasePreHiddenHero();
+                return;
+            }
 
             heroes.forEach((hero) => {
                 const eyebrow = hero.querySelector('.ics-hero__eyebrow');
@@ -16,6 +27,7 @@
                 if (!allTargets.length) return;
 
                 gsap.set(allTargets, { autoAlpha: 0 });
+                releasePreHiddenHero();
 
                 let titleChars = null;
                 if (title && typeof SplitText !== 'undefined') {
@@ -384,7 +396,6 @@
         },
 
         init() {
-            this.initHeroTimeline();
             this.initSplitTextAndBatch();
             this.initMaskClipReveal();
             this.initMaskGrowReveal();
@@ -394,4 +405,15 @@
     };
 
     window.ICSAnimations = ICSAnimations;
+
+    document.addEventListener('DOMContentLoaded', () => {
+        ICSAnimations.initHeroTimeline();
+    });
+
+    window.addEventListener('load', () => {
+        ICSAnimations.init();
+        if (typeof ScrollTrigger !== 'undefined') {
+            ScrollTrigger.refresh();
+        }
+    });
 })();
