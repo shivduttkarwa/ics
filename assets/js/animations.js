@@ -3,6 +3,27 @@
         gsap.registerPlugin(ScrollTrigger, SplitText);
     }
 
+    // ── Hero timeline knobs ──────────────────────────────────────────────
+    // All timing/gap control for .ics-hero lives here. Positions are seconds
+    // on the timeline unless noted; "delay" values are gaps, not absolute times.
+    const HERO_TIMING = {
+        eyebrow: {
+            start: 0.2,          // when the eyebrow starts fading in
+            duration: 0.7,
+        },
+        title: {
+            start: 0.55,        // when the title reveal starts
+            charStagger: 0.02,  // gap between each character fading in
+            charDuration: 0.095, // how long each character takes to fade in
+            fallbackDuration: 0.6, // used when SplitText isn't available (whole title fades as one)
+        },
+        rest: {
+            gapAfterTitle: +0.1, // gap between title finishing and this group starting (negative = overlap)
+            duration: 0.6,      // fade-in duration per item
+            stagger: 0.05,      // gap between each item in the group (body text, emphasis line, CTA, media)
+        },
+    };
+
     const ICSAnimations = {
         initHeroTimeline() {
             const releasePreHiddenHero = () => document.documentElement.classList.remove('ics-js-loading');
@@ -21,7 +42,10 @@
             heroes.forEach((hero) => {
                 const eyebrow = hero.querySelector('.ics-hero__eyebrow');
                 const title = hero.querySelector('.ics-hero__title');
-                const rest = Array.from(hero.querySelectorAll(':scope > .container > .ics-hero__copy, :scope > .container > .ics-hero__cta, .ics-hero__media')).filter(Boolean);
+                const copyLines = Array.from(hero.querySelectorAll(':scope > .container > .ics-hero__copy > *'));
+                const cta = hero.querySelector(':scope > .container > .ics-hero__cta');
+                const media = hero.querySelector('.ics-hero__media');
+                const rest = [...copyLines, cta, media].filter(Boolean);
 
                 const allTargets = [eyebrow, title, ...rest].filter(Boolean);
                 if (!allTargets.length) return;
@@ -45,17 +69,26 @@
                 const tl = gsap.timeline({ defaults: { ease: 'power1.out' } });
 
                 if (eyebrow) {
-                    tl.to(eyebrow, { autoAlpha: 1, duration: 0.5 }, 0);
+                    tl.to(eyebrow, { autoAlpha: 1, duration: HERO_TIMING.eyebrow.duration }, HERO_TIMING.eyebrow.start);
                 }
 
                 if (titleChars && titleChars.length) {
-                    tl.to(titleChars, { autoAlpha: 1, ease: 'none', stagger: 0.02, duration: 0.045 }, 0.35);
+                    tl.to(titleChars, {
+                        autoAlpha: 1,
+                        ease: 'none',
+                        stagger: HERO_TIMING.title.charStagger,
+                        duration: HERO_TIMING.title.charDuration,
+                    }, HERO_TIMING.title.start);
                 } else if (title) {
-                    tl.to(title, { autoAlpha: 1, duration: 0.6 }, 0.35);
+                    tl.to(title, { autoAlpha: 1, duration: HERO_TIMING.title.fallbackDuration }, HERO_TIMING.title.start);
                 }
 
                 if (rest.length) {
-                    tl.to(rest, { autoAlpha: 1, duration: 0.6, stagger: 0.15 }, '>-0.1');
+                    tl.to(rest, {
+                        autoAlpha: 1,
+                        duration: HERO_TIMING.rest.duration,
+                        stagger: HERO_TIMING.rest.stagger,
+                    }, `>${HERO_TIMING.rest.gapAfterTitle >= 0 ? '+' : ''}${HERO_TIMING.rest.gapAfterTitle}`);
                 }
             });
         },
