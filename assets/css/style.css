@@ -1728,6 +1728,11 @@ html.ics-js-loading .ics-hero__media {
   margin: 0;
 }
 
+.ics-story-row [data-story-media],
+.ics-story-row [data-story-reveal] {
+  backface-visibility: hidden;
+}
+
 @media (min-width: 992px) {
   .ics-story-row {
     padding: var(--space-9);
