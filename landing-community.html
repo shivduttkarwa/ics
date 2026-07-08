@@ -206,7 +206,7 @@
                   <p class="ics-prospectus-card__lead ics-lead-text ics-anim-item ics-anim-item--static">Everything you need to know.</p>
                   <p class="ics-prospectus-card__body ics-body-text ics-anim-item ics-anim-item--static">Whether you've booked a school tour already or are simply curious to know more, our prospectus is a great overview of our school that will help you in deciding what's best for your family.</p>
                 </div>
-                <form class="ics-prospectus-card__form" id="prospectus-form" novalidate>
+                <form class="ics-prospectus-card__form" id="prospectus-form" data-static-success>
                   <div class="ics-prospectus-card__fields">
                     <div class="ics-form-field ics-anim-item ics-anim-item--static">
                       <label class="ics-form-field__label" for="prospectus-name">Your Name</label>
@@ -218,6 +218,14 @@
                     </div>
                   </div>
                   <button type="submit" class="ics-btn-brand ics-btn-brand--block ics-anim-item ics-anim-item--static">Request Prospectus</button>
+                  <div class="ics-form-success" id="prospectus-success" role="status" aria-live="polite" hidden>
+                    <button class="ics-form-success__close" type="button" aria-label="Close message">&times;</button>
+                    <span class="ics-form-success__icon" aria-hidden="true"></span>
+                    <span class="ics-form-success__copy">
+                      <strong>Thanks, we have your request.</strong>
+                      <span>Our team will send the prospectus and next steps shortly.</span>
+                    </span>
+                  </div>
                 </form>
               </div>
             </div>

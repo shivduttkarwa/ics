@@ -1,6 +1,60 @@
 (function () {
+  function initProspectusForms() {
+    document.querySelectorAll(".ics-prospectus-card__form[data-static-success]").forEach((form) => {
+      const successMessage = form.querySelector(".ics-form-success");
+      const closeButton = successMessage ? successMessage.querySelector(".ics-form-success__close") : null;
+      const submitButton = form.querySelector('[type="submit"]');
+
+      if (!successMessage) {
+        return;
+      }
+
+      if (closeButton) {
+        closeButton.addEventListener("click", () => {
+          successMessage.hidden = true;
+        });
+      }
+
+      form.addEventListener("submit", (event) => {
+        const action = (form.getAttribute("action") || "").trim();
+
+        if (action && action !== "#") {
+          return;
+        }
+
+        event.preventDefault();
+
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        form.reset();
+        successMessage.hidden = false;
+
+        if (submitButton) {
+          submitButton.disabled = true;
+          submitButton.textContent = "Request sent";
+        }
+
+        if (typeof gsap !== "undefined") {
+          gsap.fromTo(successMessage, {
+            autoAlpha: 0,
+            scale: 0.96
+          }, {
+            autoAlpha: 1,
+            scale: 1,
+            duration: 0.45,
+            ease: "power1.out"
+          });
+        }
+      });
+    });
+  }
+
   if (typeof gsap === "undefined") {
     document.documentElement.classList.remove("ics-js-loading");
+    document.addEventListener("DOMContentLoaded", initProspectusForms);
     return;
   }
 
@@ -494,6 +548,7 @@
   window.ICSAnimations = ICSAnimations;
 
   document.addEventListener("DOMContentLoaded", () => {
+    initProspectusForms();
     ICSAnimations.initHeroTimeline();
   });
 

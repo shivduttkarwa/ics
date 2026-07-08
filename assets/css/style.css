@@ -2386,6 +2386,7 @@ html.ics-js-loading .ics-hero__media {
 }
 
 .ics-prospectus-card__form {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
@@ -2429,6 +2430,89 @@ html.ics-js-loading .ics-hero__media {
 .ics-form-field__input:focus-visible {
   outline: 0.125rem solid var(--color-accent);
   outline-offset: 0.125rem;
+}
+
+.ics-form-success {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 80;
+  align-items: flex-start;
+  gap: 0.875rem;
+  width: min(100%, 28rem);
+  padding: 1.25rem 3.25rem 1.25rem 1.25rem;
+  border: 1px solid rgba(12, 75, 64, 0.14);
+  border-radius: var(--radius-sm);
+  background: var(--color-background);
+  color: var(--color-primary);
+  box-shadow: 0 1.5rem 4rem rgba(12, 75, 64, 0.22);
+  transform: translate(-50%, -50%);
+}
+
+.ics-form-success[hidden] {
+  display: none;
+}
+
+.ics-form-success:not([hidden]) {
+  display: flex;
+}
+
+.ics-form-success__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 2.25rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  color: var(--color-primary);
+}
+
+.ics-form-success__icon::before {
+  content: "";
+  width: 0.75rem;
+  height: 0.4375rem;
+  border-left: 0.125rem solid currentColor;
+  border-bottom: 0.125rem solid currentColor;
+  transform: translateY(-0.0625rem) rotate(-45deg);
+}
+
+.ics-form-success__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  min-width: 0;
+  font-size: var(--font-size-sm);
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+.ics-form-success__copy strong {
+  font-weight: var(--font-bold);
+}
+
+.ics-form-success__close {
+  position: absolute;
+  top: 0.625rem;
+  right: 0.625rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-primary);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.ics-form-success__close:hover,
+.ics-form-success__close:focus-visible {
+  background-color: rgba(12, 75, 64, 0.08);
 }
 
 @media (max-width: 767.98px) {
