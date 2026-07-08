@@ -48,12 +48,16 @@
                 const cta = hero.querySelector(':scope > .container > .ics-hero__cta');
                 const media = hero.querySelector('.ics-hero__media');
                 const mediaImg = media ? media.querySelector('.ics-media-frame img') : null;
+                const stat = hero.querySelector('.ics-hero__stat');
                 const rest = [...copyLines, cta, media].filter(Boolean);
 
                 const allTargets = [eyebrow, title, ...rest].filter(Boolean);
                 if (!allTargets.length) return;
 
                 gsap.set(allTargets, { autoAlpha: 0 });
+                if (stat) {
+                    gsap.set(stat, { autoAlpha: 0 });
+                }
                 if (mediaImg) {
                     gsap.set(mediaImg, { scale: HERO_TIMING.media.startScale });
                 }
