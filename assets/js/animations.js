@@ -3,24 +3,21 @@
         gsap.registerPlugin(ScrollTrigger, SplitText);
     }
 
-    // ── Hero timeline knobs ──────────────────────────────────────────────
-    // All timing/gap control for .ics-hero lives here. Positions are seconds
-    // on the timeline unless noted; "delay" values are gaps, not absolute times.
     const HERO_TIMING = {
         eyebrow: {
-            start: 0.2,          // when the eyebrow starts fading in
+            start: 0.2,
             duration: 0.7,
         },
         title: {
-            start: 0.55,        // when the title reveal starts
-            charStagger: 0.02,  // gap between each character fading in
-            charDuration: 0.095, // how long each character takes to fade in
-            fallbackDuration: 0.6, // used when SplitText isn't available (whole title fades as one)
+            start: 0.55,
+            charStagger: 0.02,
+            charDuration: 0.095,
+            fallbackDuration: 0.6,
         },
         rest: {
-            gapAfterTitle: +0.1, // gap between title finishing and this group starting (negative = overlap)
-            duration: 0.6,      // fade-in duration per item
-            stagger: 0.05,      // gap between each item in the group (body text, emphasis line, CTA, media)
+            gapAfterTitle: +0.1,
+            duration: 0.6,
+            stagger: 0.05,
         },
     };
 
@@ -218,9 +215,6 @@
             });
         },
 
-        // Requires the target element to contain an <svg> with a .ics-mask-grow-shell
-        // (and optional .ics-mask-grow-image) child — not present on our pages yet.
-        // Add that SVG structure to an image block to opt it into this reveal.
         initMaskGrowReveal() {
             if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
             if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -273,8 +267,6 @@
             });
         },
 
-        // Requires the target element to contain an <svg> with a .ics-mask-shape-reveal-path
-        // child — not present on our pages yet. Add that SVG structure to opt an image in.
         initMaskShapeReveal() {
             if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
             if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -289,7 +281,6 @@
                         return `${box.x + (box.width / 2)} ${box.y + (box.height / 2)}`;
                     }
                 } catch (e) {
-                    // Fall back to viewBox center.
                 }
                 const viewBox = svg?.viewBox?.baseVal;
                 if (viewBox && viewBox.width && viewBox.height) {
@@ -322,8 +313,6 @@
             });
         },
 
-        // Requires the target element to contain an <svg> with a <clipPath><path> pair
-        // (the shape being swept in) — not present on our pages yet.
         initMaskSweepReveal() {
             if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
             if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;

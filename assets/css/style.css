@@ -808,7 +808,6 @@ html.ics-js-loading .ics-hero__media {
   object-fit: cover;
 }
 
-/* Wagtail: keep item loop order stable; desktop masonry slots are mapped by nth-child. */
 .ics-parent-voices__item:nth-child(1) {
   top: 14.625rem;
   left: 0.9375rem;
