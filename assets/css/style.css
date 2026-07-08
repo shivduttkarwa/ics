@@ -489,9 +489,9 @@ h5,
 
 .ics-decorative-line--location-1 {
   z-index: 0;
-  --ics-location-line-1-x: 0vw;
-  --ics-location-line-1-y: 17vh;
-  --ics-location-line-1-rotate: -31deg;
+  --ics-location-line-1-x: -7vw;
+  --ics-location-line-1-y: 56vh;
+  --ics-location-line-1-rotate: -35deg;
   --ics-location-line-1-scale: 1;
   --ics-location-line-1-flip: -1;
   transform: translate(var(--ics-location-line-1-x), var(--ics-location-line-1-y)) rotate(var(--ics-location-line-1-rotate)) scale(var(--ics-location-line-1-scale)) scaleX(var(--ics-location-line-1-flip));
@@ -500,7 +500,7 @@ h5,
 .ics-decorative-line--location-2 {
   z-index: 0;
   --ics-location-line-2-x: -26vw;
-  --ics-location-line-2-y: -34vh;
+  --ics-location-line-2-y: 9vh;
   --ics-location-line-2-rotate: -245deg;
   --ics-location-line-2-scale: 1;
   --ics-location-line-2-flip: -1;
@@ -1003,7 +1003,9 @@ html.ics-js-loading .ics-hero__media {
 .ics-location {
   position: relative;
   min-height: 46.1875rem;
-  overflow: hidden;
+  overflow-x: clip;
+  overflow-y: visible;
+  clip-path: inset(0 0 -100vh 0);
   background-color: var(--color-background);
 }
 
@@ -1013,16 +1015,6 @@ html.ics-js-loading .ics-hero__media {
   inset: 0 0 auto;
   height: 24.5rem;
   background: linear-gradient(to bottom, var(--color-surface) 0%, rgba(247, 244, 239, 0) 100%);
-  pointer-events: none;
-}
-
-.ics-location__lines {
-  position: absolute;
-  top: -6.4375rem;
-  left: 87.5544rem;
-  z-index: 0;
-  width: 107.0546rem;
-  height: 111.9375rem;
   pointer-events: none;
 }
 
@@ -1133,10 +1125,6 @@ html.ics-js-loading .ics-hero__media {
 
   .ics-location::before {
     height: 14rem;
-  }
-
-  .ics-location__lines {
-    display: none;
   }
 
   .ics-location__badge {
