@@ -2819,6 +2819,15 @@ html.ics-js-loading .ics-hero__media {
   background-color: var(--color-surface) !important;
 }
 
+.ics-anim-item--scale {
+  will-change: opacity;
+}
+
+.ics-anim-scale-target {
+  transform-origin: center center;
+  will-change: transform;
+}
+
 .visually-hidden-focusable:not(:focus):not(:focus-within) {
   position: absolute !important;
   width: 1px !important;

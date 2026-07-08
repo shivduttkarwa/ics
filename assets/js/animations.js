@@ -27,9 +27,10 @@
     };
 
     const MEDIA_ZOOM = {
-        startScale: 1.12,
-        duration: 0.9,
-        ease: 'power3.out',
+        startScale: 1.5,
+        duration: 1.3,
+        fadeDuration: 1.5,
+        ease: 'power4.inOut',
     };
 
     const ICSAnimations = {
@@ -178,8 +179,12 @@
                 gsap.set('.ics-anim-item--static', { autoAlpha: 0 });
             }
             if (document.querySelectorAll('.ics-anim-item--scale').length > 0) {
-                gsap.set('.ics-anim-item--scale', { autoAlpha: 0 });
-                gsap.set('.ics-anim-item--scale .ics-anim-scale-target', { scale: MEDIA_ZOOM.startScale });
+                gsap.set('.ics-anim-item--scale', { autoAlpha: 0, force3D: true });
+                gsap.set('.ics-anim-item--scale .ics-anim-scale-target', {
+                    scale: MEDIA_ZOOM.startScale,
+                    transformOrigin: 'center center',
+                    force3D: true,
+                });
             }
 
             function animateDefault(card, index = 0) {
@@ -198,12 +203,20 @@
                     }
                     if (card.classList.contains('ics-anim-item--scale')) {
                         gsap.to(card, {
-                            autoAlpha: 1, duration: MEDIA_ZOOM.duration, ease: MEDIA_ZOOM.ease, delay: index * 0.1,
+                            autoAlpha: 1,
+                            duration: MEDIA_ZOOM.fadeDuration,
+                            ease: MEDIA_ZOOM.ease,
+                            delay: index * 0.1,
+                            force3D: true,
                         });
                         const scaleTarget = card.querySelector('.ics-anim-scale-target');
                         if (scaleTarget) {
                             gsap.to(scaleTarget, {
-                                scale: 1, duration: MEDIA_ZOOM.duration, ease: MEDIA_ZOOM.ease, delay: index * 0.1,
+                                scale: 1,
+                                duration: MEDIA_ZOOM.duration,
+                                ease: MEDIA_ZOOM.ease,
+                                delay: index * 0.1,
+                                force3D: true,
                             });
                         }
                     }
