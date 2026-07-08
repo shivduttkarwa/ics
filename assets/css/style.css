@@ -2271,6 +2271,7 @@ html.ics-js-loading .ics-hero__media {
   position: absolute;
   inset: 0;
   z-index: 0;
+  overflow: hidden;
 }
 
 .ics-discover__media img {
@@ -2826,11 +2827,6 @@ html.ics-js-loading .ics-hero__media {
 .ics-anim-scale-target {
   transform-origin: center center;
   will-change: transform;
-}
-
-.ics-anim-item--story-reveal {
-  backface-visibility: hidden;
-  will-change: opacity, transform;
 }
 
 .visually-hidden-focusable:not(:focus):not(:focus-within) {

@@ -33,15 +33,6 @@
         ease: 'power4.inOut',
     };
 
-    const STORY_REVEAL = {
-        y: 22,
-        start: 0.12,
-        stagger: 0.07,
-        duration: 0.6,
-        ease: 'power2.out',
-        triggerStart: 'top 70%',
-    };
-
     const ICSAnimations = {
         initHeroTimeline() {
             const releasePreHiddenHero = () => document.documentElement.classList.remove('ics-js-loading');
@@ -169,13 +160,6 @@
                 });
             }
 
-            const storyRevealGroups = Array.from(document.querySelectorAll('[data-ics-story-reveal-group]'));
-            storyRevealGroups.forEach((group) => {
-                group.querySelectorAll('.ics-anim-item').forEach((item) => {
-                    item.classList.add('ics-anim-item--story-grouped');
-                });
-            });
-
             const batchItems = document.querySelectorAll('.ics-anim-item');
             if (batchItems.length === 0) return;
 
@@ -193,13 +177,6 @@
             }
             if (document.querySelectorAll('.ics-anim-item--static').length > 0) {
                 gsap.set('.ics-anim-item--static', { autoAlpha: 0 });
-            }
-            if (document.querySelectorAll('.ics-anim-item--story-reveal').length > 0) {
-                gsap.set('.ics-anim-item--story-reveal', {
-                    autoAlpha: 0,
-                    y: STORY_REVEAL.y,
-                    force3D: true,
-                });
             }
             if (document.querySelectorAll('.ics-anim-item--scale').length > 0) {
                 gsap.set('.ics-anim-item--scale', { autoAlpha: 0, force3D: true });
@@ -230,17 +207,6 @@
                 }
             }
 
-            function animateStoryReveal(card, delay = 0) {
-                gsap.to(card, {
-                    autoAlpha: 1,
-                    y: 0,
-                    duration: STORY_REVEAL.duration,
-                    ease: STORY_REVEAL.ease,
-                    delay,
-                    force3D: true,
-                });
-            }
-
             function animateDefault(card, index = 0) {
                 gsap.to(card, {
                     duration: 0.6,
@@ -258,9 +224,6 @@
                     if (card.classList.contains('ics-anim-item--scale')) {
                         animateScale(card, index * 0.1);
                     }
-                    if (card.classList.contains('ics-anim-item--story-reveal')) {
-                        animateStoryReveal(card, STORY_REVEAL.start + index * STORY_REVEAL.stagger);
-                    }
                     if (card.classList.contains('ics-anim-item--blockquote')) {
                         gsap.to(card.querySelector('blockquote'), {
                             duration: 0.6, ease: 'power1.out', autoAlpha: 1, delay: index * 0.1,
@@ -277,24 +240,7 @@
                 });
             }
 
-            storyRevealGroups.forEach((group) => {
-                const scaleItems = Array.from(group.querySelectorAll('.ics-anim-item--scale'));
-                const revealItems = Array.from(group.querySelectorAll('.ics-anim-item--story-reveal'));
-
-                ScrollTrigger.create({
-                    trigger: group,
-                    start: STORY_REVEAL.triggerStart,
-                    once: true,
-                    onEnter: () => {
-                        scaleItems.forEach((card) => animateScale(card, 0));
-                        revealItems.forEach((card, index) => {
-                            animateStoryReveal(card, STORY_REVEAL.start + index * STORY_REVEAL.stagger);
-                        });
-                    },
-                });
-            });
-
-            ScrollTrigger.batch('.ics-anim-item:not(.ics-anim-item--story-grouped)', {
+            ScrollTrigger.batch('.ics-anim-item', {
                 start: 'top bottom-=100',
                 once: true,
                 onEnter: (batch) => runBatch(batch),
