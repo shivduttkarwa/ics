@@ -7,6 +7,13 @@ const STORY_MEDIA_ZOOM = {
   ease: "power4.inOut"
 };
 
+const STORY_MOBILE_REVEAL = {
+  mediaFadeDuration: 0.8,
+  contentStart: 0.25,
+  firstPanelStart: "top 75%",
+  panelStart: "left 82%"
+};
+
 function initStorySection(section) {
   const viewport = section.querySelector(".ics-story-section");
   const track = section.querySelector(".ics-story-track");
@@ -58,6 +65,7 @@ function initStoryPanelReveals(section, horizontalTween) {
   }
 
   const panels = gsap.utils.toArray(section.querySelectorAll("[data-story-panel]"));
+  const isMobileStory = window.matchMedia("(max-width: 991.98px)").matches;
 
   panels.forEach((panel, index) => {
     const media = panel.querySelector("[data-story-media]");
@@ -78,13 +86,13 @@ function initStoryPanelReveals(section, horizontalTween) {
     const mediaTriggerConfig = index === 0
       ? {
           trigger: section,
-          start: "top 50%",
+          start: isMobileStory ? STORY_MOBILE_REVEAL.firstPanelStart : "top 50%",
           once: true
         }
       : {
           trigger: panel,
           containerAnimation: horizontalTween,
-          start: "left 70%",
+          start: isMobileStory ? STORY_MOBILE_REVEAL.panelStart : "left 70%",
           once: true
         };
 
@@ -98,6 +106,48 @@ function initStoryPanelReveals(section, horizontalTween) {
         transformOrigin: "center center",
         force3D: true
       });
+    }
+
+    if (isMobileStory) {
+      if (revealItems.length > 0) {
+        gsap.set(revealItems, { autoAlpha: 0, force3D: true });
+      }
+
+      const mobileTimeline = gsap.timeline({
+        defaults: {
+          duration: 0.6,
+          ease: "power1.out"
+        },
+        scrollTrigger: mediaTriggerConfig
+      });
+
+      if (media) {
+        mobileTimeline.to(media, {
+          autoAlpha: 1,
+          duration: STORY_MOBILE_REVEAL.mediaFadeDuration,
+          ease: "power1.out",
+          force3D: true
+        }, 0);
+      }
+
+      if (mediaImg) {
+        mobileTimeline.to(mediaImg, {
+          scale: 1,
+          duration: STORY_MEDIA_ZOOM.duration,
+          ease: STORY_MEDIA_ZOOM.ease,
+          force3D: true
+        }, 0);
+      }
+
+      if (revealItems.length > 0) {
+        mobileTimeline.to(revealItems, {
+          autoAlpha: 1,
+          stagger: 0.07,
+          force3D: true
+        }, STORY_MOBILE_REVEAL.contentStart);
+      }
+
+      return;
     }
 
     if (media || mediaImg) {
