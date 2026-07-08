@@ -127,7 +127,7 @@ function initStoryPanelReveals(section, horizontalTween) {
     const timeline = gsap.timeline({
       defaults: {
         duration: 0.6,
-        ease: "power2.out"
+        ease: "power1.out"
       },
       scrollTrigger: triggerConfig
     });
@@ -135,7 +135,6 @@ function initStoryPanelReveals(section, horizontalTween) {
     if (revealItems.length > 0) {
       timeline.from(revealItems, {
         autoAlpha: 0,
-        y: 22,
         stagger: 0.07,
         force3D: true
       }, 0.12);
