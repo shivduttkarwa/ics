@@ -1755,7 +1755,7 @@ h5,
 
 @media (min-width: 992px) {
   .ics-story-row__content {
-    padding: 0;
+    padding: 0 5rem 0 0;
     max-width: 40.625rem;
   }
 }
