@@ -19,6 +19,11 @@
             duration: 0.6,
             stagger: 0.05,
         },
+        media: {
+            startScale: 1.15,
+            duration: 1.3,
+            ease: 'power4.inOut',
+        },
     };
 
     const ICSAnimations = {
@@ -42,12 +47,16 @@
                 const copyLines = Array.from(hero.querySelectorAll(':scope > .container > .ics-hero__copy > *'));
                 const cta = hero.querySelector(':scope > .container > .ics-hero__cta');
                 const media = hero.querySelector('.ics-hero__media');
+                const mediaImg = media ? media.querySelector('.ics-media-frame img') : null;
                 const rest = [...copyLines, cta, media].filter(Boolean);
 
                 const allTargets = [eyebrow, title, ...rest].filter(Boolean);
                 if (!allTargets.length) return;
 
                 gsap.set(allTargets, { autoAlpha: 0 });
+                if (mediaImg) {
+                    gsap.set(mediaImg, { scale: HERO_TIMING.media.startScale });
+                }
                 releasePreHiddenHero();
 
                 let titleChars = null;
@@ -86,6 +95,14 @@
                         duration: HERO_TIMING.rest.duration,
                         stagger: HERO_TIMING.rest.stagger,
                     }, `>${HERO_TIMING.rest.gapAfterTitle >= 0 ? '+' : ''}${HERO_TIMING.rest.gapAfterTitle}`);
+                }
+
+                if (mediaImg) {
+                    tl.to(mediaImg, {
+                        scale: 1,
+                        duration: HERO_TIMING.media.duration,
+                        ease: HERO_TIMING.media.ease,
+                    }, '<');
                 }
             });
         },
