@@ -125,7 +125,13 @@
 
       <div class="ics-location__inner">
         <figure class="ics-location__map">
-          <img src="assets/images/landing-3-location-map.jpg" alt="Map showing the Illawarra Christian School location near Mt Kembla and Wollongong." width="1790" height="1167" loading="lazy">
+          <!-- Wagtail: replace the iframe src with the location map embed URL from the admin field. -->
+          <iframe
+            src="https://www.google.com/maps?q=Illawarra%20Christian%20School%2C%204%20Tyalla%20Place%2C%20Cordeaux%20Heights%20NSW%202526&output=embed"
+            title="Map showing Illawarra Christian School near Mt Kembla and Wollongong"
+            loading="lazy"
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
         </figure>
 
         <img class="ics-location__badge" src="assets/images/landing-3-location-badge.png" alt="Only 20 minutes from the most corners of the Illawarra, from north to south." width="153" height="153" loading="lazy">
