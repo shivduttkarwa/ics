@@ -85,7 +85,6 @@ function initStoryPanelReveals(section, horizontalTween) {
     if (media) {
       timeline.from(media, {
         autoAlpha: 0,
-        y: 24,
         force3D: true
       }, 0);
     }

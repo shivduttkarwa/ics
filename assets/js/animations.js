@@ -209,36 +209,8 @@
             });
         },
 
-        initQuoteBannerReveal() {
-            if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-            const circles = document.querySelectorAll('.ics-quote-banner__circle');
-            circles.forEach((circle) => {
-                const items = Array.from(circle.querySelectorAll('blockquote > *'));
-                if (!items.length) return;
-
-                gsap.set(items, { autoAlpha: 0 });
-
-                ScrollTrigger.create({
-                    trigger: circle,
-                    start: 'top 65%',
-                    once: true,
-                    onEnter: () => {
-                        gsap.to(items, {
-                            autoAlpha: 1,
-                            duration: 0.6,
-                            ease: 'power1.out',
-                            stagger: 0.15,
-                        });
-                    },
-                });
-            });
-        },
-
         init() {
             this.initSplitTextAndBatch();
-            this.initQuoteBannerReveal();
         },
     };
 
