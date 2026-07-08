@@ -241,7 +241,7 @@
             }
 
             ScrollTrigger.batch('.ics-anim-item', {
-                start: 'top bottom-=100',
+                start: 'top bottom',
                 once: true,
                 onEnter: (batch) => runBatch(batch),
             });
