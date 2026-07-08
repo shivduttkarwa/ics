@@ -1068,15 +1068,11 @@ html.ics-js-loading .ics-hero__media {
   text-transform: uppercase;
 }
 
-.ics-location__eyebrow-dot,
-.ics-location__button-dot {
+.ics-location__eyebrow-dot {
   width: 0.625rem;
   height: 0.625rem;
   border-radius: 50%;
   flex-shrink: 0;
-}
-
-.ics-location__eyebrow-dot {
   background-color: var(--color-accent);
 }
 
@@ -1098,32 +1094,6 @@ html.ics-js-loading .ics-hero__media {
   line-height: 1.4;
   letter-spacing: -0.03em;
   margin: 0;
-}
-
-.ics-location__button {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.9375rem;
-  border-radius: var(--radius-pill);
-  background-color: var(--color-accent);
-  color: var(--color-primary);
-  padding: 0.9375rem 1.5625rem;
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-bold);
-  line-height: 1.4;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  text-decoration: none;
-}
-
-.ics-location__button:hover,
-.ics-location__button:focus-visible {
-  color: var(--color-primary);
-  transform: translateY(-0.125rem);
-}
-
-.ics-location__button-dot {
-  background-color: var(--color-primary);
 }
 
 .ics-location__badge {
@@ -1216,13 +1186,6 @@ html.ics-js-loading .ics-hero__media {
     height: 5rem;
   }
 
-  .ics-location__button {
-    width: 100%;
-    justify-content: center;
-    padding-inline: 1rem;
-    text-align: center;
-    white-space: normal;
-  }
 }
 
 .ics-fee-includes {
@@ -1456,15 +1419,11 @@ html.ics-js-loading .ics-hero__media {
   margin-bottom: 1.25rem;
 }
 
-.ics-senior-outcomes__eyebrow-dot,
-.ics-senior-outcomes__button-dot {
+.ics-senior-outcomes__eyebrow-dot {
   width: 0.625rem;
   height: 0.625rem;
   border-radius: 50%;
   flex-shrink: 0;
-}
-
-.ics-senior-outcomes__eyebrow-dot {
   background-color: var(--color-accent);
 }
 
@@ -1494,32 +1453,6 @@ html.ics-js-loading .ics-hero__media {
 
 .ics-senior-outcomes__body p + p {
   margin-top: 1.4em;
-}
-
-.ics-senior-outcomes__button {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.9375rem;
-  border-radius: var(--radius-pill);
-  background-color: var(--color-accent);
-  color: var(--color-primary);
-  padding: 0.9375rem 1.5625rem;
-  font-size: 1rem;
-  font-weight: var(--font-bold);
-  line-height: 1.4;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  text-decoration: none;
-}
-
-.ics-senior-outcomes__button:hover,
-.ics-senior-outcomes__button:focus-visible {
-  color: var(--color-primary);
-  transform: translateY(-0.125rem);
-}
-
-.ics-senior-outcomes__button-dot {
-  background-color: var(--color-primary);
 }
 
 .ics-senior-outcomes__stats {
@@ -1647,14 +1580,6 @@ html.ics-js-loading .ics-hero__media {
 
   .ics-senior-outcomes__title {
     font-size: clamp(2.4rem, 1.45rem + 8vw, 3.75rem);
-  }
-
-  .ics-senior-outcomes__button {
-    width: 100%;
-    justify-content: center;
-    padding-inline: 1rem;
-    text-align: center;
-    white-space: normal;
   }
 
   .ics-senior-outcomes__stats {
