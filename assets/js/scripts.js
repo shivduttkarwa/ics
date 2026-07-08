@@ -2,9 +2,9 @@ gsap.registerPlugin(ScrollTrigger);
 ScrollTrigger.config({ ignoreMobileResize: true });
 
 function initStorySection(section) {
-  const track = section.querySelector(".ics-rf-story-track");
-  const bar   = section.querySelector(".ics-rf-story-progress__bar");
-  const rows  = gsap.utils.toArray(section.querySelectorAll(".ics-rf-story-row"));
+  const track = section.querySelector(".ics-story-track");
+  const bar   = section.querySelector(".ics-story-progress__bar");
+  const rows  = gsap.utils.toArray(section.querySelectorAll(".ics-story-row"));
 
   const distance = () => track.scrollWidth - window.innerWidth;
 
@@ -39,14 +39,14 @@ function initStorySection(section) {
     .to({}, { duration: HOLD_RATIO });
 
   rows.forEach((row) => {
-    const img = row.querySelector(".ics-rf-story-row__media img");
+    const img = row.querySelector(".ics-story-row__media img");
 
     gsap.fromTo(img, { xPercent: -5 }, {
       xPercent: 5, ease: "none",
       scrollTrigger: { trigger: row, containerAnimation: horizontal, start: "left right", end: "right left", scrub: true }
     });
 
-    gsap.fromTo(row.querySelector(".ics-rf-story-row__media"),
+    gsap.fromTo(row.querySelector(".ics-story-row__media"),
       { clipPath: "inset(0% 0% 0% 100%)" },
       { clipPath: "inset(0% 0% 0% 0%)", ease: "none",
         scrollTrigger: { trigger: row, containerAnimation: horizontal, start: "left right", end: "left center", scrub: true } }
@@ -57,6 +57,6 @@ function initStorySection(section) {
 }
 
 window.addEventListener("load", () => {
-  document.querySelectorAll(".ics-rf-story-section").forEach(initStorySection);
+  document.querySelectorAll(".ics-story-section").forEach(initStorySection);
   ScrollTrigger.refresh();
 });
