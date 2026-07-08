@@ -1666,9 +1666,17 @@ h5,
   background-color: var(--color-surface);
 }
 
+.ics-story-scroll {
+  position: relative;
+  height: var(--ics-story-scroll-height, 100svh);
+  background-color: var(--color-surface);
+}
+
 .ics-story-section {
   position: relative;
   z-index: 1;
+  width: 100%;
+  height: 100vh;
   height: 100svh;
   overflow: hidden;
   background-color: var(--color-surface);
