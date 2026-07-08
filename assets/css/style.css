@@ -2276,7 +2276,7 @@ h5,
 
   .ics-discover .container,
   .ics-site-footer .container {
-    max-width: 91.4286rem;
+    max-width: min(91.4286rem, calc(100% - 8rem));
     padding-left: 0;
     padding-right: 0;
   }
@@ -2363,6 +2363,10 @@ h5,
 }
 
 @media (min-width: 1200px) {
+  .ics-discover__content .row {
+    --bs-gutter-x: 0;
+  }
+
   .ics-prospectus-card {
     width: min(100%, 52.1429rem);
     gap: 2.8571rem;
