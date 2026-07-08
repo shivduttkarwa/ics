@@ -1688,7 +1688,6 @@ h5,
   align-items: center;
   padding: var(--space-6);
   background-color: var(--color-background);
-  will-change: transform;
 }
 
 .ics-story-row--tint {
@@ -1770,7 +1769,6 @@ h5,
   height: 100%;
   max-width: none;
   object-fit: cover;
-  will-change: transform;
 }
 
 .ics-story-progress {
