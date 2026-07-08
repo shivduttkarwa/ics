@@ -297,23 +297,48 @@
         }
       }
 
-      function animateDefault(card, index = 0) {
+      function animateDefault(card, delay = 0) {
         gsap.to(card, {
           duration: 0.6,
           ease: "power1.out",
           autoAlpha: 1,
-          delay: index * 0.1
+          delay
         });
+      }
+
+      function getGridColumnCount(grid) {
+        if (!grid) {
+          return 0;
+        }
+        return getComputedStyle(grid).gridTemplateColumns.split(" ").filter(Boolean).length;
+      }
+
+      function getRowStaggerDelay(item, index) {
+        const card = item.closest(".ics-fee-card");
+        const grid = card ? card.closest(".ics-fee-includes__grid") : null;
+
+        if (!card || !grid) {
+          return index * 0.1;
+        }
+
+        const columns = getGridColumnCount(grid) || 1;
+        const cards = grid.querySelectorAll(".ics-fee-card");
+        const cardIndex = Array.prototype.indexOf.call(cards, card);
+        const colIndex = cardIndex === -1 ? 0 : cardIndex % columns;
+
+        return colIndex * 0.12;
       }
 
       function runBatch(batch) {
         batch.forEach((card, index) => {
+          const delay = getRowStaggerDelay(card, index);
+
           if (card.classList.contains("ics-anim-item--default") || card.classList.contains("ics-anim-item--static")) {
-            animateDefault(card, index);
+            animateDefault(card, delay);
           }
 
           if (card.classList.contains("ics-anim-item--scale")) {
-            animateScale(card, index * 0.1);
+            animateScale(card, delay);
           }
 
           if (card.classList.contains("ics-anim-item--blockquote")) {
@@ -321,7 +346,7 @@
               duration: 0.6,
               ease: "power1.out",
               autoAlpha: 1,
-              delay: index * 0.1
+              delay
             });
           }
 
@@ -332,7 +357,7 @@
               duration: 0.5,
               stagger: 0.15,
               ease: "power1.out",
-              delay: index * 0.1
+              delay
             });
           }
 
@@ -343,7 +368,7 @@
               stagger: 0.05,
               ease: "power3.inOut",
               autoAlpha: 1,
-              delay: index * 0.1
+              delay
             });
           }
         });
