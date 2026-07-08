@@ -26,6 +26,12 @@
         },
     };
 
+    const MEDIA_ZOOM = {
+        startScale: 1.12,
+        duration: 0.9,
+        ease: 'power3.out',
+    };
+
     const ICSAnimations = {
         initHeroTimeline() {
             const releasePreHiddenHero = () => document.documentElement.classList.remove('ics-js-loading');
@@ -171,6 +177,10 @@
             if (document.querySelectorAll('.ics-anim-item--static').length > 0) {
                 gsap.set('.ics-anim-item--static', { autoAlpha: 0 });
             }
+            if (document.querySelectorAll('.ics-anim-item--scale').length > 0) {
+                gsap.set('.ics-anim-item--scale', { autoAlpha: 0 });
+                gsap.set('.ics-anim-item--scale .ics-anim-scale-target', { scale: MEDIA_ZOOM.startScale });
+            }
 
             function animateDefault(card, index = 0) {
                 gsap.to(card, {
@@ -185,6 +195,17 @@
                 batch.forEach((card, index) => {
                     if (card.classList.contains('ics-anim-item--default') || card.classList.contains('ics-anim-item--static')) {
                         animateDefault(card, index);
+                    }
+                    if (card.classList.contains('ics-anim-item--scale')) {
+                        gsap.to(card, {
+                            autoAlpha: 1, duration: MEDIA_ZOOM.duration, ease: MEDIA_ZOOM.ease, delay: index * 0.1,
+                        });
+                        const scaleTarget = card.querySelector('.ics-anim-scale-target');
+                        if (scaleTarget) {
+                            gsap.to(scaleTarget, {
+                                scale: 1, duration: MEDIA_ZOOM.duration, ease: MEDIA_ZOOM.ease, delay: index * 0.1,
+                            });
+                        }
                     }
                     if (card.classList.contains('ics-anim-item--blockquote')) {
                         gsap.to(card.querySelector('blockquote'), {

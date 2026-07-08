@@ -1673,6 +1673,7 @@ html.ics-js-loading .ics-hero__media {
 
 .ics-story-row__media {
   width: 100%;
+  will-change: opacity;
 }
 
 @media (min-width: 992px) {
@@ -1746,6 +1747,8 @@ html.ics-js-loading .ics-hero__media {
   height: 100%;
   max-width: none;
   object-fit: cover;
+  transform-origin: center center;
+  will-change: transform;
 }
 
 .ics-story-progress {

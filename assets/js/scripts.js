@@ -1,8 +1,9 @@
 gsap.registerPlugin(ScrollTrigger);
 
 const STORY_MEDIA_ZOOM = {
-  startScale: 1.15,
+  startScale: 1.5,
   duration: 1.3,
+  fadeDuration: 1.5,
   ease: "power4.inOut"
 };
 
@@ -74,6 +75,55 @@ function initStoryPanelReveals(section, horizontalTween) {
           start: "left 70%",
           toggleActions: "play none none reverse"
         };
+    const mediaTriggerConfig = index === 0
+      ? {
+          trigger: section,
+          start: "top 50%",
+          once: true
+        }
+      : {
+          trigger: panel,
+          containerAnimation: horizontalTween,
+          start: "left 70%",
+          once: true
+        };
+
+    if (media) {
+      gsap.set(media, { autoAlpha: 0, force3D: true });
+    }
+
+    if (mediaImg) {
+      gsap.set(mediaImg, {
+        scale: STORY_MEDIA_ZOOM.startScale,
+        transformOrigin: "center center",
+        force3D: true
+      });
+    }
+
+    if (media || mediaImg) {
+      const mediaTimeline = gsap.timeline({
+        scrollTrigger: mediaTriggerConfig
+      });
+
+      if (media) {
+        mediaTimeline.to(media, {
+          autoAlpha: 1,
+          duration: STORY_MEDIA_ZOOM.fadeDuration,
+          ease: STORY_MEDIA_ZOOM.ease,
+          force3D: true
+        }, 0);
+      }
+
+      if (mediaImg) {
+        mediaTimeline.to(mediaImg, {
+          scale: 1,
+          duration: STORY_MEDIA_ZOOM.duration,
+          ease: STORY_MEDIA_ZOOM.ease,
+          force3D: true
+        }, 0);
+      }
+    }
+
     const timeline = gsap.timeline({
       defaults: {
         duration: 0.6,
@@ -81,25 +131,6 @@ function initStoryPanelReveals(section, horizontalTween) {
       },
       scrollTrigger: triggerConfig
     });
-
-    if (media) {
-      timeline.from(media, {
-        autoAlpha: 0,
-        force3D: true
-      }, 0);
-    }
-
-    if (mediaImg) {
-      timeline.fromTo(mediaImg, {
-        scale: STORY_MEDIA_ZOOM.startScale,
-        transformOrigin: "center center"
-      }, {
-        scale: 1,
-        duration: STORY_MEDIA_ZOOM.duration,
-        ease: STORY_MEDIA_ZOOM.ease,
-        force3D: true
-      }, 0);
-    }
 
     if (revealItems.length > 0) {
       timeline.from(revealItems, {
