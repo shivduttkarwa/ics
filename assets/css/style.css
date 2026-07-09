@@ -2542,6 +2542,14 @@ html.ics-js-loading .ics-hero__media {
   background-color: var(--color-surface);
 }
 
+.ics-discover-cta .row {
+  --bs-gutter-x: 2.625rem;
+}
+
+.ics-discover-cta .ics-discover-card {
+  width: 100%;
+}
+
 .ics-discover-card__title {
   font-style: italic;
   margin: 0;
