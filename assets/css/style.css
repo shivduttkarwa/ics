@@ -1899,52 +1899,50 @@ html.ics-js-loading .ics-hero__media {
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
   .ics-story-section {
-    height: 100vh;
-    height: 100svh;
+    height: min(78svh, 62rem);
   }
 
   .ics-story-row {
-    padding: var(--space-4);
+    padding: clamp(1.5rem, 3.5vw, 3rem);
   }
 
   .ics-story-row__grid {
-    display: grid;
-    grid-template-columns: minmax(16rem, 38%) minmax(0, 1fr);
-    column-gap: clamp(1.5rem, 4vw, 3rem);
-    align-items: center;
-    width: min(100%, 58rem);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: min(84vw, 64rem);
     margin-inline: auto;
-    --bs-gutter-y: 0;
+    --bs-gutter-y: clamp(1.25rem, 2vw, 2rem);
   }
 
   .ics-story-row__grid > [class*="col"] {
-    width: auto;
+    width: 100%;
     max-width: none;
     padding-inline: 0;
   }
 
   .ics-story-row__media {
     width: 100%;
-    max-width: 24rem;
+    max-width: none;
     height: auto;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 16 / 9;
     border-radius: 1rem;
-    justify-self: end;
   }
 
   .ics-story-row__content {
-    gap: 0.75rem;
-    max-width: 26rem;
+    gap: 0.875rem;
+    width: min(100%, 50rem);
+    max-width: 100%;
     padding: 0;
   }
 
   .ics-story-row__heading {
-    font-size: clamp(1.85rem, 1.2rem + 2.6vw, 2.75rem);
+    font-size: clamp(3rem, 4.4vw, 4rem);
   }
 
   .ics-story-row .ics-body-text {
-    font-size: 1.0625rem;
-    line-height: 1.4;
+    font-size: 1.375rem;
+    line-height: 1.45;
   }
 }
 
@@ -3543,6 +3541,78 @@ html.ics-js-loading .ics-hero__media {
     height: auto;
     aspect-ratio: 4 / 5;
     margin-inline: auto;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 899.98px) {
+  .ics-child-focus-section__grid,
+  .ics-child-focus-section--media-right .ics-child-focus-section__grid {
+    max-width: min(100%, 42rem);
+  }
+
+  .ics-child-focus-section__media,
+  .ics-child-focus-section__content {
+    max-width: min(100%, 38rem);
+  }
+
+  .ics-child-focus-section__heading {
+    font-size: clamp(2.75rem, 5.4vw, 3.125rem);
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1199.98px) {
+  .ics-child-focus-section__inner {
+    padding-left: clamp(2rem, 5vw, 4rem);
+    padding-right: clamp(2rem, 5vw, 4rem);
+  }
+
+  .ics-child-focus-section__grid,
+  .ics-child-focus-section--media-right .ics-child-focus-section__grid {
+    flex-direction: row;
+    align-items: center;
+    gap: clamp(2.5rem, 5vw, 4rem);
+    width: min(100%, 70rem);
+    max-width: none;
+    margin-inline: auto;
+  }
+
+  .ics-child-focus-section__media {
+    flex: 0 0 43%;
+    width: 43%;
+    max-width: none;
+  }
+
+  .ics-child-focus-section__content {
+    flex: 1 1 0;
+    width: auto;
+    max-width: none;
+  }
+
+  .ics-child-focus-section__heading {
+    font-size: clamp(3rem, 4.2vw, 4rem);
+  }
+
+  .ics-child-focus-section__features {
+    gap: 1rem;
+  }
+
+  .ics-child-focus-section__features .ics-icon-feature {
+    gap: 1rem;
+  }
+
+  .ics-icon-feature__title,
+  .ics-icon-feature__text {
+    font-size: clamp(1rem, 1.55vw, 1.25rem);
+  }
+
+  .ics-quote-card__quote,
+  .ics-quote-card__name,
+  .ics-quote-card__role {
+    font-size: clamp(0.875rem, 1.2vw, 1rem);
+  }
+
+  .ics-child-focus-section .ics-pill-link {
+    font-size: clamp(0.95rem, 1.3vw, 1.125rem);
   }
 }
 
