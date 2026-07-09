@@ -3022,13 +3022,14 @@ html.ics-js-loading .ics-hero__media {
   }
 
   .ics-story-section {
-    height: auto;
+    height: 100vh;
+    height: 100svh;
   }
 
   .ics-story-row {
-    height: auto;
+    height: 100%;
     padding: var(--space-4);
-    align-items: flex-start;
+    align-items: center;
   }
 
   .ics-story-row__media {
