@@ -2664,6 +2664,14 @@ html.ics-js-loading .ics-hero__media {
     font-size: clamp(1.575rem, 1.26rem + 2.34vw, 3.375rem);
   }
 
+  .ics-prospectus-card__lead {
+    font-size: 1.25rem;
+  }
+
+  .ics-prospectus-card__body {
+    font-size: 1.0625rem;
+  }
+
   .ics-prospectus-card__fields {
     flex-direction: column;
   }
