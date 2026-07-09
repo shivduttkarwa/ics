@@ -378,9 +378,44 @@
       }
 
       ScrollTrigger.batch(".ics-anim-item", {
-        start: "top bottom",
+        start: "top 80%",
         once: true,
         onEnter: (batch) => runBatch(batch)
+      });
+
+      document.querySelectorAll(".ics-site-footer__legal-left").forEach((legalLeft) => {
+        const legalRow = legalLeft.closest(".ics-site-footer__legal");
+        const footer = legalLeft.closest(".ics-site-footer");
+
+        if (!legalRow) {
+          return;
+        }
+
+        let isRevealed = false;
+        const revealLegalRow = () => {
+          if (isRevealed) {
+            return;
+          }
+
+          isRevealed = true;
+          animateDefault(legalRow);
+        };
+
+        ScrollTrigger.create({
+          trigger: legalLeft,
+          start: "top bottom",
+          once: true,
+          onEnter: revealLegalRow
+        });
+
+        if (footer) {
+          ScrollTrigger.create({
+            trigger: footer,
+            start: "bottom bottom",
+            once: true,
+            onEnter: revealLegalRow
+          });
+        }
       });
     },
 
