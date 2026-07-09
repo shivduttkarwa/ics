@@ -396,7 +396,6 @@
 
     const viewport = section.querySelector(".ics-story-section");
     const track = section.querySelector(".ics-story-track");
-    const bar = section.querySelector(".ics-story-progress__bar");
 
     if (!viewport || !track) {
       return;
@@ -424,12 +423,7 @@
         anticipatePin: 1,
         invalidateOnRefresh: true,
         onRefreshInit: setScrollHeight,
-        onRefresh: setScrollHeight,
-        onUpdate: (self) => {
-          if (bar) {
-            gsap.set(bar, { scaleX: self.progress });
-          }
-        }
+        onRefresh: setScrollHeight
       }
     });
 

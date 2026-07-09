@@ -1848,25 +1848,6 @@ html.ics-js-loading .ics-hero__media {
   will-change: transform;
 }
 
-.ics-story-progress {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  z-index: 6;
-  width: 100%;
-  height: 3px;
-  background: var(--color-border);
-}
-
-.ics-story-progress__bar {
-  display: block;
-  height: 100%;
-  width: 100%;
-  transform: scaleX(0);
-  transform-origin: left;
-  background: var(--color-accent);
-}
-
 .ics-quote-banner {
   position: relative;
   color: var(--color-on-dark);
