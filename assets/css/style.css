@@ -3005,8 +3005,11 @@ html.ics-js-loading .ics-hero__media {
 
   .ics-hero__stat {
     position: relative;
+    top: auto;
     right: auto;
     bottom: auto;
+    left: auto;
+    transform: none;
     z-index: 2;
     margin-top: 1.5rem;
     margin-bottom: -1.5rem;
