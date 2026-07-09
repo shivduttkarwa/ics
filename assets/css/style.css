@@ -976,8 +976,6 @@ html.ics-js-loading .ics-hero__media {
   .ics-parent-voices__inner {
     grid-template-columns: 1fr;
     gap: var(--space-6);
-    width: calc(100% - 2rem);
-    max-width: 32rem;
     min-width: 0;
     overflow-x: hidden;
   }
@@ -1173,8 +1171,6 @@ html.ics-js-loading .ics-hero__media {
   }
 
   .ics-location__inner {
-    width: calc(100% - 2rem);
-    max-width: 32rem;
     min-width: 0;
   }
 
@@ -1342,10 +1338,6 @@ html.ics-js-loading .ics-hero__media {
 @media (max-width: 767.98px) {
   .ics-fee-includes {
     padding-block: var(--space-8);
-  }
-
-  .ics-fee-includes__inner {
-    width: min(100% - 2rem, 25rem);
   }
 
   .ics-fee-includes__intro {
@@ -1586,7 +1578,6 @@ html.ics-js-loading .ics-hero__media {
 
 @media (max-width: 767.98px) {
   .ics-senior-outcomes__inner {
-    width: min(100% - 2rem, 32rem);
     padding-block: var(--space-7);
   }
 
@@ -2539,10 +2530,6 @@ html.ics-js-loading .ics-hero__media {
 
   .ics-prospectus-card__fields {
     flex-direction: column;
-  }
-
-  .ics-discover__content .container {
-    padding-inline: var(--space-4);
   }
 
   .ics-discover {
