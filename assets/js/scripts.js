@@ -278,6 +278,9 @@
           force3D: true
         });
       }
+      if (document.querySelectorAll(".ics-anim-item--grow-x").length > 0) {
+        gsap.set(".ics-anim-item--grow-x", { autoAlpha: 0, scaleX: 0, transformOrigin: "left center", force3D: true });
+      }
 
       function animateScale(card, delay = 0) {
         gsap.to(card, {
@@ -306,6 +309,17 @@
           ease: "power1.out",
           autoAlpha: 1,
           delay
+        });
+      }
+
+      function animateGrowX(card, delay = 0) {
+        gsap.to(card, {
+          autoAlpha: 1,
+          scaleX: 1,
+          duration: 0.7,
+          ease: "power2.out",
+          delay,
+          force3D: true
         });
       }
 
@@ -342,6 +356,10 @@
 
           if (card.classList.contains("ics-anim-item--scale")) {
             animateScale(card, delay);
+          }
+
+          if (card.classList.contains("ics-anim-item--grow-x")) {
+            animateGrowX(card, delay);
           }
 
           if (card.classList.contains("ics-anim-item--blockquote")) {
