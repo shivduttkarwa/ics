@@ -620,6 +620,61 @@
     document.querySelectorAll("[data-story-scroll]").forEach(initStorySection);
   }
 
+  function initStatCounters() {
+    if (typeof ScrollTrigger === "undefined" || prefersReducedMotion()) {
+      return;
+    }
+
+    const statNumbers = gsap.utils.toArray(".ics-senior-outcomes__stat dt");
+
+    statNumbers.forEach((stat) => {
+      const original = stat.textContent.trim();
+      const match = original.match(/^([^0-9.-]*)(-?\d+(?:\.\d+)?)(.*)$/);
+
+      if (!match) {
+        return;
+      }
+
+      const [, prefix, numericText, suffix] = match;
+      const endValue = Number.parseFloat(numericText);
+      const decimals = numericText.includes(".") ? numericText.split(".")[1].length : 0;
+      const counter = { value: 0 };
+      let hasAnimated = false;
+      const trigger = stat.closest(".ics-hero__stat, .ics-senior-outcomes__stat") || stat;
+      const formatValue = (value) => value.toLocaleString("en-AU", {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals
+      });
+
+      ScrollTrigger.create({
+        trigger,
+        start: "top 92%",
+        once: true,
+        onEnter: () => {
+          if (hasAnimated) {
+            return;
+          }
+
+          hasAnimated = true;
+          counter.value = 0;
+          stat.textContent = `${prefix}${formatValue(0)}${suffix}`;
+
+          gsap.to(counter, {
+            value: endValue,
+            duration: endValue >= 500 ? 1.8 : 1.25,
+            ease: "power2.out",
+            onUpdate: () => {
+              stat.textContent = `${prefix}${formatValue(counter.value)}${suffix}`;
+            },
+            onComplete: () => {
+              stat.textContent = original;
+            }
+          });
+        }
+      });
+    });
+  }
+
   window.ICSAnimations = ICSAnimations;
 
   document.addEventListener("DOMContentLoaded", () => {
@@ -630,6 +685,7 @@
   window.addEventListener("load", () => {
     ICSAnimations.init();
     initStorySections();
+    initStatCounters();
 
     if (typeof ScrollTrigger !== "undefined") {
       ScrollTrigger.refresh();
