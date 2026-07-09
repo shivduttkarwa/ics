@@ -591,6 +591,7 @@ h5,
   border-radius: var(--radius-pill);
   font-size: var(--font-size-xs);
   font-weight: var(--font-bold);
+  line-height: 1;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   text-decoration: none;
@@ -608,6 +609,23 @@ h5,
 
 .ics-pill-link--light {
   background-color: var(--color-background);
+}
+
+.ics-pill-link__label {
+  display: inline-block;
+}
+
+@supports not (text-box-trim: trim-both) {
+  .ics-pill-link__label {
+    margin-block: -0.15em;
+  }
+}
+
+@supports (text-box-trim: trim-both) {
+  .ics-pill-link__label {
+    text-box-trim: trim-both;
+    text-box-edge: cap alphabetic;
+  }
 }
 
 .ics-pill-link__dot {
@@ -687,10 +705,36 @@ html.ics-js-loading .ics-hero__media {
   margin: 0;
 }
 
+@supports not (text-box-trim: trim-both) {
+  .ics-hero__eyebrow {
+    margin-bottom: -0.1em;
+  }
+}
+
+@supports (text-box-trim: trim-both) {
+  .ics-hero__eyebrow {
+    text-box-trim: trim-end;
+    text-box-edge: cap alphabetic;
+  }
+}
+
 .ics-hero h1.ics-hero__title {
   color: var(--color-accent);
   margin-top: 1.25rem;
   margin-bottom: var(--space-3);
+}
+
+@supports not (text-box-trim: trim-both) {
+  .ics-hero h1.ics-hero__title {
+    margin-top: calc(1.25rem - 0.1em);
+  }
+}
+
+@supports (text-box-trim: trim-both) {
+  .ics-hero h1.ics-hero__title {
+    text-box-trim: trim-start;
+    text-box-edge: cap alphabetic;
+  }
 }
 
 .ics-hero-word {
