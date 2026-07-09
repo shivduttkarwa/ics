@@ -2616,7 +2616,6 @@ html.ics-js-loading .ics-hero__media {
   --ics-discover-card-padding-inline: 5rem;
   --ics-discover-card-lead-font-size: 1.5625rem;
   --ics-discover-card-lead-letter-spacing: -0.02em;
-  justify-content: flex-start;
   width: 42.375rem;
   min-height: 34.125rem;
 }
@@ -3393,6 +3392,7 @@ html.ics-js-loading .ics-hero__media {
     letter-spacing: 0.03em;
     gap: 0.625rem;
     padding: 0.9375rem 1.375rem;
+    border-radius: 1.5rem;
   }
 
   .ics-testimonial-block__text {
@@ -3410,6 +3410,10 @@ html.ics-js-loading .ics-hero__media {
     line-height: 1.15;
   }
 
+  .ics-discover-card > .ics-pill-link .ics-pill-link__label {
+    font-size: clamp(0.675rem, 3vw, 0.975rem);
+  }
+
   .ics-discover-card--faith {
     --ics-discover-card-gap: 2rem;
     --ics-discover-card-lead-font-size: 1.125rem;
@@ -3423,6 +3427,7 @@ html.ics-js-loading .ics-hero__media {
 
   .ics-discover-card--faith > .ics-pill-link .ics-pill-link__label {
     white-space: normal;
+    width: 100%;
   }
 
   .ics-site-footer {
