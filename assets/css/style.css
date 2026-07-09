@@ -3397,6 +3397,11 @@ html.ics-js-loading .ics-hero__media {
     border-radius: 1.5rem;
   }
 
+  .ics-btn-brand {
+    font-size: clamp(0.675rem, 3vw, 0.975rem);
+    letter-spacing: 0.03em;
+  }
+
   .ics-testimonial-block__text {
     font-size: 1.559375rem;
   }
