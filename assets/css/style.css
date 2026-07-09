@@ -3424,7 +3424,7 @@ html.ics-js-loading .ics-hero__media {
   .ics-discover-card--faith {
     --ics-discover-card-gap: 2rem;
     --ics-discover-card-lead-font-size: 1.125rem;
-    min-height: 30rem;
+    min-height: auto;
   }
 
   .ics-discover-card--faith > .ics-pill-link {
