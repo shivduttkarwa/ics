@@ -2622,7 +2622,8 @@ html.ics-js-loading .ics-hero__media {
 }
 
 .ics-discover-card--faith > .ics-pill-link {
-  width: 21.5625rem;
+  width: max-content;
+  max-width: 100%;
   justify-content: flex-start;
 }
 
