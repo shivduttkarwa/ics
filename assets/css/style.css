@@ -1624,7 +1624,6 @@ html.ics-js-loading .ics-hero__media {
   width: 100%;
   height: 100vh;
   height: 100svh;
-  height: 100dvh;
   overflow: hidden;
   background-color: var(--color-surface);
 }
@@ -3025,7 +3024,6 @@ html.ics-js-loading .ics-hero__media {
   .ics-story-section {
     height: 100vh;
     height: 100svh;
-    height: 100dvh;
   }
 
   .ics-story-row {
