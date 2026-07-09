@@ -1110,7 +1110,7 @@ html.ics-js-loading .ics-hero__media {
 .ics-location__badge {
   position: absolute;
   top: 1rem;
-  right: 6.9375rem;
+  right: 5rem;
   z-index: 2;
   width: 9.5625rem;
   height: 9.5625rem;
@@ -1156,6 +1156,7 @@ html.ics-js-loading .ics-hero__media {
   }
 
   .ics-location__content {
+    overflow: visible;
     height: auto;
     padding-inline: 0;
   }
@@ -1181,14 +1182,14 @@ html.ics-js-loading .ics-hero__media {
   }
 
   .ics-location__title {
-    font-size: clamp(2.4rem, 1.45rem + 8vw, var(--font-size-3xl));
+    font-size: clamp(1.575rem, 1.26rem + 2.34vw, 3.375rem);
   }
 
   .ics-location__badge {
-    top: 0.75rem;
-    right: 0.75rem;
-    width: 5rem;
-    height: 5rem;
+    top: -2.5rem;
+    right: 0;
+    width: 4.5rem;
+    height: 4.5rem;
   }
 
 }
