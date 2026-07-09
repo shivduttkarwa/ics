@@ -2522,6 +2522,8 @@ html.ics-js-loading .ics-hero__media {
   --ics-discover-card-gap: 1.1875rem;
   --ics-discover-card-padding-block: 4.375rem;
   --ics-discover-card-padding-inline: 3.75rem;
+  --ics-discover-card-lead-font-size: 1rem;
+  --ics-discover-card-lead-letter-spacing: -0.03em;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -2579,9 +2581,9 @@ html.ics-js-loading .ics-hero__media {
 }
 
 .ics-discover-card__lead {
-  font-size: 1rem;
+  font-size: var(--ics-discover-card-lead-font-size);
   line-height: 1.4;
-  letter-spacing: -0.03em;
+  letter-spacing: var(--ics-discover-card-lead-letter-spacing);
   margin: 0;
 }
 
@@ -2604,6 +2606,8 @@ html.ics-js-loading .ics-hero__media {
   --ics-discover-card-gap: 3.125rem;
   --ics-discover-card-padding-block: 4.375rem;
   --ics-discover-card-padding-inline: 5rem;
+  --ics-discover-card-lead-font-size: 1.5625rem;
+  --ics-discover-card-lead-letter-spacing: -0.02em;
   justify-content: flex-start;
   width: 42.375rem;
   min-height: 34.125rem;
@@ -2613,12 +2617,9 @@ html.ics-js-loading .ics-hero__media {
   gap: 1.1875rem;
 }
 
-.ics-discover-card--faith .ics-discover-card__lead {
+.ics-discover-card--faith .ics-discover-card__lead:not(.ics-discover-card__lead--accent) {
   font-family: var(--font-secondary);
-  font-size: 1.5625rem;
   font-weight: var(--font-regular);
-  line-height: 1.4;
-  letter-spacing: -0.02em;
 }
 
 .ics-discover-card--faith > .ics-pill-link {
@@ -3401,17 +3402,10 @@ html.ics-js-loading .ics-hero__media {
     line-height: 1.15;
   }
 
-  .ics-discover-card__lead {
-    font-size: 1rem;
-  }
-
   .ics-discover-card--faith {
     --ics-discover-card-gap: 2rem;
+    --ics-discover-card-lead-font-size: 1.125rem;
     min-height: 30rem;
-  }
-
-  .ics-discover-card--faith .ics-discover-card__lead {
-    font-size: 1.125rem;
   }
 
   .ics-discover-card--faith > .ics-pill-link {
