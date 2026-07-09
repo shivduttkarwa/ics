@@ -617,8 +617,9 @@ h5,
   gap: var(--space-1);
   font-family: var(--font-primary);
   font-size: var(--font-size-sm);
-  font-weight: var(--font-bold);
-  letter-spacing: 0.05em;
+  font-weight: var(--font-semibold);
+  line-height: 1.4;
+  letter-spacing: 0.05rem;
   text-transform: uppercase;
   text-decoration: none;
   border: 0;
@@ -651,10 +652,10 @@ h5,
   min-height: 3.25rem;
   padding: 0.9375rem 1.5625rem;
   border-radius: var(--radius-pill);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-bold);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-semibold);
   line-height: 1.4;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.05rem;
   text-transform: uppercase;
   text-decoration: none;
   color: var(--color-primary);
