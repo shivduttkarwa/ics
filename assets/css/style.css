@@ -264,6 +264,7 @@
   --space-8: 4rem;
   --space-9: 5rem;
   --space-10: 6.25rem;
+  --ics-mobile-gutter: 1rem;
 
   --radius-sm: 0.3125rem;
   --radius-md: 0.625rem;
@@ -3314,6 +3315,38 @@ html.ics-js-loading .ics-hero__media {
 }
 
 @media (max-width: 767.98px) {
+  .container,
+  .container-fluid,
+  .ics-section > .container,
+  .ics-section > .container-fluid {
+    padding-left: var(--ics-mobile-gutter);
+    padding-right: var(--ics-mobile-gutter);
+  }
+
+  .ics-parent-voices__inner,
+  .ics-location__inner,
+  .ics-fee-includes__inner,
+  .ics-senior-outcomes__inner {
+    width: min(100% - calc(var(--ics-mobile-gutter) * 2), 32rem);
+  }
+
+  .ics-child-focus-section__inner,
+  .ics-comparison-section__inner,
+  .ics-discover__content .container {
+    padding-left: var(--ics-mobile-gutter);
+    padding-right: var(--ics-mobile-gutter);
+  }
+
+  .ics-testimonial-section__stage {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .ics-story-row {
+    padding-left: var(--ics-mobile-gutter);
+    padding-right: var(--ics-mobile-gutter);
+  }
+
   .ics-hero__stat {
     margin-bottom: 0;
   }
