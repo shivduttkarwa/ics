@@ -68,6 +68,9 @@
   if (plugins.length > 0) {
     gsap.registerPlugin(...plugins);
   }
+  if (typeof ScrollTrigger !== "undefined") {
+    ScrollTrigger.config({ ignoreMobileResize: true });
+  }
 
   const HERO_TIMING = {
     eyebrow: {

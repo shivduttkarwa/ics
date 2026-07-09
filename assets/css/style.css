@@ -1624,6 +1624,7 @@ html.ics-js-loading .ics-hero__media {
   width: 100%;
   height: 100vh;
   height: 100svh;
+  height: 100dvh;
   overflow: hidden;
   background-color: var(--color-surface);
 }
@@ -3024,6 +3025,7 @@ html.ics-js-loading .ics-hero__media {
   .ics-story-section {
     height: 100vh;
     height: 100svh;
+    height: 100dvh;
   }
 
   .ics-story-row {
@@ -3182,6 +3184,126 @@ html.ics-js-loading .ics-hero__media {
     text-transform: uppercase;
     color: var(--color-muted);
     margin-bottom: 0.25rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  .ics-hero {
+    padding-bottom: var(--space-7);
+  }
+
+  .ics-hero__media {
+    padding-inline: clamp(2rem, 7vw, 4rem);
+    margin-bottom: 0;
+  }
+
+  .ics-hero__stat,
+  .ics-hero__stat--left-center {
+    position: relative;
+    inset: auto;
+    transform: none;
+    width: min(20rem, 58vw);
+    height: auto;
+    min-height: min(20rem, 58vw);
+    margin: var(--space-4) auto 0;
+    padding: 2.25rem 2rem;
+  }
+
+  .ics-hero__stat-number {
+    font-size: clamp(4rem, 10vw, 5.75rem);
+    letter-spacing: -0.15rem;
+  }
+
+  .ics-hero__stat-title {
+    font-size: clamp(1rem, 2.2vw, 1.25rem);
+  }
+
+  .ics-hero__stat-text {
+    font-size: clamp(0.875rem, 1.8vw, 1rem);
+  }
+}
+
+@media (max-width: 1199.98px) {
+  .ics-child-focus-section__inner {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+  }
+
+  .ics-child-focus-section__grid,
+  .ics-child-focus-section--media-right .ics-child-focus-section__grid {
+    flex-direction: column;
+    gap: var(--space-6);
+    max-width: 44rem;
+    margin-inline: auto;
+  }
+
+  .ics-child-focus-section__media,
+  .ics-child-focus-section__content {
+    width: 100%;
+    max-width: 34.375rem;
+    flex: 0 1 auto;
+  }
+
+  .ics-testimonial-section {
+    height: auto;
+    padding-bottom: var(--space-8);
+  }
+
+  .ics-testimonial-section__stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-6);
+    padding-inline: var(--space-2);
+  }
+
+  .ics-testimonial-section__media {
+    width: min(100%, 33.125rem);
+    height: auto;
+    aspect-ratio: 530 / 335;
+  }
+
+  .ics-testimonial-section__media--a,
+  .ics-testimonial-section__media--b,
+  .ics-testimonial-section__card {
+    position: static;
+    transform: none;
+    margin: 0;
+  }
+
+  .ics-testimonial-section__card {
+    width: min(100%, 42.375rem);
+  }
+
+  .ics-discover {
+    height: auto;
+    min-height: 0;
+  }
+
+  .ics-discover__content {
+    padding-block: var(--space-8);
+  }
+
+  .ics-discover-card,
+  .ics-prospectus-card {
+    padding: clamp(2rem, 6vw, 4rem);
+  }
+
+  .ics-discover__prospectus-card,
+  .ics-prospectus-media {
+    margin-top: 0;
+  }
+
+  .ics-prospectus-media {
+    height: auto;
+    aspect-ratio: 4 / 5;
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .ics-hero__stat {
+    margin-bottom: 0;
   }
 }
 
