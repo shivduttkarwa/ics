@@ -2519,16 +2519,21 @@ html.ics-js-loading .ics-hero__media {
 }
 
 .ics-discover-card {
+  --ics-discover-card-gap: 1.1875rem;
+  --ics-discover-card-padding-block: 4.375rem;
+  --ics-discover-card-padding-inline: 3.75rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1.19rem;
-  width: 42.375rem;
+  justify-content: space-between;
+  gap: var(--ics-discover-card-gap);
+  width: 38.75rem;
+  min-height: 41.75rem;
   max-width: 100%;
   background-color: var(--color-accent);
   color: var(--color-primary);
   border-radius: var(--radius-lg);
-  padding: 4.375rem 5rem;
+  padding: var(--ics-discover-card-padding-block) var(--ics-discover-card-padding-inline);
 }
 
 .ics-discover-card--surface {
@@ -2540,6 +2545,32 @@ html.ics-js-loading .ics-hero__media {
   margin: 0;
 }
 
+.ics-discover-card__content {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ics-discover-card-gap);
+}
+
+.ics-discover-card__content > div {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: var(--ics-discover-card-gap);
+}
+
+.ics-discover-card__content > *,
+.ics-discover-card__content > div > * {
+  margin: 0 !important;
+}
+
+.ics-discover-card .ics-lead-text:not(.ics-discover-card__lead) {
+  font-size: 1.5625rem;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+
 @media (min-width: 768px) {
   .ics-discover-card__title {
     font-size: var(--font-size-3xl);
@@ -2548,11 +2579,25 @@ html.ics-js-loading .ics-hero__media {
 }
 
 .ics-discover-card__lead {
+  font-size: 1rem;
+  line-height: 1.4;
+  letter-spacing: -0.03em;
   margin: 0;
 }
 
 .ics-discover-card > .ics-pill-link {
-  margin-top: auto;
+  width: 100%;
+  min-height: 3.25rem;
+  justify-content: center;
+  padding: 0.9375rem 1.5625rem;
+  line-height: 1.4;
+  margin-top: 0;
+}
+
+.ics-discover-card > .ics-pill-link .ics-pill-link__label {
+  font-size: 1rem;
+  line-height: 1.4;
+  letter-spacing: 0.05em;
 }
 
 .ics-prospectus-card {
@@ -3315,7 +3360,9 @@ html.ics-js-loading .ics-hero__media {
   }
 
   .ics-discover-card {
-    padding: 2rem;
+    --ics-discover-card-padding-block: 2rem;
+    --ics-discover-card-padding-inline: 2rem;
+    min-height: 33rem;
   }
 
   .ics-discover-card__title {
@@ -3324,7 +3371,7 @@ html.ics-js-loading .ics-hero__media {
   }
 
   .ics-discover-card__lead {
-    font-size: 1.125rem;
+    font-size: 1rem;
   }
 
   .ics-site-footer {
@@ -3531,7 +3578,11 @@ html.ics-js-loading .ics-hero__media {
     padding-block: var(--space-8);
   }
 
-  .ics-discover-card,
+  .ics-discover-card {
+    --ics-discover-card-padding-block: clamp(2rem, 6vw, 4rem);
+    --ics-discover-card-padding-inline: clamp(2rem, 6vw, 4rem);
+  }
+
   .ics-prospectus-card {
     padding: clamp(2rem, 6vw, 4rem);
   }
