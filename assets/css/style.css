@@ -3218,6 +3218,15 @@ html.ics-js-loading .ics-hero__media {
     padding: 2rem;
   }
 
+  .ics-discover-card__title {
+    font-size: 1.75rem;
+    line-height: 1.15;
+  }
+
+  .ics-discover-card__lead {
+    font-size: 1.125rem;
+  }
+
   .ics-site-footer {
     padding-block: var(--space-2) var(--space-5);
   }
