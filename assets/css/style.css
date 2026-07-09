@@ -2600,6 +2600,36 @@ html.ics-js-loading .ics-hero__media {
   letter-spacing: 0.05em;
 }
 
+.ics-discover-card--faith {
+  --ics-discover-card-gap: 3.125rem;
+  --ics-discover-card-padding-block: 4.375rem;
+  --ics-discover-card-padding-inline: 5rem;
+  justify-content: flex-start;
+  width: 42.375rem;
+  min-height: 34.125rem;
+}
+
+.ics-discover-card--faith .ics-discover-card__content {
+  gap: 1.1875rem;
+}
+
+.ics-discover-card--faith .ics-discover-card__lead {
+  font-family: var(--font-secondary);
+  font-size: 1.5625rem;
+  font-weight: var(--font-regular);
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+
+.ics-discover-card--faith > .ics-pill-link {
+  width: 21.5625rem;
+  justify-content: flex-start;
+}
+
+.ics-discover-card--faith > .ics-pill-link .ics-pill-link__label {
+  white-space: nowrap;
+}
+
 .ics-prospectus-card {
   display: flex;
   width: 45.625rem;
@@ -3372,6 +3402,24 @@ html.ics-js-loading .ics-hero__media {
 
   .ics-discover-card__lead {
     font-size: 1rem;
+  }
+
+  .ics-discover-card--faith {
+    --ics-discover-card-gap: 2rem;
+    min-height: 30rem;
+  }
+
+  .ics-discover-card--faith .ics-discover-card__lead {
+    font-size: 1.125rem;
+  }
+
+  .ics-discover-card--faith > .ics-pill-link {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .ics-discover-card--faith > .ics-pill-link .ics-pill-link__label {
+    white-space: normal;
   }
 
   .ics-site-footer {
