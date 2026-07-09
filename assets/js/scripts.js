@@ -281,6 +281,9 @@
       if (document.querySelectorAll(".ics-anim-item--grow-x").length > 0) {
         gsap.set(".ics-anim-item--grow-x", { autoAlpha: 0, scaleX: 0, transformOrigin: "left center", force3D: true });
       }
+      if (document.querySelectorAll(".ics-senior-outcomes__stat-line").length > 0) {
+        gsap.set(".ics-senior-outcomes__stat-line", { autoAlpha: 0, scaleX: 0, transformOrigin: "left center", force3D: true });
+      }
 
       function animateScale(card, delay = 0) {
         gsap.to(card, {
@@ -352,6 +355,13 @@
 
           if (card.classList.contains("ics-anim-item--default") || card.classList.contains("ics-anim-item--static")) {
             animateDefault(card, delay);
+          }
+
+          if (card.classList.contains("ics-senior-outcomes__stat")) {
+            const statLine = card.querySelector(".ics-senior-outcomes__stat-line");
+            if (statLine) {
+              animateGrowX(statLine, delay + 0.12);
+            }
           }
 
           if (card.classList.contains("ics-anim-item--scale")) {
@@ -625,7 +635,7 @@
       return;
     }
 
-    const statNumbers = gsap.utils.toArray(".ics-senior-outcomes__stat dt");
+    const statNumbers = gsap.utils.toArray(".ics-senior-outcomes__stat-number");
 
     statNumbers.forEach((stat) => {
       const original = stat.textContent.trim();
