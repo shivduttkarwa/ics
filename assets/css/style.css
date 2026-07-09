@@ -2400,7 +2400,8 @@ html.ics-js-loading .ics-hero__media {
   }
 
   .ics-discover .container,
-  .ics-site-footer .container {
+  .ics-site-footer .container,
+  .ics-discover-cta .container {
     max-width: min(91.4286rem, calc(100% - 8rem));
     padding-left: 0;
     padding-right: 0;
@@ -2409,7 +2410,8 @@ html.ics-js-loading .ics-hero__media {
 
 @media (min-width: 1920px) and (max-width: 2559.98px) {
   .ics-discover .container,
-  .ics-site-footer .container {
+  .ics-site-footer .container,
+  .ics-discover-cta .container {
     max-width: calc(100% - 10rem);
   }
 }
