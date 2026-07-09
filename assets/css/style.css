@@ -1897,7 +1897,7 @@ html.ics-js-loading .ics-hero__media {
   }
 }
 
-@media (min-width: 992px) and (max-width: 1199.98px) {
+@media (min-width: 992px) and (max-width: 1199.98px) and (orientation: portrait) {
   .ics-story-section {
     height: min(78svh, 62rem);
   }
