@@ -1056,7 +1056,7 @@ html.ics-js-loading .ics-hero__media {
   }
 
   .ics-parent-voices__quote-text {
-    font-size: clamp(1.35rem, 1.1rem + 4vw, var(--font-size-lg));
+    font-size: 1.25rem;
   }
 
   .ics-parent-voices__quote-cite {
@@ -1416,7 +1416,7 @@ html.ics-js-loading .ics-hero__media {
   }
 
   .ics-fee-includes__lead {
-    font-size: var(--font-size-base);
+    font-size: 1.0625rem;
   }
 
   .ics-fee-includes__grid {
@@ -1429,11 +1429,11 @@ html.ics-js-loading .ics-hero__media {
   }
 
   .ics-fee-card__title {
-    font-size: 1.45rem;
+    font-size: 1.3125rem;
   }
 
   .ics-fee-card__text {
-    font-size: var(--font-size-base);
+    font-size: 1rem;
   }
 }
 
@@ -1655,13 +1655,17 @@ html.ics-js-loading .ics-hero__media {
     font-size: clamp(1.575rem, 1.26rem + 2.34vw, 3.375rem);
   }
 
+  .ics-senior-outcomes__body {
+    font-size: 1.0625rem;
+  }
+
   .ics-senior-outcomes__stats {
     grid-template-columns: 1fr;
     gap: var(--space-6);
   }
 
   .ics-senior-outcomes__stat dt {
-    font-size: 3.25rem;
+    font-size: 2.75rem;
   }
 
   .ics-senior-outcomes__red-dot {
@@ -3164,6 +3168,10 @@ html.ics-js-loading .ics-hero__media {
     font-size: clamp(2.25rem, 9vw, 3.25rem);
   }
 
+  .ics-hero__copy p {
+    font-size: 1.0625rem;
+  }
+
   .ics-story-section {
     height: 100vh;
     height: 100svh;
@@ -3314,6 +3322,7 @@ html.ics-js-loading .ics-hero__media {
     display: block;
     border-top: 0;
     padding-block: var(--space-1);
+    font-size: 1.0625rem;
   }
 
   .ics-comparison td:first-child::before {
