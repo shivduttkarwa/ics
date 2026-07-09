@@ -3215,7 +3215,7 @@ html.ics-js-loading .ics-hero__media {
     font-size: clamp(0.675rem, 3vw, 0.975rem);
     letter-spacing: 0.03em;
     gap: 0.625rem;
-    padding: 0.75rem 1.125rem;
+    padding: 0.9375rem 1.375rem;
   }
 
   .ics-testimonial-block__text {
