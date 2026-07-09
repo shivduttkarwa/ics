@@ -648,11 +648,12 @@ h5,
   display: inline-flex;
   align-items: center;
   gap: 0.9375rem;
+  min-height: 3.25rem;
   padding: 0.9375rem 1.5625rem;
   border-radius: var(--radius-pill);
   font-size: var(--font-size-xs);
   font-weight: var(--font-bold);
-  line-height: 1;
+  line-height: 1.4;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   text-decoration: none;
@@ -3391,7 +3392,7 @@ html.ics-js-loading .ics-hero__media {
     font-size: clamp(0.675rem, 3vw, 0.975rem);
     letter-spacing: 0.03em;
     gap: 0.625rem;
-    padding: 0.9375rem 1.375rem;
+    padding: 0.9375rem 1.5625rem;
     border-radius: 1.5rem;
   }
 
