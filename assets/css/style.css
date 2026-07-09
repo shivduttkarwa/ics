@@ -2741,9 +2741,9 @@ html.ics-js-loading .ics-hero__media {
 
 @media (min-width: 1920px) and (max-width: 2559.98px) {
   .ics-site-footer__tagline {
-    margin-left: auto;
+    margin-left: 0;
     max-width: 38rem;
-    text-align: right;
+    text-align: left;
   }
 }
 
