@@ -684,11 +684,13 @@ html.ics-js-loading .ics-hero__media {
   font-size: var(--font-size-base);
   line-height: 1.1;
   letter-spacing: -0.04em;
+  margin: 0;
 }
 
 .ics-hero h1.ics-hero__title {
   color: var(--color-accent);
-  margin-block: var(--space-3);
+  margin-top: 1.25rem;
+  margin-bottom: var(--space-3);
 }
 
 .ics-hero-word {
