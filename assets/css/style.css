@@ -465,10 +465,40 @@ h5,
   object-fit: cover;
   pointer-events: none;
   z-index: 0;
+  translate: 0 0;
+  animation: ics-leaf-drift var(--ics-leaf-drift-duration, 22s) ease-in-out infinite;
+  animation-delay: var(--ics-leaf-drift-delay, 0s);
+  will-change: translate;
+}
+
+@keyframes ics-leaf-drift {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+
+  38% {
+    translate: calc(var(--ics-leaf-drift-x, 0.8rem) * 0.9) calc(var(--ics-leaf-drift-y, 1rem) * -0.7);
+  }
+
+  72% {
+    translate: calc(var(--ics-leaf-drift-x, 0.8rem) * -0.8) var(--ics-leaf-drift-y, 1rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ics-decorative-line {
+    animation: none;
+    translate: 0 0;
+  }
 }
 
 .ics-decorative-line--hero-1 {
   z-index: 2;
+  --ics-leaf-drift-x: 2.95rem;
+  --ics-leaf-drift-y: 2.1rem;
+  --ics-leaf-drift-duration: 16s;
+  --ics-leaf-drift-delay: -6s;
   --ics-faith-hero-leaf-1-x: -29vw;
   --ics-faith-hero-leaf-1-y: -85vh;
   --ics-faith-hero-leaf-1-rotate: 60deg;
@@ -479,6 +509,10 @@ h5,
 
 .ics-decorative-line--hero-2 {
     z-index: 2;
+    --ics-leaf-drift-x: -2.85rem;
+    --ics-leaf-drift-y: 2.1rem;
+    --ics-leaf-drift-duration: 18s;
+    --ics-leaf-drift-delay: -11s;
     --ics-faith-hero-leaf-2-x: -9vw;
     --ics-faith-hero-leaf-2-y: -11vh;
     --ics-faith-hero-leaf-2-rotate: 181deg;
@@ -489,6 +523,10 @@ h5,
 
 .ics-decorative-line--child-focus-1 {
     z-index: 0;
+    --ics-leaf-drift-x: 2.95rem;
+    --ics-leaf-drift-y: 2.1rem;
+    --ics-leaf-drift-duration: 16s;
+    --ics-leaf-drift-delay: -8s;
     --ics-child-focus-line-1-x: 0vw;
     --ics-child-focus-line-1-y: 17vh;
     --ics-child-focus-line-1-rotate: -31deg;
@@ -498,6 +536,10 @@ h5,
 }
 .ics-decorative-line--child-focus-2 {
     z-index: 0;
+    --ics-leaf-drift-x: -2.85rem;
+    --ics-leaf-drift-y: 2.1rem;
+    --ics-leaf-drift-duration: 18s;
+    --ics-leaf-drift-delay: -14s;
     --ics-child-focus-line-2-x: -26vw;
     --ics-child-focus-line-2-y: -34vh;
     --ics-child-focus-line-2-rotate: -245deg;
@@ -508,6 +550,10 @@ h5,
 
 .ics-decorative-line--location-1 {
   z-index: 0;
+  --ics-leaf-drift-x: 2.95rem;
+  --ics-leaf-drift-y: 2.1rem;
+  --ics-leaf-drift-duration: 16s;
+  --ics-leaf-drift-delay: -10s;
   --ics-location-line-1-x: -7vw;
   --ics-location-line-1-y: 56vh;
   --ics-location-line-1-rotate: -35deg;
@@ -518,6 +564,10 @@ h5,
 
 .ics-decorative-line--location-2 {
   z-index: 0;
+  --ics-leaf-drift-x: -2.85rem;
+  --ics-leaf-drift-y: 2.1rem;
+  --ics-leaf-drift-duration: 18s;
+  --ics-leaf-drift-delay: -16s;
   --ics-location-line-2-x: -26vw;
   --ics-location-line-2-y: 9vh;
   --ics-location-line-2-rotate: -245deg;
@@ -528,6 +578,10 @@ h5,
 
 .ics-decorative-line--footer-1 {
   z-index: 0;
+  --ics-leaf-drift-x: 2.95rem;
+  --ics-leaf-drift-y: 2.1rem;
+  --ics-leaf-drift-duration: 16s;
+  --ics-leaf-drift-delay: -12s;
   --ics-faith-footer-line-1-x: -29vw;
   --ics-faith-footer-line-1-y: -13vh;
   --ics-faith-footer-line-1-rotate: 70deg;
@@ -538,6 +592,10 @@ h5,
 
 .ics-decorative-line--footer-2 {
   z-index: 0;
+  --ics-leaf-drift-x: -2.85rem;
+  --ics-leaf-drift-y: 2.1rem;
+  --ics-leaf-drift-duration: 18s;
+  --ics-leaf-drift-delay: -18s;
   --ics-faith-footer-line-2-x: 0vw;
   --ics-faith-footer-line-2-y: 33vh;
   --ics-faith-footer-line-2-rotate: 160deg;
