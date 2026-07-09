@@ -1504,12 +1504,19 @@ html.ics-js-loading .ics-hero__media {
   width: 33.125rem;
   height: 46.1875rem;
   margin: 8.25rem 0 0;
-  overflow: hidden;
   border-radius: var(--radius-lg);
   background-color: var(--color-secondary);
 }
 
-.ics-senior-outcomes__portrait img {
+.ics-senior-outcomes__portrait-frame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.ics-senior-outcomes__portrait-frame img {
   display: block;
   width: 100%;
   height: 100%;
@@ -1518,8 +1525,8 @@ html.ics-js-loading .ics-hero__media {
 
 .ics-senior-outcomes__red-dot {
   position: absolute;
-  top: 8rem;
-  right: 3.8125rem;
+  top: -4.78125rem;
+  right: 1rem;
   z-index: 2;
   width: 9.5625rem;
   height: 9.5625rem;
@@ -1569,8 +1576,8 @@ html.ics-js-loading .ics-hero__media {
   }
 
   .ics-senior-outcomes__red-dot {
-    top: calc(var(--space-8) + 2rem);
-    right: max(2rem, calc((100% - 33.125rem) / 2 - 1.5rem));
+    top: -3.5rem;
+    right: 1rem;
     width: 7rem;
     height: 7rem;
   }
@@ -1600,9 +1607,8 @@ html.ics-js-loading .ics-hero__media {
   }
 
   .ics-senior-outcomes__red-dot {
-    top: auto;
-    right: 1.5rem;
-    bottom: var(--space-7);
+    top: -2rem;
+    right: 0.875rem;
     width: 4rem;
     height: 4rem;
   }
@@ -3310,6 +3316,20 @@ html.ics-js-loading .ics-hero__media {
 @media (max-width: 767.98px) {
   .ics-hero__stat {
     margin-bottom: 0;
+  }
+
+  .ics-testimonial-section {
+    padding-top: var(--space-6);
+    padding-bottom: var(--space-6);
+  }
+
+  .ics-testimonial-section__stage {
+    gap: var(--space-4);
+  }
+
+  .ics-testimonial-block {
+    padding-top: var(--space-3);
+    padding-bottom: var(--space-3);
   }
 }
 
