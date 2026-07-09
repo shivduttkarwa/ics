@@ -653,6 +653,7 @@ h5,
 .ics-site-header {
   background-color: var(--color-primary);
   padding-block: var(--space-4);
+  padding-top: 2.56rem;
   text-align: center;
 }
 
