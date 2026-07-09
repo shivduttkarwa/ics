@@ -2901,6 +2901,7 @@ html.ics-js-loading .ics-hero__media {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   gap: var(--space-6);
 }
 
