@@ -1353,7 +1353,7 @@ html.ics-js-loading .ics-hero__media {
   }
 
   .ics-fee-includes__title {
-    font-size: clamp(2rem, 1.4rem + 7vw, 2.8125rem);
+    font-size: clamp(1.575rem, 1.26rem + 2.34vw, 3.375rem);
   }
 
   .ics-fee-includes__lead {
@@ -1587,7 +1587,7 @@ html.ics-js-loading .ics-hero__media {
   }
 
   .ics-senior-outcomes__title {
-    font-size: clamp(2.4rem, 1.45rem + 8vw, 3.75rem);
+    font-size: clamp(1.575rem, 1.26rem + 2.34vw, 3.375rem);
   }
 
   .ics-senior-outcomes__stats {
@@ -1600,10 +1600,11 @@ html.ics-js-loading .ics-hero__media {
   }
 
   .ics-senior-outcomes__red-dot {
-    top: 47%;
-    right: 0.75rem;
-    width: 5rem;
-    height: 5rem;
+    top: auto;
+    right: 1.5rem;
+    bottom: var(--space-7);
+    width: 4rem;
+    height: 4rem;
   }
 }
 
