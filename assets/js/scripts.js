@@ -707,6 +707,49 @@
     });
   }
 
+  /* Emulates background-attachment: fixed with transforms (works on
+     iOS and under Lenis): the image is viewport-height and counter-
+     translated 1:1 with scroll, so the section becomes a window
+     sliding over a stationary image. */
+  function initQuoteBannerParallax() {
+    if (typeof ScrollTrigger === "undefined" || prefersReducedMotion() || window.matchMedia("(max-width: 991.98px)").matches) {
+      return;
+    }
+
+    document.querySelectorAll(".ics-quote-banner").forEach((section) => {
+      const media = section.querySelector(".ics-quote-banner__media");
+      const img = media ? media.querySelector("img") : null;
+
+      if (!img) {
+        return;
+      }
+
+      media.classList.add("ics-quote-banner__media--fixed");
+
+      const setImgHeight = () => {
+        img.style.height = `${window.innerHeight}px`;
+      };
+
+      setImgHeight();
+
+      gsap.fromTo(img, {
+        y: () => -window.innerHeight
+      }, {
+        y: () => section.offsetHeight,
+        ease: "none",
+        force3D: true,
+        scrollTrigger: {
+          trigger: section,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+          invalidateOnRefresh: true,
+          onRefreshInit: setImgHeight
+        }
+      });
+    });
+  }
+
   function initStatCounters() {
     if (typeof ScrollTrigger === "undefined" || prefersReducedMotion()) {
       return;
@@ -774,6 +817,7 @@
     initStorySections();
     initStatCounters();
     initHeroParallax();
+    initQuoteBannerParallax();
 
     if (smoothScroll) {
       smoothScroll.resize();
