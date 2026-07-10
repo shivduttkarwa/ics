@@ -3344,6 +3344,10 @@ html.ics-js-loading .ics-hero__media {
     margin-bottom: 0;
   }
 
+  .ics-hero__media .ics-media-frame {
+    aspect-ratio: 1280 / 1182;
+  }
+
   .ics-hero__stat {
     position: relative;
     top: auto;
