@@ -722,6 +722,37 @@
     });
   }
 
+  const QUOTE_CARD_PARALLAX = {
+    y: -90,
+    scrub: 0.6
+  };
+
+  function initQuoteCardParallax() {
+    if (typeof ScrollTrigger === "undefined" || prefersReducedMotion()) {
+      return;
+    }
+
+    document.querySelectorAll(".ics-quote-card").forEach((card) => {
+      const attribution = card.querySelector(".ics-quote-card__attribution");
+
+      if (!attribution) {
+        return;
+      }
+
+      gsap.fromTo(attribution, { y: 0 }, {
+        y: QUOTE_CARD_PARALLAX.y,
+        ease: "none",
+        force3D: true,
+        scrollTrigger: {
+          trigger: card,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: QUOTE_CARD_PARALLAX.scrub
+        }
+      });
+    });
+  }
+
   const SENIOR_PARALLAX = {
     dotY: -70,
     scrub: 0.6
@@ -972,6 +1003,7 @@
     initTestimonialParallax();
     initTestimonialMobileParallax();
     initQuoteBannerParallax();
+    initQuoteCardParallax();
     initFixedMediaParallax();
 
     if (smoothScroll) {
