@@ -1767,8 +1767,8 @@ html.ics-js-loading .ics-hero .ics-decorative-line {
 
 .ics-senior-outcomes__red-dot {
   position: absolute;
-  top: -4.78125rem;
-  right: 1rem;
+  top: -6.75rem;
+  right: 4rem;
   z-index: 2;
   width: 9.5625rem;
   height: 9.5625rem;
@@ -1818,8 +1818,8 @@ html.ics-js-loading .ics-hero .ics-decorative-line {
   }
 
   .ics-senior-outcomes__red-dot {
-    top: -2.75rem;
-    right: 1rem;
+    top: -3.875rem;
+    right: 3.3rem;
     width: 5.5rem;
     height: 5.5rem;
   }
@@ -1852,8 +1852,8 @@ html.ics-js-loading .ics-hero .ics-decorative-line {
   }
 
   .ics-senior-outcomes__red-dot {
-    top: -2rem;
-    right: 0.875rem;
+    top: -2.575rem;
+    right: 3.275rem;
     width: 4rem;
     height: 4rem;
   }
