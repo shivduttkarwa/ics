@@ -2132,6 +2132,18 @@ html.ics-js-loading .ics-hero .ics-decorative-line {
   will-change: transform;
 }
 
+/* Drift variant: image oversized 30% and re-centered with the
+   translate property; GSAP drifts it through the headroom. */
+.ics-media-parallax-drift {
+  overflow: hidden;
+}
+
+.ics-media-parallax-drift img {
+  height: 130%;
+  translate: 0 -11.5%;
+  will-change: transform;
+}
+
 .ics-quote-banner__circle {
   position: relative;
   z-index: 1;

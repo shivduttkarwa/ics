@@ -821,6 +821,43 @@
     });
   }
 
+  /* Mobile-safe background parallax: the image is 30% taller than the
+     banner (see .ics-media-parallax-drift CSS) and drifts through that
+     headroom as the section crosses the viewport, so the background
+     visibly lags the page on every device. */
+  const QUOTE_PARALLAX = {
+    imgYPercent: 11,
+    scrub: 0.6
+  };
+
+  function initQuoteBannerParallax() {
+    if (typeof ScrollTrigger === "undefined" || prefersReducedMotion()) {
+      return;
+    }
+
+    document.querySelectorAll(".ics-quote-banner__media").forEach((media) => {
+      const img = media.querySelector("img");
+
+      if (!img) {
+        return;
+      }
+
+      media.classList.add("ics-media-parallax-drift");
+
+      gsap.fromTo(img, { yPercent: -QUOTE_PARALLAX.imgYPercent }, {
+        yPercent: QUOTE_PARALLAX.imgYPercent,
+        ease: "none",
+        force3D: true,
+        scrollTrigger: {
+          trigger: media.parentElement,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: QUOTE_PARALLAX.scrub
+        }
+      });
+    });
+  }
+
   /* Emulates background-attachment: fixed with transforms (works on
      iOS and under Lenis): the image is viewport-height and counter-
      translated 1:1 with scroll, so the section becomes a window
@@ -830,7 +867,7 @@
       return;
     }
 
-    document.querySelectorAll(".ics-quote-banner__media, .ics-discover__media").forEach((media) => {
+    document.querySelectorAll(".ics-discover__media").forEach((media) => {
       const section = media.parentElement;
       const img = media.querySelector("img");
 
@@ -934,6 +971,7 @@
     initSeniorOutcomesParallax();
     initTestimonialParallax();
     initTestimonialMobileParallax();
+    initQuoteBannerParallax();
     initFixedMediaParallax();
 
     if (smoothScroll) {
