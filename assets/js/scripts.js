@@ -4,6 +4,7 @@
       const successMessage = form.querySelector(".ics-form-success");
       const closeButton = successMessage ? successMessage.querySelector(".ics-form-success__close") : null;
       const submitButton = form.querySelector('[type="submit"]');
+      const submitButtonLabel = submitButton ? submitButton.querySelector(".ics-btn-brand__label") : null;
 
       if (!successMessage) {
         return;
@@ -34,7 +35,11 @@
 
         if (submitButton) {
           submitButton.disabled = true;
-          submitButton.textContent = "Request sent";
+          if (submitButtonLabel) {
+            submitButtonLabel.textContent = "Request sent";
+          } else {
+            submitButton.textContent = "Request sent";
+          }
         }
 
         if (typeof gsap !== "undefined") {
