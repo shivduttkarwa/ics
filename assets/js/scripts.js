@@ -102,7 +102,7 @@
      becomes visible. */
   const HERO_PARALLAX = {
     imgYPercent: 8,
-    statY: -110,
+    statY: -70,
     vinesY: 100,
     scrub: 0.6
   };
