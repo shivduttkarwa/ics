@@ -707,6 +707,48 @@
     });
   }
 
+  const SENIOR_PARALLAX = {
+    imgYPercent: 6,
+    dotY: -70,
+    scrub: 0.6
+  };
+
+  function initSeniorOutcomesParallax() {
+    if (typeof ScrollTrigger === "undefined" || prefersReducedMotion()) {
+      return;
+    }
+
+    document.querySelectorAll(".ics-senior-outcomes__portrait").forEach((portrait) => {
+      const img = portrait.querySelector(".ics-senior-outcomes__portrait-frame img");
+      const dot = portrait.querySelector(".ics-senior-outcomes__red-dot");
+
+      if (!img) {
+        return;
+      }
+
+      portrait.classList.add("ics-senior-outcomes__portrait--parallax");
+
+      const layers = [
+        { targets: img, from: { yPercent: -SENIOR_PARALLAX.imgYPercent }, to: { yPercent: SENIOR_PARALLAX.imgYPercent } },
+        dot ? { targets: dot, from: { y: 0 }, to: { y: SENIOR_PARALLAX.dotY } } : null
+      ].filter(Boolean);
+
+      layers.forEach((layer) => {
+        gsap.fromTo(layer.targets, layer.from, {
+          ...layer.to,
+          ease: "none",
+          force3D: true,
+          scrollTrigger: {
+            trigger: portrait,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: SENIOR_PARALLAX.scrub
+          }
+        });
+      });
+    });
+  }
+
   /* The scattered testimonial cards are positioned with CSS translateY
      percentages, so each element's base offset is captured in px first
      and the drift is applied around it (amp = half the total travel;
@@ -885,6 +927,7 @@
     initStorySections();
     initStatCounters();
     initHeroParallax();
+    initSeniorOutcomesParallax();
     initTestimonialParallax();
     initTestimonialMobileParallax();
     initFixedMediaParallax();
