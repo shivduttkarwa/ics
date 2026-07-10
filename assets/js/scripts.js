@@ -723,7 +723,6 @@
   }
 
   const SENIOR_PARALLAX = {
-    imgYPercent: 6,
     dotY: -70,
     scrub: 0.6
   };
@@ -734,32 +733,22 @@
     }
 
     document.querySelectorAll(".ics-senior-outcomes__portrait").forEach((portrait) => {
-      const img = portrait.querySelector(".ics-senior-outcomes__portrait-frame img");
       const dot = portrait.querySelector(".ics-senior-outcomes__red-dot");
 
-      if (!img) {
+      if (!dot) {
         return;
       }
 
-      portrait.classList.add("ics-senior-outcomes__portrait--parallax");
-
-      const layers = [
-        { targets: img, from: { yPercent: -SENIOR_PARALLAX.imgYPercent }, to: { yPercent: SENIOR_PARALLAX.imgYPercent } },
-        dot ? { targets: dot, from: { y: 0 }, to: { y: SENIOR_PARALLAX.dotY } } : null
-      ].filter(Boolean);
-
-      layers.forEach((layer) => {
-        gsap.fromTo(layer.targets, layer.from, {
-          ...layer.to,
-          ease: "none",
-          force3D: true,
-          scrollTrigger: {
-            trigger: portrait,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: SENIOR_PARALLAX.scrub
-          }
-        });
+      gsap.fromTo(dot, { y: 0 }, {
+        y: SENIOR_PARALLAX.dotY,
+        ease: "none",
+        force3D: true,
+        scrollTrigger: {
+          trigger: portrait,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: SENIOR_PARALLAX.scrub
+        }
       });
     });
   }

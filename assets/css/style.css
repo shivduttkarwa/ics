@@ -1765,14 +1765,6 @@ html.ics-js-loading .ics-hero .ics-decorative-line {
   object-fit: cover;
 }
 
-/* Parallax headroom, applied by JS only when the effect runs: the
-   portrait is 15% taller than its frame, re-centered with the
-   translate property so the GSAP transform drift composes with it. */
-.ics-senior-outcomes__portrait--parallax .ics-senior-outcomes__portrait-frame img {
-  height: 115%;
-  translate: 0 -6.5%;
-}
-
 .ics-senior-outcomes__red-dot {
   position: absolute;
   top: -4.78125rem;
