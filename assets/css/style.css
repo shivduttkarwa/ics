@@ -691,15 +691,6 @@ h5,
   transform: scale(0.99);
 }
 
-.ics-btn-brand:hover .ics-btn-brand__label,
-.ics-btn-brand:focus-visible .ics-btn-brand__label,
-.ics-pill-link:hover .ics-pill-link__dot,
-.ics-pill-link:focus-visible .ics-pill-link__dot,
-.ics-pill-link:hover .ics-pill-link__label,
-.ics-pill-link:focus-visible .ics-pill-link__label {
-  transform: scale(0.99);
-}
-
 .ics-btn-brand:focus-visible {
   outline: 0.1875rem solid rgba(166, 210, 34, 0.45);
   outline-offset: 0.1875rem;
@@ -771,18 +762,8 @@ h5,
   transform: scale(0.975);
 }
 
-.ics-btn-brand:active .ics-btn-brand__label,
-.ics-pill-link:active .ics-pill-link__dot,
-.ics-pill-link:active .ics-pill-link__label {
-  transform: scale(0.975);
-}
-
-.ics-btn-brand__label,
 .ics-pill-link__label {
   display: inline-block;
-  transform: scale(1);
-  transform-origin: center;
-  transition: transform var(--transition-fast);
 }
 
 @supports not (text-box-trim: trim-both) {
@@ -804,9 +785,6 @@ h5,
   border-radius: 50%;
   background-color: var(--color-primary);
   flex-shrink: 0;
-  transform: scale(1);
-  transform-origin: center;
-  transition: transform var(--transition-fast);
 }
 
 .ics-pill-link--light .ics-pill-link__dot {
@@ -864,7 +842,8 @@ html.ics-js-loading .ics-hero__eyebrow,
 html.ics-js-loading .ics-hero__title,
 html.ics-js-loading .ics-hero__copy,
 html.ics-js-loading .ics-hero__cta,
-html.ics-js-loading .ics-hero__media {
+html.ics-js-loading .ics-hero__media,
+html.ics-js-loading .ics-hero .ics-decorative-line {
   opacity: 0;
   visibility: hidden;
 }

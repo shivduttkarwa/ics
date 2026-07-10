@@ -4,7 +4,6 @@
       const successMessage = form.querySelector(".ics-form-success");
       const closeButton = successMessage ? successMessage.querySelector(".ics-form-success__close") : null;
       const submitButton = form.querySelector('[type="submit"]');
-      const submitButtonLabel = submitButton ? submitButton.querySelector(".ics-btn-brand__label") : null;
 
       if (!successMessage) {
         return;
@@ -35,11 +34,7 @@
 
         if (submitButton) {
           submitButton.disabled = true;
-          if (submitButtonLabel) {
-            submitButtonLabel.textContent = "Request sent";
-          } else {
-            submitButton.textContent = "Request sent";
-          }
+          submitButton.textContent = "Request sent";
         }
 
         if (typeof gsap !== "undefined") {
@@ -98,6 +93,12 @@
       endScale: 1.2,
       duration: 1.3,
       ease: "power4.inOut"
+    },
+    vines: {
+      start: 1.05,
+      duration: 1.8,
+      startScale: 1.05,
+      stagger: 0.3
     }
   };
 
@@ -183,6 +184,7 @@
         const media = hero.querySelector(".ics-hero__media");
         const mediaImg = media ? media.querySelector(".ics-media-frame img") : null;
         const stat = hero.querySelector(".ics-hero__stat");
+        const vines = hero.querySelectorAll(":scope > .ics-decorative-line");
         const rest = [...copyLines, cta, media].filter(Boolean);
         const allTargets = [eyebrow, title, ...rest].filter(Boolean);
 
@@ -196,6 +198,9 @@
         }
         if (mediaImg) {
           gsap.set(mediaImg, { scale: HERO_TIMING.media.startScale });
+        }
+        if (vines.length) {
+          gsap.set(vines, { autoAlpha: 0, scale: HERO_TIMING.vines.startScale });
         }
         releasePreHiddenHero();
 
@@ -243,6 +248,16 @@
             duration: HERO_TIMING.media.duration,
             ease: HERO_TIMING.media.ease
           }, "<");
+        }
+
+        if (vines.length) {
+          tl.to(vines, {
+            autoAlpha: 1,
+            scale: 1,
+            duration: HERO_TIMING.vines.duration,
+            ease: "power2.out",
+            stagger: HERO_TIMING.vines.stagger
+          }, HERO_TIMING.vines.start);
         }
       });
     },
