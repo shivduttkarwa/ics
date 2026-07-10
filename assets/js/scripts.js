@@ -108,7 +108,6 @@
   const HERO_PARALLAX = {
     imgYPercent: 8,
     statY: -70,
-    vinesY: 100,
     scrub: 0.6
   };
 
@@ -700,12 +699,10 @@
     document.querySelectorAll(".ics-hero").forEach((hero) => {
       const mediaImg = hero.querySelector(".ics-hero__media .ics-media-frame img");
       const stat = hero.querySelector(".ics-hero__stat");
-      const vines = hero.querySelectorAll(":scope > .ics-decorative-line");
 
       const layers = [
         mediaImg ? { targets: mediaImg, from: { yPercent: -HERO_PARALLAX.imgYPercent }, to: { yPercent: HERO_PARALLAX.imgYPercent } } : null,
-        stat ? { targets: stat, from: { y: 0 }, to: { y: HERO_PARALLAX.statY } } : null,
-        vines.length ? { targets: vines, from: { y: 0 }, to: { y: HERO_PARALLAX.vinesY } } : null
+        stat ? { targets: stat, from: { y: 0 }, to: { y: HERO_PARALLAX.statY } } : null
       ].filter(Boolean);
 
       layers.forEach((layer) => {
