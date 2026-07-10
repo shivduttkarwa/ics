@@ -123,6 +123,38 @@
 
   const prefersReducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  function initSmoothScroll() {
+    if (typeof Lenis === "undefined" || prefersReducedMotion()) {
+      return null;
+    }
+
+    const lenis = new Lenis({
+      lerp: 0.085,
+      smoothWheel: true,
+      syncTouch: false,
+      anchors: {
+        duration: 1,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+      },
+      stopInertiaOnNavigate: true
+    });
+
+    window.icsLenis = lenis;
+
+    if (typeof ScrollTrigger !== "undefined") {
+      lenis.on("scroll", ScrollTrigger.update);
+    }
+
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+    gsap.ticker.lagSmoothing(0);
+
+    return lenis;
+  }
+
+  const smoothScroll = initSmoothScroll();
+
   const ICSAnimations = {
     initHeroTimeline() {
       const releasePreHiddenHero = () => document.documentElement.classList.remove("ics-js-loading");
@@ -742,6 +774,10 @@
     initStorySections();
     initStatCounters();
     initHeroParallax();
+
+    if (smoothScroll) {
+      smoothScroll.resize();
+    }
 
     if (typeof ScrollTrigger !== "undefined") {
       ScrollTrigger.refresh();
