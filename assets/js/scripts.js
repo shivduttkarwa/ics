@@ -97,7 +97,6 @@
     vines: {
       start: 1.05,
       duration: 1.8,
-      startScale: 1.05,
       stagger: 0.3
     }
   };
@@ -200,7 +199,7 @@
           gsap.set(mediaImg, { scale: HERO_TIMING.media.startScale });
         }
         if (vines.length) {
-          gsap.set(vines, { autoAlpha: 0, scale: HERO_TIMING.vines.startScale });
+          gsap.set(vines, { autoAlpha: 0 });
         }
         releasePreHiddenHero();
 
@@ -253,7 +252,6 @@
         if (vines.length) {
           tl.to(vines, {
             autoAlpha: 1,
-            scale: 1,
             duration: HERO_TIMING.vines.duration,
             ease: "power2.out",
             stagger: HERO_TIMING.vines.stagger
