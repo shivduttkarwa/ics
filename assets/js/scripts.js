@@ -715,6 +715,7 @@
     mediaA: 110,
     mediaB: -140,
     card: 80,
+    mobileImgYPercent: 8,
     scrub: 0.6
   };
 
@@ -744,6 +745,32 @@
             scrub: TESTIMONIAL_PARALLAX.scrub
           }
         });
+      });
+    });
+  }
+
+  function initTestimonialMobileParallax() {
+    if (typeof ScrollTrigger === "undefined" || prefersReducedMotion() || !window.matchMedia("(max-width: 767.98px)").matches) {
+      return;
+    }
+
+    document.querySelectorAll(".ics-testimonial-section__media").forEach((frame) => {
+      const img = frame.querySelector("img");
+
+      if (!img) {
+        return;
+      }
+
+      gsap.fromTo(img, { yPercent: -TESTIMONIAL_PARALLAX.mobileImgYPercent }, {
+        yPercent: TESTIMONIAL_PARALLAX.mobileImgYPercent,
+        ease: "none",
+        force3D: true,
+        scrollTrigger: {
+          trigger: frame,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: TESTIMONIAL_PARALLAX.scrub
+        }
       });
     });
   }
@@ -859,6 +886,7 @@
     initStatCounters();
     initHeroParallax();
     initTestimonialParallax();
+    initTestimonialMobileParallax();
     initQuoteBannerParallax();
 
     if (smoothScroll) {

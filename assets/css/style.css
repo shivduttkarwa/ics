@@ -2147,6 +2147,16 @@ html.ics-js-loading .ics-hero__media {
   max-width: 100%;
 }
 
+/* Mobile-only headroom for the internal image parallax: the image is
+   13% taller than its frame and re-centered with the translate
+   property, which composes with the GSAP transform drift. */
+@media (max-width: 767.98px) {
+  .ics-testimonial-section__media img {
+    height: 120%;
+    translate: 0 -8.33%;
+  }
+}
+
 .ics-testimonial-section__media--a {
   position: absolute;
   top: 0;
