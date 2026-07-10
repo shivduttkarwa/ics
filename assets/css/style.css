@@ -835,7 +835,7 @@ html.ics-js-loading .ics-hero__media {
   position: relative;
   z-index: 2;
   margin-top: var(--space-6);
-  margin-bottom: -3rem;
+  margin-bottom: -6rem;
   padding-inline: 5rem;
 }
 
