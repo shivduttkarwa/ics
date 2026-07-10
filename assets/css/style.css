@@ -3464,14 +3464,26 @@ html.ics-js-loading .ics-hero .ics-decorative-line {
     margin-top: 1.5rem;
     margin-bottom: -1.5rem;
     margin-inline: auto;
-    width: min(18rem, 78vw);
+    width: min(19.5rem, 86vw);
     height: auto;
-    min-height: min(18rem, 78vw);
-    padding: 1.75rem 1.5rem;
+    min-height: min(19.5rem, 86vw);
+    padding: 2rem 1.75rem;
   }
 
   .ics-hero__stat-number {
-    font-size: clamp(2.25rem, 9vw, 3.25rem);
+    font-size: clamp(2.5rem, 11vw, 3.75rem);
+    line-height: 1;
+    letter-spacing: 0;
+    margin-bottom: 0.25rem;
+  }
+
+  .ics-hero__stat-title {
+    line-height: 1.15;
+  }
+
+  .ics-hero__stat-text {
+    margin-top: 0.35rem;
+    line-height: 1.35;
   }
 
   .ics-hero__copy p {
