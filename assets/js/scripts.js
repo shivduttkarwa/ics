@@ -89,10 +89,22 @@
       stagger: 0.05
     },
     media: {
-      startScale: 1.15,
+      startScale: 1.35,
+      endScale: 1.2,
       duration: 1.3,
       ease: "power4.inOut"
     }
+  };
+
+  /* endScale above leaves 20% overscale inside the media frame; the
+     image travels from -imgYPercent to +imgYPercent, so (imgYPercent
+     x endScale) must stay under half that headroom or the image edge
+     becomes visible. */
+  const HERO_PARALLAX = {
+    imgYPercent: 8,
+    statY: -110,
+    vinesY: 100,
+    scrub: 0.6
   };
 
   const MEDIA_ZOOM = {
@@ -190,7 +202,7 @@
 
         if (mediaImg) {
           tl.to(mediaImg, {
-            scale: 1,
+            scale: HERO_TIMING.media.endScale,
             duration: HERO_TIMING.media.duration,
             ease: HERO_TIMING.media.ease
           }, "<");
@@ -630,6 +642,39 @@
     document.querySelectorAll("[data-story-scroll]").forEach(initStorySection);
   }
 
+  function initHeroParallax() {
+    if (typeof ScrollTrigger === "undefined" || prefersReducedMotion()) {
+      return;
+    }
+
+    document.querySelectorAll(".ics-hero").forEach((hero) => {
+      const mediaImg = hero.querySelector(".ics-hero__media .ics-media-frame img");
+      const stat = hero.querySelector(".ics-hero__stat");
+      const vines = hero.querySelectorAll(":scope > .ics-decorative-line");
+
+      const layers = [
+        mediaImg ? { targets: mediaImg, from: { yPercent: -HERO_PARALLAX.imgYPercent }, to: { yPercent: HERO_PARALLAX.imgYPercent } } : null,
+        stat ? { targets: stat, from: { y: 0 }, to: { y: HERO_PARALLAX.statY } } : null,
+        vines.length ? { targets: vines, from: { y: 0 }, to: { y: HERO_PARALLAX.vinesY } } : null
+      ].filter(Boolean);
+
+      layers.forEach((layer) => {
+        gsap.fromTo(layer.targets, layer.from, {
+          ...layer.to,
+          ease: "none",
+          force3D: true,
+          scrollTrigger: {
+            trigger: hero,
+            start: "top top",
+            end: "bottom top",
+            scrub: HERO_PARALLAX.scrub,
+            invalidateOnRefresh: true
+          }
+        });
+      });
+    });
+  }
+
   function initStatCounters() {
     if (typeof ScrollTrigger === "undefined" || prefersReducedMotion()) {
       return;
@@ -696,6 +741,7 @@
     ICSAnimations.init();
     initStorySections();
     initStatCounters();
+    initHeroParallax();
 
     if (typeof ScrollTrigger !== "undefined") {
       ScrollTrigger.refresh();
