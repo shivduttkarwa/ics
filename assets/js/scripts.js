@@ -707,6 +707,47 @@
     });
   }
 
+  /* The scattered testimonial cards are positioned with CSS translateY
+     percentages, so each element's base offset is captured in px first
+     and the drift is applied around it (amp = half the total travel;
+     positive drifts up / foreground, negative drifts down / background). */
+  const TESTIMONIAL_PARALLAX = {
+    mediaA: 110,
+    mediaB: -140,
+    card: 80,
+    scrub: 0.6
+  };
+
+  function initTestimonialParallax() {
+    if (typeof ScrollTrigger === "undefined" || prefersReducedMotion() || window.matchMedia("(max-width: 767.98px)").matches) {
+      return;
+    }
+
+    document.querySelectorAll(".ics-testimonial-section").forEach((section) => {
+      const layers = [
+        { el: section.querySelector(".ics-testimonial-section__media--a"), amp: TESTIMONIAL_PARALLAX.mediaA },
+        { el: section.querySelector(".ics-testimonial-section__media--b"), amp: TESTIMONIAL_PARALLAX.mediaB },
+        { el: section.querySelector(".ics-testimonial-section__card"), amp: TESTIMONIAL_PARALLAX.card }
+      ].filter((layer) => layer.el);
+
+      layers.forEach(({ el, amp }) => {
+        const baseY = Number(gsap.getProperty(el, "y")) || 0;
+
+        gsap.fromTo(el, { y: baseY + amp }, {
+          y: baseY - amp,
+          ease: "none",
+          force3D: true,
+          scrollTrigger: {
+            trigger: section,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: TESTIMONIAL_PARALLAX.scrub
+          }
+        });
+      });
+    });
+  }
+
   /* Emulates background-attachment: fixed with transforms (works on
      iOS and under Lenis): the image is viewport-height and counter-
      translated 1:1 with scroll, so the section becomes a window
@@ -817,6 +858,7 @@
     initStorySections();
     initStatCounters();
     initHeroParallax();
+    initTestimonialParallax();
     initQuoteBannerParallax();
 
     if (smoothScroll) {
