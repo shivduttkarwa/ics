@@ -2049,11 +2049,11 @@ html.ics-js-loading .ics-hero__media {
   background: rgba(0, 0, 0, 0.2);
 }
 
-.ics-quote-banner__media--fixed {
+.ics-media-parallax-fixed {
   overflow: hidden;
 }
 
-.ics-quote-banner__media--fixed img {
+.ics-media-parallax-fixed img {
   height: 100vh;
   will-change: transform;
 }

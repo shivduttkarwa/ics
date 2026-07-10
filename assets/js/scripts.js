@@ -779,20 +779,20 @@
      iOS and under Lenis): the image is viewport-height and counter-
      translated 1:1 with scroll, so the section becomes a window
      sliding over a stationary image. */
-  function initQuoteBannerParallax() {
+  function initFixedMediaParallax() {
     if (typeof ScrollTrigger === "undefined" || prefersReducedMotion() || window.matchMedia("(max-width: 991.98px)").matches) {
       return;
     }
 
-    document.querySelectorAll(".ics-quote-banner").forEach((section) => {
-      const media = section.querySelector(".ics-quote-banner__media");
-      const img = media ? media.querySelector("img") : null;
+    document.querySelectorAll(".ics-quote-banner__media, .ics-discover__media").forEach((media) => {
+      const section = media.parentElement;
+      const img = media.querySelector("img");
 
       if (!img) {
         return;
       }
 
-      media.classList.add("ics-quote-banner__media--fixed");
+      media.classList.add("ics-media-parallax-fixed");
 
       const setImgHeight = () => {
         img.style.height = `${window.innerHeight}px`;
@@ -887,7 +887,7 @@
     initHeroParallax();
     initTestimonialParallax();
     initTestimonialMobileParallax();
-    initQuoteBannerParallax();
+    initFixedMediaParallax();
 
     if (smoothScroll) {
       smoothScroll.resize();
