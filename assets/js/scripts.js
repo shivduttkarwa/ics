@@ -75,29 +75,29 @@
   const HERO_TIMING = {
     eyebrow: {
       start: 0.2,
-      duration: 0.7
+      duration: 0.95
     },
     title: {
-      start: 0.55,
-      charStagger: 0.02,
-      charDuration: 0.095,
-      fallbackDuration: 0.6
+      start: 0.7,
+      charStagger: 0.032,
+      charDuration: 0.14,
+      fallbackDuration: 0.9
     },
     rest: {
-      gapAfterTitle: 0.1,
-      duration: 0.6,
-      stagger: 0.05
+      gapAfterTitle: 0.25,
+      duration: 0.9,
+      stagger: 0.08
     },
     media: {
       startScale: 1.35,
       endScale: 1.2,
-      duration: 1.3,
+      duration: 1.85,
       ease: "power4.inOut"
     },
     vines: {
-      start: 1.05,
-      duration: 1.8,
-      stagger: 0.3
+      start: 1.3,
+      duration: 2.35,
+      stagger: 0.4
     }
   };
 
