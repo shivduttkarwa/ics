@@ -111,12 +111,6 @@
     scrub: 0.6
   };
 
-  const HERO_MEDIA_CLIP = {
-    scrub: 1.2,
-    revealDuration: 0.45,
-    restoreDuration: 0.55
-  };
-
   const MEDIA_ZOOM = {
     startScale: 1.5,
     duration: 1.3,
@@ -728,89 +722,6 @@
     });
   }
 
-  function initHeroMediaClipReveal() {
-    if (typeof ScrollTrigger === "undefined" || prefersReducedMotion()) {
-      return;
-    }
-
-    document.querySelectorAll(".ics-hero").forEach((hero) => {
-      const media = hero.querySelector(".ics-hero__media");
-      const frame = hero.querySelector(".ics-hero__media .ics-media-frame");
-
-      if (!media || !frame) {
-        return;
-      }
-
-      const clipState = { reveal: 0 };
-      let revealLeftInset = 0;
-      let revealRightInset = 0;
-      let clipRadius = "0px";
-
-      const renderClip = () => {
-        const left = gsap.utils.interpolate(revealLeftInset, 0, clipState.reveal);
-        const right = gsap.utils.interpolate(revealRightInset, 0, clipState.reveal);
-        frame.style.clipPath = `inset(0px ${right}px 0px ${left}px round ${clipRadius})`;
-      };
-
-      const getAspectRatio = () => {
-        const aspectRatio = getComputedStyle(frame).aspectRatio;
-        const parts = aspectRatio.split("/").map((part) => Number.parseFloat(part.trim()));
-
-        if (parts.length === 2 && parts[0] > 0 && parts[1] > 0) {
-          return parts[0] / parts[1];
-        }
-
-        const rect = frame.getBoundingClientRect();
-        return rect.width && rect.height ? rect.width / rect.height : 1280 / 758;
-      };
-
-      const setClipRevealMetrics = () => {
-        const viewportWidth = document.documentElement.clientWidth || window.innerWidth;
-        const mediaStyle = getComputedStyle(media);
-        revealLeftInset = Number.parseFloat(mediaStyle.paddingLeft) || 0;
-        revealRightInset = Number.parseFloat(mediaStyle.paddingRight) || 0;
-        const originalWidth = Math.max(1, media.clientWidth - revealLeftInset - revealRightInset);
-        const originalHeight = originalWidth / getAspectRatio();
-        clipRadius = getComputedStyle(frame).borderRadius || "0px";
-
-        gsap.set(frame, {
-          width: viewportWidth,
-          height: originalHeight,
-          x: -revealLeftInset,
-          willChange: "clip-path",
-          force3D: true
-        });
-
-        renderClip();
-      };
-
-      setClipRevealMetrics();
-
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: hero,
-          start: "top top",
-          end: "bottom top",
-          scrub: HERO_MEDIA_CLIP.scrub,
-          onRefreshInit: setClipRevealMetrics,
-          invalidateOnRefresh: true
-        }
-      })
-        .to(clipState, {
-          reveal: 1,
-          ease: "sine.inOut",
-          duration: HERO_MEDIA_CLIP.revealDuration,
-          onUpdate: renderClip
-        })
-        .to(clipState, {
-          reveal: 0,
-          ease: "sine.inOut",
-          duration: HERO_MEDIA_CLIP.restoreDuration,
-          onUpdate: renderClip
-        });
-    });
-  }
-
   const QUOTE_CARD_PARALLAX = {
     y: -90,
     scrub: 0.6
@@ -1057,7 +968,6 @@
     initStorySections();
     initStatCounters();
     initHeroParallax();
-    initHeroMediaClipReveal();
     initTestimonialParallax();
     initTestimonialMobileParallax();
     initQuoteBannerParallax();
