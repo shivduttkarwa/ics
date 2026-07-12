@@ -383,7 +383,8 @@
           duration: 0.7,
           ease: "power2.out",
           delay,
-          force3D: true
+          force3D: true,
+          clearProps: "transform,willChange"
         });
       }
 
