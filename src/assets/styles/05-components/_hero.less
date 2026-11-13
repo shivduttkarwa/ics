@@ -6,7 +6,10 @@
 @hero-copy-width: 626 * @px;
 @hero-text-width: 517 * @px;
 @hero-gap: 26 * @px;
-@hero-overhang: 12%;
+// Figma sets the 1920 × 1080 still at 100% in the 1440-wide hero, 219 in and 117 above the top: the crop follows the hero's width
+@hero-photo-top: unit((117 / 1440 * 100), cqw);
+@hero-photo-height: unit((1080 / 1440 * 100), cqw);
+@hero-photo-x: percentage((219 / (1920 - 1440)));
 @hero-card-width: 300 * @px;
 @hero-card-height: 180 * @px;
 
@@ -34,6 +37,7 @@
       inset: 0;
       height: auto;
       margin-bottom: 0;
+      container-type: size;
     }
   }
 
@@ -42,10 +46,11 @@
     inset: 0;
     @media (min-width: @bp-lg) {
       --parallax-from: 0%;
-      --parallax-to: percentage((12 / 112));
-      top: -@hero-overhang;
+      --parallax-to: @hero-photo-top;
+      top: -@hero-photo-top;
       bottom: auto;
-      height: 100% + @hero-overhang;
+      height: @hero-photo-height;
+      min-height: calc(100cqh + @hero-photo-top);
     }
   }
 
@@ -59,7 +64,7 @@
   &__video {
     .img-cover();
     object-position: 86% 50%;
-    @media (min-width: @bp-lg) { object-position: 48% 100%; }
+    @media (min-width: @bp-lg) { object-position: @hero-photo-x 100%; }
   }
 
   &__video {
@@ -185,7 +190,7 @@
 
   &__card-label {
     position: absolute;
-    top: 8 * @px;
+    top: 9 * @px;
     right: 5 * @px;
     z-index: 1;
     display: flex;

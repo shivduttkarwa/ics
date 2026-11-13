@@ -48,6 +48,7 @@
         animation: var(--parallax-keyframes, parallax-y) linear both;
         animation-timeline: --parallax;
         animation-range: cover;
+        &[data-anim-start="top top"] { animation-range: exit-crossing; }
         &[data-anim-snap] { transform: @parallax-snap; }
       }
     }
