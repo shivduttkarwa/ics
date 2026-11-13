@@ -1,0 +1,27 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{ p.seo.title if p and p.seo else site.title }}</title>
+<meta name="description" content="{{ p.seo.description if p and p.seo else site.description }}">
+<meta name="theme-color" content="{{ site.theme_color }}">
+<meta name="format-detection" content="telephone=no">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/assets/icons/favicon.ico" sizes="32x32">
+<link rel="icon" href="/assets/icons/crest.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/css/main.css">
+<script>
+  (function (d) {
+    d.classList.add("anim-ready");
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) d.classList.add("anim-reduced");
+    // a link to a section opens on it, with no smooth scroll down from the top past sections still waiting to reveal
+    var entry = performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
+    if (location.hash.length > 1 && (!entry || entry.type === "navigate")) {
+      d.style.scrollBehavior = "auto";
+      addEventListener("load", function () { d.style.scrollBehavior = ""; });
+    }
+    addEventListener("load", function () {
+      setTimeout(function () { if (!d.hasAttribute("data-anim-live")) d.classList.remove("anim-ready"); }, 800);
+    });
+  })(document.documentElement);
+</script>
+<noscript><style>[data-anim]{visibility:visible !important}</style></noscript>

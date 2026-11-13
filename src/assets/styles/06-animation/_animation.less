@@ -1,0 +1,59 @@
+html.anim-ready:not(.anim-reduced) {
+  [data-anim="reveal"],
+  [data-anim="split"],
+  // a group's items only become reveals when the script starts, so until then they flashed on the first screen
+  [data-anim-group]:not([data-anim-media]) > :not([data-anim], [data-anim-item], .is-revealed),
+  [data-anim="sequence"]:not(.is-revealed) [data-anim-item],
+  [data-anim="sequence"][data-anim-items="children"]:not(.is-revealed) > * {
+    visibility: hidden;
+  }
+}
+
+[data-anim="progress"] { --anim-progress: 1; }
+html.anim-ready:not(.anim-reduced) [data-anim="progress"] { --anim-progress: 0; }
+
+[data-anim="reveal"][data-anim-type="clip"] {
+  --anim-clip: 0%;
+  clip-path: inset(0 0 var(--anim-clip) 0);
+}
+
+[data-anim="reveal"][data-anim-type="nudge-right"] { will-change: transform, opacity; }
+
+// a title row keeps the layer it glides on: dropped as it lands, its repaint cost a frame of the row still gliding beside it
+@media (prefers-reduced-motion: no-preference) {
+  [data-anim-item^="enter-"] { will-change: transform; }
+}
+
+// card sliders: initSliders() sets each slide's scale from the drag speed every frame, and this eases it.
+// The layer is held so a slide draws the same way scaled and at rest; dropped at rest, its text jumped up to 0.5px on landing
+[data-slider]:not([data-slider-mode]) .swiper-slide {
+  transition: scale 0.4s ease-out;
+  will-change: transform;
+}
+
+html.lenis,
+html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: clip; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+
+// data-marquee: initMarquees() in ui.js fills the track and sets --marquee-lists / --marquee-time
+@keyframes marquee-left {
+  to { transform: translate3d(calc(-100% / var(--marquee-lists)), 0, 0); }
+}
+
+@keyframes marquee-right {
+  from { transform: translate3d(calc(-100% / var(--marquee-lists)), 0, 0); }
+  to { transform: translate3d(0, 0, 0); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-marquee="left"].is-running { animation: marquee-left var(--marquee-time) linear infinite; }
+  [data-marquee="right"].is-running { animation: marquee-right var(--marquee-time) linear infinite; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-anim],
+  [data-anim-item] { visibility: visible !important; }
+}

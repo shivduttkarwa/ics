@@ -1,0 +1,24 @@
+# Field contract for the Wagtail build.
+# Each block: template src/_includes/blocks/<name>.njk reads value.<field>; data shape in src/_data/pages/*.json.
+# Types are Wagtail block classes. figma = node id on page 15417:12061 of El5cAszLdnHFyIKN6g9uOc.
+# image = { src, alt, width, height } → ImageChooserBlock. video = { src, poster } → a document or URL block.
+# button = { text, url, style, size } → StructBlock(text: CharBlock, url: URLBlock, style: ChoiceBlock, size: ChoiceBlock(required=False)).
+
+settings:
+  site:
+    figma: "15513:13475 (header), 15742:14409 (menu), 15541:30252 (phone menu)"
+    fields:
+      name: CharBlock
+      short_name: CharBlock   # "ICS"
+      header_links: ListBlock(StructBlock(label, url))   # the five links in the header bar
+      header_button: StructBlock(text, url, style)   # "Book a tour" in the header pill
+      nav: ListBlock(StructBlock(label, url, children: ListBlock(StructBlock(label, url))))   # from the page tree: top-level pages and their live children
+      menu_buttons: ListBlock(StructBlock(text, url, style, size))   # the three small moss buttons at the foot of the menu
+      menu_links: ListBlock(StructBlock(label, url))   # Parent Portal, Employment, Contact Us
+      socials: ListBlock(StructBlock(network, label, url))   # network = sprite icon id: facebook, instagram, linkedin; always open in a new tab
+
+pages:
+  home:
+    fields: {}
+
+blocks: {}

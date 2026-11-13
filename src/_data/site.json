@@ -1,0 +1,45 @@
+{
+  "name": "Illawarra Christian School",
+  "short_name": "ICS",
+  "title": "Illawarra Christian School | Excellent education, real faith",
+  "description": "A Prep–12 Christian school in Cordeaux Heights, Wollongong. Students do well, they're known by name, and they grow up in a Christian community that cares about them.",
+  "theme_color": "#0c4b40",
+  "header_links": [
+    { "label": "Why ICS", "url": "" },
+    { "label": "Our Faith", "url": "" },
+    { "label": "Learning", "url": "" },
+    { "label": "Life at ICS", "url": "" },
+    { "label": "Enrol", "url": "" }
+  ],
+  "header_button": { "text": "Book a tour", "url": "", "style": "moss" },
+  "nav": [
+    {
+      "label": "Why ICS?",
+      "url": "",
+      "children": [
+        { "label": "Wellbeing and care", "url": "" },
+        { "label": "Our people", "url": "" }
+      ]
+    },
+    { "label": "Our Faith", "url": "" },
+    { "label": "Learning", "url": "" },
+    { "label": "Life at ICS", "url": "" },
+    { "label": "Enrol", "url": "" },
+    { "label": "Contact Us", "url": "" }
+  ],
+  "menu_buttons": [
+    { "text": "Book a tour", "url": "", "style": "moss", "size": "small" },
+    { "text": "Enquire now", "url": "", "style": "moss", "size": "small" },
+    { "text": "Apply to enrol", "url": "", "style": "moss", "size": "small" }
+  ],
+  "menu_links": [
+    { "label": "Parent Portal", "url": "" },
+    { "label": "Employment", "url": "" },
+    { "label": "Contact Us", "url": "" }
+  ],
+  "socials": [
+    { "network": "facebook", "label": "Facebook", "url": "" },
+    { "network": "instagram", "label": "Instagram", "url": "" },
+    { "network": "linkedin", "label": "LinkedIn", "url": "" }
+  ]
+}

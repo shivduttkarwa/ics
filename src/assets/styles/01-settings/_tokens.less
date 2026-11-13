@@ -1,0 +1,111 @@
+@bp-sm: 576px;
+@bp-md: 768px;
+@bp-lg: 992px;
+@bp-xl: 1200px;
+@bp-xxl: 1400px;
+@design: 1440px;
+@design-mobile: 430px;
+// a height: below it a phone is held sideways or a laptop window is short
+@bp-tall: 640px;
+
+@px: 0.0625rem;
+@fine: ~"(hover: hover) and (pointer: fine)";
+
+// Maths is not evaluated inside a custom property, so measures are LESS variables first.
+@gutter-sm: 20 * @px;
+@gutter-md: 32 * @px;
+@gutter-lg: 40 * @px;
+@gutter-xxl: 80 * @px;
+@container-content: 1280 * @px;
+// accessibility floors stay in real px; everything else scales from the root
+@tap-size: 44px;
+@text-min: 12px;
+@control-font-min: 16px;
+@radius-pill: 1000 * @px;
+@radius-sm: 5 * @px;
+@radius-md: 10 * @px;
+@radius-lg: 20 * @px;
+// Figma's background blur 40 is a CSS blur of 20
+@blur-glass: 20 * @px;
+
+:root {
+  --color-canopy: #0c4b40;
+  --color-moss: #a6d222;
+  --color-forest: #003620;
+  --color-beach: #efe8e0;
+  --color-beach-light: #f7f4ef;
+  --color-coal: #2c2c2c;
+  --color-dark-grey: #373737;
+  --color-flame: #e01a1a;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-white-90: rgba(255, 255, 255, 0.9);
+  --color-white-75: rgba(255, 255, 255, 0.75);
+  --color-white-60: rgba(255, 255, 255, 0.6);
+  --color-white-50: rgba(255, 255, 255, 0.5);
+  --color-white-30: rgba(255, 255, 255, 0.3);
+  --color-white-20: rgba(255, 255, 255, 0.2);
+  --color-white-10: rgba(255, 255, 255, 0.1);
+  --color-black-75: rgba(0, 0, 0, 0.75);
+  --color-black-50: rgba(0, 0, 0, 0.5);
+  --color-black-40: rgba(0, 0, 0, 0.4);
+  --color-black-30: rgba(0, 0, 0, 0.3);
+  --color-black-20: rgba(0, 0, 0, 0.2);
+  --color-black-10: rgba(0, 0, 0, 0.1);
+  --color-black-5: rgba(0, 0, 0, 0.05);
+  --color-canopy-40: rgba(12, 75, 64, 0.4);
+  --color-moss-30: rgba(166, 210, 34, 0.3);
+
+  --color-primary: var(--color-canopy);
+  --color-accent: var(--color-moss);
+  --color-text: var(--color-coal);
+  --color-text-inverse: var(--color-white);
+  --color-heading: var(--color-canopy);
+  --color-muted: var(--color-canopy-40);
+  --color-line: var(--color-canopy);
+  --color-line-inverse: var(--color-white-20);
+  --color-background: var(--color-white);
+  --color-background-tint: var(--color-beach-light);
+  --color-background-warm: var(--color-beach);
+  --color-background-dark: var(--color-canopy);
+
+  --font-serif: "Ulises", Georgia, "Times New Roman", serif;
+  --font-sans: "Museo Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --leading-body: 1.5;
+
+  --gutter: @gutter-sm;
+  --container-content: @container-content;
+  --tap-size: @tap-size;
+  --radius-pill: @radius-pill;
+  --radius-sm: @radius-sm;
+  --radius-md: @radius-md;
+  --radius-lg: @radius-lg;
+  --blur-glass: @blur-glass;
+  --focus-ring: var(--color-canopy);
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-settle: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-in-out-soft: cubic-bezier(0.45, 0, 0.55, 1);
+  // GSAP's power2.out, the slider cards' rise
+  --ease-rise: cubic-bezier(0.33, 1, 0.68, 1);
+  --duration-fast: 0.2s;
+  --duration-base: 0.35s;
+  --duration-slow: 0.6s;
+
+  --z-header: 1050;
+  --z-overlay: 1080;
+}
+
+@media (min-width: @bp-md) {
+  :root { --gutter: @gutter-md; }
+}
+@media (min-width: @bp-lg) {
+  :root {
+    --gutter: @gutter-lg;
+    --leading-body: 1.4;
+  }
+}
+@media (min-width: @bp-xxl) {
+  :root { --gutter: @gutter-xxl; }
+}

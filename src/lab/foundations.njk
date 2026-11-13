@@ -1,0 +1,61 @@
+---
+layout: layouts/base.njk
+permalink: /lab/foundations.html
+eleventyExcludeFromCollections: true
+swatches: [canopy, moss, forest, beach, beach-light, coal, dark-grey, flame, white]
+solid: [moss, canopy, white, beach, glass]
+outline: [outline-white, outline-canopy, outline-moss, outline-glass]
+---
+<style>
+  .lab { padding: 3rem 0; }
+  .lab--dark { background: var(--color-canopy); color: var(--color-white); --focus-ring: var(--color-moss); }
+  .lab--dark h1, .lab--dark h2, .lab--dark h3, .lab--dark h4, .lab--dark h5, .lab--dark h6 { color: var(--color-white); }
+  .lab__swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr)); gap: 1rem; }
+  .lab__swatch { aspect-ratio: 1; border-radius: var(--radius-lg); box-shadow: inset 0 0 0 1px var(--color-black-10); }
+  .lab__row { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem; }
+</style>
+<section class="lab">
+  <div class="container">
+    <div class="lab__swatches">
+      {% for name in swatches %}
+      <div><div class="lab__swatch" style="background: var(--color-{{ name }})"></div><p>{{ name }}</p></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<section class="lab">
+  <div class="container">
+    <h1><em>Excellent</em> education, <em>real</em> faith and a community that <em>knows</em> your child.</h1>
+    <h2>Meet our <em>community.</em></h2>
+    <h3>Exceptional Christian Education where <em>every student is known.</em></h3>
+    <h4>Heading 4, Ulises Light 30</h4>
+    <h5>Visit Us</h5>
+    <h6>Heading 6</h6>
+    <p>Illawarra Christian School is a Prep-12 school in Cordeaux Heights, Wollongong. Our students do well, they're known by name, and they grow up in a Christian community that cares about them.</p>
+  </div>
+</section>
+<section class="lab">
+  <div class="container">
+    {% for size in ["", "small"] %}
+    <div class="lab__row">
+      {% for style in solid %}{% set btn = { text: "Discover more", style: style, size: size } %}{% include "snippets/button.njk" %}{% endfor %}
+    </div>
+    {% endfor %}
+    <div class="lab__row">
+      {% for style in outline %}{% set btn = { text: "Discover more", style: style } %}{% include "snippets/button.njk" %}{% endfor %}
+    </div>
+  </div>
+</section>
+<section class="lab lab--dark">
+  <div class="container">
+    <h1>Build <em>strength, friendships and resilience</em> on every field and court.</h1>
+    {% for size in ["", "small"] %}
+    <div class="lab__row">
+      {% for style in solid %}{% set btn = { text: "Discover more", style: style, size: size } %}{% include "snippets/button.njk" %}{% endfor %}
+    </div>
+    {% endfor %}
+    <div class="lab__row">
+      {% for style in outline %}{% set btn = { text: "Discover more", style: style } %}{% include "snippets/button.njk" %}{% endfor %}
+    </div>
+  </div>
+</section>

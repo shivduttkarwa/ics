@@ -1,0 +1,1 @@
+{% if btn and btn.text %}<a class="btn btn-{{ btn.style | default('moss') }}{% if btn.size == 'small' %} btn-sm{% endif %}"{% if btn.url %} href="{{ btn.url }}"{% endif %}>{% if not plain %}<span class="btn__dot" aria-hidden="true"><svg class="icon"><use href="#icon-arrow-right"></use></svg></span>{% endif %}<span class="btn__label">{{ btn.text }}</span></a>{% endif %}

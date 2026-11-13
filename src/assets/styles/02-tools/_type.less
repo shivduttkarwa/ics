@@ -1,0 +1,242 @@
+// One mixin per Figma text style. Desktop values are the 1440 frames'; phone sizes are the 430 frames' where they differ.
+// Ulises takes italics from <em> at the same weight (Light → Light Italic, Book → Book Italic), as Figma mixes them in a title.
+
+.type-serif(@weight: 300) {
+  font-family: var(--font-serif);
+  font-weight: @weight;
+  font-style: normal;
+  text-transform: none;
+}
+
+.type-sans(@weight: 500) {
+  font-family: var(--font-sans);
+  font-weight: @weight;
+  font-style: normal;
+}
+
+// Named styles
+
+// "Display 3": Ulises 90 / 1.2, −3%; the alternative heroes set it in Book at 1.1, −5%
+.type-display-3() {
+  .type-serif(400);
+  line-height: 1.1;
+  letter-spacing: -0.05em;
+  font-size: 50 * @px;
+  @media (min-width: @bp-lg) { font-size: 90 * @px; }
+}
+
+// "Heading 2": Ulises Light 45 / 1, −3%
+.type-heading-2() {
+  .type-serif(300);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-size: 45 * @px;
+}
+
+// "Heading 3": Ulises Light 35 / 1.1, −3%
+.type-heading-3() {
+  .type-serif(300);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  font-size: 30 * @px;
+  @media (min-width: @bp-lg) { font-size: 35 * @px; }
+}
+
+// "Heading 4": Ulises Light 30 / 1.1, −2%
+.type-heading-4() {
+  .type-serif(300);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-size: 26 * @px;
+  @media (min-width: @bp-lg) { font-size: 30 * @px; }
+}
+
+// "Heading 6": Museo Sans 500 20 / 1.4, caps
+.type-heading-6() {
+  .type-sans(500);
+  line-height: 1.4;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  font-size: 18 * @px;
+  @media (min-width: @bp-lg) { font-size: 20 * @px; }
+}
+
+// "Lead Paragraph Serif": Ulises Book 25 / 1.4, −2%
+.type-lead-serif() {
+  .type-serif(400);
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  font-size: 22 * @px;
+  @media (min-width: @bp-lg) { font-size: 25 * @px; }
+}
+
+// "Body 1": Museo Sans 500 20 / 1.5, −3%
+.type-body-1() {
+  .type-sans(500);
+  line-height: 1.5;
+  letter-spacing: -0.03em;
+  font-size: 18 * @px;
+  @media (min-width: @bp-lg) { font-size: 20 * @px; }
+}
+
+// "Body 2": Museo Sans 300 18 / 1.4
+.type-body-2() {
+  .type-sans(300);
+  line-height: var(--leading-body);
+  letter-spacing: 0;
+  font-size: 17 * @px;
+  @media (min-width: @bp-lg) { font-size: 18 * @px; }
+}
+
+// "Body 3": Museo Sans 500 16 / 1.5, −1%
+.type-body-3() {
+  .type-sans(500);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  font-size: 16 * @px;
+}
+
+// "Body 4": Museo Sans 300 14 / 1.4
+.type-body-4() {
+  .type-sans(300);
+  line-height: 1.4;
+  letter-spacing: 0;
+  font-size: 14 * @px;
+}
+
+// Recurring unnamed styles
+
+// the hero and slide titles: Ulises Light 60 / 1.1, −5%; 45 on phones
+.type-h1() {
+  .type-serif(300);
+  line-height: 1.1;
+  letter-spacing: -0.05em;
+  font-size: 45 * @px;
+  @media (min-width: @bp-lg) { font-size: 60 * @px; }
+}
+
+// the inner-page hero titles: Ulises Book 75 / 1.1, −5%
+.type-page-title() {
+  .type-serif(400);
+  line-height: 1.1;
+  letter-spacing: -0.05em;
+  font-size: 45 * @px;
+  @media (min-width: @bp-lg) { font-size: 75 * @px; }
+}
+
+// the CTA card and footer CTA titles: Ulises Book 45 / 1.1, −3%
+.type-h2() {
+  .type-serif(400);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  font-size: 40 * @px;
+  @media (min-width: @bp-lg) { font-size: 45 * @px; }
+}
+
+// the footer statement: Ulises Book 35 / 1.2, −3%
+.type-h3() {
+  .type-serif(400);
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  font-size: 30 * @px;
+  @media (min-width: @bp-lg) { font-size: 35 * @px; }
+}
+
+// the footer column titles and news titles: Ulises Book 25 / 1.2
+.type-h5() {
+  .type-serif(400);
+  line-height: 1.2;
+  letter-spacing: 0;
+  font-size: 22 * @px;
+  @media (min-width: @bp-lg) { font-size: 25 * @px; }
+}
+
+// the stat figures: Ulises Light Italic 60 / 1, −3%, the same on phones
+.type-stat() {
+  .type-serif(300);
+  font-style: italic;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-size: 60 * @px;
+}
+
+// the quotes in cards and pinned sections: Ulises Medium Italic 20 / 1.4, −3%
+.type-quote() {
+  .type-serif(500);
+  font-style: italic;
+  line-height: 1.4;
+  letter-spacing: -0.03em;
+  font-size: 18 * @px;
+  @media (min-width: @bp-lg) { font-size: 20 * @px; }
+}
+
+.type-quote-small() {
+  .type-serif(500);
+  font-style: italic;
+  line-height: 1.5;
+  letter-spacing: -0.03em;
+  font-size: 16 * @px;
+}
+
+// the FAQ questions: Ulises SemiBold 20 / 1.5
+.type-faq-question() {
+  .type-serif(600);
+  line-height: 1.5;
+  letter-spacing: 0;
+  font-size: 18 * @px;
+  @media (min-width: @bp-lg) { font-size: 20 * @px; }
+}
+
+// section copy: Museo Sans 300 20 / 1.4
+.type-body-1-light() {
+  .type-sans(300);
+  line-height: var(--leading-body);
+  letter-spacing: 0;
+  font-size: 18 * @px;
+  @media (min-width: @bp-lg) { font-size: 20 * @px; }
+}
+
+// card and pillar copy: Museo Sans 300 16 / 1.4
+.type-body-3-light() {
+  .type-sans(300);
+  line-height: var(--leading-body);
+  letter-spacing: 0;
+  font-size: 16 * @px;
+}
+
+// the USP card titles: Museo Sans 500 25 / 1.2, −2%
+.type-card-title() {
+  .type-sans(500);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  font-size: 22 * @px;
+  @media (min-width: @bp-lg) { font-size: 25 * @px; }
+}
+
+// buttons, tags and small labels: Museo Sans 700 14 / 1.4, +5%, caps
+.type-label() {
+  .type-sans(700);
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 14 * @px;
+}
+
+// the news categories: Museo Sans 700 12 / 1.4, +5%, caps
+@eyebrow-size: 12 * @px;
+.type-eyebrow() {
+  .type-sans(700);
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: ~"max(@{text-min}, @{eyebrow-size})";
+}
+
+// form controls: Museo Sans 300 at the 16px floor that stops iOS zooming into the field
+@control-size: 16 * @px;
+.type-control() {
+  .type-sans(300);
+  line-height: 1.4;
+  letter-spacing: 0;
+  font-size: ~"max(@{control-font-min}, @{control-size})";
+}

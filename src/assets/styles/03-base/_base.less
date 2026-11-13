@@ -1,0 +1,88 @@
+// registered so the thumb colour can fade when the scroll lock lifts
+@property --scrollbar-thumb {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+html {
+  --scrollbar-thumb: var(--color-muted);
+  // phones and tablets read at the browser's own size; from lg 16px at the design's 1440 × 1024 screen and down to 800 tall, a shorter laptop scaling down by height
+  font-size: 100%;
+  @media (min-width: @bp-lg) { font-size: ~"clamp(0.875rem, min(0.5rem + 0.5556vw, 0.4rem + 1.2svh), 1.1667rem)"; }
+  scroll-behavior: smooth;
+  overflow-x: clip;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) transparent;
+  // each frame of the fade restyles the whole page, which stalled the end of the preloader on a phone, where the thumb never shows
+  @media @fine { transition: --scrollbar-thumb var(--duration-slow) ease; }
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  position: relative;
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+  transition: color var(--duration-fast) ease;
+}
+
+button {
+  font: inherit;
+  letter-spacing: inherit;
+}
+
+a,
+button,
+input,
+textarea {
+  touch-action: manipulation;
+}
+
+// only after a key press (initFocusMode): iPhone Safari rings a button that a script refocuses after a tap
+:focus { outline: 0; }
+
+:where(.is-keyboard) :focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2 * @px;
+}
+
+// a field shows focus through its own line or ring; the global outline read as a box around it
+input,
+select,
+textarea {
+  &:focus-visible { outline: 0; }
+}
+
+// Chrome's autofill tint can't be overridden, only held off
+input:-webkit-autofill,
+textarea:-webkit-autofill {
+  -webkit-text-fill-color: currentColor;
+  transition: background-color 99999s linear;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-primary);
+}
+
+.icon {
+  display: inline-block;
+  flex: none;
+  width: 1em;
+  height: 1em;
+}
