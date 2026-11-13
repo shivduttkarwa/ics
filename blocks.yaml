@@ -2,7 +2,7 @@
 # Each block: template src/_includes/blocks/<name>.njk reads value.<field>; data shape in src/_data/pages/*.json.
 # Types are Wagtail block classes. figma = node id on page 15417:12061 of El5cAszLdnHFyIKN6g9uOc.
 # image = { src, alt, width, height } → ImageChooserBlock. video = { src, poster } → a document or URL block.
-# button = { text, url, style, size } → StructBlock(text: CharBlock, url: URLBlock, style: ChoiceBlock, size: ChoiceBlock(required=False)).
+# button = { text, url, style, size, icon } → StructBlock(text: CharBlock, url: URLBlock, style: ChoiceBlock, size: ChoiceBlock(required=False), icon: ChoiceBlock(required=False)).
 
 settings:
   site:
@@ -10,8 +10,8 @@ settings:
     fields:
       name: CharBlock
       short_name: CharBlock   # "ICS"
-      header_links: ListBlock(StructBlock(label, url))   # the five links in the header bar
-      header_button: StructBlock(text, url, style)   # "Book a tour" in the header pill
+      header_links: ListBlock(StructBlock(label, url))   # the five links in the header bar, from lg
+      header_button: StructBlock(text, url, style)   # "Book a tour" in the header pill, from lg; rendered without the dot
       nav: ListBlock(StructBlock(label, url, children: ListBlock(StructBlock(label, url))))   # from the page tree: top-level pages and their live children
       menu_buttons: ListBlock(StructBlock(text, url, style, size))   # the three small moss buttons at the foot of the menu
       menu_links: ListBlock(StructBlock(label, url))   # Parent Portal, Employment, Contact Us
@@ -21,4 +21,33 @@ pages:
   home:
     fields: {}
 
-blocks: {}
+blocks:
+  hero:
+    figma: "15417:12115 (desktop: 15417:12116 background + header, 15417:12125 copy, 15513:9909 video card), 15513:26871 + 15541:30650 (phone, at load and on scroll), 15541:30348 (phone CTA bar)"
+    template: blocks/hero.njk
+    fields:
+      image: ImageChooserBlock(required)   # desktop background, and the video's poster; decorative (alt empty)
+      image_mobile: ImageChooserBlock(required=False)   # below lg; Figma's phone hero is a different photo, cropped to its right-hand third
+      video: DocumentChooserBlock(required=False)   # from lg only, muted loop over the image while on screen; Figma's hero is a video fill
+      title: RichTextBlock(features=["italic"])   # italic words are <em>, rendered without the <p>
+      text: TextBlock
+      button: StructBlock(text, url, style)   # "Welcome to ICS", glass; the dot shows from lg
+      actions: ListBlock(StructBlock(text, url, style), max_num=3)   # the phone CTA bar (Tours / Enquire / Apply), below lg only
+      video_card: StructBlock(required=False)   # bottom right, from lg
+        image: ImageChooserBlock   # 300 × 180 slot
+        label: CharBlock   # "Watch full video"
+        url: URLBlock(required=False)   # the full video
+
+  announcement:
+    figma: "15417:12133 (desktop content, in the 15417:12115 group), 15513:26719 (phone)"
+    template: blocks/announcement.njk
+    fields:
+      label: CharBlock   # "Reminder", set in caps
+      text: CharBlock
+      button: StructBlock(text, url, style, icon)   # white with a trailing arrow: style "white", icon "arrow"
+
+  placeholder:
+    figma: "—"
+    template: blocks/placeholder.njk
+    fields:
+      label: CharBlock   # a full-height stand-in for the next section to be built; not for Wagtail

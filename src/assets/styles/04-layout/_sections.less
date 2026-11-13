@@ -1,0 +1,19 @@
+// Figma tucks each section under the rounded foot of the one before, so the next section's ground fills the corners
+.rounded-foot {
+  position: relative;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
+.rounded-foot + * { position: relative; }
+
+// z-index −1 joins the root stacking context, below the section above; keep main and body free of stacking contexts
+.rounded-foot + *::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  right: 0;
+  bottom: 100%;
+  left: 0;
+  height: var(--radius-lg);
+  background: inherit;
+}

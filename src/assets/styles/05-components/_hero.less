@@ -1,0 +1,223 @@
+@hero-header-room-sm: 111 * @px;
+@hero-header-room: 119 * @px;
+// below lg the title rests above the CTA bar (72), its 20 from the foot and 30 of air
+@hero-cta-room: 122 * @px;
+@hero-copy-foot: 177 * @px;
+@hero-copy-width: 626 * @px;
+@hero-text-width: 517 * @px;
+@hero-gap: 26 * @px;
+@hero-overhang: 12%;
+@hero-card-width: 300 * @px;
+@hero-card-height: 180 * @px;
+
+.hero {
+  --focus-ring: var(--color-moss);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+  padding-bottom: 20 * @px;
+  overflow: clip;
+  color: var(--color-white);
+  background: var(--color-canopy-deep);
+  @media (min-width: @bp-lg) { padding-bottom: 0; }
+
+  // below lg the photo holds still as the copy scrolls up over it, as Figma's "Hero - On Scroll" frame
+  &__media {
+    position: sticky;
+    top: 0;
+    height: 100lvh;
+    margin-bottom: -100lvh;
+    overflow: hidden;
+    @media (min-width: @bp-lg) {
+      position: absolute;
+      inset: 0;
+      height: auto;
+      margin-bottom: 0;
+    }
+  }
+
+  &__layer {
+    position: absolute;
+    inset: 0;
+    @media (min-width: @bp-lg) {
+      --parallax-from: 0%;
+      --parallax-to: percentage((12 / 112));
+      top: -@hero-overhang;
+      bottom: auto;
+      height: 100% + @hero-overhang;
+    }
+  }
+
+  &__picture {
+    position: absolute;
+    inset: 0;
+    display: block;
+  }
+
+  &__img,
+  &__video {
+    .img-cover();
+    object-position: 86% 50%;
+    @media (min-width: @bp-lg) { object-position: 48% 100%; }
+  }
+
+  &__video {
+    position: absolute;
+    inset: 0;
+    display: none;
+    opacity: 0;
+    transition: opacity var(--duration-slow) ease;
+    &.is-live { opacity: 1; }
+    @media (min-width: @bp-lg) { display: block; }
+  }
+
+  &__shade {
+    .cover();
+    background: var(--gradient-hero-sm);
+    @media (min-width: @bp-lg) { background: var(--gradient-hero); }
+  }
+
+  &__dim {
+    .cover();
+    background: var(--color-black-40);
+    opacity: 0;
+    @media (min-width: @bp-lg) { display: none; }
+  }
+
+  &__body {
+    position: relative;
+    display: flex;
+    flex: 1 0 auto;
+    flex-direction: column;
+    @media (min-width: @bp-lg) {
+      justify-content: flex-end;
+      padding-top: @hero-header-room;
+      padding-bottom: @hero-copy-foot;
+    }
+  }
+
+  &__lead {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: ~"calc(100svh - @{hero-cta-room})";
+    padding-top: @hero-header-room-sm;
+    @media (min-width: @bp-lg) {
+      min-height: 0;
+      padding-top: 0;
+    }
+  }
+
+  h1 {
+    max-width: @hero-copy-width;
+    margin: 0;
+    color: inherit;
+  }
+
+  &__text {
+    .type-hero-text();
+    max-width: @hero-text-width;
+    margin: @hero-gap 0 0;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10 * @px;
+    margin: @hero-gap 0 42 * @px;
+    @media (min-width: @bp-lg) { margin-bottom: 0; }
+    .btn__dot {
+      display: none;
+      @media (min-width: @bp-lg) { display: grid; }
+    }
+  }
+
+  &__actions {
+    position: sticky;
+    bottom: 20 * @px;
+    z-index: 1;
+    display: flex;
+    gap: 10 * @px;
+    padding: 10 * @px;
+    border-radius: var(--radius-md);
+    .glass();
+    @media (min-width: @bp-lg) { display: none; }
+    .btn {
+      flex: 1 1 0;
+      justify-content: center;
+      min-width: 0;
+      --bs-btn-padding-x: 0;
+      border-radius: var(--radius-sm);
+    }
+  }
+
+  &__card {
+    display: none;
+    @media (min-width: @bp-lg) {
+      position: absolute;
+      right: 25 * @px;
+      bottom: 29 * @px;
+      display: block;
+      width: @hero-card-width;
+      height: @hero-card-height;
+      overflow: hidden;
+      border-radius: var(--radius-md);
+      color: var(--color-white);
+    }
+    &::after {
+      content: "";
+      .cover();
+      border-radius: inherit;
+      background: var(--color-black-20);
+      box-shadow: inset 0 0 0 1 * @px var(--color-white);
+      pointer-events: none;
+    }
+    @media (hover: hover) {
+      &[href]:hover .hero__card-img { scale: 1.04; }
+    }
+  }
+
+  &__card-img {
+    .img-cover();
+    transition: scale var(--duration-slow) var(--ease-out);
+  }
+
+  &__card-label {
+    position: absolute;
+    top: 8 * @px;
+    right: 5 * @px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 13 * @px;
+    padding: 5 * @px 10 * @px;
+    border-radius: var(--radius-sm);
+    background: var(--color-black-30);
+    .type-video-label();
+    .icon {
+      width: 10 * @px;
+      height: 10 * @px;
+    }
+  }
+}
+
+@keyframes hero-show {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+// below lg the first screen is the title over the CTA bar; scrolling deepens the shade and fades the intro in once it
+// has risen clear of the bar. Without scroll timelines the intro simply shows and the shade stays as at the top
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .hero__dim,
+    .hero__more {
+      animation: hero-show linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0% 40svh;
+      @media (min-width: @bp-lg) { animation: none; }
+    }
+    .hero__more { animation-range: 10svh 40svh; }
+  }
+}

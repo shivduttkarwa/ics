@@ -17,7 +17,7 @@ The site uses the file's "premium" palette. The older "primary" swatches (blues,
 | `--color-flame` | premium/flame-tree | `#e01a1a` | the red menu icon variant (not on the layouts) |
 | white / black alphas | WhiteAlpha/*, BlackAlpha/* | | frosted fills (white 20%), image shades, hairlines (white 20%) |
 
-The announcement bar's ground is canopy under 40% black. Image shades are black linear gradients (0 → 40/50/65/75%); each is added as a token with the section that uses it.
+The announcement bar's ground is canopy under 40% black (`--color-canopy-deep`, `#072d26`). Image shades are black linear gradients (0 → 40/50/65/75%); each is added as a token with the section that uses it (`--gradient-hero`, `--gradient-hero-sm` so far).
 
 ## Type
 Two licensed families. **Ulises** (serif, light weights, italics for emphasis) and **Museo Sans** (sans for body, labels and buttons). Files needed, as woff2 in `src/assets/fonts/`:
@@ -101,7 +101,7 @@ Section-specific variants (60 / 1 and 60 / 1.2 section titles, 45 / 1.2 "Find th
 Large 52 tall, 25 side insets, 15 gap; small (`size: "small"`) 36 tall with 15 insets, 44 on touch. Hover grows the dot to 42 (26 small) with the arrow in the button's fill colour; `plain` drops the dot (the header's "Book a tour").
 
 ## Icons
-Figma draws icons as Font Awesome 7 Pro glyphs (Sharp Light arrows, Light pictograms at 24 and 36, Regular/Solid play and search) and Font Awesome 6 Brands for social logos. Each one is outlined from Figma into `partials/icons.njk` as an `icon-<name>` symbol when its section is built. In the sprite now: `icon-arrow-right`.
+Figma draws icons as Font Awesome 7 Pro glyphs (Sharp Light arrows, Light pictograms at 24 and 36, Regular/Solid play and search) and Font Awesome 6 Brands for social logos. Each one is outlined from Figma into `partials/icons.njk` as an `icon-<name>` symbol when its section is built. In the sprite now: `icon-arrow-right`, `icon-menu` (the burger, 30 × 18), `icon-play` (the video card's triangle).
 
 ## Logos
 `src/assets/icons/crest.svg` (79 × 79) and `wordmark.svg` (109 × 52, white) from the header's Logo Landscape, Full Colour Inverted. The kit also has Full Colour, White and Dark Green variants (`6140:12636`) for light grounds. Favicons: `favicon.ico` (16/32/48) and `apple-touch-icon.png` (the crest on canopy).

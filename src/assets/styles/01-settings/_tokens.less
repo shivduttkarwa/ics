@@ -55,6 +55,8 @@
   --color-black-5: rgba(0, 0, 0, 0.05);
   --color-canopy-40: rgba(12, 75, 64, 0.4);
   --color-moss-30: rgba(166, 210, 34, 0.3);
+  // Figma's canopy under 40% black: the announcement bar
+  --color-canopy-deep: #072d26;
 
   --color-primary: var(--color-canopy);
   --color-accent: var(--color-moss);
@@ -69,7 +71,10 @@
   --color-background-warm: var(--color-beach);
   --color-background-dark: var(--color-canopy);
 
-  --font-serif: "Ulises", Georgia, "Times New Roman", serif;
+  --gradient-hero: linear-gradient(90deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 100%), linear-gradient(var(--color-black-20), var(--color-black-20));
+  --gradient-hero-sm: linear-gradient(180deg, rgba(0, 0, 0, 0.65) 0.35%, rgba(0, 0, 0, 0) 18.62%), linear-gradient(180deg, rgba(0, 0, 0, 0) 29.27%, rgba(0, 0, 0, 0.4) 61.1%, rgba(0, 0, 0, 0.75) 100%);
+
+  --font-serif:"Ulises", Georgia, "Times New Roman", serif;
   --font-sans: "Museo Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --leading-body: 1.5;
 

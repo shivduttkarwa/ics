@@ -232,6 +232,45 @@
   font-size: ~"max(@{text-min}, @{eyebrow-size})";
 }
 
+// the hero intro: Body 3 on phones, Body 1 from lg
+.type-hero-text() {
+  .type-sans(500);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  font-size: 16 * @px;
+  @media (min-width: @bp-lg) {
+    letter-spacing: -0.03em;
+    font-size: 20 * @px;
+  }
+}
+
+// the announcement label: Museo Sans 700 20 / 1.4, +1%, caps
+.type-announcement-label() {
+  .type-sans(700);
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  font-size: 20 * @px;
+}
+
+// the announcement message: Ulises Book Italic 20 / 1.4, −3%
+.type-announcement() {
+  .type-serif(400);
+  font-style: italic;
+  line-height: 1.4;
+  letter-spacing: -0.03em;
+  font-size: 20 * @px;
+}
+
+// "Watch full video": Figma sets PP Neue Montreal Medium 14 / 1.2, caps; Museo Sans 500 stands in
+.type-video-label() {
+  .type-sans(500);
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  font-size: 14 * @px;
+}
+
 // form controls: Museo Sans 300 at the 16px floor that stops iOS zooming into the field
 @control-size: 16 * @px;
 .type-control() {

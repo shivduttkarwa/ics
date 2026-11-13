@@ -85,6 +85,23 @@
   @media @fine { height: @btn-height-sm; }
 }
 
+// Figma's plain "Button": label then a trailing arrow, 40 tall
+@btn-inset-arrow: 20 * @px;
+.btn--arrow {
+  --bs-btn-padding-x: @btn-inset-arrow;
+  gap: 10 * @px;
+  height: @tap-size;
+  > .icon {
+    width: 16 * @px;
+    height: 16 * @px;
+    transition: translate var(--duration-base) var(--ease-settle);
+  }
+  @media @fine {
+    height: 40 * @px;
+    &:hover > .icon { translate: 3 * @px 0; }
+  }
+}
+
 // Button Rounded Solid
 .btn-moss { .btn-variant(var(--color-moss); var(--color-canopy); var(--color-canopy); var(--color-moss)); }
 .btn-canopy { .btn-variant(var(--color-canopy); var(--color-white); var(--color-moss); var(--color-canopy)); }

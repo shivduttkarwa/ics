@@ -3,5 +3,55 @@
     "title": "Illawarra Christian School | Excellent education, real faith",
     "description": "A Prep–12 Christian school in Cordeaux Heights, Wollongong. Students do well, they're known by name, and they grow up in a Christian community that cares about them."
   },
-  "body": []
+  "body": [
+    {
+      "type": "hero",
+      "value": {
+        "image": {
+          "src": "/assets/images/home/hero-1920.webp",
+          "srcset": "/assets/images/home/hero-1280.webp 1280w, /assets/images/home/hero-1920.webp 1920w",
+          "alt": "",
+          "width": 1920,
+          "height": 1080
+        },
+        "image_mobile": {
+          "src": "/assets/images/home/hero-mobile.webp",
+          "alt": "",
+          "width": 1600,
+          "height": 1066
+        },
+        "video": null,
+        "title": "<em>Excellent</em> education, <em>real</em> faith and a community that <em>knows</em> your child.",
+        "text": "Illawarra Christian School is a Prep-12 school in Cordeaux Heights, Wollongong. Our students do well, they're known by name, and they grow up in a Christian community that cares about them. Our fees are lower than you might expect for an independent school.",
+        "button": { "text": "Welcome to ICS", "url": "", "style": "glass" },
+        "actions": [
+          { "text": "Tours", "url": "", "style": "moss" },
+          { "text": "Enquire", "url": "", "style": "moss" },
+          { "text": "Apply", "url": "", "style": "moss" }
+        ],
+        "video_card": {
+          "image": {
+            "src": "/assets/images/home/hero-video-card.webp",
+            "alt": "Three students singing on stage at a school assembly",
+            "width": 600,
+            "height": 360
+          },
+          "label": "Watch full video",
+          "url": ""
+        }
+      }
+    },
+    {
+      "type": "announcement",
+      "value": {
+        "label": "Reminder",
+        "text": "Parent-teacher interviews open for booking this week. Choose a time that suits your family.",
+        "button": { "text": "Book interviews", "url": "", "style": "white", "icon": "arrow" }
+      }
+    },
+    {
+      "type": "placeholder",
+      "value": { "label": "Next section" }
+    }
+  ]
 }

@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-11-13 — Homepage hero, header and announcement bar
+- Header (`partials/header.njk`, `_header.less`) from Figma's Header component: landscape logo, five links and the frosted "Book a tour" + burger pill from lg; logo and a white menu circle below lg. Drops in after the hero title. The burger has no menu yet.
+- Hero (`blocks/hero.njk`, `_hero.less`) from `15417:12115`: full screen, Figma's video framing with a slow parallax drift, the copy bottom left and the "Watch full video" card bottom right. Phones follow `15513:26871` and "Hero - On Scroll" (`15541:30650`): the girls photo holds still, the title sits above the sticky Tours / Enquire / Apply bar, and scrolling deepens the shade and fades the intro and button in.
+- Announcement bar (`blocks/announcement.njk`, `_announcement.less`): the reminder row under the hero, tucked under its rounded corners, with Figma's white arrow button (`btn--arrow`).
+- A full-height placeholder (`blocks/placeholder.njk`) after it, for the next section.
+- New: `.rounded-foot` (`04-layout/_sections.less`), the next section's colour filling the corners as Figma tucks it under; `--color-canopy-deep`, `--gradient-hero`, `--gradient-hero-sm`; type mixins `type-hero-text`, `type-announcement-label`, `type-announcement`, `type-video-label`; sprite icons `icon-menu`, `icon-play`.
+- Images: `home/hero-1920.webp` and `hero-1280.webp` (the hero video's first frame), `hero-mobile.webp`, `hero-video-card.webp` (Figma's centred crop at 2×).
+- Not yet: the hero video file (Figma's video fill can't be exported; the still stands in) and the Ulises and Museo Sans fonts.
+- Checked at 320, 375, 430, 667 × 375, 768, 1024, 1440 and 1920; `mobile-audit` clean at 320–1024.
+
 ## 2026-11-13 — Project set up
 - New cutup on the St Luke's stack: Eleventy 3 + Nunjucks, Bootstrap 5.3 themed through `--bs-*`, LESS (ITCSS + BEM), `anim` (Lenis + GSAP). Same build (`.eleventy.js`, relative URLs, one CSS and one JS), same package versions (St Luke's lockfile).
 - Carried over unchanged: `anim.js`, `slider.js`, `_animation.less`, `_parallax.less`, `_base.less` (pointed at ICS tokens), `stream.njk`, `image.njk`, and the QA scripts in `.qa/` (`figma.py` now on this file's key).

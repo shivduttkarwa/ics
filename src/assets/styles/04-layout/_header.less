@@ -1,0 +1,99 @@
+@header-inset-sm: 25 * @px;
+@header-inset: 40 * @px;
+@header-pad-sm: 16 * @px;
+@header-pad: 20 * @px;
+@header-crest: 79 * @px;
+@header-wordmark-width: 109 * @px;
+@header-wordmark-height: 52 * @px;
+@header-menu: 60 * @px;
+@header-menu-height: 52 * @px;
+
+.site-header {
+  --focus-ring: var(--color-moss);
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: var(--z-header);
+  color: var(--color-white);
+
+  &__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20 * @px;
+    padding: @header-pad-sm @header-inset-sm;
+    @media (min-width: @bp-lg) { padding: @header-pad @header-inset; }
+  }
+
+  &__logo {
+    display: flex;
+    flex: none;
+    align-items: center;
+    gap: 10 * @px;
+  }
+
+  &__crest {
+    width: @header-crest;
+    height: @header-crest;
+  }
+
+  &__wordmark {
+    width: @header-wordmark-width;
+    height: @header-wordmark-height;
+  }
+
+  &__nav {
+    display: none;
+    @media (min-width: @bp-lg) { display: block; }
+    ul {
+      .reset-list();
+      display: flex;
+      gap: 40 * @px;
+    }
+    a {
+      .type-body-3();
+      color: inherit;
+      white-space: nowrap;
+      @media (hover: hover) {
+        &[href]:hover { color: var(--color-moss); }
+      }
+    }
+  }
+
+  &__tools {
+    display: flex;
+    flex: none;
+    align-items: center;
+    @media (min-width: @bp-lg) {
+      .glass();
+      padding: 5 * @px;
+      border-radius: var(--radius-pill);
+    }
+    .btn {
+      display: none;
+      @media (min-width: @bp-lg) { display: inline-flex; }
+    }
+  }
+
+  &__menu {
+    display: grid;
+    place-items: center;
+    width: @header-menu;
+    height: @header-menu;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: var(--color-white);
+    color: var(--color-canopy);
+    .icon {
+      width: 30 * @px;
+      height: 18 * @px;
+    }
+    @media (min-width: @bp-lg) {
+      height: @header-menu-height;
+      background: none;
+      color: var(--color-white);
+    }
+  }
+}

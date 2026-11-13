@@ -1,0 +1,6 @@
+<section class="announcement rounded-foot">
+  <div class="container announcement__inner" data-anim-group="fade-up">
+    <p class="announcement__text"><span class="announcement__label">{{ value.label }}</span> <span class="announcement__message">{{ value.text }}</span></p>
+    {% set btn = value.button %}{% include "snippets/button.njk" %}
+  </div>
+</section>

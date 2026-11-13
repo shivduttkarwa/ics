@@ -33,7 +33,8 @@ There is no written brief yet. This file collects the designer's notes in the Fi
 |---|---|
 | Smooth scroll, reveals, split titles, parallax | `anim.js` (Lenis + GSAP), `data-anim-*` |
 | Hero video or image, stats counting up | every media slot is `image` + optional `video`; `data-anim="counter"` |
-| Announcement bar revealed on scroll | to be decided with the hero section |
+| Announcement bar revealed on scroll | the hero fills the first screen, so the bar sits under the fold and fades up as it scrolls in |
+| Phone hero "On Scroll" state | the photo holds still, the shade deepens and the intro fades in on a CSS scroll timeline (`_hero.less`) |
 | Draggable sliders (USPs, entry points, news on phones) | Swiper (`slider.js`), left edge on the container, overflow visible to the right |
 | Co-curricular autoplay, 3–5 s | `data-slider-autoplay="4000"`, paused on hover, focus and off screen |
 | Logo rows and Instagram reel | `data-marquee="left"` (`initMarquees()`), linear, paused under reduced motion |
