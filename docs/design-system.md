@@ -20,7 +20,7 @@ The site uses the file's "premium" palette. The older "primary" swatches (blues,
 The announcement bar's ground is canopy under 40% black (`--color-canopy-deep`, `#072d26`). Image shades are black linear gradients (0 → 40/50/65/75%); each is added as a token with the section that uses it (`--gradient-hero`, `--gradient-hero-sm` so far).
 
 ## Type
-Two licensed families. **Ulises** (serif, light weights, italics for emphasis) and **Museo Sans** (sans for body, labels and buttons). Files needed, as woff2 in `src/assets/fonts/`:
+Two licensed families. **Ulises** (serif, light weights, italics for emphasis) and **Museo Sans** (sans for body, labels and buttons). The woff2 files in `src/assets/fonts/` (converted from the ICS landing pages' files, see the README):
 
 | File | Face | Used for |
 |---|---|---|

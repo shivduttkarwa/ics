@@ -1,10 +1,14 @@
 # Changelog
 
+## 2026-11-13 — Fonts
+- Ulises and Museo Sans woff2 (the eleven weights in `_fonts.less`), converted from the ICS landing pages' files. Ulises carries the `USE_TYPO_METRICS` flag so Windows places its glyphs as Figma and macOS do (they sat 11 px low at 60).
+- The hero now lands on Figma's boxes with real type: the title on four lines at 265, the button 204 wide.
+
 ## 2026-11-13 — Hero checked against Figma at 1440
 - Photo crop matched to Figma's (100% scale, 219 in, 117 up) and tied to the hero's width rather than the screen height, so a 1920 × 945 screen shows Figma's framing scaled instead of the whole zoomed-out photo. The parallax travel is the same 117 overhang, scaled.
 - Parallax fix (`_parallax.less`): from lg, `data-anim-disable-mobile` reset a top-timed layer to the `cover` range, so the first scroll dropped the hero photo half its travel (about 58 px at 1440) and it never came back. Top-timed layers keep `exit-crossing` from lg too.
 - "Watch full video" label 1 px lower (Figma's 8 is inside the card's 1 px border); the play triangle sits 2.5 right, as Figma's rotated polygon.
-- Copy, button and video card were already on Figma's boxes. The title wraps to 3 lines instead of 4 until Ulises is supplied.
+- Copy, button and video card were already on Figma's boxes.
 
 ## 2026-11-13 — Homepage hero, header and announcement bar
 - Header (`partials/header.njk`, `_header.less`) from Figma's Header component: landscape logo, five links and the frosted "Book a tour" + burger pill from lg; logo and a white menu circle below lg. Drops in after the hero title. The burger has no menu yet.
