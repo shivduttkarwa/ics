@@ -1,4 +1,4 @@
-<section class="faqs rounded-foot">
+<section class="faqs{% if value.theme == 'white' %} faqs--white{% endif %} rounded-foot">
   <div class="container faqs__inner">
     <div class="faqs__title">
       <h2 data-anim="split">{{ value.title | safe }}</h2>

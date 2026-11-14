@@ -1,0 +1,50 @@
+// Figma tucks the band 18 under the hero's foot: 80 of its padding shows as 62 below the corners
+@pinned-pad-top: 62 * @px;
+@pinned-pad-bottom: 120 * @px;
+@pinned-pad-sm: 50 * @px;
+@pinned-title-width: 511 * @px;
+@pinned-aside-width: 620 * @px;
+@pinned-gap: 69 * @px;
+
+.pinned {
+  --focus-ring: var(--color-moss);
+  padding: @pinned-pad-sm 0;
+  background: var(--color-canopy-deep);
+  color: var(--color-white);
+  @media (min-width: @bp-lg) { padding: @pinned-pad-top 0 @pinned-pad-bottom; }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 25 * @px;
+    // Figma sets the copy 580 in, 80 short of the container's right edge
+    @media (min-width: @bp-lg) {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: @pinned-gap;
+    }
+  }
+
+  // both columns give way on a desktop narrower than 1440
+  h2 {
+    .type-h3();
+    max-width: @pinned-title-width;
+    margin: 0;
+    color: inherit;
+    @media (min-width: @bp-lg) { flex: 0 1 @pinned-title-width; }
+  }
+
+  &__aside {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25 * @px;
+    min-width: 0;
+    @media (min-width: @bp-lg) { flex: 0 1 @pinned-aside-width; }
+  }
+
+  &__text {
+    .type-body-1-light();
+    margin: 0;
+  }
+}

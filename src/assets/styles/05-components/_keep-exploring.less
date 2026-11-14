@@ -1,0 +1,67 @@
+@keep-exploring-column: 617 * @px;
+@keep-exploring-gap: 46 * @px;
+@keep-exploring-arrow: 26 * @px;
+// Figma holds the title column at 215 tall, which sets the section's 415
+@keep-exploring-content: 215 * @px;
+
+.keep-exploring {
+  padding: 50 * @px 0;
+  background: var(--color-beach-light);
+  color: var(--color-canopy);
+  @media (min-width: @bp-lg) { padding: 100 * @px 0; }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 25 * @px;
+    @media (min-width: @bp-lg) {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: @keep-exploring-gap;
+      min-height: @keep-exploring-content;
+    }
+  }
+
+  h2 {
+    .type-section-title();
+    flex: none;
+    margin: 0;
+    @media (min-width: @bp-lg) { width: @keep-exploring-column; }
+  }
+
+  &__list {
+    .reset-list();
+    display: flex;
+    flex: 1 1 0;
+    flex-direction: column;
+    gap: 10 * @px;
+    min-width: 0;
+  }
+
+  &__item { border-bottom: 1 * @px solid var(--color-canopy); }
+
+  &__link {
+    display: flex;
+    align-items: flex-start;
+    gap: 10 * @px;
+    padding: 10 * @px 0 20 * @px;
+    color: inherit;
+    .icon {
+      flex: none;
+      width: @keep-exploring-arrow;
+      height: @keep-exploring-arrow;
+      transition: translate var(--duration-base) var(--ease-out);
+    }
+  }
+
+  &__label {
+    .type-link-row();
+    flex: 1 1 0;
+    min-width: 0;
+    text-box: trim-both cap alphabetic;
+  }
+
+  @media @fine {
+    &__link[href]:hover .icon { translate: 3 * @px -3 * @px; }
+  }
+}

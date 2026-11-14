@@ -1,0 +1,112 @@
+@page-hero-height: 800 * @px;
+// no phone frame: a shorter band with the title at its foot, in the home hero's phone proportions
+@page-hero-height-sm: 560 * @px;
+@page-hero-foot: 57 * @px;
+@page-hero-foot-sm: 40 * @px;
+@page-hero-title-width: 1121 * @px;
+@page-hero-crumbs-gap: 33 * @px;
+// the photo overhangs the band by a tenth of its height and drifts that far as the page scrolls
+@page-hero-drift: 10%;
+@page-hero-drift-share: percentage((10 / 110));
+
+.page-hero {
+  --focus-ring: var(--color-moss);
+  // Figma: black at 25% over the photo
+  --page-hero-shade: var(--color-black-25);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: @page-hero-height-sm;
+  overflow: clip;
+  color: var(--color-white);
+  background: var(--color-canopy-deep);
+  @media (min-width: @bp-lg) { min-height: @page-hero-height; }
+
+  &__media { .cover(); }
+
+  &__layer {
+    position: absolute;
+    inset: 0;
+    @media (min-width: @bp-lg) {
+      --parallax-from: 0%;
+      --parallax-to: @page-hero-drift-share;
+      top: -@page-hero-drift;
+      bottom: auto;
+      height: calc(100% + @page-hero-drift);
+    }
+  }
+
+  &__picture {
+    position: absolute;
+    inset: 0;
+    display: block;
+  }
+
+  &__img,
+  &__video { .img-cover(); }
+
+  &__video {
+    position: absolute;
+    inset: 0;
+    display: none;
+    opacity: 0;
+    transition: opacity var(--duration-slow) ease;
+    &.is-live { opacity: 1; }
+    @media (min-width: @bp-lg) { display: block; }
+  }
+
+  &__shade {
+    .cover();
+    background: var(--page-hero-shade);
+  }
+
+  &__body {
+    position: relative;
+    padding-bottom: @page-hero-foot-sm;
+    @media (min-width: @bp-lg) { padding-bottom: @page-hero-foot; }
+  }
+
+  &__crumbs {
+    margin-bottom: 25 * @px;
+    @media (min-width: @bp-lg) { margin-bottom: @page-hero-crumbs-gap; }
+    ol {
+      .reset-list();
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 14 * @px;
+      .type-breadcrumb();
+    }
+    li {
+      display: flex;
+      align-items: center;
+      gap: 14 * @px;
+    }
+    a,
+    span {
+      color: inherit;
+      text-box: trim-both cap alphabetic;
+    }
+    [aria-current] { font-weight: 900; }
+    .icon {
+      width: 16 * @px;
+      height: 16 * @px;
+    }
+    @media (hover: hover) {
+      a:hover { color: var(--color-moss); }
+    }
+  }
+
+  h1 {
+    .type-page-title();
+    max-width: @page-hero-title-width;
+    margin: 0;
+    color: inherit;
+    // the designer's line break holds the 1121 column; a phone wraps the title to its own width
+    br {
+      display: none;
+      @media (min-width: @bp-lg) { display: inline; }
+    }
+  }
+}

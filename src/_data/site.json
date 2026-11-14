@@ -5,7 +5,7 @@
   "description": "A Prep–12 Christian school in Cordeaux Heights, Wollongong. Students do well, they're known by name, and they grow up in a Christian community that cares about them.",
   "theme_color": "#0c4b40",
   "header_links": [
-    { "label": "Why ICS", "url": "" },
+    { "label": "Why ICS", "url": "/why.html" },
     { "label": "Our Faith", "url": "" },
     { "label": "Learning", "url": "" },
     { "label": "Life at ICS", "url": "" },
@@ -15,7 +15,7 @@
   "nav": [
     {
       "label": "Why ICS?",
-      "url": "",
+      "url": "/why.html",
       "children": [
         { "label": "Wellbeing and care", "url": "" },
         { "label": "Our people", "url": "" }

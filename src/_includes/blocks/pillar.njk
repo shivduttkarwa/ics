@@ -1,4 +1,4 @@
-<section class="pillar pillar--{{ value.theme | default('white') }}{% if value.spread %} pillar--spread{% endif %} rounded-foot">
+<section class="pillar pillar--{{ value.theme | default('white') }}{% if value.spread %} pillar--spread{% endif %}{% if value.bullets %} pillar--bullets{% endif %}{% if value.bullets and value.bullets | length > 5 %} pillar--compact{% endif %}{% if value.media_height %} pillar--media-{{ value.media_height }}{% endif %} rounded-foot">
   <div class="container">
     <div class="pillar__inner">
       <div class="pillar__copy">
@@ -6,6 +6,16 @@
           <h2 data-anim="split">{{ value.title | safe }}</h2>
           {% if value.lead %}<p class="pillar__lead" data-anim="reveal">{{ value.lead }}</p>{% endif %}
           {% if value.text %}<div class="pillar__body" data-anim="reveal">{{ value.text | safe }}</div>{% endif %}
+          {% if value.bullets %}
+          <ul class="pillar__bullets" data-anim-group="fade-up">
+            {% for bullet in value.bullets %}
+            <li class="pillar__bullet{% if bullet.text %} pillar__bullet--text{% endif %}">
+              <span class="pillar__bullet-icon" aria-hidden="true"><svg class="icon"><use href="#icon-{{ bullet.icon }}"></use></svg></span>
+              <span class="pillar__bullet-copy"><b>{{ bullet.title | safe }}</b>{% if bullet.text %}<span>{{ bullet.text | safe }}</span>{% endif %}</span>
+            </li>
+            {% endfor %}
+          </ul>
+          {% endif %}
         </div>
         <div class="pillar__proof">
           {% if value.stats %}

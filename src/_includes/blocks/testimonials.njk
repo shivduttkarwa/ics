@@ -1,0 +1,25 @@
+<section class="testimonials">
+  <div class="container">
+    <h2 data-anim="split">{{ value.title | safe }}</h2>
+    <div class="testimonials__slider swiper" data-slider data-slider-gap="20">
+      <ul class="testimonials__list swiper-wrapper" data-anim-group="rise">
+        {% for item in value.items %}
+        {% if item.kind == "quote" %}
+        <li class="testimonial testimonial--quote testimonial--{{ item.theme | default('canopy') }} swiper-slide">
+          <blockquote class="testimonial__quote">{{ item.quote }}</blockquote>
+          <p class="testimonial__name">{{ item.name }}</p>
+        </li>
+        {% else %}
+        <li class="testimonial testimonial--video swiper-slide"{% if item.video %} data-hover-video{% endif %}>
+          <div class="testimonial__media">
+            {% set img = item.image %}{% set cls = "testimonial__img" %}{% include "snippets/image.njk" %}
+            {% if item.video %}<video class="testimonial__video" data-src="{{ item.video.src }}" muted loop playsinline preload="none"></video>{% endif %}
+          </div>
+          <a class="btn testimonial__play"{% if item.url %} href="{{ item.url }}"{% endif %}><span class="btn__label">{{ item.label }}</span><svg class="icon" aria-hidden="true"><use href="#icon-play-outline"></use></svg></a>
+        </li>
+        {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>

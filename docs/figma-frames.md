@@ -84,7 +84,7 @@ File `El5cAszLdnHFyIKN6g9uOc` ("Illawarra Christian School Kit"), page "02 - Web
 | Footer | `15541:29630` | 12391 | 1245 |
 
 ## Inner pages top level
-Every inner page opens with the same hero: image band `Frame 544` (1440 × 800), title text at y 577 (Ulises Book 75), Breadcrumbs at y 534, and a "Pinned Section" at y 782.
+Every inner page opens with the same hero: image band `Frame 544` (1440 × 800), title text at y 577 (Ulises Book 75), Breadcrumbs at y 534, and a "Pinned Section" at y 782. On the Why ICS page that "Pinned Section" is a plain statement band (`blocks/pinned.njk`); the three-state "Pinned Section" component (`15694:17682`, "8:15am Morning Devotions") sits off canvas beside every page frame and is a different, day-in-the-life block still to be built. Inner pages have no phone frames.
 - Why ICS: hero `15550:30890`, title `15550:30892`, pinned `15550:30879`, then `15550:30858`, `15550:30838`, `15550:30818`, `15550:30893`, `15550:30902`, `15550:30815` (Where next / CTA / footer).
 - Faith: hero `15694:13430`, title `15694:13432`, pinned `15694:13419` and `15742:14506`, then `15694:13376`, `15694:13356`, `15694:13433`, `15694:13443`, `15699:24334`.
 - Enrol: hero `15672:10666`, title `15672:10668`, pinned `15672:10655`, then `15672:10632`, `15672:10612`, `15694:20104`, `15699:23440`, `15672:10589`.

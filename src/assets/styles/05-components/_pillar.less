@@ -1,10 +1,14 @@
 @pillar-copy-width: 494 * @px;
 @pillar-media-width: 550 * @px;
 @pillar-media-height: 750 * @px;
+// Figma draws the photo 750 tall on the home page and 640 or 648 on the Why ICS page
+@pillar-media-heights: 640, 648, 750;
 @pillar-row-width: 1180 * @px;
 @pillar-stat-width: 151 * @px;
 // Figma sets each proof point's width by hand so its label wraps as drawn
 @pillar-stat-widths: 112, 122, 140, 150, 151, 156, 178;
+@pillar-bullet-box: 46 * @px;
+@pillar-bullet-icon: 30 * @px;
 
 .pillar {
   --pillar-bg: var(--color-white);
@@ -85,6 +89,55 @@
     .type-body-3-light();
     p { margin-bottom: 1.4em; }
     .last-mb-0();
+  }
+
+  // the Why ICS pillars: a bullet list in place of the copy, 30 under the title and 40 above the button;
+  // seven bullets sit 10 apart under a title 40 away, four sit 20 apart
+  &--bullets &__copy { gap: 40 * @px; }
+  &--compact &__text { gap: 40 * @px; }
+
+  &__bullets {
+    .reset-list();
+    display: flex;
+    flex-direction: column;
+    gap: 20 * @px;
+  }
+  &--compact &__bullets { gap: 10 * @px; }
+
+  &__bullet {
+    display: flex;
+    align-items: center;
+    gap: 22 * @px;
+    &--text { align-items: flex-start; }
+  }
+
+  &__bullet-icon {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: @pillar-bullet-box;
+    height: @pillar-bullet-box;
+    border-radius: var(--radius-sm);
+    background: var(--color-moss-20);
+    color: var(--color-moss);
+    .icon {
+      width: @pillar-bullet-icon;
+      height: @pillar-bullet-icon;
+    }
+  }
+
+  &__bullet-copy {
+    .type-body-3-light();
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    color: var(--pillar-title);
+    b { .type-bullet-title(); }
+    // a bold line's forced break is set for the 494 column; a break in the light text separates two lines of copy
+    b br {
+      display: none;
+      @media (min-width: @bp-lg) { display: inline; }
+    }
   }
 
   &__proof {
@@ -174,6 +227,11 @@
       aspect-ratio: auto;
     }
   }
+  each(@pillar-media-heights, {
+    &--media-@{value} .pillar__media {
+      @media (min-width: @bp-lg) { height: @value * @px; }
+    }
+  });
 
   &__frame {
     position: absolute;
@@ -277,4 +335,13 @@
 
 .rounded-foot + .pillar--white {
   @media (min-width: @bp-lg) { padding-top: 95 * @px; }
+}
+
+// the Why ICS page: the band tucks only 17 under the hero, and its white pillar 36 under the beach one
+.pinned + .pillar {
+  @media (min-width: @bp-lg) { padding-top: 103 * @px; }
+}
+
+.rounded-foot + .pillar--bullets.pillar--white {
+  @media (min-width: @bp-lg) { padding-top: 84 * @px; }
 }

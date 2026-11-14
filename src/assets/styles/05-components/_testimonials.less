@@ -1,0 +1,118 @@
+@testimonial-width: 400 * @px;
+@testimonial-width-first: 360 * @px;
+@testimonial-height-sm: 600 * @px;
+@testimonial-height: 720 * @px;
+// a narrow phone keeps this much of the next tile in view
+@testimonial-peek: 60 * @px;
+@testimonial-pad: 20 * @px;
+@testimonial-pad-quote: 40 * @px;
+@testimonial-play: 56 * @px;
+
+.testimonials {
+  --focus-ring: var(--color-moss);
+  padding: 75 * @px 0;
+  overflow-x: clip;
+  background: var(--color-white);
+  @media (min-width: @bp-lg) { padding: 49 * @px 0 62 * @px; }
+
+  h2 {
+    .type-section-title();
+    margin: 0 0 50 * @px;
+    @media (min-width: @bp-lg) { margin-bottom: 49 * @px; }
+  }
+
+  &__slider { overflow: visible; }
+
+  &__list { .reset-list(); }
+}
+
+.testimonial {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  width: ~"min(@{testimonial-width}, calc(100vw - @{testimonial-peek}))";
+  height: @testimonial-height-sm;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  @media (min-width: @bp-lg) { height: @testimonial-height; }
+
+  &:first-child { width: ~"min(@{testimonial-width-first}, calc(100vw - @{testimonial-peek}))"; }
+
+  &--video {
+    justify-content: flex-end;
+    padding: @testimonial-pad;
+    background: var(--color-canopy-deep);
+    color: var(--color-white);
+  }
+
+  &__media {
+    .cover();
+    z-index: -1;
+    &::after {
+      content: "";
+      .cover();
+      background: var(--gradient-tile-top);
+    }
+  }
+
+  &__img {
+    .img-cover();
+    transition: scale 0.9s var(--ease-out);
+  }
+
+  &__video {
+    .cover();
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity var(--duration-slow) ease;
+  }
+
+  &.is-playing &__video { opacity: 1; }
+
+  @media @fine {
+    &--video:hover &__img { scale: 1.04; }
+  }
+
+  &__play {
+    .btn-variant(var(--color-white-20); var(--color-white); var(--color-white); var(--color-canopy));
+    --bs-btn-hover-bg: var(--color-white-30);
+    --bs-btn-padding-x: 15 * @px;
+    justify-content: center;
+    width: 100%;
+    height: @testimonial-play;
+    -webkit-backdrop-filter: blur(var(--blur-glass));
+    backdrop-filter: blur(var(--blur-glass));
+    .icon {
+      width: 14 * @px;
+      height: 16 * @px;
+    }
+  }
+
+  &--quote {
+    justify-content: space-between;
+    gap: 20 * @px;
+    padding: @testimonial-pad-quote;
+  }
+
+  &--canopy {
+    background: var(--color-canopy);
+    color: var(--color-moss);
+  }
+
+  &--beach {
+    background: var(--color-beach);
+    color: var(--color-canopy);
+  }
+
+  &__quote {
+    .type-testimonial-quote();
+    margin: 0;
+  }
+
+  &__name {
+    .type-label();
+    margin: 0;
+    text-box: trim-both cap alphabetic;
+  }
+}

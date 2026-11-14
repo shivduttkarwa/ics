@@ -1,0 +1,12 @@
+<section class="keep-exploring rounded-foot">
+  <div class="container keep-exploring__inner">
+    <h2 data-anim="split">{{ value.title | safe }}</h2>
+    <ul class="keep-exploring__list" data-anim-group="fade-up">
+      {% for item in value.links %}
+      <li class="keep-exploring__item">
+        <a class="keep-exploring__link"{% if item.url %} href="{{ item.url }}"{% endif %}><span class="keep-exploring__label">{{ item.label }}</span><svg class="icon" aria-hidden="true"><use href="#icon-arrow-diagonal"></use></svg></a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>

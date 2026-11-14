@@ -1,0 +1,9 @@
+<section class="pinned rounded-foot">
+  <div class="pinned__inner container">
+    <h2 data-anim="split">{{ value.title | safe }}</h2>
+    <div class="pinned__aside">
+      {% if value.text %}<p class="pinned__text" data-anim="reveal">{{ value.text }}</p>{% endif %}
+      {% if value.button and value.button.text %}<div data-anim="reveal">{% set btn = value.button %}{% include "snippets/button.njk" %}</div>{% endif %}
+    </div>
+  </div>
+</section>

@@ -47,6 +47,9 @@ settings:
 pages:
   home:
     fields: {}   # body: hero, announcement, usps, pillar × 3, journey, graduates, slides, faqs, news, social, cta_band, cta_cards
+  why:
+    figma: "15550:30814 (Why ICS Landing page); no phone frame"
+    fields: {}   # body: page_hero, pinned, pillar × 3 (bullets), testimonials, faqs (theme white), where_next, keep_exploring, cta_cards
 
 blocks:
   hero:
@@ -64,6 +67,24 @@ blocks:
         image: ImageChooserBlock   # 300 × 180 slot
         label: CharBlock   # "Watch full video"
         url: URLBlock(required=False)   # the full video
+
+  page_hero:
+    figma: "15550:30890 (Frame 544, the 1440 × 800 band), 15550:30892 (title), 15513:14084 (Breadcrumbs, hidden on the Why ICS frame); every inner page opens with it; no phone frame"
+    template: blocks/page_hero.njk
+    fields:
+      image: ImageChooserBlock(required)   # cover, 800 tall from lg, under black 25%; decorative (alt empty)
+      image_mobile: ImageChooserBlock(required=False)   # below lg; no phone frame exists, the Why page uses the photo's right-hand two thirds
+      video: DocumentChooserBlock(required=False)   # from lg, muted loop over the image while on screen; { src, poster }
+      title: RichTextBlock(features=["italic"])   # Ulises Book 75; the designer's <br> holds the 1121 column from lg
+      breadcrumbs: ListBlock(StructBlock(label, url), required=False)   # the trail 33 above the title; the last entry is the page (900 weight, no link). Empty on the Why page, as Figma hides it; in Wagtail from the page's ancestors
+
+  pinned:
+    figma: "15550:30879 (\"Pinned Section\": the canopy-deep band under the Why ICS hero; nothing pins)"
+    template: blocks/pinned.njk
+    fields:
+      title: RichTextBlock(features=["italic"])   # Ulises Book 35, 511 wide
+      text: TextBlock   # Museo Sans 300 20, 620 wide, 580 in from the container's left edge
+      button: StructBlock(text, url, style, required=False)   # 25 under the text; Figma draws one hidden
 
   announcement:
     figma: "15417:12133 (desktop content, in the 15417:12115 group), 15513:26719 (phone)"
@@ -95,7 +116,12 @@ blocks:
       title: RichTextBlock(features=["italic"])
       lead: TextBlock(required=False)   # the 20px opening paragraph
       text: RichTextBlock(required=False, features=["bold", "italic", "link"])   # the 16px copy; paragraphs a blank line apart
-      stats: ListBlock(StructBlock(...), max_num=3)   # the "Proof Points"
+      bullets: ListBlock(StructBlock, required=False)   # the "Bullet Point with Icon" list (15431:14590), in place of lead/text: the Why ICS pillars (15550:30858, 15550:30838, 15550:30818)
+        icon: ChoiceBlock   # a sprite id: medal, star, trophy, chart-line, web-awesome, chart-pie, file-certificate, cross, hands-praying, book-bible, face-thinking, hand-holding-heart, head-side-heart, message-heart, family
+        title: RichTextBlock(features=[])   # the bold line
+        text: RichTextBlock(features=[], required=False)   # the light line(s) under it
+      media_height: ChoiceBlock(choices=[640, 648, 750], required=False)   # the photo's height in design px from lg; Figma draws 750 on the home page, 640 and 648 on the Why page; empty = 750
+      stats: ListBlock(StructBlock(...), max_num=3, required=False)   # the "Proof Points"; left out of a bullet pillar
         value: CharBlock   # the figure as written: "99.90", "100%", "150+", "~900"; the number in it counts up from 0 when it scrolls in
         label: RichTextBlock(features=["bold"])   # one short line of copy, rendered without the <p>; bold is Museo Sans 500
         width: ChoiceBlock(choices=[112, 122, 140, 150, 151, 156, 178], required=False)   # the column in design px, which decides how the label wraps; Figma sets each by hand; empty = 151, the kit component
@@ -151,6 +177,7 @@ blocks:
     figma: "15417:12595 (desktop), 15536:27925 (phone); the rows are the Accordion Item component (15356:21348)"
     template: blocks/faqs.njk
     fields:
+      theme: ChoiceBlock(choices=["beach", "white"], default="beach")   # beach light, 800 tall (the home page); white, 120 above and below with the list on the container's right edge (the inner pages, 15550:30902)
       title: RichTextBlock(features=["italic"])
       items: ListBlock(StructBlock)   # the first opens at load from lg; below lg every row starts shut, as the phone frame
         question: CharBlock
@@ -180,6 +207,40 @@ blocks:
         url: URLBlock(required=False)   # the post, opens in a new tab
       text: RichTextBlock(features=["italic"])   # the follow band; its italic shows below lg only, as Figma's phone frame
       # the three round buttons are site.socials (network = sprite icon id)
+
+  testimonials:
+    figma: "15550:30893 (Why ICS: 'What our community say' + five Video Testimonial tiles), 15431:14902 (Video Testimonial: video and quote kinds); no phone frame"
+    template: blocks/testimonials.njk
+    fields:
+      title: RichTextBlock(features=["italic"])
+      items: StreamBlock   # the row runs off the right of the screen and drags; the first tile is 360 wide, the rest 400
+        video: StructBlock
+          image: ImageChooserBlock(required)   # 400 × 720 slot (600 tall below lg), cover; the video's still
+          video: DocumentChooserBlock(required=False)   # { src }: from lg it plays muted over the image while the tile is hovered
+          label: CharBlock   # "Hear from Ali", set in caps on the frosted button
+          url: URLBlock(required=False)   # the full video
+        quote: StructBlock
+          theme: ChoiceBlock(choices=["canopy", "beach"], default="canopy")   # canopy ground with moss text, or beach with canopy text
+          quote: TextBlock   # with its own quote marks
+          name: CharBlock   # "Maria, Year 7 Parent", set in caps
+      # static data: each item carries kind "video" | "quote"; in Django test item.block_type
+
+  where_next:
+    figma: "15699:22938 (Why ICS instance), 15699:22869 (Where Next?), 15430:14370 (Where Next Card); no phone frame"
+    template: blocks/where_next.njk
+    fields:
+      title: RichTextBlock(features=["italic"])   # "Where next?"
+      cards: ListBlock(StructBlock, max_num=2)   # two side by side from md; stacked below
+        image: ImageChooserBlock(required)   # 628 × 481 slot from lg (4:3 below), cover
+        label: CharBlock   # the caption, "Our Faith"
+        url: URLBlock   # the whole card is the link
+
+  keep_exploring:
+    figma: "15699:23023 (Why ICS instance), 15699:23000 (Keep Exploring), 15430:14480 (Where Next Text Row); no phone frame"
+    template: blocks/keep_exploring.njk
+    fields:
+      title: RichTextBlock(features=["italic"])   # "Keep exploring"
+      links: ListBlock(StructBlock(label, url))   # one row each, with a rule and a diagonal arrow; ends in a rounded foot over the CTA cards
 
   cta_band:
     figma: "15513:12252 (Full Width CTA, Employment), 15536:28134 (phone)"

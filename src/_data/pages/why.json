@@ -1,0 +1,376 @@
+{
+  "seo": {
+    "title": "Why ICS | Illawarra Christian School",
+    "description": "Why families choose Illawarra Christian School: strong outcomes without the premium price, real faith, and a community that knows your child."
+  },
+  "body": [
+    {
+      "type": "page_hero",
+      "value": {
+        "image": {
+          "src": "/assets/images/why/why-hero-1920.webp",
+          "srcset": "/assets/images/why/why-hero-1280.webp 1280w, /assets/images/why/why-hero-1920.webp 1920w",
+          "alt": "",
+          "width": 1920,
+          "height": 1080
+        },
+        "image_mobile": {
+          "src": "/assets/images/why/why-hero-mobile.webp",
+          "alt": "",
+          "width": 900,
+          "height": 1013
+        },
+        "video": null,
+        "title": "Why families choose <br><em>Illawarra Christian School</em>",
+        "breadcrumbs": []
+      }
+    },
+    {
+      "type": "pinned",
+      "value": {
+        "title": "Not elite for the sake of it. <em>Excellent because it matters.</em>",
+        "text": "We haven't built ICS on grand buildings or prestige. Our money and energy go into good teaching and real relationships with students. That's how our results stay strong while our fees stay modest.",
+        "button": null
+      }
+    },
+    {
+      "type": "pillar",
+      "value": {
+        "theme": "canopy",
+        "spread": false,
+        "media_height": 750,
+        "title": "Strong outcomes <em>without the premium price.</em>",
+        "bullets": [
+          {
+            "icon": "medal",
+            "title": "Top ATAR of 99.90",
+            "text": ""
+          },
+          {
+            "icon": "star",
+            "title": "13 students achieved an ATAR above 90",
+            "text": "20.6% of the Year 12 cohort"
+          },
+          {
+            "icon": "trophy",
+            "title": "19 Distinguished Achievers",
+            "text": "students achieving at least one Band 6 result"
+          },
+          {
+            "icon": "chart-line",
+            "title": "40 Band 6 results",
+            "text": ""
+          },
+          {
+            "icon": "web-awesome",
+            "title": "2 NSW state rankings",
+            "text": "7th in NSW – Mathematics Extension 1<br>10th in NSW – Physics"
+          },
+          {
+            "icon": "chart-pie",
+            "title": "70% of HSC subjects achieved results above <br>the NSW state average",
+            "text": ""
+          },
+          {
+            "icon": "file-certificate",
+            "title": "40% of all HSC results were Band 5 or Band 6",
+            "text": ""
+          }
+        ],
+        "buttons": [
+          {
+            "text": "View all Results and pathways",
+            "url": "",
+            "style": "moss"
+          },
+          {
+            "text": "Our Fees",
+            "url": "",
+            "style": "outline-moss"
+          }
+        ],
+        "image": {
+          "src": "/assets/images/home/pillar-outcomes.webp",
+          "alt": "A teacher and a student laughing together at a laptop",
+          "width": 1439,
+          "height": 903
+        },
+        "video": null,
+        "quote": null
+      }
+    },
+    {
+      "type": "pillar",
+      "value": {
+        "theme": "beach",
+        "spread": false,
+        "media_height": 640,
+        "title": "<em>Real faith</em>,<br> not just values.",
+        "bullets": [
+          {
+            "icon": "cross",
+            "title": "Every staff member is a follower of Jesus.",
+            "text": ""
+          },
+          {
+            "icon": "hands-praying",
+            "title": "Each day starts with devotions and prayer.",
+            "text": "Primary students do this with their class and secondary students meet in small pastoral care groups."
+          },
+          {
+            "icon": "book-bible",
+            "title": "Biblical Studies runs from Prep to Year 12",
+            "text": "Students work through the whole story of the Bible at a level that suits each age."
+          },
+          {
+            "icon": "face-thinking",
+            "title": "We don't try to control what your child believes.",
+            "text": "We teach them to read the Bible for themselves and think it through."
+          }
+        ],
+        "buttons": [
+          {
+            "text": "Faith at ICS",
+            "url": "",
+            "style": "moss"
+          }
+        ],
+        "image": {
+          "src": "/assets/images/why/pillar-faith-ics.webp",
+          "alt": "A teacher explaining a point to his class",
+          "width": 550,
+          "height": 640
+        },
+        "video": null,
+        "quote": null
+      }
+    },
+    {
+      "type": "pillar",
+      "value": {
+        "theme": "white",
+        "spread": false,
+        "media_height": 648,
+        "title": "A community that <em>knows <br>your child.</em>",
+        "bullets": [
+          {
+            "icon": "hand-holding-heart",
+            "title": "Eash students joins a small pastoral care group",
+            "text": "In secondary school your child joins a small pastoral care group, and the same teacher usually stays with that group from Year 7 to Year 12."
+          },
+          {
+            "icon": "head-side-heart",
+            "title": "Qualified health professionals",
+            "text": "Our wellbeing team includes a school psychologist, two counsellors and an occupational therapist."
+          },
+          {
+            "icon": "message-heart",
+            "title": "Year 12 students meet with Staff Mentors",
+            "text": "Every Year 12 student meets one-on-one with a staff mentor each week."
+          },
+          {
+            "icon": "family",
+            "title": "Founded and Governed by local Christian parents",
+            "text": "ICS was started by local Christian parents in 1982, and parents still govern the school today."
+          }
+        ],
+        "buttons": [
+          {
+            "text": "Wellbeing and care",
+            "url": "",
+            "style": "moss"
+          }
+        ],
+        "image": {
+          "src": "/assets/images/home/pillar-community.webp",
+          "alt": "Parents chatting together at a school event",
+          "width": 1320,
+          "height": 1649
+        },
+        "video": null,
+        "quote": null
+      }
+    },
+    {
+      "type": "testimonials",
+      "value": {
+        "title": "What our community <em>say</em>",
+        "items": [
+          {
+            "kind": "video",
+            "image": {
+              "src": "/assets/images/why/testimonial-student.webp",
+              "alt": "A Year 10 student in uniform speaking to the camera",
+              "width": 534,
+              "height": 1068
+            },
+            "video": null,
+            "label": "Hear from Year 10 student",
+            "url": ""
+          },
+          {
+            "kind": "quote",
+            "theme": "canopy",
+            "quote": "“What struck me wasn't a mission statement, it was watching a teacher kneel down and actually listen to my daughter. Faith here isn't taught, it's lived every single day.”",
+            "name": "Maria, Year 7 Parent"
+          },
+          {
+            "kind": "video",
+            "image": {
+              "src": "/assets/images/why/testimonial-ali.webp",
+              "alt": "Ali, a parent, laughing in a red jumper",
+              "width": 593,
+              "height": 1068
+            },
+            "video": null,
+            "label": "Hear from Ali",
+            "url": ""
+          },
+          {
+            "kind": "quote",
+            "theme": "beach",
+            "quote": "“His teachers know his strengths, his struggles, even his sense of humour. After years of being one of many, that has made all the difference.”",
+            "name": "Maria, Year 7 Parent"
+          },
+          {
+            "kind": "video",
+            "image": {
+              "src": "/assets/images/why/testimonial-dave.webp",
+              "alt": "Dave with his family at a cafe table",
+              "width": 682,
+              "height": 1365
+            },
+            "video": null,
+            "label": "Hear from dave",
+            "url": ""
+          }
+        ]
+      }
+    },
+    {
+      "type": "faqs",
+      "value": {
+        "theme": "white",
+        "title": "You might be <em>wondering...</em>",
+        "items": [
+          {
+            "question": "How is ICS different from other independent schools in the Illawarra?",
+            "answer": "<p>ICS has strong HSC results and a genuinely Christian culture, and its fees are well below most independent schools in the region. Every staff member is a Christian and every student is known by name.</p>"
+          },
+          {
+            "question": "Is ICS a good school academically?",
+            "answer": "<p>[TBC: answer to come from the school.]</p>"
+          },
+          {
+            "question": "Is ICS a private school?",
+            "answer": "<p>[TBC: answer to come from the school.]</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "where_next",
+      "value": {
+        "title": "Where <em>next</em>?",
+        "cards": [
+          {
+            "image": {
+              "src": "/assets/images/why/next-faith.webp",
+              "alt": "Secondary students in a discussion circle with their teacher",
+              "width": 1256,
+              "height": 962
+            },
+            "label": "Our Faith",
+            "url": ""
+          },
+          {
+            "image": {
+              "src": "/assets/images/why/next-learning.webp",
+              "alt": "A teacher working with students at their laptops",
+              "width": 1179,
+              "height": 903
+            },
+            "label": "Learning",
+            "url": ""
+          }
+        ]
+      }
+    },
+    {
+      "type": "keep_exploring",
+      "value": {
+        "title": "Keep <em>exploring</em>",
+        "links": [
+          {
+            "label": "Our Faith",
+            "url": ""
+          },
+          {
+            "label": "Learning",
+            "url": ""
+          },
+          {
+            "label": "Life at ICS",
+            "url": ""
+          }
+        ]
+      }
+    },
+    {
+      "type": "cta_cards",
+      "value": {
+        "title": "What comes <em>next?</em>",
+        "cards": [
+          {
+            "theme": "white",
+            "image": {
+              "src": "/assets/images/home/cta-community.webp",
+              "alt": "Primary students smiling together in the playground",
+              "width": 826,
+              "height": 656
+            },
+            "title": "Meet our <em>community</em>.",
+            "text": "Walk the campus, meet our teachers and see what a school day at ICS is really like.",
+            "button": {
+              "text": "Book a tour",
+              "url": "",
+              "style": "canopy"
+            }
+          },
+          {
+            "theme": "beach",
+            "image": {
+              "src": "/assets/images/home/cta-enquire.webp",
+              "alt": "A student playing the violin on stage",
+              "width": 755,
+              "height": 600
+            },
+            "title": "Enquire and <br><em>have a chat</em>.",
+            "text": "Ask us anything about fees, year levels or what to expect. Our enrolments team is happy to help.",
+            "button": {
+              "text": "Make an enquiry",
+              "url": "",
+              "style": "canopy"
+            }
+          },
+          {
+            "theme": "moss",
+            "image": {
+              "src": "/assets/images/home/cta-apply.webp",
+              "alt": "Secondary students working together at their desks",
+              "width": 826,
+              "height": 656
+            },
+            "title": "Start <em>your</em> <br>ICS journey",
+            "text": "Complete your application online and secure your child’s place. Early applications keep more options open.",
+            "button": {
+              "text": "Apply to enrol",
+              "url": "",
+              "style": "canopy"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

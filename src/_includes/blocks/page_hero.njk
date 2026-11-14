@@ -1,0 +1,25 @@
+<section class="page-hero rounded-foot" data-anim-parallax-trigger>
+  <div class="page-hero__media" aria-hidden="true" data-anim="reveal" data-anim-type="zoom-out" data-anim-tier="hero" data-anim-order="0">
+    <div class="page-hero__layer" data-anim="parallax" data-anim-start="top top" data-anim-disable-mobile>
+      <picture class="page-hero__picture">
+        {% if value.image_mobile %}<source media="(max-width: 991.98px)" srcset="{{ value.image_mobile.src }}">{% endif %}
+        <img class="page-hero__img" src="{{ value.image.src }}"{% if value.image.srcset %} srcset="{{ value.image.srcset }}" sizes="100vw"{% endif %} alt="" width="{{ value.image.width }}" height="{{ value.image.height }}" fetchpriority="high" decoding="async">
+      </picture>
+      {% if value.video %}<video class="page-hero__video" src="{{ value.video.src }}" poster="{{ value.video.poster | default(value.image.src) }}" muted loop playsinline preload="none" data-ambient></video>{% endif %}
+    </div>
+    <div class="page-hero__shade"></div>
+  </div>
+
+  <div class="page-hero__body container">
+    {% if value.breadcrumbs %}
+    <nav class="page-hero__crumbs" aria-label="Breadcrumb" data-anim="reveal" data-anim-type="fade" data-anim-tier="hero" data-anim-order="3">
+      <ol>
+        {% for crumb in value.breadcrumbs %}
+        <li>{% if crumb.url and not loop.last %}<a href="{{ crumb.url }}">{{ crumb.label }}</a>{% else %}<span{% if loop.last %} aria-current="page"{% endif %}>{{ crumb.label }}</span>{% endif %}{% if not loop.last %}<svg class="icon" aria-hidden="true"><use href="#icon-angle-right"></use></svg>{% endif %}</li>
+        {% endfor %}
+      </ol>
+    </nav>
+    {% endif %}
+    <h1 data-anim="split" data-anim-tier="hero" data-anim-order="2">{{ value.title | safe }}</h1>
+  </div>
+</section>

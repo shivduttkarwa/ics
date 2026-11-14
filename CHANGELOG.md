@@ -1,5 +1,22 @@
 # Changelog
 
+## 2026-11-14 — Why ICS landing page
+- `/why.html` from `15550:30814`, linked from the header's "Why ICS". No phone frame exists: phone layouts follow the home page's patterns and are marked as interpreted in the handoff.
+- Inner-page hero (`blocks/page_hero.njk`, `_page-hero.less`) from `15550:30890`, `15550:30892` and the Breadcrumbs component `15513:14084`: the 800 photo band with the title at its foot, an optional breadcrumb trail, the photo drifting on scroll.
+- Pinned band (`blocks/pinned.njk`, `_pinned.less`) from `15550:30879`: the statement and copy on canopy-deep under the hero.
+- Pillars (`blocks/pillar.njk`, `_pillar.less`): `bullets` (the Bullet Point with Icon list) and `media_height`, for the three Why ICS pillars `15550:30858`, `15550:30838`, `15550:30818`; the home pillars render as before.
+- What our community say (`blocks/testimonials.njk`, `_testimonials.less`) from `15550:30893` and `15431:14902`: a draggable row of video tiles with frosted play buttons and quote tiles on canopy or beach.
+- Where next? (`blocks/where_next.njk`, `_where-next.less`) from `15699:22938`, `15699:22869`, `15430:14370`: two photo cards with frosted captions.
+- Keep exploring (`blocks/keep_exploring.njk`, `_keep-exploring.less`) from `15699:23023`, `15699:23000`, `15430:14480`: a list of link rows beside the title, ending in a rounded foot.
+- FAQs: `theme: "white"` (`faqs--white`) for the inner pages' white, 120-padded version.
+- Header links carry the 44px hit area on touch.
+- Sprite: fifteen Font Awesome 7 Light bullet glyphs (`icon-medal` … `icon-family`) and `icon-angle-right`. Tokens `--color-black-25`, `--color-moss-20`. Type mixins `type-breadcrumb`, `type-bullet-title`, `type-testimonial-quote`, `type-card-caption`, `type-link-row`.
+- Images: `why/why-hero-1920.webp`, `why-hero-1280.webp`, `why-hero-mobile.webp`, `why/pillar-faith-ics.webp`, `why/testimonial-*.webp` (3), `why/next-faith.webp`, `next-learning.webp`.
+- Checked at 1440 against Figma (every title, list, button and photo within 1px; section heights as drawn), 430, 320, 375, 768, 1024, 1920 for breakage, motion on with no console errors, `mobile-audit` clean at 320–1024.
+
+## 2026-11-14 — Text shiver
+- Every move ends once under half a pixel is left (`landing()` / `settled()` in `motion.js`), so no text or hairline sits soft and shivering on a resampled layer through an ease's tail; frosted elements fade in place (`glassy()`), as their blur jitters over a still backdrop when they move.
+
 ## 2026-11-14 — Homepage complete, main menu, footer, new motion engine
 - Motion engine rewritten (`anim.js`, `motion.js`, `docs/animation.md`): timed reveals that play once on transform and opacity at sub-pixel precision, titles rising line by line out of masks, photo wipes, counters, a page entrance in `data-anim-order` steps, parallax as CSS scroll-driven animations with a GSAP fallback. The old engine's whole-pixel stepping and scroll-scrubbed reveals, which read as shivering, are gone. Lenis stays for the smooth scroll. New eases `soft`, `silk`, `glide` (`--ease-silk` token).
 - Sliders: `slider.js` (card rows that drag with momentum and ease to rest; `data-slider-mode="snap"`, `data-slider-rewind`), `stage.js` (`data-stage`: the full-width slide show with a wipe, drifting photos, a rising title, count and progress line, autoplay, swipe and keys), `marquee.js` (`data-marquee`: compositor-driven rows with arrows, drag, flick and hover pause), `accordion.js`, `news.js`, `menu.js`, `header.js`, `cards.js`.
