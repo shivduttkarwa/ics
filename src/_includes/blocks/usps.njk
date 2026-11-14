@@ -1,0 +1,37 @@
+<section class="usps">
+  <div class="container">
+    <div class="usps__head">
+      <h2 data-anim="split">{{ value.title | safe }}</h2>
+      {% if value.button and value.button.text %}
+      <div class="usps__cta" data-anim="reveal">
+        {% set btn = value.button %}{% include "snippets/button.njk" %}
+      </div>
+      {% endif %}
+    </div>
+    <div class="usps__slider swiper" data-slider data-slider-gap="20">
+      <ul class="usps__list swiper-wrapper" data-anim-group="rise">
+        {% for card in value.cards %}
+        <li class="usp-card swiper-slide{% if card.button and card.button.icon == 'play' %} usp-card--video{% endif %}"{% if card.video %} data-hover-video{% endif %}>
+          <div class="usp-card__media">
+            <picture>
+              {% if card.image_mobile %}<source media="(max-width: 991.98px)" srcset="{{ card.image_mobile.src }}">{% endif %}
+              {% set img = card.image %}{% set cls = "usp-card__img" %}{% include "snippets/image.njk" %}
+            </picture>
+            {% if card.video %}<video class="usp-card__video" data-src="{{ card.video.src }}" muted loop playsinline preload="none"></video>{% endif %}
+          </div>
+          <h3>{{ card.title }}</h3>
+          {% if card.button and card.button.text %}
+          <div class="usp-card__foot">
+            {% if card.button.icon == "play" %}
+            <a class="btn usp-card__play"{% if card.button.url %} href="{{ card.button.url }}"{% endif %}><span class="btn__label">{{ card.button.text }}</span><svg class="icon usp-card__play-solid" aria-hidden="true"><use href="#icon-play-solid"></use></svg><svg class="icon usp-card__play-outline" aria-hidden="true"><use href="#icon-play-outline"></use></svg></a>
+            {% else %}
+            {% set btn = card.button %}{% include "snippets/button.njk" %}
+            {% endif %}
+          </div>
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>

@@ -3,23 +3,50 @@
 # Types are Wagtail block classes. figma = node id on page 15417:12061 of El5cAszLdnHFyIKN6g9uOc.
 # image = { src, alt, width, height } → ImageChooserBlock. video = { src, poster } → a document or URL block.
 # button = { text, url, style, size, icon } → StructBlock(text: CharBlock, url: URLBlock, style: ChoiceBlock, size: ChoiceBlock(required=False), icon: ChoiceBlock(required=False)).
+#   icon "none" drops the dot (Figma's outline buttons carry none); "arrow" is the plain label-and-arrow button; "play" the USP video card's button.
+# title fields marked RichTextBlock(features=["italic"]) hold italic words as <em> and are rendered without the <p>; a <br> in the static data is the designer's forced line, honoured from lg only.
 
 settings:
   site:
-    figma: "15513:13475 (header), 15742:14409 (menu), 15541:30252 (phone menu)"
+    figma: "15513:13475 (header), 15742:14409 (menu, in 15742:14261), 15541:30252 (phone menu), 15513:11531 (footer), 15541:29630 (phone footer)"
+    templates: "partials/header.njk, partials/menu.njk, partials/footer.njk"
     fields:
       name: CharBlock
       short_name: CharBlock   # "ICS"
       header_links: ListBlock(StructBlock(label, url))   # the five links in the header bar, from lg
       header_button: StructBlock(text, url, style)   # "Book a tour" in the header pill, from lg; rendered without the dot
-      nav: ListBlock(StructBlock(label, url, children: ListBlock(StructBlock(label, url))))   # from the page tree: top-level pages and their live children
-      menu_buttons: ListBlock(StructBlock(text, url, style, size))   # the three small moss buttons at the foot of the menu
+      nav: ListBlock(StructBlock(label, url, current, children: ListBlock(StructBlock(label, url, current))))   # from the page tree: top-level pages and their live children. current is computed, not edited: true on the child that is the page being viewed (moss, aria-current) and on its parent (which then starts open). An item with children is a toggle, not a link: its own url is not used
+      menu_buttons: ListBlock(StructBlock(text, url, style, size), max_num=3)   # the three small moss buttons at the foot of the menu: style "moss", size "small"
       menu_links: ListBlock(StructBlock(label, url))   # Parent Portal, Employment, Contact Us
-      socials: ListBlock(StructBlock(network, label, url))   # network = sprite icon id: facebook, instagram, linkedin; always open in a new tab
+      socials: ListBlock(StructBlock(network, label, url))   # network = sprite icon id: facebook, instagram, linkedin; always open in a new tab. Used by the footer and the social block
+      footer: StructBlock
+        statement: RichTextBlock(features=["italic"])   # "Exceptional Christian Education where <em>every student is known</em>."
+        summary: TextBlock
+        visit: StructBlock
+          title: CharBlock   # "Visit Us"
+          label: CharBlock   # "College Campus"
+          address: ListBlock(CharBlock)   # one entry per line
+          button: StructBlock(text, url, style, size)   # "Directions": style "white", size "small"
+        contact: StructBlock
+          title: CharBlock   # "Contact Us"
+          label: CharBlock   # "School Office"
+          hours: ListBlock(CharBlock)   # one entry per line
+          phone: CharBlock   # as displayed
+          phone_url: CharBlock   # "tel:+61242395200"
+          email: EmailBlock   # linked as mailto:
+          button: StructBlock(text, url, style, size)   # "Get in touch": style "white", size "small"
+        links_title: CharBlock   # "Next Steps"
+        links: ListBlock(StructBlock(label, url))
+        logos: ListBlock(StructBlock(image: ImageChooserBlock, url: URLBlock(required=False)))   # the accreditation strip; alt is the organisation's name; rendered 65 tall
+        copyright: CharBlock   # "© 2026 Illawarra Christian School"
+        operator: CharBlock   # "Operated by Illawarra Christian Education"
+        abn: CharBlock
+        legal_links: ListBlock(StructBlock(label, url))   # "ICS Policies"
+        credit: StructBlock(label, url, required=False)   # "Design", opens in a new tab
 
 pages:
   home:
-    fields: {}
+    fields: {}   # body: hero, announcement, usps, pillar × 3, journey, graduates, slides, faqs, news, social, cta_band, cta_cards
 
 blocks:
   hero:
@@ -29,7 +56,7 @@ blocks:
       image: ImageChooserBlock(required)   # desktop background, and the video's poster; decorative (alt empty)
       image_mobile: ImageChooserBlock(required=False)   # below lg; Figma's phone hero is a different photo, cropped to its right-hand third
       video: DocumentChooserBlock(required=False)   # from lg only, muted loop over the image while on screen; Figma's hero is a video fill
-      title: RichTextBlock(features=["italic"])   # italic words are <em>, rendered without the <p>
+      title: RichTextBlock(features=["italic"])
       text: TextBlock
       button: StructBlock(text, url, style)   # "Welcome to ICS", glass; the dot shows from lg
       actions: ListBlock(StructBlock(text, url, style), max_num=3)   # the phone CTA bar (Tours / Enquire / Apply), below lg only
@@ -46,8 +73,135 @@ blocks:
       text: CharBlock
       button: StructBlock(text, url, style, icon)   # white with a trailing arrow: style "white", icon "arrow"
 
-  placeholder:
-    figma: "—"
-    template: blocks/placeholder.njk
+  usps:
+    figma: "15417:12107 (title + CTA), 15417:12487 (cards row), 15337:7399 (USP Card: normal + hover), 15513:27001 (phone)"
+    template: blocks/usps.njk
     fields:
-      label: CharBlock   # a full-height stand-in for the next section to be built; not for Wagtail
+      title: RichTextBlock(features=["italic"])
+      button: StructBlock(text, url, style)   # "View all the reasons", moss; the dot shows from lg
+      cards: ListBlock(StructBlock)
+        title: CharBlock
+        image: ImageChooserBlock(required)   # 311 × 414 slot, cover; for a video card, the video's still
+        image_mobile: ImageChooserBlock(required=False)   # below lg; only where the phone frame shows another photo (the video card)
+        video: DocumentChooserBlock(required=False)   # { src }: from lg it plays muted over the image while the card is hovered
+        button: StructBlock(text, url, style, icon)   # click-through card: "Discover more", style "white", shown on hover. icon "play" makes the video card: "Play Video", always shown, url = the full video
+
+  pillar:
+    figma: "15417:12529 (Pillar #01, canopy), 15417:12495 (Pillar #02, beach light), 15417:12078 (Pillar #03, white); phone 15513:27044, 15513:27097, 15513:27142; Stat Homepage 15339:17886"
+    template: blocks/pillar.njk
+    fields:
+      theme: ChoiceBlock(choices=["canopy", "beach", "white"], default="white")   # the ground and its ink; every pillar ends in a rounded foot
+      spread: BooleanBlock(required=False)   # from lg the copy starts at the photo's top and the proof points sit at its foot (Pillar #01, the long one); off, the column is centred on the photo
+      title: RichTextBlock(features=["italic"])
+      lead: TextBlock(required=False)   # the 20px opening paragraph
+      text: RichTextBlock(required=False, features=["bold", "italic", "link"])   # the 16px copy; paragraphs a blank line apart
+      stats: ListBlock(StructBlock(...), max_num=3)   # the "Proof Points"
+        value: CharBlock   # the figure as written: "99.90", "100%", "150+", "~900"; the number in it counts up from 0 when it scrolls in
+        label: RichTextBlock(features=["bold"])   # one short line of copy, rendered without the <p>; bold is Museo Sans 500
+        width: ChoiceBlock(choices=[112, 122, 140, 150, 151, 156, 178], required=False)   # the column in design px, which decides how the label wraps; Figma sets each by hand; empty = 151, the kit component
+      buttons: ListBlock(StructBlock(text, url, style, icon), max_num=2)   # the outline button carries icon "none" ("Our fees"); below lg they stack full width with no dots
+      image: ImageChooserBlock(required)   # the 550 × 750 photo (390 × 520 below lg), cropped around its centre; give it a focal point
+      image_mobile: ImageChooserBlock(required=False)   # below lg, only where the phone frame draws another photo (Pillar #02)
+      video: DocumentChooserBlock(required=False)   # muted loop over the image while on screen (Figma's Pillar #02 is a video fill); { src, poster }
+      quote: StructBlock(required=False)   # the frosted card at the photo's foot
+        text: TextBlock   # with its own quote marks
+        name: CharBlock
+        role: CharBlock(required=False)
+        avatar: ImageChooserBlock(required=False)   # 40 round
+
+  journey:
+    figma: "15699:23363 (desktop), 15337:7691 (Stages Card: normal + hover), 15417:13672 (all cards), 15513:27184 (phone)"
+    template: blocks/journey.njk
+    fields:
+      title: RichTextBlock(features=["italic"])
+      stages: ListBlock(StructBlock)
+        tag: CharBlock(required=False)   # "Age 4", set in caps in a frosted pill
+        title: CharBlock   # "Prep"
+        image: ImageChooserBlock(required)   # 400 × 720 slot (600 tall below lg), cover
+        text: TextBlock(required=False)   # the line shown on hover, or on a tap where there is no hover
+        button: StructBlock(text, url, style)   # "Discover Primary", style "white"; shown with the text
+      buttons: ListBlock(StructBlock(text, url, style, icon), max_num=2)   # "Enrolment Process" moss, "Book a Tour" outline-moss with icon "none"
+
+  graduates:
+    figma: "15699:23323 (desktop), 15513:27312 (phone)"
+    template: blocks/graduates.njk
+    fields:
+      title: RichTextBlock(features=["italic"])
+      text: TextBlock
+      button: StructBlock(text, url, style)   # "Where ICS graduates go", moss with the dot at every size
+      rows: ListBlock(StructBlock(logos: ListBlock(ImageChooserBlock)))   # two rows in Figma; each runs right to left without end, every second row starting 100 in and a touch slower
+        # a logo's alt is the organisation's name; its width is its size in design px (Figma sizes each logo by eye), the file about twice that
+
+  slides:
+    figma: "15417:13418 (seven Full Width Slides), 15513:13207 (every slide's content), 15377:6773 (Full Width Slide: desktop + phone), 15536:27351 (phone)"
+    template: blocks/slides.njk
+    fields:
+      label: CharBlock   # the carousel's accessible name, "Co-curricular life at ICS"
+      autoplay: IntegerBlock(default=4500)   # ms on each slide, the designer's 3–5 s; 0 turns autoplay off and the line under the count shows the position instead
+      slides: ListBlock(StructBlock)
+        image: ImageChooserBlock(required)   # full width, 810 tall from lg, cover; the video's still where there is one
+        video: DocumentChooserBlock(required=False)   # from lg, muted loop over the image while on screen; { src, poster }
+        title: RichTextBlock(features=["italic"])
+        stat: StructBlock(required=False)   # in the frosted card
+          figure: CharBlock   # "XX%", "2nd"
+          label: CharBlock
+        button: StructBlock(text, url, style)   # moss or white; from lg the arrows take whichever of the two the active slide's button leaves free. Below lg every button is white
+
+  faqs:
+    figma: "15417:12595 (desktop), 15536:27925 (phone); the rows are the Accordion Item component (15356:21348)"
+    template: blocks/faqs.njk
+    fields:
+      title: RichTextBlock(features=["italic"])
+      items: ListBlock(StructBlock)   # the first opens at load from lg; below lg every row starts shut, as the phone frame
+        question: CharBlock
+        answer: RichTextBlock
+        button: StructBlock(text, url, style, required=False)   # under the answer; moss in Figma
+
+  news:
+    figma: "15417:12608 (desktop), 15536:28042 (phone); the rows are the News Home List component (15366:5881)"
+    template: blocks/news.njk
+    fields:
+      title: RichTextBlock(features=["italic"])
+      button: StructBlock(text, url, style)   # "View all news"; Figma draws it beach from lg and moss below, set in _news.less whatever style says
+      items: ListBlock(StructBlock, max_num=4)   # four drawn; in Wagtail most likely the four latest news pages
+        category: CharBlock   # set in caps
+        title: CharBlock
+        url: URLBlock
+        image: ImageChooserBlock   # the large photo: 840 × 545 from lg, 390 × 253 below
+        featured: BooleanBlock(required=False)   # the row lit at rest, with its photo showing; none set → the first row
+
+  social:
+    figma: "15417:12620 (desktop), 15536:28088 (phone); the tiles are the Insta Tile component (15370:6173)"
+    template: blocks/social.njk
+    fields:
+      title: RichTextBlock(features=["italic"])
+      posts: ListBlock(StructBlock)   # the Instagram reel, six drawn; a feed can fill the same shape
+        image: ImageChooserBlock   # 352 × 469 tile
+        url: URLBlock(required=False)   # the post, opens in a new tab
+      text: RichTextBlock(features=["italic"])   # the follow band; its italic shows below lg only, as Figma's phone frame
+      # the three round buttons are site.socials (network = sprite icon id)
+
+  cta_band:
+    figma: "15513:12252 (Full Width CTA, Employment), 15536:28134 (phone)"
+    template: blocks/cta_band.njk
+    fields:
+      image: ImageChooserBlock(required)   # full width, 662 tall from lg (720 below); decorative (alt empty)
+      image_mobile: ImageChooserBlock(required=False)   # below md; Figma's phone frame crops the same photo to a portrait
+      video: DocumentChooserBlock(required=False)   # from lg, muted loop over the image while on screen
+      eyebrow: CharBlock(required=False)   # "Employment", caps; from lg only
+      title: RichTextBlock(features=["italic"])
+      text: TextBlock(required=False)
+      button: StructBlock(text, url, style)   # "Work with us", glass
+      button_secondary: StructBlock(text, url, style, required=False)   # "View current roles", outline-white, rendered without the dot
+
+  cta_cards:
+    figma: "15513:12196 (CTA Upper Footer), 15337:15529 (CTA Card), 15541:28895 (phone: 'What comes next?')"
+    template: blocks/cta_cards.njk
+    fields:
+      title: RichTextBlock(features=["italic"])   # "What comes next?": shown below lg only, where the cards collapse to their buttons
+      cards: ListBlock(StructBlock, max_num=3)
+        theme: ChoiceBlock(choices=["white", "beach", "moss"], default="white")   # the card's ground from lg
+        image: ImageChooserBlock(required)   # 328 tall, cover; from lg only
+        title: RichTextBlock(features=["italic"])
+        text: TextBlock(required=False)
+        button: StructBlock(text, url, style)   # canopy on the card from lg; below lg the card is this button alone, moss on the canopy ground

@@ -1,0 +1,52 @@
+<section class="pillar pillar--{{ value.theme | default('white') }}{% if value.spread %} pillar--spread{% endif %} rounded-foot">
+  <div class="container">
+    <div class="pillar__inner">
+      <div class="pillar__copy">
+        <div class="pillar__text">
+          <h2 data-anim="split">{{ value.title | safe }}</h2>
+          {% if value.lead %}<p class="pillar__lead" data-anim="reveal">{{ value.lead }}</p>{% endif %}
+          {% if value.text %}<div class="pillar__body" data-anim="reveal">{{ value.text | safe }}</div>{% endif %}
+        </div>
+        <div class="pillar__proof">
+          {% if value.stats %}
+          <ul class="pillar__stats" data-anim-group="fade-up">
+            {% for stat in value.stats %}
+            <li class="pillar__stat{% if stat.width %} pillar__stat--{{ stat.width }}{% endif %}">
+              <span class="pillar__figure" data-anim="counter">{{ stat.value }}</span>
+              <span class="pillar__rule" data-anim="reveal" data-anim-type="line"></span>
+              <span class="pillar__label">{{ stat.label | safe }}</span>
+            </li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+          {% if value.buttons %}
+          <div class="pillar__buttons" data-anim="reveal">
+            {% for btn in value.buttons %}{% include "snippets/button.njk" %}{% endfor %}
+          </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="pillar__media">
+        <div class="pillar__frame" data-anim="reveal" data-anim-type="wipe-up" data-anim-parallax-trigger>
+          <div class="pillar__layer" data-anim="parallax">
+            <picture class="pillar__picture">
+              {% if value.image_mobile %}<source media="(max-width: 991.98px)" srcset="{{ value.image_mobile.src }}" width="{{ value.image_mobile.width }}" height="{{ value.image_mobile.height }}">{% endif %}
+              {% set img = value.image %}{% set cls = "pillar__img" %}{% include "snippets/image.njk" %}
+            </picture>
+            {% if value.video %}<video class="pillar__video" src="{{ value.video.src }}" poster="{{ value.video.poster | default(value.image.src) }}" muted loop playsinline preload="none" data-ambient></video>{% endif %}
+          </div>
+        </div>
+        {% if value.quote and value.quote.text %}
+        <figure class="pillar__quote" data-anim="reveal" data-anim-delay="0.5">
+          <blockquote>{{ value.quote.text }}</blockquote>
+          <figcaption class="pillar__author">
+            {% set img = value.quote.avatar %}{% set cls = "pillar__avatar" %}{% include "snippets/image.njk" %}
+            <span class="pillar__who"><b>{{ value.quote.name }}</b>{% if value.quote.role %} <span>{{ value.quote.role }}</span>{% endif %}</span>
+          </figcaption>
+        </figure>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>

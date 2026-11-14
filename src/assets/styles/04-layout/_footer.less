@@ -1,0 +1,253 @@
+@footer-crest: 103 * @px;
+@footer-wordmark-width: 142 * @px;
+@footer-wordmark-height: 68 * @px;
+@footer-social: 48 * @px;
+@footer-btn-height: 30 * @px;
+@footer-mark-height: 65 * @px;
+@footer-mark-gap: 74 * @px;
+
+.site-footer {
+  --focus-ring: var(--color-moss);
+  color: var(--color-white);
+
+  &__upper {
+    padding: 50 * @px 0;
+    background: var(--color-canopy);
+    @media (min-width: @bp-lg) { padding: 32 * @px 0 147 * @px; }
+  }
+
+  &__head {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25 * @px;
+    @media (min-width: @bp-lg) {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  &__logo {
+    display: flex;
+    flex: none;
+    align-items: center;
+    gap: 13 * @px;
+  }
+
+  &__crest {
+    width: @footer-crest;
+    height: @footer-crest;
+  }
+
+  &__wordmark {
+    width: @footer-wordmark-width;
+    height: @footer-wordmark-height;
+  }
+
+  &__statement {
+    .type-h3();
+    margin: 0;
+    @media (min-width: @bp-lg) { width: 626 * @px; }
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+    gap: 50 * @px;
+    margin-top: 70 * @px;
+    @media (min-width: @bp-lg) {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+  }
+
+  &__about {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20 * @px;
+  }
+
+  &__summary {
+    .type-footer-summary();
+    margin: 0;
+    @media (min-width: @bp-lg) { width: 423 * @px; }
+  }
+
+  &__socials {
+    .reset-list();
+    display: flex;
+    gap: 12 * @px;
+  }
+
+  // Figma draws these moss on the phone frame and white on the desktop one
+  &__social {
+    display: grid;
+    place-items: center;
+    width: @footer-social;
+    height: @footer-social;
+    border-radius: 50%;
+    background: var(--color-moss);
+    color: var(--color-canopy);
+    transition: background-color var(--duration-base) ease;
+    .icon {
+      width: 24 * @px;
+      height: 24 * @px;
+    }
+    @media (min-width: @bp-lg) { background: var(--color-white); }
+    @media @fine {
+      &[href]:hover { background: var(--color-moss); }
+    }
+  }
+
+  &__columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40 * @px 20 * @px;
+    @media (min-width: @bp-lg) {
+      flex: none;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      gap: 0;
+      width: 623 * @px;
+    }
+  }
+
+  &__column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    &--visit {
+      flex: none;
+      justify-content: space-between;
+      gap: 22 * @px;
+      width: 189 * @px;
+    }
+    &--contact {
+      flex: none;
+      gap: 22 * @px;
+      width: 165 * @px;
+    }
+    &--links {
+      flex: 1 0 151 * @px;
+      align-items: stretch;
+      @media (min-width: @bp-lg) { flex: none; width: 151 * @px; }
+    }
+  }
+
+  h2 {
+    .type-h5();
+    margin: 0 0 10 * @px;
+    color: var(--color-moss);
+    white-space: nowrap;
+  }
+
+  &__label {
+    .type-footer-label();
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  &__text {
+    .type-body-4();
+    margin: 0;
+    a { color: inherit; }
+  }
+
+  &__email {
+    .tap-area();
+    .type-body-4();
+    display: block;
+    width: fit-content;
+    color: var(--color-moss);
+    text-decoration: underline;
+    text-underline-position: from-font;
+    white-space: nowrap;
+  }
+
+  // Figma's small button here is 30 tall: 10 above and below the label's cap height
+  &__column .btn {
+    .tap-area();
+    flex: none;
+    height: @footer-btn-height;
+  }
+
+  &__links {
+    .reset-list();
+    columns: 2;
+    column-gap: 10 * @px;
+    @media (min-width: @bp-lg) { columns: auto; }
+    a {
+      display: block;
+      padding: 2 * @px 0;
+      color: inherit;
+      .type-body-4();
+      white-space: nowrap;
+    }
+  }
+
+  @media (hover: hover) {
+    &__links a[href]:hover,
+    &__text a[href]:hover,
+    &__legal a[href]:hover { color: var(--color-moss); }
+  }
+
+  &__lower {
+    padding: 38 * @px 0 30 * @px;
+    background: var(--color-canopy-deep);
+    @media (min-width: @bp-lg) { padding: 45 * @px 0 41 * @px; }
+  }
+
+  &__logos {
+    overflow: hidden;
+    // standing still under reduced motion, the one row sits in the middle
+    &.is-still .site-footer__track { margin: 0 auto; }
+    &.is-still .site-footer__marks { padding-right: 0; }
+  }
+
+  // each list ends with the gap, so the row loops without a seam
+  &__marks {
+    .reset-list();
+    display: flex;
+    flex: none;
+    align-items: center;
+    gap: @footer-mark-gap;
+    padding-right: @footer-mark-gap;
+    li { flex: none; }
+    a { display: block; }
+  }
+
+  &__mark {
+    display: block;
+    width: auto;
+    max-width: none;
+    height: @footer-mark-height;
+  }
+
+  &__legal {
+    .reset-list();
+    .type-body-4();
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10 * @px;
+    margin-top: 47 * @px;
+    color: var(--color-white-50);
+    white-space: nowrap;
+    li:nth-child(-n + 2) { flex: 0 0 100%; }
+    a {
+      .tap-area();
+      display: block;
+      color: inherit;
+    }
+    @media (min-width: @bp-lg) {
+      gap: 44 * @px;
+      li:nth-child(-n + 2) { flex: none; }
+    }
+  }
+
+  &__credit {
+    @media (min-width: @bp-lg) { margin-left: auto; }
+  }
+}

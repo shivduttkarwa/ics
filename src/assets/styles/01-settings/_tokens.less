@@ -73,6 +73,15 @@
 
   --gradient-hero: linear-gradient(90deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 100%), linear-gradient(var(--color-black-20), var(--color-black-20));
   --gradient-hero-sm: linear-gradient(180deg, rgba(0, 0, 0, 0.65) 0.35%, rgba(0, 0, 0, 0) 18.62%), linear-gradient(180deg, rgba(0, 0, 0, 0) 29.27%, rgba(0, 0, 0, 0.4) 61.1%, rgba(0, 0, 0, 0.75) 100%);
+  // the USP cards: black 75% fading out over the top 38%
+  --gradient-card-top: linear-gradient(180deg, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0) 38.046%);
+  // the journey tiles: black 50% fading out over the top 38%, over black 20%; open, black 50% rising from the foot
+  --gradient-tile-top: linear-gradient(180deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 38.046%), linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+  --gradient-tile-open: linear-gradient(180deg, rgba(0, 0, 0, 0) 31.667%, rgba(0, 0, 0, 0.5) 99.583%);
+  // the pillar photos: black 50% rising over the lower 57%
+  --gradient-photo-foot: linear-gradient(180deg, rgba(0, 0, 0, 0) 43.35%, rgba(0, 0, 0, 0.5) 100%);
+  // the employment band from lg: black 50% fading out to the right
+  --gradient-band: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
 
   --font-serif:"Ulises", Georgia, "Times New Roman", serif;
   --font-sans: "Museo Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -89,6 +98,7 @@
   --focus-ring: var(--color-canopy);
 
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-silk: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-settle: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
   --ease-in-out-soft: cubic-bezier(0.45, 0, 0.55, 1);

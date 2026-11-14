@@ -1,0 +1,28 @@
+<section class="social" data-marquee-scope>
+  <h2 data-anim="split">{{ value.title | safe }}</h2>
+  <div class="social__lane" data-anim="reveal">
+    <div class="social__track" data-marquee="left" data-marquee-pause data-marquee-drag>
+      <ul class="social__list">
+        {% for item in value.posts %}
+        <li class="social__tile">
+          <a class="social__post"{% if item.url %} href="{{ item.url }}" target="_blank" rel="noopener"{% endif %}>
+            {% set img = item.image %}{% set cls = "social__img" %}{% include "snippets/image.njk" %}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="arrows social__arrows" data-anim="reveal">
+    <button class="arrow-btn arrow-btn--prev" type="button" aria-label="Previous posts" data-marquee-prev><svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg></button>
+    <button class="arrow-btn arrow-btn--next" type="button" aria-label="Next posts" data-marquee-next><svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg></button>
+  </div>
+  <div class="social__band" data-anim="reveal">
+    <p class="social__text">{{ value.text | safe }}</p>
+    <ul class="social__links">
+      {% for item in site.socials %}
+      <li><a class="social__link"{% if item.url %} href="{{ item.url }}" target="_blank" rel="noopener"{% endif %} aria-label="{{ item.label }}"><svg class="icon" aria-hidden="true"><use href="#icon-{{ item.network }}"></use></svg></a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>

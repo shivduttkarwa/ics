@@ -1,18 +1,28 @@
 import { Anim } from "./anim.js";
 import { initSliders } from "./slider.js";
-import { initAccordions, initAmbientVideos, initDevicePixel, initDisclosures, initEagerPhotos, initFocusMode, initHoverVideos, initMarquees, initScrollState, initStickyHeader } from "./ui.js";
+import { initStages } from "./stage.js";
+import { initMarquees } from "./marquee.js";
+import { initAccordions } from "./accordion.js";
+import { initHeader } from "./header.js";
+import { initMenu } from "./menu.js";
+import { initNews } from "./news.js";
+import { initCards } from "./cards.js";
+import { initAmbientVideos, initDevicePixel, initEagerPhotos, initFocusMode, initHoverVideos, initScrollState } from "./ui.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   initFocusMode();
   initDevicePixel();
   initScrollState();
-  initStickyHeader();
+  initHeader();
   initSliders();
+  initStages();
   initEagerPhotos();
   initMarquees();
   initAmbientVideos();
   Anim.init();
-  initDisclosures();
+  initMenu();
   initAccordions();
+  initNews();
+  initCards();
   initHoverVideos();
 });

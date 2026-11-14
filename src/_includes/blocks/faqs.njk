@@ -1,0 +1,25 @@
+<section class="faqs rounded-foot">
+  <div class="container faqs__inner">
+    <div class="faqs__title">
+      <h2 data-anim="split">{{ value.title | safe }}</h2>
+    </div>
+    <div class="faqs__list" data-accordion data-accordion-closed-mobile data-anim-group="fade-up">
+      {% for item in value.items %}
+      <div class="faqs__item{% if loop.first %} is-open{% endif %}" data-accordion-item>
+        <h3>
+          <button class="faqs__toggle" type="button" aria-expanded="{% if loop.first %}true{% else %}false{% endif %}">
+            <span class="faqs__question">{{ item.question }}</span>
+            <span class="faqs__icon" aria-hidden="true"><svg class="icon"><use href="#icon-arrow-diagonal"></use></svg></span>
+          </button>
+        </h3>
+        <div class="faqs__panel" data-accordion-panel>
+          <div class="faqs__answer">
+            <div class="faqs__text rich-text">{{ item.answer | safe }}</div>
+            {% if item.button and item.button.text %}{% set btn = item.button %}{% include "snippets/button.njk" %}{% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

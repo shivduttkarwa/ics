@@ -1,0 +1,280 @@
+@pillar-copy-width: 494 * @px;
+@pillar-media-width: 550 * @px;
+@pillar-media-height: 750 * @px;
+@pillar-row-width: 1180 * @px;
+@pillar-stat-width: 151 * @px;
+// Figma sets each proof point's width by hand so its label wraps as drawn
+@pillar-stat-widths: 112, 122, 140, 150, 151, 156, 178;
+
+.pillar {
+  --pillar-bg: var(--color-white);
+  --pillar-title: var(--color-canopy);
+  --pillar-ink: var(--color-coal);
+  --pillar-figure: var(--color-canopy);
+  --pillar-rule: var(--color-moss);
+  padding: 20 * @px 0;
+  background: var(--pillar-bg);
+  color: var(--pillar-ink);
+  @media (min-width: @bp-lg) { padding: 100 * @px 0 120 * @px; }
+
+  &--beach { --pillar-bg: var(--color-beach-light); }
+
+  &--canopy {
+    --pillar-bg: var(--color-canopy);
+    --pillar-title: var(--color-white);
+    --pillar-ink: var(--color-white);
+    --pillar-figure: var(--color-moss);
+    --pillar-rule: var(--color-white-20);
+    --focus-ring: var(--color-moss);
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 50 * @px;
+    @media (min-width: @bp-lg) {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      max-width: @pillar-row-width;
+      margin-inline: auto;
+    }
+  }
+
+  &__copy {
+    display: flex;
+    flex-direction: column;
+    gap: 40 * @px;
+    min-width: 0;
+    @media (min-width: @bp-lg) {
+      flex: 0 0 @pillar-copy-width;
+      gap: 50 * @px;
+    }
+  }
+
+  &--spread &__inner {
+    @media (min-width: @bp-lg) { align-items: stretch; }
+  }
+
+  &--spread &__copy {
+    gap: 51 * @px;
+    @media (min-width: @bp-lg) {
+      justify-content: space-between;
+      gap: 50 * @px;
+    }
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 30 * @px;
+  }
+
+  h2 {
+    .type-section-title();
+    margin: 0;
+    color: var(--pillar-title);
+  }
+
+  &__lead {
+    .type-body-1-light();
+    margin: 0;
+  }
+
+  &__body {
+    .type-body-3-light();
+    p { margin-bottom: 1.4em; }
+    .last-mb-0();
+  }
+
+  &__proof {
+    display: flex;
+    flex-direction: column;
+    gap: 50 * @px;
+  }
+
+  // below lg the row runs off the screen's right edge, as the phone frames draw it, and scrolls by hand; the room below keeps it from clipping the items as they rise in
+  &__stats {
+    .reset-list();
+    .hide-scrollbar();
+    display: flex;
+    align-items: flex-start;
+    gap: 40 * @px;
+    margin: 0 calc(var(--gutter) * -1) -40 * @px 0;
+    padding: 0 var(--gutter) 40 * @px 0;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    @media (min-width: @bp-lg) {
+      margin: 0;
+      padding: 0;
+      overflow: visible;
+    }
+  }
+
+  &__stat {
+    display: flex;
+    flex: none;
+    flex-direction: column;
+    width: @pillar-stat-width;
+    each(@pillar-stat-widths, {
+      &--@{value} { width: @value * @px; }
+    });
+  }
+
+  &__figure {
+    .type-stat();
+    display: block;
+    color: var(--pillar-figure);
+    text-box: trim-both cap alphabetic;
+  }
+
+  &__rule {
+    display: block;
+    height: 1 * @px;
+    margin-top: 20 * @px;
+    background: var(--pillar-rule);
+  }
+
+  &__label {
+    .type-body-4();
+    display: block;
+    margin-top: 10 * @px;
+    b, strong { font-weight: 500; }
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10 * @px;
+    @media (min-width: @bp-lg) {
+      flex-flow: row wrap;
+      align-self: flex-start;
+    }
+    .btn {
+      justify-content: center;
+      @media (min-width: @bp-lg) { justify-content: flex-start; }
+    }
+    .btn__dot {
+      display: none;
+      @media (min-width: @bp-lg) { display: grid; }
+    }
+  }
+
+  &__media {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    aspect-ratio: 390 / 520;
+    max-height: @pillar-media-height;
+    padding: 20 * @px;
+    @media (min-width: @bp-lg) {
+      flex: 0 0 @pillar-media-width;
+      height: @pillar-media-height;
+      aspect-ratio: auto;
+    }
+  }
+
+  &__frame {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    &::after {
+      content: "";
+      .cover();
+      background: var(--gradient-photo-foot);
+      pointer-events: none;
+    }
+  }
+
+  &__layer { .parallax-layer(4); }
+
+  &__picture {
+    position: absolute;
+    inset: 0;
+    display: block;
+  }
+
+  &__img { .img-cover(); }
+
+  &__video {
+    .cover();
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity var(--duration-slow) ease;
+    &.is-live { opacity: 1; }
+  }
+
+  &__quote {
+    .glass();
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20 * @px;
+    margin: 0;
+    padding: 20 * @px 26 * @px;
+    border-radius: 14 * @px;
+    color: var(--color-white);
+    @media (min-width: @bp-lg) {
+      padding: 25 * @px;
+      border-radius: var(--radius-md);
+    }
+    blockquote {
+      .type-quote-small();
+      margin: 0;
+    }
+  }
+
+  &__author {
+    display: flex;
+    align-items: center;
+    gap: 10 * @px;
+  }
+
+  &__avatar {
+    flex: none;
+    width: 40 * @px;
+    height: 40 * @px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  &__who {
+    .type-body-4();
+    display: flex;
+    flex-direction: column;
+    b { font-weight: 700; }
+  }
+
+  // Figma insets each pillar's quote card a few px differently
+  &--canopy &__quote {
+    gap: 14 * @px;
+    padding: 20 * @px 30 * @px;
+    border-radius: 15 * @px;
+  }
+
+  &--beach &__media {
+    padding: 24 * @px 25 * @px;
+    @media (min-width: @bp-lg) { padding: 25 * @px; }
+  }
+
+  &--beach &__quote {
+    @media (min-width: @bp-lg) { padding: 20 * @px 26 * @px; }
+  }
+
+  // from lg Figma's faith pillar is a video frame with no shade
+  &--beach &__frame::after {
+    @media (min-width: @bp-lg) { content: none; }
+  }
+}
+
+// a pillar tucked under the rounded foot above it; Figma tucks the white one 25 under, the others 20
+.rounded-foot + .pillar {
+  padding-top: 39 * @px;
+  @media (min-width: @bp-lg) { padding-top: 100 * @px; }
+}
+
+.rounded-foot + .pillar--white {
+  @media (min-width: @bp-lg) { padding-top: 95 * @px; }
+}

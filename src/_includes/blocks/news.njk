@@ -1,0 +1,31 @@
+<section class="news" data-news>
+  <div class="container">
+    <h2 data-anim="split">{{ value.title | safe }}</h2>
+    <div class="news__body">
+      <div class="news__card">
+        <ul class="news__list" data-anim-group="fade-up">
+          {% for item in value.items %}
+          <li class="news__item{% if item.featured %} is-active{% endif %}" data-news-item>
+            <a class="news__link"{% if item.url %} href="{{ item.url }}"{% endif %}>
+              <span class="news__category">{{ item.category }}</span>
+              <h3>{{ item.title | safe }}</h3>
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="news__photo" data-anim="reveal" data-anim-type="wipe-up">
+        {% for item in value.items %}
+        <div class="news__frame{% if item.featured %} is-active{% endif %}" data-news-photo>
+          {% set img = item.image %}{% set cls = "news__img" %}{% include "snippets/image.njk" %}
+        </div>
+        {% endfor %}
+      </div>
+      {% if value.button and value.button.text %}
+      <div class="news__more" data-anim="reveal">
+        {% set btn = value.button %}{% include "snippets/button.njk" %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>

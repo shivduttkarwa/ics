@@ -1,0 +1,33 @@
+<section class="graduates">
+  <div class="container">
+    <div class="graduates__head">
+      <h2 data-anim="split">{{ value.title | safe }}</h2>
+      <div class="graduates__intro">
+        {% if value.text %}<p class="graduates__text" data-anim="reveal">{{ value.text }}</p>{% endif %}
+        {% if value.button and value.button.text %}
+        <div class="graduates__button" data-anim="reveal">
+          {% set btn = value.button %}{% include "snippets/button.njk" %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  {% if value.rows %}
+  <div class="graduates__rows" data-anim="reveal" data-anim-type="fade">
+    {% set loading = "eager" %}
+    {% for row in value.rows %}
+    <div class="graduates__lane">
+      <div class="graduates__track" data-marquee="left"{% if not loop.first %} data-marquee-speed="32"{% endif %}>
+        <ul class="graduates__list">
+          {% for img in row.logos %}
+          <li class="graduates__logo">{% set cls = "graduates__img" %}{% include "snippets/image.njk" %}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    {% endfor %}
+    {% set loading = "lazy" %}
+  </div>
+  {% endif %}
+</section>

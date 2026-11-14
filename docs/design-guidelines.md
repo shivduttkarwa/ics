@@ -31,13 +31,15 @@ There is no written brief yet. This file collects the designer's notes in the Fi
 ## What this means for the build
 | Behaviour | Implementation |
 |---|---|
-| Smooth scroll, reveals, split titles, parallax | `anim.js` (Lenis + GSAP), `data-anim-*` |
+| Smooth scroll, reveals, split titles, parallax | `anim.js` (Lenis + GSAP), `data-anim-*` (`docs/animation.md`) |
 | Hero video or image, stats counting up | every media slot is `image` + optional `video`; `data-anim="counter"` |
 | Announcement bar revealed on scroll | the hero fills the first screen, so the bar sits under the fold and fades up as it scrolls in |
-| Phone hero "On Scroll" state | the photo holds still, the shade deepens and the intro fades in on a CSS scroll timeline (`_hero.less`) |
-| Draggable sliders (USPs, entry points, news on phones) | Swiper (`slider.js`), left edge on the container, overflow visible to the right |
-| Co-curricular autoplay, 3–5 s | `data-slider-autoplay="4000"`, paused on hover, focus and off screen |
-| Logo rows and Instagram reel | `data-marquee="left"` (`initMarquees()`), linear, paused under reduced motion |
-| Accordions (FAQs) | `data-accordion` (`initAccordions()`) |
-| News photo swap on hover | small script with the news block |
+| Phone hero "On Scroll" state | the photo holds still, the shade deepens and the intro fades in on a CSS scroll timeline (`_hero.less`); the header holds over it, then slides away (`header.js`) |
+| Draggable sliders (USPs, entry points) | Swiper free mode (`data-slider`, `slider.js`), left edge on the container, overflow visible to the right; the journey tiles snap and wrap round |
+| Co-curricular autoplay, 3–5 s | `data-stage data-stage-autoplay="4500"` (`stage.js`): a wipe between slides, paused under the pointer, on keyboard focus and off screen |
+| Logo rows and Instagram reel | `data-marquee="left"` (`marquee.js`), linear on the compositor; the reel also takes arrows, drag and a hover pause; still under reduced motion |
+| Accordions (FAQs) | `data-accordion` (`accordion.js`) |
+| News photo swap on hover | `data-news` (`news.js`) |
 | Hover videos on cards | `data-hover-video` (`initHoverVideos()`), never autoplays on touch |
+| Main menu | `menu.js`: a modal panel from the right, rows rising in turn, sections opening in place |
+| Stages card hover on touch | a tap opens the tile (`cards.js`) |

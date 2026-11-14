@@ -7,6 +7,19 @@
 @header-wordmark-height: 52 * @px;
 @header-menu: 60 * @px;
 @header-menu-height: 52 * @px;
+// the scrolled bar is not in Figma: the same header, 10 above and below a 56 crest
+@header-pad-stuck: 10 * @px;
+@header-crest-stuck: 56 * @px;
+@header-wordmark-width-stuck: 77 * @px;
+@header-wordmark-height-stuck: 37 * @px;
+@header-menu-stuck: 52 * @px;
+@header-slide: 0.6s;
+
+.header-morph(@properties) {
+  transition-property: @properties;
+  transition-duration: var(--duration-base);
+  transition-timing-function: var(--ease-out);
+}
 
 .site-header {
   --focus-ring: var(--color-moss);
@@ -16,6 +29,29 @@
   left: 0;
   z-index: var(--z-header);
   color: var(--color-white);
+  transition: translate @header-slide var(--ease-out);
+
+  // below lg the header holds over the top of the page, as Figma's "Hero - On Scroll" frame
+  &.is-held {
+    position: fixed;
+    @media (min-width: @bp-lg) { position: absolute; }
+  }
+
+  &.is-stuck { position: fixed; }
+  &.is-hidden { translate: 0 -101%; }
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: color-mix(in srgb, var(--color-canopy-deep) 88%, transparent);
+    -webkit-backdrop-filter: blur(var(--blur-glass));
+    backdrop-filter: blur(var(--blur-glass));
+    opacity: 0;
+    .header-morph(opacity);
+  }
+  &.is-stuck::before { opacity: 1; }
 
   &__bar {
     display: flex;
@@ -23,7 +59,12 @@
     justify-content: space-between;
     gap: 20 * @px;
     padding: @header-pad-sm @header-inset-sm;
+    .header-morph(padding);
     @media (min-width: @bp-lg) { padding: @header-pad @header-inset; }
+  }
+  &.is-stuck &__bar {
+    padding-top: @header-pad-stuck;
+    padding-bottom: @header-pad-stuck;
   }
 
   &__logo {
@@ -36,11 +77,21 @@
   &__crest {
     width: @header-crest;
     height: @header-crest;
+    .header-morph(~"width, height");
+  }
+  &.is-stuck &__crest {
+    width: @header-crest-stuck;
+    height: @header-crest-stuck;
   }
 
   &__wordmark {
     width: @header-wordmark-width;
     height: @header-wordmark-height;
+    .header-morph(~"width, height");
+  }
+  &.is-stuck &__wordmark {
+    width: @header-wordmark-width-stuck;
+    height: @header-wordmark-height-stuck;
   }
 
   &__nav {
@@ -86,14 +137,55 @@
     border-radius: var(--radius-pill);
     background: var(--color-white);
     color: var(--color-canopy);
+    .header-morph(~"width, height");
     .icon {
       width: 30 * @px;
       height: 18 * @px;
+      transition: scale var(--duration-base) var(--ease-out);
     }
     @media (min-width: @bp-lg) {
       height: @header-menu-height;
       background: none;
       color: var(--color-white);
     }
+    @media @fine {
+      &:hover .icon { scale: 0.86 1; }
+    }
   }
+  &.is-stuck &__menu {
+    width: @header-menu-stuck;
+    height: @header-menu-stuck;
+    @media (min-width: @bp-lg) { width: @header-menu; }
+  }
+
+  // sticking as it slides out of sight, the bar takes its look only once it is gone
+  &.is-stuck.is-hidden {
+    &::before,
+    .site-header__bar,
+    .site-header__crest,
+    .site-header__wordmark,
+    .site-header__menu {
+      transition-duration: 0s;
+      transition-delay: @header-slide;
+    }
+  }
+
+  &.is-instant {
+    &,
+    &::before,
+    * { transition: none !important; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &,
+    &::before,
+    * { transition: none !important; }
+  }
+}
+
+// the page must not shift when the scrollbar goes: lockScroll() in ui.js measures the gutter first
+html.is-locked {
+  overflow: hidden;
+  body,
+  .site-header { padding-right: var(--scrollbar-gutter, 0); }
 }

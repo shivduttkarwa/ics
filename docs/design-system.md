@@ -17,7 +17,7 @@ The site uses the file's "premium" palette. The older "primary" swatches (blues,
 | `--color-flame` | premium/flame-tree | `#e01a1a` | the red menu icon variant (not on the layouts) |
 | white / black alphas | WhiteAlpha/*, BlackAlpha/* | | frosted fills (white 20%), image shades, hairlines (white 20%) |
 
-The announcement bar's ground is canopy under 40% black (`--color-canopy-deep`, `#072d26`). Image shades are black linear gradients (0 → 40/50/65/75%); each is added as a token with the section that uses it (`--gradient-hero`, `--gradient-hero-sm` so far).
+The announcement bar's ground is canopy under 40% black (`--color-canopy-deep`, `#072d26`). Image shades are black linear gradients, one token each: `--gradient-hero` (the hero and the slides), `--gradient-hero-sm` (the phone hero), `--gradient-card-top` (USP cards), `--gradient-tile-top` and `--gradient-tile-open` (journey tiles, at rest and open), `--gradient-photo-foot` (pillar photos), `--gradient-band` (the employment band from lg). The scrolled header bar is `color-mix()` of canopy-deep at 88% over the glass blur.
 
 ## Type
 Two licensed families. **Ulises** (serif, light weights, italics for emphasis) and **Museo Sans** (sans for body, labels and buttons). The woff2 files in `src/assets/fonts/` (converted from the ICS landing pages' files, see the README):
@@ -63,27 +63,40 @@ Also in the frames but not needed as fonts: Ulises Heavy (one 120px quote mark: 
 ### Unnamed styles the frames use most
 | Use | Face | Size / line / tracking | Phone | Mixin |
 |---|---|---|---|---|
-| Hero and slide titles | Ulises Light + Light Italic | 60 / 1.1 / −5% | 45 | `type-h1` (h1) |
+| Hero, slide and employment band titles | Ulises Light + Light Italic | 60 / 1.1 / −5% | 45 | `type-h1` (h1) |
 | Inner page hero titles | Ulises Book + Book Italic | 75 / 1.1 / −5% | interpreted 45 | `type-page-title` |
-| CTA titles | Ulises Book + Book Italic | 45 / 1.1 / −3% | 45 | `type-h2` (h2) |
+| Section titles (pillars, FAQs, news, social) | Ulises Light + Light Italic | 60 / 1 / −3% | 45 | `type-section-title` |
+| "Preparing for remarkable futures." | Ulises Light + Light Italic | 60 / 1.2 / −3% | 45 | `type-section-title-tall` |
+| USPs and journey titles | Ulises Light + Light Italic | 45 / 1.2 / −3% | 45 | `type-section-title-small` |
+| CTA card titles | Ulises Book + Book Italic | 45 / 1.1 / −3% | 45 | `type-h2` (h2) |
 | Footer statement | Ulises Book + Book Italic | 35 / 1.2 / −3% | 35 | `type-h3` (h3) |
-| Footer column titles, news titles | Ulises Book | 25 / 1.2 / 0 to −2% | 25 | `type-h5` (h5) |
+| Follow band | Ulises Light + Light Italic | 35 / 1.1 / −5% | 35 | `type-social-text` |
+| Stage names (journey tiles) | Ulises Light | 35 / 1.2 / −2% | 35 | `type-stage-title` |
+| Menu items | Ulises Light (open: Book Italic) | 45 / 1.1 / −5% | 45 | `type-menu-title` |
+| Footer column titles | Ulises Book | 25 / 1.2 / 0 | 25 | `type-h5` (h5) |
+| News titles | Ulises Book | 25 / 1.2 / −2% | 25 | `type-news-title` |
 | Stat figures | Ulises Light Italic | 60 / 1 / −3% | 60 | `type-stat` |
 | Quotes | Ulises Medium Italic | 20 / 1.4 / −3%; 16 / 1.5 | same | `type-quote`, `type-quote-small` |
-| FAQ questions | Ulises SemiBold | 20 / 1.5 / 0 | same | `type-faq-question` |
-| Section copy | Museo Sans 300 | 20 / 1.4 / 0 | 20 | `type-body-1-light` |
+| FAQ questions | Ulises SemiBold | 20 / 1.5 / 0 | 20 | `type-faq-question` |
+| Slide count | Ulises Book Italic | 20 / 1.4 / 0 | 20 | `type-slides-count` |
+| Footer summary | Ulises Book | 18 / 1.4 / −3% | 18 | `type-footer-summary` |
+| Menu search placeholder | Ulises Book Italic | 18 / 1.5 / −1% | 18 | `type-menu-search` |
+| Section copy (pillar leads, graduates) | Museo Sans 300 | 20 / 1.4 / 0 | 20 | `type-body-1-light` |
+| Menu child items | Museo Sans 300 | 20 / 1.4 / −3% | 20 | `type-menu-child` |
 | Card and pillar copy | Museo Sans 300 | 16 / 1.4 / 0 | 16 | `type-body-3-light` |
 | USP card titles | Museo Sans 500 | 25 / 1.2 / −2% | 25 | `type-card-title` |
+| Stage copy (journey tiles) | Museo Sans 500 | 16 / 1.2 / 0 | 16 | `type-stage-text` |
+| Footer labels | Museo Sans 700 | 16 / 1.4 / +1% | 16 | `type-footer-label` |
 | Buttons, tags | Museo Sans 700 | 14 / 1.4 / +5%, caps | 14 | `type-label` |
 | News categories | Museo Sans 700 | 12 / 1.4 / +5%, caps | 12 | `type-eyebrow` |
 
-Section-specific variants (60 / 1 and 60 / 1.2 section titles, 45 / 1.2 "Find the right starting point", the 181 alternative hero, the announcement's Book Italic 20) are added as mixins with the section that uses them.
+The phone frames keep most of these at their desktop size, so only the 60 titles step down (to 45). The hero intro and the announcement have their own mixins (`type-hero-text`, `type-announcement`, `type-announcement-label`).
 
 ## Spacing, radius, effects
 - Spacing variables: 5, 10, 15, 20, 25, 30, 40, 50, 75, 100, 200 (micro → huge). Sections pad 100 top on desktop; content sits at x 80 in 1440 (container 1280, gutter 80) and at x 20 in 430.
 - Radius: 1000 pills (buttons, tags), 20 cards and the rounded foot of the hero and dark sections (0 0 20 20), 10 the video thumbnail, 5 small badges.
 - Effects: one, a background blur of 40 (CSS 20) on the frosted white 20% fills: glass buttons, the header pill, quote and stat cards. `.glass()` in `_mixins.less`.
-- Lines: 1px canopy, forest or white 20% rules; 2px under stat figures; 0.5 outline buttons (one device pixel, `.hairline()`).
+- Lines: 1px canopy, forest or white 20% rules, including the line under each stat figure; 0.5 outline buttons (one device pixel, `.hairline()`); the slide show's 2px progress line.
 
 ## Buttons (`snippets/button.njk`, `_buttons.less`)
 | Style | Fill | Label | Dot |
@@ -98,10 +111,10 @@ Section-specific variants (60 / 1 and 60 / 1.2 section titles, 45 / 1.2 "Find th
 | `outline-moss` | 0.5 moss ring | moss | moss |
 | `outline-glass` | 1px white ring + blur | white | white |
 
-Large 52 tall, 25 side insets, 15 gap; small (`size: "small"`) 36 tall with 15 insets, 44 on touch. Hover grows the dot to 42 (26 small) with the arrow in the button's fill colour; `plain` drops the dot (the header's "Book a tour").
+Large 52 tall, 25 side insets, 15 gap; small (`size: "small"`) 36 tall with 15 insets, 44 on touch (the menu and footer draw it 30 tall with a 44 hit area, as their frames). Hover grows the dot to 42 (26 small) with the arrow in the button's fill colour; `icon: "none"` or `plain` drops the dot (outline buttons, the header's "Book a tour"). The "Arrow" circle beside sliders is `.arrow-btn` (`_arrows.less`): 52 round, moss 30% with a moss arrow, recoloured per block.
 
 ## Icons
-Figma draws icons as Font Awesome 7 Pro glyphs (Sharp Light arrows, Light pictograms at 24 and 36, Regular/Solid play and search) and Font Awesome 6 Brands for social logos. Each one is outlined from Figma into `partials/icons.njk` as an `icon-<name>` symbol when its section is built. In the sprite now: `icon-arrow-right`, `icon-menu` (the burger, 30 × 18), `icon-play` (the video card's triangle).
+Figma draws icons as Font Awesome 7 Pro glyphs (Sharp Light arrows, Light pictograms at 24 and 36, Regular/Solid play and search) and Font Awesome 6 Brands for social logos. Each one is outlined from Figma into `partials/icons.njk` as an `icon-<name>` symbol when its section is built. In the sprite: `icon-arrow-right`, `icon-arrow-diagonal` (FAQ rows, the menu), `icon-menu` (the burger, 30 × 18), `icon-play` (the hero video card's triangle), `icon-play-outline` and `icon-play-solid` (the USP video card), `icon-search`, `icon-close`, `icon-facebook`, `icon-instagram`, `icon-linkedin`.
 
 ## Logos
-`src/assets/icons/crest.svg` (79 × 79) and `wordmark.svg` (109 × 52, white) from the header's Logo Landscape, Full Colour Inverted. The kit also has Full Colour, White and Dark Green variants (`6140:12636`) for light grounds. Favicons: `favicon.ico` (16/32/48) and `apple-touch-icon.png` (the crest on canopy).
+`src/assets/icons/crest.svg` (79 × 79) and `wordmark.svg` (109 × 52, white) from the header's Logo Landscape, Full Colour Inverted. The kit also has Full Colour, White and Dark Green variants (`6140:12636`) for light grounds. Favicons: `favicon.ico` (16/32/48) and `apple-touch-icon.png` (the crest on canopy). Third-party logos live in `src/assets/images/logos/`: the sixteen university and employer marks of the graduates block (Figma holds them as small rasters; only UOW is a vector) and the six accreditation marks of the footer (`footer-*.svg`, `footer-cen.webp`) on a common 65-tall canvas.

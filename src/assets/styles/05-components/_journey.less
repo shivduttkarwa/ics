@@ -1,0 +1,197 @@
+@journey-tile: 400 * @px;
+@journey-tile-first: 360 * @px;
+@journey-tile-height-sm: 600 * @px;
+@journey-tile-height: 720 * @px;
+@journey-tile-pad: 40 * @px;
+// a narrow phone keeps this much of the next tile in view
+@journey-peek: 30 * @px;
+@journey-peek-first: 70 * @px;
+@journey-title-width: 740 * @px;
+
+.journey-tile-open() {
+  &::after { opacity: 1; }
+  .journey__more {
+    opacity: 1;
+    translate: none;
+    pointer-events: auto;
+  }
+}
+
+.journey {
+  --focus-ring: var(--color-moss);
+  display: flex;
+  flex-direction: column;
+  overflow-x: clip;
+  background: var(--color-canopy);
+  color: var(--color-white);
+
+  // below lg Figma's order is title, buttons, tiles, arrows: the two wrappers dissolve and their children take that order
+  &__head,
+  &__foot {
+    display: contents;
+    @media (min-width: @bp-lg) { display: flex; }
+  }
+
+  &__head {
+    @media (min-width: @bp-lg) {
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40 * @px;
+      padding-top: 107 * @px;
+      padding-bottom: 75 * @px;
+    }
+  }
+
+  &__foot {
+    @media (min-width: @bp-lg) {
+      padding-top: 75 * @px;
+      padding-bottom: 75 * @px;
+    }
+  }
+
+  h2 {
+    .type-section-title-small();
+    order: 1;
+    max-width: @journey-title-width;
+    margin: 0;
+    padding: 75 * @px var(--gutter) 0;
+    color: inherit;
+    text-wrap-style: auto;
+    @media (min-width: @bp-lg) { padding: 0; }
+  }
+
+  &__buttons {
+    order: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 10 * @px;
+    padding: 25 * @px var(--gutter) 0;
+    .btn {
+      justify-content: center;
+      width: 100%;
+    }
+    @media (min-width: @bp-md) {
+      flex-direction: row;
+      .btn { width: auto; }
+    }
+    @media (min-width: @bp-lg) { padding: 0; }
+  }
+
+  &__slider {
+    order: 3;
+    margin: 50 * @px var(--gutter) 0;
+    overflow: visible;
+    @media (min-width: @bp-lg) {
+      order: 0;
+      margin: 0;
+      overflow: hidden;
+    }
+  }
+
+  &__arrows {
+    --arrow-bg: var(--color-moss);
+    --arrow-ink: var(--color-canopy);
+    order: 4;
+    padding: 25 * @px var(--gutter) 50 * @px;
+    @media (min-width: @bp-lg) {
+      --arrow-bg: var(--color-moss-30);
+      --arrow-ink: var(--color-moss);
+      padding: 0;
+    }
+  }
+
+  &__list { .reset-list(); }
+
+  &__tile {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: ~"min(@{journey-tile}, calc(100vw - @{journey-peek}))";
+    height: @journey-tile-height-sm;
+    padding: @journey-tile-pad;
+    overflow: hidden;
+    background: var(--color-canopy-deep);
+    @media (min-width: @bp-lg) { height: @journey-tile-height; }
+
+    &:first-child { width: ~"min(@{journey-tile-first}, calc(100vw - @{journey-peek-first}))"; }
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: var(--gradient-tile-open);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--duration-slow) ease;
+    }
+
+    &.is-open,
+    &:focus-within { .journey-tile-open(); }
+
+    @media @fine {
+      &:hover {
+        .journey-tile-open();
+        .journey__img { scale: 1.04; }
+      }
+    }
+  }
+
+  &__media {
+    .cover();
+    z-index: -1;
+    &::after {
+      content: "";
+      .cover();
+      background: var(--gradient-tile-top);
+    }
+  }
+
+  &__img {
+    .img-cover();
+    transition: scale 0.9s var(--ease-out);
+  }
+
+  &__top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20 * @px;
+    width: 100%;
+    text-align: center;
+  }
+
+  &__tag {
+    .type-label();
+    .glass();
+    padding: 5 * @px 10 * @px;
+    border-radius: var(--radius-pill);
+    white-space: nowrap;
+  }
+
+  h3 {
+    .type-stage-title();
+    margin: 0;
+    color: inherit;
+  }
+
+  // closed, the button takes no taps: on a touch screen the first tap on the tile opens it (cards.js)
+  &__more {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20 * @px;
+    width: 100%;
+    opacity: 0;
+    translate: 0 16 * @px;
+    pointer-events: none;
+    transition: opacity 0.5s ease, translate 0.8s var(--ease-out);
+    p {
+      .type-stage-text();
+      margin: 0;
+    }
+  }
+}

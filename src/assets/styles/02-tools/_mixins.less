@@ -51,6 +51,15 @@
   }
 }
 
+// a parallax layer in a clipped frame: it overhangs the frame by @travel % of the frame's height and travels that far
+.parallax-layer(@travel: 8) {
+  @shift: unit((@travel / (100 + 2 * @travel) * 100), %);
+  position: absolute;
+  inset: unit((@travel * -1), %) 0;
+  --parallax-from: ~"-@{shift}";
+  --parallax-to: @shift;
+}
+
 // Figma's frosted fill: white 20% over a background blur
 .glass(@fill: var(--color-white-20)) {
   background-color: @fill;

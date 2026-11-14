@@ -1,19 +1,19 @@
-<header class="site-header" data-anim="sequence" data-anim-tier="hero" data-anim-order="1" data-anim-stagger="0.12">
-  <div class="site-header__bar">
-    <a class="site-header__logo" href="/index.html" aria-label="{{ site.name }} home" data-anim-item="drop-soft">
+<header class="site-header">
+  <div class="site-header__bar" data-anim-group="fade-down" data-anim-tier="hero" data-anim-order="1">
+    <a class="site-header__logo" href="/index.html" aria-label="{{ site.name }} home">
       <img class="site-header__crest" src="/assets/icons/crest.svg" alt="" width="79" height="79">
       <img class="site-header__wordmark" src="/assets/icons/wordmark.svg" alt="" width="109" height="52">
     </a>
-    <nav class="site-header__nav" aria-label="Main" data-anim-item="drop-soft">
+    <nav class="site-header__nav" aria-label="Main">
       <ul>
         {% for item in site.header_links %}
         <li><a{% if item.url %} href="{{ item.url }}"{% endif %}>{{ item.label }}</a></li>
         {% endfor %}
       </ul>
     </nav>
-    <div class="site-header__tools" data-anim-item="drop-soft">
+    <div class="site-header__tools">
       {% set btn = site.header_button %}{% set plain = true %}{% include "snippets/button.njk" %}{% set plain = false %}
-      <button class="site-header__menu" type="button" aria-label="Open menu" aria-expanded="false">
+      <button class="site-header__menu" type="button" aria-label="Open menu" aria-haspopup="dialog" aria-controls="menu" aria-expanded="false" data-menu-open>
         <svg class="icon" aria-hidden="true"><use href="#icon-menu"></use></svg>
       </button>
     </div>

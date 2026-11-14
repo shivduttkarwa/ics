@@ -1,0 +1,126 @@
+@faqs-title-width: 394 * @px;
+@faqs-list-width: 730 * @px;
+@faqs-icon-box: 40 * @px;
+@faqs-icon: 26 * @px;
+@faqs-answer-width: 710 * @px;
+
+.faqs {
+  padding: 50 * @px 0;
+  background: var(--color-beach-light);
+  @media (min-width: @bp-lg) {
+    min-height: 800 * @px;
+    padding: 100 * @px 0;
+  }
+
+  &__inner {
+    display: grid;
+    gap: 50 * @px;
+    // 394 + 130 + 730 + 26 at 1440; on a narrower desktop the title keeps its width and the gap, then the list, give way
+    @media (min-width: @bp-lg) {
+      grid-template-columns: @faqs-title-width minmax(40 * @px, 1fr) minmax(0, @faqs-list-width) 26 * @px;
+      align-items: start;
+      gap: 0;
+    }
+  }
+
+  h2 {
+    margin: 0;
+    .type-section-title();
+  }
+
+  &__list {
+    min-width: 0;
+    @media (min-width: @bp-lg) { grid-column: 3; }
+  }
+
+  &__item {
+    position: relative;
+    // rules sit on the row's edges without adding to its height, as Figma's zero-height lines
+    &::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      border-top: 1 * @px solid var(--color-forest);
+      pointer-events: none;
+    }
+    &:first-child::before {
+      content: "";
+      position: absolute;
+      inset: auto 0 100%;
+      border-top: 1 * @px solid var(--color-black-10);
+      transition: border-color var(--duration-base) ease;
+    }
+    &:first-child.is-open::before { border-color: var(--color-canopy); }
+  }
+
+  h3 {
+    margin: 0;
+    font: inherit;
+    letter-spacing: inherit;
+    text-wrap-style: auto;
+  }
+
+  &__toggle {
+    display: flex;
+    align-items: center;
+    gap: 20 * @px;
+    width: 100%;
+    padding: 20 * @px 0;
+    border: 0;
+    background: none;
+    color: var(--color-canopy);
+    text-align: left;
+    .type-faq-question();
+  }
+
+  &__question {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  &__icon {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: @faqs-icon-box;
+    height: @faqs-icon-box;
+    .icon {
+      width: @faqs-icon;
+      height: @faqs-icon;
+      transition: rotate var(--duration-slow) var(--ease-out), translate var(--duration-base) var(--ease-out);
+    }
+  }
+
+  &__item.is-open &__icon .icon { rotate: 180deg; }
+
+  @media @fine {
+    &__toggle:hover &__icon .icon { translate: (2 * @px) (-2 * @px); }
+    &__item.is-open &__toggle:hover &__icon .icon { translate: (-2 * @px) (2 * @px); }
+  }
+
+  &__panel {
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+  }
+
+  &__item.is-open > &__panel {
+    height: auto;
+    overflow: visible;
+    visibility: visible;
+  }
+
+  &__answer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20 * @px;
+    max-width: @faqs-answer-width;
+    padding-bottom: 40 * @px;
+  }
+
+  &__text {
+    .type-body-2();
+    color: var(--color-black-75);
+  }
+}

@@ -1,0 +1,104 @@
+@cta-cards-pad-sm: 50 * @px;
+// Figma centres the 745 cards in the 859 section
+@cta-cards-pad: 57 * @px;
+@cta-cards-photo: 328 * @px;
+@cta-cards-body: 417 * @px;
+
+.cta-cards {
+  --focus-ring: var(--color-moss);
+  padding: @cta-cards-pad-sm 0;
+  background: var(--color-canopy);
+  color: var(--color-white);
+  @media (min-width: @bp-lg) { padding: @cta-cards-pad 0; }
+
+  // the phone frame is this title over the three buttons; from lg the cards speak for themselves
+  h2 {
+    .type-h2();
+    margin: 0 0 25 * @px;
+    color: inherit;
+    @media (min-width: @bp-lg) { .visually-hidden(); }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 15 * @px;
+    @media (min-width: @bp-md) { flex-direction: row; }
+    @media (min-width: @bp-lg) {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20 * @px;
+    }
+  }
+
+  &__card {
+    flex: 1 1 0;
+    min-width: 0;
+    @media (min-width: @bp-lg) {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      background: var(--color-white);
+      color: var(--color-canopy);
+      &--beach { background: var(--color-beach); }
+      &--moss { background: var(--color-moss); }
+    }
+    @media (min-width: @bp-lg) and (hover: hover) {
+      &:hover .cta-cards__img { scale: 1.04; }
+    }
+  }
+
+  &__media {
+    display: none;
+    @media (min-width: @bp-lg) {
+      display: block;
+      flex: none;
+      height: @cta-cards-photo;
+      overflow: hidden;
+    }
+  }
+
+  &__img {
+    .img-cover();
+    transition: scale 0.9s var(--ease-out);
+  }
+
+  &__body {
+    @media (min-width: @bp-lg) {
+      display: flex;
+      flex: 1 0 auto;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 40 * @px;
+      min-height: @cta-cards-body;
+      padding: 50 * @px 30 * @px 70 * @px;
+    }
+    @media (min-width: @bp-xl) { padding-inline: 60 * @px; }
+  }
+
+  &__copy {
+    display: none;
+    @media (min-width: @bp-lg) { display: block; }
+    h3 {
+      .type-h2();
+      margin: 0 0 19 * @px;
+      color: inherit;
+    }
+    p {
+      .type-body-3();
+      margin: 0;
+    }
+  }
+
+  // below lg Figma draws the buttons moss on the canopy ground; on the cards they are canopy
+  .btn {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  .btn-canopy {
+    .btn-variant(var(--color-moss); var(--color-canopy); var(--color-canopy); var(--color-moss));
+    @media (min-width: @bp-lg) { .btn-variant(var(--color-canopy); var(--color-white); var(--color-moss); var(--color-canopy)); }
+  }
+}

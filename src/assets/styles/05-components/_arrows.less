@@ -1,0 +1,42 @@
+// Figma's "Arrow": a 52 circle, moss 30%, with the moss arrow; a block recolours it through --arrow-*
+@arrow-btn: 52 * @px;
+@arrow-icon: 21 * @px;
+
+.arrows {
+  display: flex;
+  flex: none;
+  gap: 10 * @px;
+}
+
+.arrow-btn {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: @arrow-btn;
+  height: @arrow-btn;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--arrow-bg, var(--color-moss-30));
+  color: var(--arrow-ink, var(--color-moss));
+  transition: background-color var(--duration-base) ease, color var(--duration-base) ease, opacity var(--duration-base) ease;
+
+  .icon {
+    width: @arrow-icon;
+    height: @arrow-icon;
+    transition: translate var(--duration-slow) var(--ease-out);
+  }
+
+  &--prev .icon { scale: -1 1; }
+
+  &:disabled { opacity: 0.4; }
+
+  @media @fine {
+    &:not(:disabled):hover {
+      background: var(--arrow-bg-hover, var(--color-moss));
+      color: var(--arrow-ink-hover, var(--color-canopy));
+    }
+    &--next:not(:disabled):hover .icon { translate: 3 * @px 0; }
+    &--prev:not(:disabled):hover .icon { translate: -3 * @px 0; }
+  }
+}

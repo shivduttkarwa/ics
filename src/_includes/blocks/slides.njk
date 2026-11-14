@@ -1,0 +1,37 @@
+<section class="slides" data-stage data-stage-autoplay="{{ value.autoplay | default(4500) }}" data-stage-tone="{{ value.slides[0].button.style }}" aria-roledescription="carousel" aria-label="{{ value.label }}">
+  <div class="slides__viewport">
+    {% for slide in value.slides %}
+    <article class="slides__slide{% if loop.first %} is-active{% endif %}" data-stage-slide data-stage-tone="{{ slide.button.style }}" role="group" aria-roledescription="slide" aria-label="{{ loop.index }} of {{ value.slides | length }}">
+      <div class="slides__media" data-stage-media>
+        <img class="slides__img" src="{{ slide.image.src }}"{% if slide.image.srcset %} srcset="{{ slide.image.srcset }}" sizes="100vw"{% endif %} alt="{{ slide.image.alt }}" width="{{ slide.image.width }}" height="{{ slide.image.height }}" loading="lazy" decoding="async">
+        {% if slide.video %}<video class="slides__video" src="{{ slide.video.src }}" poster="{{ slide.video.poster | default(slide.image.src) }}" muted loop playsinline preload="none" data-ambient></video>{% endif %}
+      </div>
+      <div class="slides__shade"></div>
+      <div class="slides__body container">
+        <h2 data-stage-title>{{ slide.title | safe }}</h2>
+        <div class="slides__card" data-stage-item>
+          {% if slide.stat %}
+          <div class="slides__stat">
+            <p class="slides__figure">{{ slide.stat.figure }}</p>
+            <p class="slides__label">{{ slide.stat.label }}</p>
+          </div>
+          {% endif %}
+          {% set btn = slide.button %}{% include "snippets/button.njk" %}
+        </div>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+  <div class="slides__foot container">
+    <div class="slides__nav" data-stage-nav>
+      <div class="slides__controls">
+        <p class="slides__count" aria-hidden="true"><span data-stage-current>01</span> / <span data-stage-total>0{{ value.slides | length }}</span></p>
+        <div class="arrows">
+          <button class="arrow-btn arrow-btn--prev" type="button" data-stage-prev aria-label="Previous slide"><svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg></button>
+          <button class="arrow-btn arrow-btn--next" type="button" data-stage-next aria-label="Next slide"><svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg></button>
+        </div>
+      </div>
+      <div class="slides__progress" aria-hidden="true"><span data-stage-progress></span></div>
+    </div>
+  </div>
+</section>

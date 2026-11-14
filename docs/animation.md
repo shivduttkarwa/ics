@@ -1,0 +1,92 @@
+# Animation
+
+Motion is driven by `data-anim-*` attributes in the templates; no template or block writes GSAP by hand. The attributes are plain HTML and pass through Wagtail templates untouched.
+
+| File | Does |
+|---|---|
+| `scripts/motion.js` | registers GSAP's plugins and the house eases (`soft`, `silk`, `glide`), exports the media queries (`still`, `phone`, `fine`) |
+| `scripts/anim.js` | Lenis smooth scroll, reveals, split titles, counters, the parallax fallback; `window.Anim` |
+| `scripts/slider.js` | `data-slider`: card rows (Swiper) |
+| `scripts/stage.js` | `data-stage`: the full-width slide show |
+| `scripts/marquee.js` | `data-marquee`: logo rows and the Instagram reel |
+| `scripts/accordion.js`, `menu.js`, `news.js`, `header.js` | the FAQ rows, the main menu, the news photo swap, the header's scroll states |
+| `06-animation/_animation.less`, `_parallax.less` | start states, line masks, the scroll-driven parallax |
+
+## How it feels, and why it stays smooth
+- Everything moves on `transform` and `opacity` only (plus `clip-path` for photo wipes), at sub-pixel precision on its own compositor layer, then drops the layer when it lands so text is crisp at rest.
+- Reveals are timed, not scrubbed: each plays once when it comes into view, at its own pace however fast the page is scrolled. Reveals that enter together start 0.09s apart in page order (0.6s at most for a whole batch).
+- Long, soft curves: `soft` (`cubic-bezier(0.22, 1, 0.36, 1)`, the same as `--ease-out`) for moves, `silk` (`0.16, 1, 0.3, 1`) for title lines and wipes, `glide` (`0.65, 0, 0.35, 1`) for slide changes. Nothing bounces.
+- Parallax runs as a CSS scroll-driven animation where the browser has them (Chrome, Edge, Safari 26), on the compositor and in step with the scroll, on phones too. Elsewhere GSAP follows Lenis on desktop, and touch screens without scroll timelines get none (a script-driven parallax trails a touch scroll and shivers).
+- A CSS `transition` on a revealed element is switched off while its reveal runs, so the two never fight.
+- `prefers-reduced-motion`: no smooth scroll, no reveals (everything simply shows), no parallax, no autoplay; sliders and marquees change instantly or stand still.
+
+## Reveal — `data-anim="reveal"`
+| Attribute | Values | Default |
+|---|---|---|
+| `data-anim-type` | `fade-up` `fade-down` `fade` `from-left` `from-right` `rise` (cards) `scale` `zoom-out` (a background settling) `line` (a rule drawing from the left) `wipe-up` `wipe-down` `wipe-left` `wipe-right` (a frame opening while the photo or video inside settles from 1.2) | `fade-up` |
+| `data-anim-tier` | `hero` (plays on load, in `data-anim-order`) · `secondary` (starts at `top 96%`) · default (starts at `top 88%`) | default |
+| `data-anim-order` | hero tier only: the step, 0.14s apart | `0` |
+| `data-anim-delay` | seconds added to its start | `0` |
+| `data-anim-duration` | seconds, overrides the preset's length | preset |
+| `data-anim-start` | ScrollTrigger start, e.g. `top 70%` (`-mobile` twin below lg) | tier |
+| `data-anim-type-mobile` | another preset below lg | |
+| `data-anim-media` | a media query; where it does not match at load the element simply shows | |
+| `data-anim-trigger` | on an ancestor: that ancestor's position starts the reveal | the element |
+
+```html
+<p data-anim="reveal">…</p>
+<figure class="pillar__frame" data-anim="reveal" data-anim-type="wipe-up">…</figure>
+```
+
+### Groups — `data-anim-group="<type>"`
+The direct children become reveals of that type, in order. One static attribute on the parent, the same in Nunjucks and Django: the way to stagger a loop. Never hardcode `data-anim-order` inside a loop. `data-anim-tier`, `data-anim-start` and `data-anim-media` on the group pass to its children; with the hero tier, `data-anim-order` on the group is the first child's step.
+
+```html
+<ul class="usps__list" data-anim-group="rise">{% for card in value.cards %}<li>…</li>{% endfor %}</ul>
+```
+
+## Split titles — `data-anim="split"`
+The title is split where the browser wrapped it and each line rises out of a mask, 0.11s apart; the original markup is put back when the last line lands, so nothing about the layout changes. `data-anim-type="words"` or `"chars"` fades the pieces up instead. Takes `data-anim-tier`, `-order`, `-delay`, `-start` as a reveal does.
+
+```html
+<h2 data-anim="split">Preparing for <em>remarkable</em> futures.</h2>
+```
+
+## Counters — `data-anim="counter"`
+The first number in the element (or in its `[data-anim-count]` child) counts up from 0 over 2.2s as it comes into view. Prefixes, suffixes, thousands separators and decimals are kept (`~900`, `150+`, `100%`, `99.90`); text with no digits (`XX%`) is left alone.
+
+## Parallax — `data-anim="parallax"`
+The layer travels from `--parallax-from` to `--parallax-to` (% of its own height) while its nearest `[data-anim-parallax-trigger]` ancestor, or itself, crosses the screen. `.parallax-layer(@travel)` in `_mixins.less` sets both and overhangs the frame by `@travel`% above and below, for a photo drifting inside a clipped frame. `data-anim-start="top top"` times it from the top of the page (the hero); `data-anim-disable-mobile` holds it still below lg. Keep it to one layer per section, never on every item of a loop.
+
+```html
+<div class="pillar__frame" data-anim-parallax-trigger>
+  <div class="pillar__layer" data-anim="parallax"><img …></div>
+</div>
+```
+
+## Scroll progress — `data-anim="progress"`
+`--anim-progress` runs 0 → 1 on the element as it passes (`data-anim-start` / `-end`), for CSS to hang a scroll-linked state on.
+
+## The page entrance
+Hero-tier steps play on load, 0.14s per `data-anim-order`: the hero photo settles (0), the header drops in (1–3), the title's lines rise (2), then the intro, the button and the video card (6–8). It waits for the webfonts (0.9s at most) so the title is split in its real face. Anything else on the first screen follows the entrance instead of racing it.
+
+## Sliders
+- **Card rows** (`slider.js`) — `data-slider` on the `.swiper`, `data-slider-gap="20"` (design px). Drags freely with momentum and eases to rest on the house curve; `data-slider-mode="snap"` rests on a card; `data-slider-rewind` makes the arrows wrap round so neither is ever dimmed. Arrows: `[data-slider-prev]` / `[data-slider-next]` inside the nearest `[data-slider-scope]`. Lazy photos in the row are loaded a screen early.
+- **Full-width slides** (`stage.js`) — `data-stage` on the block, `data-stage-slide` on each slide (the first with `is-active`), `data-stage-media` on the photo wrapper, `data-stage-title` on the title, `data-stage-item` on whatever else should follow it, `data-stage-prev` / `-next` on the arrows, `data-stage-current` / `-total` for the count, `data-stage-progress` on the fill of a progress line and `data-stage-nav` on the whole foot. The next slide wipes in over the current one (1.4s, `glide`) while both photos drift 16% and the new one settles from 1.12; the old copy fades, the new title rises line by line and the items follow; the count rolls. `data-stage-autoplay="4500"` fills the progress line over the delay and pauses under the pointer, on keyboard focus, off screen and in a background tab; with no autoplay the line shows the position. One slide per swipe or drag (`a, button` ignored), arrow keys while the stage has focus, instant swaps and no autoplay under reduced motion. `data-stage-tone` on the block mirrors the active slide's own `data-stage-tone`, for CSS to recolour the arrows. The first slide's copy and the foot rise in once as the stage scrolls into view (`top 72%`), after the webfonts.
+- **Marquees** (`marquee.js`) — `data-marquee="left|right"` on a track whose first child is the one list (give it a trailing gap equal to the item gap so the loop is seamless); the lane is the track's parent and must clip. The list is cloned to fill the lane (copies `aria-hidden`, their links out of the tab order) and the track runs as one compositor animation at `data-marquee-speed` design px a second (40), only while the lane is near the screen; a rebuild (fonts, load, resize) carries on from the same point. Optional: `[data-marquee-prev]` / `[data-marquee-next]` in the nearest `[data-marquee-scope]` step one item (a second click mid-step adds to the first), `data-marquee-pause` eases it to a stop under a mouse, `data-marquee-drag` lets it be dragged and flicked (vertical scrolling kept; a drag never follows the link it started on). Reduced motion: no copies, no animation; the lane gets `is-still` and scrolls sideways by hand, the arrows scroll it by one item.
+
+## Other scripts
+- **Accordion** (`accordion.js`) — `data-accordion` on the list, `data-accordion-item` on each row with a `<button aria-expanded>` inside, `data-accordion-panel` on the collapsing element with exactly one child. One row open at a time; the panel moves by height in whole pixels (0.7s, `glide`) while its child fades and lifts in; `is-open` on the item and `aria-expanded` on the button are the only state. CSS keeps a shut panel at `height: 0; overflow: hidden; visibility: hidden`. `data-accordion-closed-mobile` on the list shuts every row below lg at load.
+- **News** (`news.js`) — `data-news` on the block, `data-news-item` on each row, `data-news-photo` on each stacked frame in the same order; pointing at or focusing a row lights it and fades its photo in over the last one (0.8s, settling from 1.06). Touch leaves the rows as plain links.
+- **Menu** (`menu.js`) — opened from any `[data-menu-open]`: a GSAP timeline slides the panel in (0.9s, `silk`) and rises its `[data-menu-row]`s in turn; parent items open in place by height. Focus trap, Escape, backdrop, `inert` on the rest of the page and `lockScroll()` while open.
+- **Header** (`header.js`) — adds `is-stuck` once the page has left the top and `is-hidden` while scrolling down; below lg it holds for 40% of the screen first. The CSS does the drawing.
+- **Tiles** (`cards.js`) — on a screen with no hover, a tap on a `[data-tile]` inside `[data-tiles]` opens it and shuts the others.
+
+## Line masks
+A split title's lines sit in `.anim-line-mask` wrappers that SplitText gives `overflow: clip` inline. `_animation.less` replaces that with a `clip-path` that reaches 0.14em above and 0.24em below each line, so descenders and italic overhangs are not cut off while a line rises and the layout of the title does not change by a pixel.
+
+## Script API
+`Anim.init()` runs once from `main.js`. `Anim.add(container, { immediate })` animates content inserted later (load more, a tab pane). `Anim.refresh()` after a layout change, `Anim.stop()` / `Anim.start()` around a scroll lock (`lockScroll()` in `ui.js` calls them). `Anim.lenis` is the Lenis instance.
+
+## Without script
+`head.njk` adds `anim-ready` to `<html>` before first paint so nothing flashes, and takes it off again if the script has not started 0.8s after load, so content is never left hidden.

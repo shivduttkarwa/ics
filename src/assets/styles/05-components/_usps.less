@@ -1,0 +1,171 @@
+@usp-card-width: 311 * @px;
+@usp-card-height: 414 * @px;
+@usp-card-pad: 30 * @px;
+// a narrow phone keeps this much of the next card in view
+@usp-card-peek: 60 * @px;
+@usp-title-width: 756 * @px;
+
+.usps {
+  --focus-ring: var(--color-moss);
+  padding: 75 * @px 0;
+  overflow-x: clip;
+  background: var(--color-canopy);
+  color: var(--color-white);
+  @media (min-width: @bp-lg) { padding: 103 * @px 0 106 * @px; }
+
+  &__head {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25 * @px;
+    margin-bottom: 50 * @px;
+    @media (min-width: @bp-lg) {
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40 * @px;
+      margin-bottom: 55 * @px;
+    }
+  }
+
+  h2 {
+    .type-section-title-small();
+    max-width: @usp-title-width;
+    margin: 0;
+    color: inherit;
+    text-wrap-style: auto;
+  }
+
+  &__cta {
+    flex: none;
+    .btn__dot {
+      display: none;
+      @media (min-width: @bp-lg) { display: grid; }
+    }
+  }
+
+  &__slider { overflow: visible; }
+
+  &__list { .reset-list(); }
+}
+
+.usp-card {
+  position: relative;
+  isolation: isolate;
+  width: ~"min(@{usp-card-width}, calc(100vw - @{usp-card-peek}))";
+  height: @usp-card-height;
+  padding: @usp-card-pad;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--color-canopy-deep);
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--gradient-card-top);
+    pointer-events: none;
+    transition: opacity var(--duration-slow) ease;
+  }
+
+  &__media {
+    .cover();
+    z-index: -1;
+    picture {
+      display: block;
+      height: 100%;
+    }
+    &::after {
+      content: "";
+      .cover();
+      background: var(--color-black-20);
+    }
+  }
+
+  &__img {
+    .img-cover();
+    transition: scale 0.9s var(--ease-out);
+  }
+
+  &__video {
+    .cover();
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity var(--duration-slow) ease;
+  }
+
+  &.is-playing &__video { opacity: 1; }
+
+  h3 {
+    .type-card-title();
+    margin: 0;
+    color: inherit;
+    text-wrap-style: auto;
+  }
+
+  &__foot {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    padding: @usp-card-pad;
+  }
+
+  // a click-through card shows its button on hover; with no hover the whole card follows the button's link
+  &:not(&--video) &__foot {
+    opacity: 0;
+    transition: opacity 0.5s ease, translate 0.7s var(--ease-out);
+    @media not all and @fine {
+      .btn::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+      }
+    }
+    @media @fine { translate: 0 10 * @px; }
+  }
+
+  &:not(&--video):focus-within &__foot {
+    opacity: 1;
+    translate: none;
+  }
+
+  @media @fine {
+    &:hover &__img { scale: 1.04; }
+    &:not(&--video):hover {
+      &::after { opacity: 0.667; }
+      .usp-card__foot {
+        opacity: 1;
+        translate: none;
+      }
+    }
+  }
+
+  // "Play Video": white with a moss play on phones, frosted with an outlined play from lg
+  &__play {
+    .btn-variant(var(--color-white); var(--color-canopy); var(--color-moss); var(--color-white));
+    justify-content: center;
+    width: 100%;
+    .icon {
+      width: 14 * @px;
+      height: 16 * @px;
+    }
+    @media (min-width: @bp-lg) {
+      .btn-variant(var(--color-white-20); var(--color-white); var(--color-white); var(--color-canopy));
+      --bs-btn-hover-bg: var(--color-white-30);
+      -webkit-backdrop-filter: blur(var(--blur-glass));
+      backdrop-filter: blur(var(--blur-glass));
+    }
+  }
+
+  &__play-solid {
+    color: var(--color-moss);
+    @media (min-width: @bp-lg) { display: none; }
+  }
+
+  &__play-outline {
+    display: none;
+    @media (min-width: @bp-lg) { display: block; }
+  }
+}

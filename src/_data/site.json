@@ -41,5 +41,47 @@
     { "network": "facebook", "label": "Facebook", "url": "" },
     { "network": "instagram", "label": "Instagram", "url": "" },
     { "network": "linkedin", "label": "LinkedIn", "url": "" }
-  ]
+  ],
+  "footer": {
+    "statement": "Exceptional Christian Education where <em>every student is known</em>.",
+    "summary": "ICS is a Christ-centred K–12 Christian parent-controlled community in Cordeaux Heights, Wollongong, right in the heart of the Illawarra.",
+    "visit": {
+      "title": "Visit Us",
+      "label": "College Campus",
+      "address": ["4 Tyalla Place", "Cordeaux Heights NSW 2526"],
+      "button": { "text": "Directions", "url": "", "style": "white", "size": "small" }
+    },
+    "contact": {
+      "title": "Contact Us",
+      "label": "School Office",
+      "hours": ["8.30am–4pm", "Monday–Friday"],
+      "phone": "(02) 4239 5200",
+      "phone_url": "tel:+61242395200",
+      "email": "reception@ics.nsw.edu.au",
+      "button": { "text": "Get in touch", "url": "", "style": "white", "size": "small" }
+    },
+    "links_title": "Next Steps",
+    "links": [
+      { "label": "Prospectus", "url": "" },
+      { "label": "Book a Tour", "url": "" },
+      { "label": "Enrolment Enquiry", "url": "" },
+      { "label": "Parent Portal", "url": "" },
+      { "label": "Employment", "url": "" }
+    ],
+    "logos": [
+      { "src": "/assets/images/logos/footer-ice.svg", "alt": "Illawarra Christian Education", "width": 150, "height": 65, "url": "" },
+      { "src": "/assets/images/logos/footer-cen.webp", "alt": "Christian Education National", "width": 150, "height": 65, "url": "" },
+      { "src": "/assets/images/logos/footer-aacs.svg", "alt": "Australian Association of Christian Schools", "width": 150, "height": 65, "url": "" },
+      { "src": "/assets/images/logos/footer-isnsw.svg", "alt": "Independent Schools NSW", "width": 150, "height": 65, "url": "" },
+      { "src": "/assets/images/logos/footer-nqs-exceeding.svg", "alt": "Rated Exceeding, National Quality Standard", "width": 125, "height": 65, "url": "" },
+      { "src": "/assets/images/logos/footer-nesa.svg", "alt": "NSW Education Standards Authority", "width": 146, "height": 65, "url": "" }
+    ],
+    "copyright": "© 2026 Illawarra Christian School",
+    "operator": "Operated by Illawarra Christian Education",
+    "abn": "ABN 66 001 998 385",
+    "legal_links": [
+      { "label": "ICS Policies", "url": "" }
+    ],
+    "credit": { "label": "Design", "url": "" }
+  }
 }

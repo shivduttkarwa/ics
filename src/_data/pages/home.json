@@ -23,11 +23,27 @@
         "video": null,
         "title": "<em>Excellent</em> education, <em>real</em> faith and a community that <em>knows</em> your child.",
         "text": "Illawarra Christian School is a Prep-12 school in Cordeaux Heights, Wollongong. Our students do well, they're known by name, and they grow up in a Christian community that cares about them. Our fees are lower than you might expect for an independent school.",
-        "button": { "text": "Welcome to ICS", "url": "", "style": "glass" },
+        "button": {
+          "text": "Welcome to ICS",
+          "url": "",
+          "style": "glass"
+        },
         "actions": [
-          { "text": "Tours", "url": "", "style": "moss" },
-          { "text": "Enquire", "url": "", "style": "moss" },
-          { "text": "Apply", "url": "", "style": "moss" }
+          {
+            "text": "Tours",
+            "url": "",
+            "style": "moss"
+          },
+          {
+            "text": "Enquire",
+            "url": "",
+            "style": "moss"
+          },
+          {
+            "text": "Apply",
+            "url": "",
+            "style": "moss"
+          }
         ],
         "video_card": {
           "image": {
@@ -46,12 +62,913 @@
       "value": {
         "label": "Reminder",
         "text": "Parent-teacher interviews open for booking this week. Choose a time that suits your family.",
-        "button": { "text": "Book interviews", "url": "", "style": "white", "icon": "arrow" }
+        "button": {
+          "text": "Book interviews",
+          "url": "",
+          "style": "white",
+          "icon": "arrow"
+        }
       }
     },
     {
-      "type": "placeholder",
-      "value": { "label": "Next section" }
+      "type": "usps",
+      "value": {
+        "title": "Ask families <em>why</em> they chose ICS and you’ll hear answers like these.",
+        "button": {
+          "text": "View all the reasons",
+          "url": "",
+          "style": "moss"
+        },
+        "cards": [
+          {
+            "title": "There’s one set fee with no hidden costs",
+            "image": {
+              "src": "/assets/images/home/usp-violin.webp",
+              "alt": "A boy smiling as he plays the violin on stage",
+              "width": 451,
+              "height": 600
+            },
+            "video": null,
+            "button": {
+              "text": "Discover more",
+              "url": "",
+              "style": "white"
+            }
+          },
+          {
+            "title": "Prep-Year 12 is all on one campus together",
+            "image": {
+              "src": "/assets/images/home/usp-campus.webp",
+              "alt": "A young student in uniform walking through the campus with a teacher and older students",
+              "width": 622,
+              "height": 828
+            },
+            "image_mobile": {
+              "src": "/assets/images/home/usp-campus-mobile.webp",
+              "alt": "",
+              "width": 376,
+              "height": 500
+            },
+            "video": null,
+            "button": {
+              "text": "Play Video",
+              "url": "",
+              "icon": "play"
+            }
+          },
+          {
+            "title": "Faith is lived each and every morning",
+            "image": {
+              "src": "/assets/images/home/usp-assembly.webp",
+              "alt": "A teacher speaking to primary students seated on the hall floor",
+              "width": 622,
+              "height": 828
+            },
+            "video": null,
+            "button": {
+              "text": "Discover more",
+              "url": "",
+              "style": "white"
+            }
+          },
+          {
+            "title": "Every child is known by their name",
+            "image": {
+              "src": "/assets/images/home/usp-welcome.webp",
+              "alt": "A staff member greeting a young student at the school gate",
+              "width": 622,
+              "height": 828
+            },
+            "video": null,
+            "button": {
+              "text": "Discover more",
+              "url": "",
+              "style": "white"
+            }
+          },
+          {
+            "title": "Strong results without the premium price tag",
+            "image": {
+              "src": "/assets/images/home/usp-classroom.webp",
+              "alt": "Secondary students working together at a classroom table",
+              "width": 622,
+              "height": 828
+            },
+            "video": null,
+            "button": {
+              "text": "Discover more",
+              "url": "",
+              "style": "white"
+            }
+          },
+          {
+            "title": "It’s a beautiful, leafy campus at Mt Kembla",
+            "image": {
+              "src": "/assets/images/home/usp-grounds.webp",
+              "alt": "School buildings among tall gum trees",
+              "width": 622,
+              "height": 828
+            },
+            "video": null,
+            "button": {
+              "text": "Discover more",
+              "url": "",
+              "style": "white"
+            }
+          },
+          {
+            "title": "Loads of co-curricular opportunities",
+            "image": {
+              "src": "/assets/images/home/usp-strings.webp",
+              "alt": "A girl playing the violin in the school strings group",
+              "width": 451,
+              "height": 600
+            },
+            "video": null,
+            "button": {
+              "text": "Discover more",
+              "url": "",
+              "style": "white"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "pillar",
+      "value": {
+        "theme": "canopy",
+        "spread": true,
+        "title": "Strong outcomes <em>without the premium price.</em>",
+        "lead": "ICS students regularly achieve some of the best HSC results in the Illawarra.",
+        "text": "<p>Our graduates head off to university, TAFE, apprenticeships and gap years well prepared.</p><p>Those results come from good teaching. Our fee structure is set to welcome as many families looking for an Christian education as possible.</p>",
+        "stats": [
+          {
+            "value": "99.90",
+            "label": "Highest 2025 ATAR",
+            "width": 150
+          },
+          {
+            "value": "100%",
+            "label": "of Year 12 students received first round <b>uni</b>/<b>course</b> offers",
+            "width": 151
+          },
+          {
+            "value": "97%",
+            "label": "of students who start in Prep complete Year 12 at ICS",
+            "width": 151
+          }
+        ],
+        "buttons": [
+          {
+            "text": "View results and pathways",
+            "url": "",
+            "style": "moss"
+          },
+          {
+            "text": "Our fees",
+            "url": "",
+            "style": "outline-moss", "icon": "none"
+          }
+        ],
+        "image": {
+          "src": "/assets/images/home/pillar-outcomes.webp",
+          "alt": "A teacher and two students smiling over laptops in a classroom",
+          "width": 1439,
+          "height": 903
+        },
+        "image_mobile": null,
+        "video": null,
+        "quote": {
+          "text": "“Quote from parent who moved from another school, on value for money and results.”",
+          "name": "Example Name",
+          "role": "ICS Parent",
+          "avatar": {
+            "src": "/assets/images/home/pillar-quote-avatar.webp",
+            "alt": "",
+            "width": 80,
+            "height": 80
+          }
+        }
+      }
+    },
+    {
+      "type": "pillar",
+      "value": {
+        "theme": "beach",
+        "spread": false,
+        "title": "<em>Real faith</em>,<br> not just values.",
+        "lead": "Faith isn't a subject at ICS. You'll see it in how teachers greet your child in the morning and how students are taught to treat each other.",
+        "text": "<p>Every staff member at ICS is a follower of Jesus. We teach the Bible clearly and help students read it for themselves, so they can think it through and reach their own response.</p>",
+        "stats": [
+          {
+            "value": "150+",
+            "label": "minutes of devotions each week",
+            "width": 122
+          },
+          {
+            "value": "12+",
+            "label": "different lunch time faith and service groups",
+            "width": 112
+          },
+          {
+            "value": "100%",
+            "label": "of our families are involved in local churches",
+            "width": 178
+          }
+        ],
+        "buttons": [
+          {
+            "text": "How faith is lived at ICS",
+            "url": "",
+            "style": "moss"
+          }
+        ],
+        "image": {
+          "src": "/assets/images/home/pillar-faith.webp",
+          "alt": "A teacher reading the Bible with students at an outdoor table",
+          "width": 1182,
+          "height": 1068
+        },
+        "image_mobile": {
+          "src": "/assets/images/home/pillar-faith-mobile.webp",
+          "alt": "Students sitting in a circle reading together in a hall",
+          "width": 900,
+          "height": 1200
+        },
+        "video": null,
+        "quote": {
+          "text": "“Quote from recent graduate on teachers, faith or where they are now.”",
+          "name": "Example Name",
+          "role": "ICS Parent",
+          "avatar": {
+            "src": "/assets/images/home/pillar-quote-avatar.webp",
+            "alt": "",
+            "width": 80,
+            "height": 80
+          }
+        }
+      }
+    },
+    {
+      "type": "pillar",
+      "value": {
+        "theme": "white",
+        "spread": false,
+        "title": "A community that <em>knows<br> your child.</em>",
+        "lead": "Every student at ICS belongs to a small pastoral care group with a teacher who stays with them. If your child needs extra support, our own psychologist, counsellors and occupational therapist are on site.",
+        "text": "<p>Parents are partners here. You'll get to know your child's teachers and they'll get to know your family.</p>",
+        "stats": [
+          {
+            "value": "40+",
+            "label": "years serving Illawarra families",
+            "width": 122
+          },
+          {
+            "value": "~900",
+            "label": "students on one campus, Prep to Year 12",
+            "width": 156
+          },
+          {
+            "value": "13",
+            "label": "Year groups have their own parent community group",
+            "width": 140
+          }
+        ],
+        "buttons": [
+          {
+            "text": "Wellbeing and care",
+            "url": "",
+            "style": "moss"
+          }
+        ],
+        "image": {
+          "src": "/assets/images/home/pillar-community.webp",
+          "alt": "Parents talking and laughing together at a school event",
+          "width": 1320,
+          "height": 1649
+        },
+        "image_mobile": null,
+        "video": null,
+        "quote": {
+          "text": "“Quote from current parent on their child being known or on pastoral care, 30 to 40 words.”",
+          "name": "Example Name",
+          "role": "ICS Parent",
+          "avatar": {
+            "src": "/assets/images/home/pillar-quote-avatar.webp",
+            "alt": "",
+            "width": 80,
+            "height": 80
+          }
+        }
+      }
+    },
+    {
+      "type": "journey",
+      "value": {
+        "title": "Find the <em>right</em> starting point.",
+        "stages": [
+          {
+            "tag": "Age 4",
+            "title": "Prep",
+            "image": {
+              "src": "/assets/images/home/journey-prep.webp",
+              "alt": "A Prep student in a school hat at the wheel of a fire engine",
+              "width": 720,
+              "height": 1440
+            },
+            "text": "From a nervous first day in Prep to a confident last day in Year 12, your child is never starting over. They’re known at every step and each stage builds on the last, so the journey feels like one story.",
+            "button": {
+              "text": "Discover Prep",
+              "url": "",
+              "style": "white"
+            }
+          },
+          {
+            "tag": "Kindy-Year 6",
+            "title": "Primary",
+            "image": {
+              "src": "/assets/images/home/journey-primary.webp",
+              "alt": "A primary student with plaits smiling among her classmates",
+              "width": 800,
+              "height": 1440
+            },
+            "text": "Small classes and a strong focus on reading, writing and maths, with specialist music and Japanese teachers.",
+            "button": {
+              "text": "Discover Primary",
+              "url": "",
+              "style": "white"
+            }
+          },
+          {
+            "tag": "Year 5",
+            "title": "Year 5 entry",
+            "image": {
+              "src": "/assets/images/home/journey-year-5.webp",
+              "alt": "A Year 5 student playing the violin on stage",
+              "width": 333,
+              "height": 599
+            },
+            "text": "From a nervous first day in Prep to a confident last day in Year 12, your child is never starting over. They’re known at every step and each stage builds on the last, so the journey feels like one story.",
+            "button": {
+              "text": "Discover Year 5 entry",
+              "url": "",
+              "style": "white"
+            }
+          },
+          {
+            "tag": "Years 7-10",
+            "title": "Secondary",
+            "image": {
+              "src": "/assets/images/home/journey-secondary.webp",
+              "alt": "Secondary students walking up the path to school",
+              "width": 387,
+              "height": 696
+            },
+            "text": "From a nervous first day in Prep to a confident last day in Year 12, your child is never starting over. They’re known at every step and each stage builds on the last, so the journey feels like one story.",
+            "button": {
+              "text": "Discover Secondary",
+              "url": "",
+              "style": "white"
+            }
+          },
+          {
+            "tag": "Years 11-12",
+            "title": "Senior Years",
+            "image": {
+              "src": "/assets/images/home/journey-senior.webp",
+              "alt": "A senior student talking with a teacher outside a classroom",
+              "width": 592,
+              "height": 1066
+            },
+            "text": "From a nervous first day in Prep to a confident last day in Year 12, your child is never starting over. They’re known at every step and each stage builds on the last, so the journey feels like one story.",
+            "button": {
+              "text": "Discover Senior Years",
+              "url": "",
+              "style": "white"
+            }
+          }
+        ],
+        "buttons": [
+          {
+            "text": "Enrolment Process",
+            "url": "",
+            "style": "moss"
+          },
+          {
+            "text": "Book a Tour",
+            "url": "",
+            "style": "outline-moss",
+            "icon": "none"
+          }
+        ]
+      }
+    },
+    {
+      "type": "graduates",
+      "value": {
+        "title": "Preparing for<br> <em>remarkable futures</em>.",
+        "text": "ICS students go on to outstanding local, national and international universities as well as incredible futures in trades, sports, building and defence.",
+        "button": {
+          "text": "Where ICS graduates go",
+          "url": "",
+          "style": "moss"
+        },
+        "rows": [
+          {
+            "logos": [
+              {
+                "src": "/assets/images/logos/uow.svg",
+                "alt": "University of Wollongong Australia",
+                "width": 141,
+                "height": 46
+              },
+              {
+                "src": "/assets/images/logos/usyd.webp",
+                "alt": "The University of Sydney",
+                "width": 117,
+                "height": 42
+              },
+              {
+                "src": "/assets/images/logos/unsw.webp",
+                "alt": "UNSW Sydney",
+                "width": 104,
+                "height": 45
+              },
+              {
+                "src": "/assets/images/logos/uts.webp",
+                "alt": "UTS, University of Technology Sydney",
+                "width": 132,
+                "height": 57
+              },
+              {
+                "src": "/assets/images/logos/macquarie.webp",
+                "alt": "Macquarie University",
+                "width": 116,
+                "height": 34
+              },
+              {
+                "src": "/assets/images/logos/acu.webp",
+                "alt": "ACU, Australian Catholic University",
+                "width": 103,
+                "height": 28
+              },
+              {
+                "src": "/assets/images/logos/icms.webp",
+                "alt": "ICMS, International College of Management Sydney",
+                "width": 121,
+                "height": 38
+              },
+              {
+                "src": "/assets/images/logos/torrens.webp",
+                "alt": "Torrens University Australia",
+                "width": 111,
+                "height": 44
+              },
+              {
+                "src": "/assets/images/logos/newcastle.webp",
+                "alt": "The University of Newcastle Australia",
+                "width": 130,
+                "height": 44
+              }
+            ]
+          },
+          {
+            "logos": [
+              {
+                "src": "/assets/images/logos/adf-careers.webp",
+                "alt": "ADF Careers, Australian Defence Force",
+                "width": 92,
+                "height": 47
+              },
+              {
+                "src": "/assets/images/logos/megt.webp",
+                "alt": "MEGT",
+                "width": 109,
+                "height": 83
+              },
+              {
+                "src": "/assets/images/logos/uts-sport.webp",
+                "alt": "UTS Sport",
+                "width": 64,
+                "height": 43
+              },
+              {
+                "src": "/assets/images/logos/american-summers.webp",
+                "alt": "American Summers",
+                "width": 116,
+                "height": 57
+              },
+              {
+                "src": "/assets/images/logos/multiplex.webp",
+                "alt": "Multiplex",
+                "width": 146,
+                "height": 28
+              },
+              {
+                "src": "/assets/images/logos/master-builders.webp",
+                "alt": "Master Builders Australia",
+                "width": 164,
+                "height": 39
+              },
+              {
+                "src": "/assets/images/logos/wisetech.webp",
+                "alt": "WiseTech Global",
+                "width": 108,
+                "height": 43
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "slides",
+      "value": {
+        "label": "Co-curricular life at ICS",
+        "autoplay": 4500,
+        "slides": [
+          {
+            "image": {
+              "src": "/assets/images/home/slide-sport-1920.webp",
+              "srcset": "/assets/images/home/slide-sport-1280.webp 1280w, /assets/images/home/slide-sport-1920.webp 1920w",
+              "alt": "Students running in a touch football game on the school oval",
+              "width": 1920,
+              "height": 1080
+            },
+            "video": null,
+            "title": "Build <em>strength, friendships and resilience</em> on every <br>field and court.",
+            "stat": {
+              "figure": "XX%",
+              "label": "of secondary students represent ICS in a team or carnival each year."
+            },
+            "button": {
+              "text": "Explore Sport",
+              "url": "",
+              "style": "moss"
+            }
+          },
+          {
+            "image": {
+              "src": "/assets/images/home/slide-music-1067.webp",
+              "alt": "Primary students playing violins on stage",
+              "width": 1067,
+              "height": 600
+            },
+            "video": null,
+            "title": "<em>Every voice and instrument</em> finds <br>its place here.",
+            "stat": {
+              "figure": "XX%",
+              "label": "students play in our ensembles, bands and choirs every single week"
+            },
+            "button": {
+              "text": "Hear Our Music",
+              "url": "",
+              "style": "white"
+            }
+          },
+          {
+            "image": {
+              "src": "/assets/images/home/slide-arts-1920.webp",
+              "srcset": "/assets/images/home/slide-arts-1280.webp 1280w, /assets/images/home/slide-arts-1920.webp 1920w",
+              "alt": "Students in costume on stage in the school musical",
+              "width": 1920,
+              "height": 1241
+            },
+            "video": null,
+            "title": "<em>From sketchbook <br>to spotlight,</em> creative sparks comes alive.",
+            "stat": {
+              "figure": "XX%",
+              "label": "students on stage, behind the scenes and in the gallery each year"
+            },
+            "button": {
+              "text": "See Drama and Visual Arts",
+              "url": "",
+              "style": "white"
+            }
+          },
+          {
+            "image": {
+              "src": "/assets/images/home/slide-languages-800.webp",
+              "alt": "Students on the Japan tour in front of Himeji Castle",
+              "width": 800,
+              "height": 450
+            },
+            "video": null,
+            "title": "<em>Open your world</em> <br>with language, <br>culture and Japan.",
+            "stat": {
+              "figure": "XX",
+              "label": "years of Japanese study, building real language skills before senior school"
+            },
+            "button": {
+              "text": "Explore Languages",
+              "url": "",
+              "style": "white"
+            }
+          },
+          {
+            "image": {
+              "src": "/assets/images/home/slide-camps-1200.webp",
+              "alt": "Students climbing an outdoor rock wall at camp",
+              "width": 1200,
+              "height": 675
+            },
+            "video": null,
+            "title": "<em>Adventures beyond <br>the classroom</em> build confidence that lasts <br>a lifetime.",
+            "stat": {
+              "figure": "XX",
+              "label": "camps across Years 7–10, building independence, friendship and resilience each year"
+            },
+            "button": {
+              "text": "Explore Camps and the Outdoors",
+              "url": "",
+              "style": "white"
+            }
+          },
+          {
+            "image": {
+              "src": "/assets/images/home/slide-leadership-1600.webp",
+              "srcset": "/assets/images/home/slide-leadership-1280.webp 1280w, /assets/images/home/slide-leadership-1600.webp 1600w",
+              "alt": "Students hiking up a snowy mountain trail",
+              "width": 1600,
+              "height": 1200
+            },
+            "video": null,
+            "title": "Lead with <em>purpose</em>, serve with <em>heart</em>, <br>grow in <em>character</em>.",
+            "stat": {
+              "figure": "XX",
+              "label": "students take on Duke of Edinburgh’s International Award challenges each year"
+            },
+            "button": {
+              "text": "Explore Leadership",
+              "url": "",
+              "style": "white"
+            }
+          },
+          {
+            "image": {
+              "src": "/assets/images/home/slide-enrichment-1536.webp",
+              "srcset": "/assets/images/home/slide-enrichment-1280.webp 1280w, /assets/images/home/slide-enrichment-1536.webp 1536w",
+              "alt": "Five Future Problem Solving students with their medals and trophy",
+              "width": 1536,
+              "height": 864
+            },
+            "video": null,
+            "title": "<em>Curious minds stretched further</em>, <br>from local stages <br>to the world.",
+            "stat": {
+              "figure": "2nd",
+              "label": "Year 10 Future Problem Solvers placed second in Presentation at World Finals."
+            },
+            "button": {
+              "text": "Explore Competitions and Enrichment",
+              "url": "",
+              "style": "white"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "faqs",
+      "value": {
+        "title": "You might be <em>wondering...</em>",
+        "items": [
+          {
+            "question": "Is Illawarra Christian School expensive?",
+            "answer": "<p>No. ICS fees are well below those of many independent schools in the region. Tuition for 2027 starts at [TBC: $X] a year, and there are sibling discounts and payment plans through Edstart.</p>",
+            "button": {
+              "text": "View our fees",
+              "url": "",
+              "style": "moss"
+            }
+          },
+          {
+            "question": "Do we need to be Christian to enrol?",
+            "answer": "<p>[TBC: answer to come from the school.]</p>"
+          },
+          {
+            "question": "Where is ICS?",
+            "answer": "<p>[TBC: answer to come from the school.]</p>"
+          },
+          {
+            "question": "Can I visit the school before applying?",
+            "answer": "<p>[TBC: answer to come from the school.]</p>"
+          },
+          {
+            "question": "What makes ICS different?",
+            "answer": "<p>[TBC: answer to come from the school.]</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "news",
+      "value": {
+        "title": "What’s <em>New</em>?",
+        "button": {
+          "text": "View all news",
+          "url": "",
+          "style": "beach"
+        },
+        "items": [
+          {
+            "category": "General",
+            "title": "Term 4 begins: here’s what’s ahead for your family",
+            "url": "",
+            "image": {
+              "src": "/assets/images/home/news-term-4.webp",
+              "alt": "Students working together at a table in a classroom",
+              "width": 1680,
+              "height": 1120
+            }
+          },
+          {
+            "category": "Arts",
+            "title": "Students take the stage in this year’s musical",
+            "url": "",
+            "featured": true,
+            "image": {
+              "src": "/assets/images/home/news-musical.webp",
+              "alt": "A student leaps in front of the painted set during a rehearsal for the school musical",
+              "width": 1440,
+              "height": 960
+            }
+          },
+          {
+            "category": "Science",
+            "title": "Our young scientists take <br>their research to UOW",
+            "url": "",
+            "image": {
+              "src": "/assets/images/home/news-science.webp",
+              "alt": "Three students reading together at a classroom table",
+              "width": 1680,
+              "height": 1120
+            }
+          },
+          {
+            "category": "Public Speaking",
+            "title": "ICS speaks up at the South Coast Public Speaking competition",
+            "url": "",
+            "image": {
+              "src": "/assets/images/home/news-public-speaking.webp",
+              "alt": "Two senior students holding a whiteboard with their challenge written on it",
+              "width": 1680,
+              "height": 1120
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "social",
+      "value": {
+        "title": "Join the <em>conversation</em>",
+        "text": "Follow along with <em>life at ICS</em> on social media",
+        "posts": [
+          {
+            "url": "",
+            "image": {
+              "src": "/assets/images/home/social-1.webp",
+              "alt": "Instagram post: introducing our 2027 School Captains, Abby, Miriam, Joshua and Piper",
+              "width": 352,
+              "height": 469
+            }
+          },
+          {
+            "url": "",
+            "image": {
+              "src": "/assets/images/home/social-2.webp",
+              "alt": "Instagram post: Charlie and the Chocolate Factory, less than 30 tickets remaining",
+              "width": 352,
+              "height": 469
+            }
+          },
+          {
+            "url": "",
+            "image": {
+              "src": "/assets/images/home/social-3.webp",
+              "alt": "Instagram post: four students dressed for the school formal",
+              "width": 352,
+              "height": 469
+            }
+          },
+          {
+            "url": "",
+            "image": {
+              "src": "/assets/images/home/social-4.webp",
+              "alt": "Instagram post: Go well, Year 12! The 2026 HSC exams begin today",
+              "width": 352,
+              "height": 469
+            }
+          },
+          {
+            "url": "",
+            "image": {
+              "src": "/assets/images/home/social-5.webp",
+              "alt": "Instagram post: state champions, four years in a row",
+              "width": 352,
+              "height": 469
+            }
+          },
+          {
+            "url": "",
+            "image": {
+              "src": "/assets/images/home/social-6.webp",
+              "alt": "Instagram post: a student beside the timber giraffe lamp she made",
+              "width": 352,
+              "height": 469
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "cta_band",
+      "value": {
+        "image": {
+          "src": "/assets/images/home/cta-employment-1920.webp",
+          "srcset": "/assets/images/home/cta-employment-1280.webp 1280w, /assets/images/home/cta-employment-1920.webp 1920w",
+          "alt": "",
+          "width": 1920,
+          "height": 1080
+        },
+        "image_mobile": {
+          "src": "/assets/images/home/cta-employment-mobile.webp",
+          "alt": "",
+          "width": 489,
+          "height": 819
+        },
+        "video": null,
+        "eyebrow": "Employment",
+        "title": "A <em>great</em> place <br>to teach and <br><em>close</em> to home.",
+        "text": "Join a close team and a supportive community where you’ll know your students by name and grow your career.",
+        "button": {
+          "text": "Work with us",
+          "url": "",
+          "style": "glass"
+        },
+        "button_secondary": {
+          "text": "View current roles",
+          "url": "",
+          "style": "outline-white"
+        }
+      }
+    },
+    {
+      "type": "cta_cards",
+      "value": {
+        "title": "What comes <em>next?</em>",
+        "cards": [
+          {
+            "theme": "white",
+            "image": {
+              "src": "/assets/images/home/cta-community.webp",
+              "alt": "Primary students smiling together in the playground",
+              "width": 826,
+              "height": 656
+            },
+            "title": "Meet our <em>community</em>.",
+            "text": "Walk the campus, meet our teachers and see what a school day at ICS is really like.",
+            "button": {
+              "text": "Book a tour",
+              "url": "",
+              "style": "canopy"
+            }
+          },
+          {
+            "theme": "beach",
+            "image": {
+              "src": "/assets/images/home/cta-enquire.webp",
+              "alt": "A student playing the violin on stage",
+              "width": 755,
+              "height": 600
+            },
+            "title": "Enquire and <br><em>have a chat</em>.",
+            "text": "Ask us anything about fees, year levels or what to expect. Our enrolments team is happy to help.",
+            "button": {
+              "text": "Make an enquiry",
+              "url": "",
+              "style": "canopy"
+            }
+          },
+          {
+            "theme": "moss",
+            "image": {
+              "src": "/assets/images/home/cta-apply.webp",
+              "alt": "Secondary students working together at their desks",
+              "width": 826,
+              "height": 656
+            },
+            "title": "Start <em>your</em> <br>ICS journey",
+            "text": "Complete your application online and secure your child’s place. Early applications keep more options open.",
+            "button": {
+              "text": "Apply to enrol",
+              "url": "",
+              "style": "canopy"
+            }
+          }
+        ]
+      }
     }
   ]
 }

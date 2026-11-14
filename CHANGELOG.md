@@ -1,5 +1,28 @@
 # Changelog
 
+## 2026-11-14 — Homepage complete, main menu, footer, new motion engine
+- Motion engine rewritten (`anim.js`, `motion.js`, `docs/animation.md`): timed reveals that play once on transform and opacity at sub-pixel precision, titles rising line by line out of masks, photo wipes, counters, a page entrance in `data-anim-order` steps, parallax as CSS scroll-driven animations with a GSAP fallback. The old engine's whole-pixel stepping and scroll-scrubbed reveals, which read as shivering, are gone. Lenis stays for the smooth scroll. New eases `soft`, `silk`, `glide` (`--ease-silk` token).
+- Sliders: `slider.js` (card rows that drag with momentum and ease to rest; `data-slider-mode="snap"`, `data-slider-rewind`), `stage.js` (`data-stage`: the full-width slide show with a wipe, drifting photos, a rising title, count and progress line, autoplay, swipe and keys), `marquee.js` (`data-marquee`: compositor-driven rows with arrows, drag, flick and hover pause), `accordion.js`, `news.js`, `menu.js`, `header.js`, `cards.js`.
+- USPs (`blocks/usps.njk`, `_usps.less`) from `15417:12107`, `15417:12487`, `15337:7399` and `15513:27001`: title and "View all the reasons", seven draggable cards with Figma's hover state and the "Play Video" card.
+- Pillars (`blocks/pillar.njk`, `_pillar.less`) from `15417:12529`, `15417:12495`, `15417:12078` and the phone frames: one block with three grounds, the proof points counting up, the photo wiping open with a slow drift, the frosted quote card.
+- Journey entry points (`blocks/journey.njk`, `_journey.less`, `cards.js`) from `15699:23363`, `15337:7691` and `15513:27184`: title with arrows, five stage tiles with the hover copy and button, the two buttons; phone order from the phone frame.
+- Where ICS graduates go (`blocks/graduates.njk`, `_graduates.less`) from `15699:23323` and `15513:27312`: title, copy and button over two logo rows that run right to left.
+- Co-curricular slider (`blocks/slides.njk`, `_slides.less`, `stage.js`) from `15417:13418`, `15513:13207`, `15377:6773` and `15536:27351`: seven full-width slides with the frosted stat card, count, arrows and a progress line, autoplaying at 4.5s.
+- FAQs (`blocks/faqs.njk`, `_faqs.less`) from `15417:12595` and `15536:27925`: the title beside an accordion of five rows, the first open from lg; the diagonal arrow turns when a row opens.
+- News (`blocks/news.njk`, `_news.less`, `news.js`) from `15417:12608` and `15536:28042`: the canopy list card over one large photo; pointing at a row swaps the photo.
+- Join the conversation (`blocks/social.njk`, `_social.less`) from `15417:12620` and `15536:28088`: the Instagram reel drifting left with arrows, drag and pause, then the follow band with the social buttons.
+- Employment band (`blocks/cta_band.njk`, `_cta-band.less`) from `15513:12252` and `15536:28134`; CTA cards (`blocks/cta_cards.njk`, `_cta-cards.less`) from `15513:12196`, `15337:15529` and `15541:28895`.
+- Main menu (`partials/menu.njk`, `_menu.less`, `menu.js`) from `15742:14409` and `15541:30252`: a modal panel that slides in from the right with its rows rising in turn, sections that open in place, the search field, the three moss buttons and the quick links. The header burger opens it; Escape, Close and a click outside shut it.
+- Footer (`partials/footer.njk`, `_footer.less`) from `15513:11531` and `15541:29630`: logo and statement, summary and socials, Visit Us / Contact Us / Next Steps, the accreditation logos as a slow marquee and the legal row. Content in `site.json` under `footer`.
+- Header: a scrolled state (`header.js`): it slides away going down the page and comes back going up as a compact frosted bar; below lg it first holds over the hero as Figma's "Hero - On Scroll" frame. `html.is-locked` (scroll lock without a layout shift).
+- Hero: the photo settles in as the first step of the entrance, the video card scales in last.
+- Shared: `.arrow-btn` (`_arrows.less`), `.parallax-layer()`, the button snippet's `icon: "none"`, gradient tokens `--gradient-card-top`, `--gradient-tile-top`, `--gradient-tile-open`, `--gradient-photo-foot`, `--gradient-band`; type mixins `type-section-title`, `-tall`, `-small`, `type-news-title`, `type-stage-title`, `type-stage-text`, `type-social-text`, `type-slides-count`, `type-menu-*`, `type-footer-summary`, `type-footer-label`; `type-h2`, `type-h3`, `type-h5`, `type-card-title`, `type-body-1`, `type-body-1-light`, `type-body-3-light` and `type-faq-question` now keep their desktop size on phones, as the phone frames draw them.
+- Sprite: `icon-play-outline`, `icon-play-solid`, `icon-arrow-diagonal`, `icon-search`, `icon-close`, `icon-facebook`, `icon-instagram`, `icon-linkedin`.
+- Images: `home/usp-*`, `journey-*`, `pillar-*`, `slide-*`, `news-*`, `social-*`, `cta-*` (webp); `logos/` (sixteen university and employer logos, six accreditation marks).
+- Removed: the placeholder block; the lab pages other than `/lab/foundations.html`.
+- QA: `.qa/frames.mjs` (timed frames of an entrance or a scroll, `page:` for every screen) and `.qa/stitch.py`.
+- Checked at 1440 and 430 against Figma, section by section and as the whole page; 320, 375, 768, 1024, 1920 and 667 × 375 for breakage; motion on at 1440 and 430 with no console errors; `mobile-audit` clean at 320–1024.
+
 ## 2026-11-13 — Fonts
 - Ulises and Museo Sans woff2 (the eleven weights in `_fonts.less`), converted from the ICS landing pages' files. Ulises carries the `USE_TYPO_METRICS` flag so Windows places its glyphs as Figma and macOS do (they sat 11 px low at 60).
 - The hero now lands on Figma's boxes with real type: the title on four lines at 265, the button 204 wide.

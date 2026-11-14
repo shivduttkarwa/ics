@@ -1,0 +1,104 @@
+@cta-band-height-sm: 720 * @px;
+@cta-band-height: 662 * @px;
+@cta-band-pad: 50 * @px;
+@cta-band-width: 502 * @px;
+@cta-band-text-width: 397 * @px;
+// Figma starts the copy 100 from the edge, 20 inside the container
+@cta-band-inset: 20 * @px;
+
+.cta-band {
+  --focus-ring: var(--color-moss);
+  --cta-band-shade: var(--color-black-50);
+  position: relative;
+  display: flex;
+  min-height: @cta-band-height-sm;
+  overflow: clip;
+  background: var(--color-canopy-deep);
+  color: var(--color-white);
+  @media (min-width: @bp-lg) {
+    --cta-band-shade: var(--gradient-band);
+    min-height: @cta-band-height;
+  }
+
+  &__media {
+    .cover();
+    &::after {
+      content: "";
+      .cover();
+      background: var(--cta-band-shade);
+    }
+  }
+
+  // from lg the 16:9 photo is taller than the band, so the layer's overhang shows more of it and nothing is enlarged
+  &__layer {
+    position: absolute;
+    inset: 0;
+    @media (min-width: @bp-lg) { .parallax-layer(8); }
+  }
+
+  &__picture {
+    position: absolute;
+    inset: 0;
+    display: block;
+  }
+
+  &__img,
+  &__video { .img-cover(); }
+
+  &__video {
+    position: absolute;
+    inset: 0;
+    display: none;
+    opacity: 0;
+    transition: opacity var(--duration-slow) ease;
+    &.is-live { opacity: 1; }
+    @media (min-width: @bp-lg) { display: block; }
+  }
+
+  &__inner {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding-top: @cta-band-pad;
+    padding-bottom: @cta-band-pad;
+    @media (min-width: @bp-lg) { align-items: center; }
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: @cta-band-width;
+    @media (min-width: @bp-lg) { margin-left: @cta-band-inset; }
+  }
+
+  &__eyebrow {
+    .type-label();
+    display: none;
+    margin: 0 0 20 * @px;
+    @media (min-width: @bp-lg) { display: block; }
+  }
+
+  h2 {
+    .type-h1();
+    margin: 0 0 5 * @px;
+    color: inherit;
+    br {
+      display: none;
+      @media (min-width: @bp-lg) { display: inline; }
+    }
+  }
+
+  &__text {
+    .type-body-1();
+    max-width: @cta-band-text-width;
+    margin: 0;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10 * @px;
+    margin-top: 20 * @px;
+  }
+}

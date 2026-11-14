@@ -1,0 +1,85 @@
+@graduates-title-width: 553 * @px;
+@graduates-intro-width: 494 * @px;
+@graduates-head-width: 1264 * @px;
+
+.graduates {
+  padding: 50 * @px 0;
+  background: var(--color-white);
+  @media (min-width: @bp-lg) { padding: 100 * @px 0; }
+
+  &__head {
+    display: flex;
+    flex-direction: column;
+    gap: 25 * @px;
+    @media (min-width: @bp-lg) {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 40 * @px;
+      max-width: @graduates-head-width;
+    }
+  }
+
+  // "remarkable futures." fits a 390 column by a hair; the phone frame sets it on two lines
+  h2 {
+    .type-section-title-tall();
+    max-width: 380 * @px;
+    margin: 0;
+    @media (min-width: @bp-lg) {
+      flex: 0 0 @graduates-title-width;
+      max-width: none;
+    }
+  }
+
+  &__intro {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28 * @px;
+    @media (min-width: @bp-lg) { flex: 0 0 @graduates-intro-width; }
+  }
+
+  &__text {
+    .type-body-1-light();
+    margin: 0;
+  }
+
+  &__rows {
+    display: flex;
+    flex-direction: column;
+    gap: 50 * @px;
+    margin-top: 50 * @px;
+    @media (min-width: @bp-lg) { margin-top: 100 * @px; }
+  }
+
+  &__lane {
+    overflow: hidden;
+    // Figma starts every second row 100 in
+    &:nth-child(even) { padding-left: 100 * @px; }
+  }
+
+  // the trailing space is the gap before the next copy of the list
+  &__list {
+    .reset-list();
+    display: flex;
+    align-items: center;
+    gap: 50 * @px;
+    padding-right: 50 * @px;
+    @media (min-width: @bp-lg) {
+      gap: 100 * @px;
+      padding-right: 100 * @px;
+    }
+  }
+
+  &__logo {
+    display: flex;
+    flex: none;
+  }
+
+  // a logo's width attribute is its size in design px; from lg it follows the fluid root where the browser can divide lengths
+  &__img {
+    display: block;
+    max-width: none;
+    @media (min-width: @bp-lg) { zoom: ~"calc(1rem / 16px)"; }
+  }
+}

@@ -1,0 +1,144 @@
+@social-tile-width: 352 * @px;
+@social-tile-height: 469 * @px;
+@social-gap: 20 * @px;
+// half of Figma's six-tile row (2212), which sits centred on the 1440 frame
+@social-row-half: 1106 * @px;
+@social-link: 48 * @px;
+
+.social {
+  display: grid;
+  grid-template-columns: minmax(var(--gutter), 1fr) minmax(0, var(--container-content)) minmax(var(--gutter), 1fr);
+  row-gap: 30 * @px;
+  padding: 50 * @px 0;
+  background: var(--color-background);
+
+  h2 {
+    grid-column: 2;
+    margin: 0;
+    .type-section-title();
+    @media (min-width: @bp-lg) { grid-row: 1; }
+  }
+
+  &__lane {
+    grid-column: 1 / -1;
+    min-width: 0;
+    overflow: hidden;
+    @media (min-width: @bp-lg) { grid-row: 2; }
+  }
+
+  &__track {
+    margin-left: var(--gutter);
+    @media (min-width: @bp-lg) { margin-left: ~"min(0px, calc(50% - @{social-row-half}))"; }
+  }
+
+  // under reduced motion the row scrolls by hand, so it starts at the gutter and nothing is out of reach
+  &__lane.is-still &__track { margin-left: var(--gutter); }
+
+  // the trailing gap makes one list's width the loop's length
+  &__list {
+    .reset-list();
+    display: flex;
+    gap: @social-gap;
+    padding-right: @social-gap;
+  }
+
+  &__tile {
+    flex: none;
+    width: @social-tile-width;
+    height: @social-tile-height;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+  }
+
+  &__post {
+    display: block;
+    height: 100%;
+    @media (hover: hover) {
+      &[href]:hover .social__img { scale: 1.04; }
+    }
+  }
+
+  &__img {
+    .img-cover();
+    transition: scale 0.9s var(--ease-out);
+  }
+
+  &__arrows {
+    --arrow-bg: var(--color-moss);
+    --arrow-ink: var(--color-canopy);
+    --arrow-bg-hover: var(--color-canopy);
+    --arrow-ink-hover: var(--color-moss);
+    grid-column: 2;
+    justify-self: start;
+    @media (min-width: @bp-lg) {
+      --arrow-bg: var(--color-beach-light);
+      --arrow-bg-hover: var(--color-moss);
+      --arrow-ink-hover: var(--color-canopy);
+      grid-row: 1;
+      align-self: center;
+      justify-self: end;
+    }
+  }
+
+  &__band {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25 * @px;
+    grid-column: 2;
+    padding: 40 * @px 50 * @px;
+    border-radius: var(--radius-lg);
+    background: var(--color-beach-light);
+    color: var(--color-canopy);
+    @media (min-width: @bp-lg) {
+      flex-direction: row;
+      align-items: center;
+      gap: 40 * @px;
+      grid-row: 3;
+      background: var(--color-moss);
+    }
+  }
+
+  // Figma breaks the phone line by hand into three even rows and sets "life at ICS" in italics there only
+  &__text {
+    min-width: 0;
+    margin: 0;
+    .type-social-text();
+    text-wrap: balance;
+    @media (min-width: @bp-lg) {
+      flex: 1 1 0;
+      text-wrap: wrap;
+      em { font-style: normal; }
+    }
+  }
+
+  &__links {
+    .reset-list();
+    display: flex;
+    flex: none;
+    gap: 12 * @px;
+  }
+
+  &__link {
+    .tap-area();
+    display: grid;
+    place-items: center;
+    width: @social-link;
+    height: @social-link;
+    border-radius: 50%;
+    background: var(--color-canopy);
+    color: var(--color-white);
+    transition: background-color var(--duration-base) ease, color var(--duration-base) ease, translate var(--duration-slow) var(--ease-out);
+    .icon {
+      width: 24 * @px;
+      height: 24 * @px;
+    }
+    @media (hover: hover) {
+      &[href]:hover {
+        background: var(--color-forest);
+        color: var(--color-white);
+        translate: 0 (-2 * @px);
+      }
+    }
+  }
+}

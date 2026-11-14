@@ -1,0 +1,82 @@
+<footer class="site-footer">
+  <div class="site-footer__upper rounded-foot">
+    <div class="container">
+      <div class="site-footer__head">
+        <a class="site-footer__logo" href="/index.html" aria-label="{{ site.name }} home" data-anim="reveal">
+          <img class="site-footer__crest" src="/assets/icons/crest.svg" alt="" width="103" height="103" loading="lazy" decoding="async">
+          <img class="site-footer__wordmark" src="/assets/icons/wordmark.svg" alt="" width="142" height="68" loading="lazy" decoding="async">
+        </a>
+        <p class="site-footer__statement" data-anim="split">{{ site.footer.statement | safe }}</p>
+      </div>
+
+      <div class="site-footer__details">
+        <div class="site-footer__about" data-anim-group="fade-up">
+          <p class="site-footer__summary">{{ site.footer.summary }}</p>
+          <ul class="site-footer__socials">
+            {% for item in site.socials %}
+            <li><a class="site-footer__social"{% if item.url %} href="{{ item.url }}" target="_blank" rel="noopener"{% endif %} aria-label="{{ item.label }}"><svg class="icon" aria-hidden="true"><use href="#icon-{{ item.network }}"></use></svg></a></li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="site-footer__columns" data-anim-group="fade-up">
+          {% set plain = false %}
+          {% set col = site.footer.visit %}
+          <div class="site-footer__column site-footer__column--visit">
+            <div class="site-footer__group">
+              <h2>{{ col.title }}</h2>
+              <p class="site-footer__label">{{ col.label }}</p>
+              <p class="site-footer__text">{% for line in col.address %}{{ line }}{% if not loop.last %}<br>{% endif %}{% endfor %}</p>
+            </div>
+            {% set btn = col.button %}{% include "snippets/button.njk" %}
+          </div>
+
+          {% set col = site.footer.contact %}
+          <div class="site-footer__column site-footer__column--contact">
+            <div class="site-footer__group">
+              <h2>{{ col.title }}</h2>
+              <p class="site-footer__label">{{ col.label }}</p>
+              <p class="site-footer__text">{% for line in col.hours %}{{ line }}<br>{% endfor %}<a href="{{ col.phone_url }}">{{ col.phone }}</a></p>
+              <a class="site-footer__email" href="mailto:{{ col.email }}">{{ col.email }}</a>
+            </div>
+            {% set btn = col.button %}{% include "snippets/button.njk" %}
+          </div>
+
+          <div class="site-footer__column site-footer__column--links">
+            <h2>{{ site.footer.links_title }}</h2>
+            <ul class="site-footer__links" data-tap-aa>
+              {% for item in site.footer.links %}
+              <li><a{% if item.url %} href="{{ item.url }}"{% endif %}>{{ item.label }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="site-footer__lower">
+    <div class="site-footer__logos" data-anim="reveal" data-anim-type="fade" data-anim-start="top bottom">
+      <div class="site-footer__track" data-marquee="left" data-marquee-speed="30">
+        <ul class="site-footer__marks">
+          {% for logo in site.footer.logos %}
+          <li>{% if logo.url %}<a href="{{ logo.url }}" target="_blank" rel="noopener">{% endif %}{% set img = logo %}{% set cls = "site-footer__mark" %}{% include "snippets/image.njk" %}{% if logo.url %}</a>{% endif %}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <div class="container">
+      <ul class="site-footer__legal" data-anim="reveal" data-anim-type="fade" data-anim-start="top bottom">
+        <li>{{ site.footer.copyright }}</li>
+        <li>{{ site.footer.operator }}</li>
+        <li>{{ site.footer.abn }}</li>
+        {% for item in site.footer.legal_links %}
+        <li><a{% if item.url %} href="{{ item.url }}"{% endif %}>{{ item.label }}</a></li>
+        {% endfor %}
+        {% if site.footer.credit %}
+        <li class="site-footer__credit"><a{% if site.footer.credit.url %} href="{{ site.footer.credit.url }}" target="_blank" rel="noopener"{% endif %}>{{ site.footer.credit.label }}</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,199 @@
+@slides-height: 810 * @px;
+@slides-pad: 40 * @px;
+// below lg the count and arrows sit under the card: 52 of arrows, 20 to the line, 25 of air
+@slides-pad-nav: 137 * @px;
+@slides-title-width: 626 * @px;
+@slides-card-width: 507 * @px;
+@slides-button: 52 * @px;
+@slides-button-pad: 10 * @px;
+@slides-progress: 185 * @px;
+
+.slides {
+  --focus-ring: var(--color-moss);
+  --arrow-bg: var(--color-moss);
+  --arrow-ink: var(--color-canopy);
+  --arrow-bg-hover: var(--color-white);
+  --arrow-ink-hover: var(--color-canopy);
+  position: relative;
+  overflow: clip;
+  background: var(--color-canopy-deep);
+  color: var(--color-white);
+  touch-action: pan-y;
+
+  // from lg the arrows take whichever of white and moss the slide's button leaves free
+  @media (min-width: @bp-lg) {
+    &[data-stage-tone="moss"] {
+      --arrow-bg: var(--color-white);
+      --arrow-bg-hover: var(--color-moss);
+    }
+  }
+
+  &__viewport { display: grid; }
+
+  &__slide {
+    position: relative;
+    grid-area: 1 / 1;
+    display: flex;
+    min-width: 0;
+    overflow: clip;
+    visibility: hidden;
+    &.is-active {
+      z-index: 1;
+      visibility: visible;
+    }
+  }
+
+  &__media {
+    .cover();
+    pointer-events: none;
+  }
+
+  &__img,
+  &__video { .img-cover(); }
+
+  &__video {
+    position: absolute;
+    inset: 0;
+    display: none;
+    opacity: 0;
+    transition: opacity var(--duration-slow) ease;
+    &.is-live { opacity: 1; }
+    @media (min-width: @bp-lg) { display: block; }
+  }
+
+  &__shade {
+    .cover();
+    background: var(--gradient-hero);
+    pointer-events: none;
+  }
+
+  &__body {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 40 * @px;
+    min-height: @slides-height;
+    padding-top: @slides-pad;
+    padding-bottom: @slides-pad-nav;
+    @media (min-width: @bp-lg) { padding-bottom: @slides-pad; }
+  }
+
+  h2 {
+    .type-h1();
+    max-width: @slides-title-width;
+    margin: 0;
+    color: inherit;
+    // the designer's line breaks are set for the 626 column; a phone wraps the title to its own width
+    br {
+      display: none;
+      @media (min-width: @bp-lg) { display: inline; }
+    }
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22 * @px;
+    padding: 25 * @px;
+    border-radius: var(--radius-lg);
+    .glass();
+    @media (min-width: @bp-md) {
+      width: @slides-card-width;
+      max-width: 100%;
+    }
+
+    // Figma's white button here carries a canopy dot; below lg every slide's button is the white one
+    .btn {
+      .btn-variant(var(--color-white); var(--color-canopy); var(--color-canopy); var(--color-white));
+      --bs-btn-padding-y: @{slides-button-pad};
+      max-width: 100%;
+      height: auto;
+      min-height: @slides-button;
+      text-align: left;
+      white-space: normal;
+    }
+    @media (min-width: @bp-lg) {
+      .btn-moss { .btn-variant(var(--color-moss); var(--color-canopy); var(--color-canopy); var(--color-moss)); }
+    }
+  }
+
+  &__stat {
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+    gap: 19 * @px;
+  }
+
+  &__figure {
+    .type-stat();
+    margin: 0;
+    text-box: trim-both cap alphabetic;
+  }
+
+  &__label {
+    .type-body-4();
+    margin: 0;
+    padding-top: 10 * @px;
+    border-top: 1 * @px solid var(--color-white-20);
+  }
+
+  &__foot {
+    position: absolute;
+    right: 0;
+    bottom: 39 * @px;
+    left: 0;
+    z-index: 3;
+    display: flex;
+    pointer-events: none;
+    @media (min-width: @bp-lg) { justify-content: flex-end; }
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 19 * @px;
+    pointer-events: auto;
+  }
+
+  &__controls {
+    display: flex;
+    align-items: center;
+    gap: 15 * @px;
+  }
+
+  &__count {
+    .type-slides-count();
+    min-width: 60 * @px;
+    margin: 0;
+    white-space: nowrap;
+    span { display: inline-block; }
+  }
+
+  &__progress {
+    width: @slides-progress;
+    height: 2 * @px;
+    overflow: hidden;
+    border-radius: 2 * @px;
+    background: var(--color-white-20);
+    span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--color-moss);
+      transform: scaleX(0);
+      transform-origin: 0 50%;
+    }
+  }
+}
+
+// until stage.js has given the first slide its start state
+html.anim-ready:not(.anim-reduced) .slides:not(.is-ready) {
+  [data-stage-title],
+  [data-stage-item],
+  [data-stage-nav] {
+    visibility: hidden;
+  }
+}

@@ -35,7 +35,7 @@ Stack: Eleventy 3 + Nunjucks · Bootstrap 5.3 themed only through `--bs-*` · LE
 - Check each section at 320, 375, 430, 768, 1024, 1280, 1440, 1920 and 667 × 375, then `node .qa/mobile-audit.mjs`.
 
 ## Motion
-- Only `data-anim-*` (API: `~/.claude/skills/figma-to-html/references/anim-api.md`). Subtle and smooth, nothing quick or bouncy. `prefers-reduced-motion` respected everywhere, marquees, sliders and hover videos included.
+- Only `data-anim-*` (API: `docs/animation.md`; this project's engine differs from the skill's reference). Subtle and smooth, nothing quick or bouncy: transform and opacity only, timed reveals that play once, no whole-pixel stepping. `prefers-reduced-motion` respected everywhere, marquees, sliders and hover videos included.
 
 ## Handoff + housekeeping
 - `docs/wagtail-handoff.md` is the one living handoff doc; `CHANGELOG.md` holds dated history. Keep history out of this file.

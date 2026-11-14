@@ -1,0 +1,284 @@
+@menu-inset: 10 * @px;
+@menu-width: 540 * @px;
+@menu-pad-sm: 20 * @px;
+@menu-pad: 40 * @px;
+@menu-close: 60 * @px;
+@menu-arrow: 26 * @px;
+@menu-btn-height: 30 * @px;
+
+.menu {
+  --focus-ring: var(--color-moss);
+  // Figma leaves the page behind the panel untouched; a tint here dims it
+  --menu-backdrop: transparent;
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  color: var(--color-white);
+
+  &__backdrop {
+    position: absolute;
+    inset: 0;
+    background: var(--menu-backdrop);
+    touch-action: none;
+  }
+
+  &__panel {
+    position: absolute;
+    inset: @menu-inset;
+    display: flex;
+    flex-direction: column;
+    gap: 25 * @px;
+    padding: 30 * @px @menu-pad-sm @menu-pad-sm;
+    border-radius: var(--radius-lg);
+    background: var(--color-canopy-deep);
+    @media (min-height: @bp-tall) { gap: 50 * @px; }
+    @media (min-width: @bp-lg) {
+      left: auto;
+      width: @menu-width;
+      padding: @menu-pad;
+    }
+  }
+
+  &__top {
+    display: flex;
+    flex: none;
+    align-items: center;
+    gap: 30 * @px;
+  }
+
+  &__search {
+    display: flex;
+    flex: 1 1 0;
+    align-items: center;
+    gap: 8 * @px;
+    min-width: 0;
+    margin: 0;
+    padding: 12 * @px 15 * @px;
+    border-radius: var(--radius-pill);
+    background: var(--color-white-20);
+    transition: background-color var(--duration-base) ease;
+    &:focus-within { background: var(--color-white-30); }
+    .icon {
+      width: 25 * @px;
+      height: 25 * @px;
+    }
+    input {
+      .type-menu-search();
+      flex: 1 1 0;
+      min-width: 0;
+      height: 25 * @px;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: none;
+      color: inherit;
+      appearance: none;
+      &::placeholder {
+        color: inherit;
+        opacity: 1;
+      }
+      &::-webkit-search-cancel-button { display: none; }
+    }
+  }
+
+  &__close {
+    display: flex;
+    flex: none;
+    align-items: center;
+    gap: 10 * @px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    .type-body-3();
+  }
+
+  &__close-icon {
+    display: grid;
+    place-items: center;
+    width: @menu-close;
+    height: @menu-close;
+    border-radius: 50%;
+    background: var(--color-white-20);
+    transition: background-color var(--duration-base) ease;
+    .icon {
+      width: 20 * @px;
+      height: 20 * @px;
+      transition: rotate var(--duration-slow) var(--ease-out);
+    }
+  }
+
+  @media @fine {
+    &__close:hover &__close-icon {
+      background: var(--color-white-30);
+      .icon { rotate: 90deg; }
+    }
+  }
+
+  // the scroller reaches into the panel's side padding so a focus ring is not cut off
+  &__body {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 40 * @px;
+    min-height: 0;
+    margin: 0 -@menu-pad-sm;
+    padding: 0 @menu-pad-sm;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    .hide-scrollbar();
+    @media (min-width: @bp-lg) {
+      margin: 0 -@menu-pad;
+      padding: 0 @menu-pad;
+    }
+  }
+
+  &__list {
+    .reset-list();
+    display: flex;
+    flex-direction: column;
+    @media (min-width: @bp-lg) { gap: 10 * @px; }
+  }
+
+  // Figma's rule sits in the item's last pixel and takes no room; an open item has none
+  &__item {
+    box-shadow: inset 0 -1 * @px 0 var(--color-canopy);
+    transition: box-shadow var(--duration-base) ease;
+    &.is-open { box-shadow: inset 0 -1 * @px 0 transparent; }
+  }
+
+  &__link {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10 * @px;
+    width: 100%;
+    padding: 20 * @px 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    text-align: left;
+    .type-menu-title();
+  }
+
+  &__label {
+    flex: 1 1 0;
+    min-width: 0;
+    text-box: trim-both cap alphabetic;
+  }
+
+  &__item.is-open &__label {
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  // it turns about the arrow's own middle, which is not the middle of its box
+  &__arrow {
+    flex: none;
+    width: @menu-arrow;
+    height: @menu-arrow;
+    color: var(--color-moss);
+    transform-origin: 12 * @px 14 * @px;
+    transition: rotate var(--duration-slow) var(--ease-out), translate var(--duration-base) var(--ease-out);
+  }
+
+  &__item.is-open &__arrow { rotate: 90deg; }
+
+  @media @fine {
+    &__link:hover &__arrow { translate: 3 * @px -3 * @px; }
+    &__item.is-open &__link:hover &__arrow { translate: 3 * @px 3 * @px; }
+  }
+
+  &__sub {
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    ul {
+      .reset-list();
+      padding-bottom: 20 * @px;
+    }
+  }
+
+  &__item.is-open &__sub {
+    height: auto;
+    visibility: visible;
+  }
+
+  &__child {
+    .tap-area();
+    display: flex;
+    align-items: center;
+    height: 38 * @px;
+    padding: 5 * @px 0;
+    color: inherit;
+    white-space: nowrap;
+    .type-menu-child();
+    &[aria-current="page"] { color: var(--color-moss); }
+    @media (hover: hover) {
+      &[href]:hover { color: var(--color-moss); }
+    }
+  }
+
+  &__foot {
+    display: flex;
+    flex: none;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 20 * @px;
+    @media (min-width: @bp-lg) {
+      justify-content: space-between;
+      width: 463 * @px;
+    }
+  }
+
+  // Figma's small button here is 30 tall: 10 above and below the label's cap height
+  &__buttons {
+    display: flex;
+    flex: none;
+    flex-direction: column;
+    gap: 5 * @px;
+    @media (min-width: @bp-lg) { width: 200 * @px; }
+    .btn {
+      .tap-area();
+      height: @menu-btn-height;
+      @media (min-width: @bp-lg) { justify-content: center; }
+    }
+    .btn__dot {
+      @media (min-width: @bp-lg) { display: none; }
+    }
+  }
+
+  // from lg the buttons are drawn without the dot, so there is nothing to grow on hover
+  @media (min-width: @bp-lg) {
+    & &__buttons .btn:hover { padding-left: var(--bs-btn-padding-x); }
+  }
+
+  // beside the buttons while there is room for the longest link, under them on the narrowest phones
+  &__links {
+    .reset-list();
+    flex: 1 1 100 * @px;
+    @media (min-width: @bp-lg) {
+      flex: none;
+      width: 186 * @px;
+    }
+    a {
+      display: block;
+      padding: 2 * @px 0;
+      color: inherit;
+      .type-body-3();
+      @media (hover: hover) {
+        &[href]:hover { color: var(--color-moss); }
+      }
+    }
+  }
+}
+
+// lab only: a tall plain section for testing the scrolled header (blocks/lab_spacer.njk)
+.lab-spacer {
+  display: grid;
+  place-items: center;
+  min-height: 220vh;
+  background: var(--color-beach-light);
+  color: var(--color-canopy);
+}

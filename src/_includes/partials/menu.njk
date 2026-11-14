@@ -1,0 +1,54 @@
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Site menu" hidden>
+  <div class="menu__backdrop" data-menu-close></div>
+  <div class="menu__panel">
+    <div class="menu__top" data-menu-row>
+      <form class="menu__search" role="search">
+        <label class="visually-hidden" for="menu-search">Search the site</label>
+        <svg class="icon" aria-hidden="true"><use href="#icon-search"></use></svg>
+        <input id="menu-search" type="search" name="q" placeholder="Search..." autocomplete="off">
+      </form>
+      <button class="menu__close" type="button" data-menu-close>
+        <span class="menu__close-label">Close</span>
+        <span class="menu__close-icon" aria-hidden="true"><svg class="icon"><use href="#icon-close"></use></svg></span>
+      </button>
+    </div>
+    <div class="menu__body" data-lenis-prevent>
+      <nav class="menu__nav" aria-label="Site">
+        <ul class="menu__list">
+          {% for item in site.nav %}
+          <li class="menu__item{% if item.children and item.current %} is-open{% endif %}" data-menu-row>
+            {% if item.children %}
+            <button class="menu__link" type="button" aria-expanded="{% if item.current %}true{% else %}false{% endif %}" aria-controls="menu-sub-{{ loop.index }}">
+              <span class="menu__label">{{ item.label }}</span>
+              <svg class="menu__arrow" aria-hidden="true"><use href="#icon-arrow-diagonal"></use></svg>
+            </button>
+            <div class="menu__sub" id="menu-sub-{{ loop.index }}">
+              <ul>
+                {% for child in item.children %}
+                <li><a class="menu__child"{% if child.url %} href="{{ child.url }}"{% endif %}{% if child.current %} aria-current="page"{% endif %}>{{ child.label }}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% else %}
+            <a class="menu__link"{% if item.url %} href="{{ item.url }}"{% endif %}{% if item.current %} aria-current="page"{% endif %}>
+              <span class="menu__label">{{ item.label }}</span>
+              <svg class="menu__arrow" aria-hidden="true"><use href="#icon-arrow-diagonal"></use></svg>
+            </a>
+            {% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+      </nav>
+      <div class="menu__foot" data-menu-row>
+        <div class="menu__buttons">
+          {% set plain = false %}{% for btn in site.menu_buttons %}{% include "snippets/button.njk" %}{% endfor %}
+        </div>
+        <ul class="menu__links" data-tap-aa>
+          {% for item in site.menu_links %}
+          <li><a{% if item.url %} href="{{ item.url }}"{% endif %}>{{ item.label }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

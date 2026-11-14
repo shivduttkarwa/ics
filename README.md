@@ -15,6 +15,7 @@ Fonts: Ulises and Museo Sans are licensed. The source files (from the ICS landin
 - Rules: `CLAUDE.md`
 - Designer's brief: `docs/design-guidelines.md`
 - Tokens, type, components: `docs/design-system.md`
+- Motion and sliders: `docs/animation.md`
 - Figma frame ids: `docs/figma-frames.md`
 - Block field contract: `blocks.yaml`
 - Wagtail handoff: `docs/wagtail-handoff.md`
