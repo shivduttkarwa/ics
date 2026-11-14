@@ -1,6 +1,6 @@
 // Lenis smooth scroll + GSAP reveals, split titles, counters and parallax, driven by data-anim-* (docs/animation.md)
 import Lenis from "lenis";
-import { gsap, ScrollTrigger, SplitText, still, phone, fine } from "./motion.js";
+import { gsap, ScrollTrigger, SplitText, still, phone, fine, settled, glassy } from "./motion.js";
 
 const STAGGER = 0.09; // between reveals that come into view together
 const SPREAD = 0.6; // the longest a batch of them may take to start
@@ -103,8 +103,11 @@ function expandGroups(root) {
   });
 }
 
+const moves = (preset) => ["x", "y", "scale"].some((key) => key in preset.from);
+
 function revealUnit(el) {
-  const preset = REVEAL[attr(el, variant(el, "data-anim-type"), "fade-up")] || REVEAL["fade-up"];
+  let preset = REVEAL[attr(el, variant(el, "data-anim-type"), "fade-up")] || REVEAL["fade-up"];
+  if (moves(preset) && glassy(el)) preset = REVEAL.fade;
   const inner = preset.inner ? Array.from(el.querySelectorAll("img, video")) : [];
   // a CSS transition on the element would smear every frame of the tween
   gsap.set(el, { ...preset.from, transition: "none" });
@@ -113,8 +116,8 @@ function revealUnit(el) {
     el,
     play(delay) {
       const tl = gsap.timeline({ delay, onComplete: () => settle(el, inner) });
-      preset.to.forEach((vars) => tl.to(el, vars, 0));
-      if (inner.length) tl.to(inner, preset.inner.to, 0);
+      preset.to.forEach((vars) => tl.to(el, settled(el, vars), 0));
+      if (inner.length) tl.to(inner, settled(inner[0], preset.inner.to), 0);
       const duration = number(el, "data-anim-duration", 0);
       if (duration) tl.duration(duration);
       return tl;
@@ -186,6 +189,7 @@ export function riseLines(el, vars = {}) {
   gsap.set(lines, { yPercent: LINES.from, autoAlpha: 0 });
   gsap.set(el, { autoAlpha: 1 });
   const { onComplete, ...rest } = vars;
+  const rise = settled(lines[0], { yPercent: 0, duration: LINES.duration, ease: LINES.ease });
   return gsap.timeline({
     ...rest,
     onComplete: () => {
@@ -193,7 +197,7 @@ export function riseLines(el, vars = {}) {
       onComplete?.();
     },
   })
-    .to(lines, { yPercent: 0, duration: LINES.duration, ease: LINES.ease, stagger: LINES.stagger }, 0)
+    .to(lines, { ...rise, stagger: LINES.stagger }, 0)
     .to(lines, { autoAlpha: 1, duration: LINES.fade, ease: "power1.out", stagger: LINES.stagger }, 0);
 }
 
@@ -205,9 +209,8 @@ function splitUnit(el) {
     gsap.set(parts, { yPercent: 60, autoAlpha: 0 });
     gsap.set(el, { autoAlpha: 1 });
     gsap.to(parts, {
-      yPercent: 0,
+      ...settled(parts[0], { yPercent: 0, duration: PIECES.duration }),
       autoAlpha: 1,
-      duration: PIECES.duration,
       stagger: PIECES.stagger[type],
       onComplete: () => {
         split.revert();

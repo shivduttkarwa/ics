@@ -1,5 +1,5 @@
 // data-accordion: one [data-accordion-item] open at a time; its [data-accordion-panel] eases open and shut
-import { gsap, still, phone } from "./motion.js";
+import { gsap, still, phone, settled } from "./motion.js";
 
 const toggleOf = (item) => item.querySelector("[aria-expanded]");
 const panelOf = (item) => item.querySelector("[data-accordion-panel]");
@@ -25,7 +25,7 @@ export function initAccordions() {
       if (open && !from) gsap.set(content, { opacity: 0, y: 12 });
       return gsap.timeline({ onComplete: () => gsap.set([panel, content], { clearProps: "height,visibility,overflow,opacity,transform" }) })
         .fromTo(panel, { height: from }, { height: to, duration: 0.7, ease: "glide", snap: { height: 1 } }, 0)
-        .to(content, open ? { opacity: 1, y: 0, duration: 0.6, ease: "soft" } : { opacity: 0, duration: 0.3, ease: "power1.in" }, open ? 0.2 : 0);
+        .to(content, open ? { ...settled(content, { y: 0, duration: 0.6, ease: "soft" }), opacity: 1 } : { opacity: 0, duration: 0.3, ease: "power1.in" }, open ? 0.2 : 0);
     };
     items.forEach((item) => {
       toggleOf(item).addEventListener("click", () => {

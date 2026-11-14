@@ -1,5 +1,5 @@
 // the main menu: a modal panel that slides in from the right, its rows rising in turn; parent items open in place
-import { gsap, still } from "./motion.js";
+import { gsap, still, settled, landing } from "./motion.js";
 import { lockScroll } from "./ui.js";
 
 const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])';
@@ -42,8 +42,8 @@ export function initMenu() {
     }
     tl = gsap.timeline({ onComplete: () => gsap.set([panel, ...rows], { clearProps: "transform,opacity" }) })
       .to(backdrop, { autoAlpha: 1, duration: 0.6, ease: "power1.out" }, 0)
-      .to(panel, { xPercent: 0, duration: 0.9, ease: "silk" }, 0)
-      .to(rows, { y: 0, opacity: 1, duration: 0.8, ease: "soft", stagger: 0.055 }, 0.25);
+      .to(panel, settled(panel, { xPercent: 0, duration: 0.9, ease: "silk" }), 0)
+      .to(rows, { ...settled(rows[0], { y: 0, duration: 0.8, ease: "soft" }), opacity: 1, stagger: 0.055 }, 0.25);
   };
 
   const close = () => {
@@ -104,7 +104,10 @@ export function initMenu() {
     const to = on ? sub.offsetHeight : 0;
     const step = gsap.timeline({ onComplete: () => gsap.set([sub, ...links], { clearProps: "height,visibility,opacity,transform" }) })
       .fromTo(sub, { height: from }, { height: to, duration: 0.65, ease: "glide", snap: { height: 1 } }, 0);
-    if (on) step.fromTo(links, { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.55, ease: "soft", stagger: 0.06 }, 0.15);
+    if (on) {
+      const land = landing("soft", 10);
+      step.fromTo(links, { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.55 * land.cut, ease: land.ease, stagger: 0.06 }, 0.15);
+    }
     else step.to(links, { autoAlpha: 0, duration: 0.25, ease: "power1.in" }, 0);
   };
   parents.forEach((item) => {

@@ -1,5 +1,5 @@
 // data-stage: full-width slides stacked on one another; the next one wipes in over the current while both photos drift
-import { gsap, Observer, ScrollTrigger, still } from "./motion.js";
+import { gsap, Observer, ScrollTrigger, still, settled, landing } from "./motion.js";
 import { riseLines } from "./anim.js";
 
 const WIPE = { duration: 1.4, ease: "glide" };
@@ -44,10 +44,11 @@ export function initStages() {
     const count = (dir) => {
       if (!current) return;
       if (still.matches || !dir) return void (current.textContent = pad(index + 1));
+      const land = landing("soft", 0.6 * current.offsetHeight);
       gsap.timeline()
         .to(current, { yPercent: -60 * dir, autoAlpha: 0, duration: 0.35, ease: "power2.in" })
         .call(() => { current.textContent = pad(index + 1); })
-        .fromTo(current, { yPercent: 60 * dir }, { yPercent: 0, autoAlpha: 1, duration: 0.6, clearProps: "transform,opacity,visibility" });
+        .fromTo(current, { yPercent: 60 * dir }, { yPercent: 0, autoAlpha: 1, duration: 0.6 * land.cut, ease: land.ease, clearProps: "transform,opacity,visibility" });
     };
     // with no autoplay the line shows how far through the slides we are
     const place = (duration = 0) => {
@@ -76,12 +77,13 @@ export function initStages() {
       if (fill && auto()) gsap.to(fill, { scaleX: 0, duration: 0.6, ease: "glide", overwrite: true });
     };
 
-    // the copy plays on its own timeline, so the arrows answer again as soon as the wipe has landed
+    // the copy plays on its own timeline, so the arrows answer again as soon as the wipe has landed;
+    // the frosted card fades in place, as its blur would jitter against the photo if it moved
     const bring = (slide, at, extra) => {
       const mine = gsap.timeline({ onComplete: () => { if (copy === mine) copy = null; } });
       copy = mine;
       if (title(slide)) mine.add(riseLines(title(slide)), at);
-      if (items(slide).length) mine.to(items(slide), { autoAlpha: 1, y: 0, duration: 1.1, stagger: 0.1, clearProps: "transform,opacity,visibility" }, at + COPY.items);
+      if (items(slide).length) mine.to(items(slide), { autoAlpha: 1, duration: 1.1, ease: "power2.out", stagger: 0.1, clearProps: "opacity,visibility" }, at + COPY.items);
       extra?.(mine);
     };
 
@@ -105,7 +107,7 @@ export function initStages() {
       }
       busy = true;
       gsap.set(into, { visibility: "visible", zIndex: 2, clipPath: dir > 0 ? "inset(0% 0% 0% 100%)" : "inset(0% 100% 0% 0%)" });
-      if (items(into).length) gsap.set(items(into), { autoAlpha: 0, y: 40 });
+      if (items(into).length) gsap.set(items(into), { autoAlpha: 0 });
       const wipe = gsap.timeline({
         defaults: WIPE,
         onComplete: () => {
@@ -134,7 +136,7 @@ export function initStages() {
       ready = true;
       bring(slides[index], 0.1, (tl) => {
         tl.to(media(slides[index]), { scale: 1, duration: 2.4, ease: "power2.out" }, 0);
-        if (nav) tl.to(nav, { autoAlpha: 1, y: 0, duration: 1.1, clearProps: "transform,opacity,visibility" }, 0.6);
+        if (nav) tl.to(nav, { ...settled(nav, { y: 0, duration: 1.1 }), autoAlpha: 1, clearProps: "transform,opacity,visibility" }, 0.6);
       });
       arm();
     };
@@ -179,7 +181,7 @@ export function initStages() {
       const first = slides[index];
       gsap.set(media(first), { scale: 1.1 });
       if (title(first)) gsap.set(title(first), { autoAlpha: 0 });
-      if (items(first).length) gsap.set(items(first), { autoAlpha: 0, y: 40 });
+      if (items(first).length) gsap.set(items(first), { autoAlpha: 0 });
       if (nav) gsap.set(nav, { autoAlpha: 0, y: 24 });
       // a title split against the fallback face breaks its lines in the wrong places, so the intro waits briefly for the webfonts
       const watch = () => ScrollTrigger.create({ trigger: root, start: "top 72%", end: "max", once: true, onEnter: intro });
