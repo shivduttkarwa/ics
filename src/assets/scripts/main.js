@@ -7,6 +7,7 @@ import { initHeader } from "./header.js";
 import { initMenu } from "./menu.js";
 import { initNews } from "./news.js";
 import { initCards } from "./cards.js";
+import { initStories } from "./stories.js";
 import { initAmbientVideos, initDevicePixel, initEagerPhotos, initFocusMode, initHoverVideos, initScrollState } from "./ui.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -24,5 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initAccordions();
   initNews();
   initCards();
+  initStories();
   initHoverVideos();
 });

@@ -25,6 +25,11 @@
     }
   }
 
+  // spread: the copy column flush with the container's right edge (HSC Results), instead of 69 after the title
+  &--spread &__inner {
+    @media (min-width: @bp-lg) { justify-content: space-between; }
+  }
+
   // both columns give way on a desktop narrower than 1440
   h2 {
     .type-h3();

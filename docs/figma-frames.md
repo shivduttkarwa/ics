@@ -89,7 +89,7 @@ Every inner page opens with the same hero: image band `Frame 544` (1440 × 800),
 - Faith: hero `15694:13430`, title `15694:13432`, pinned `15694:13419` and `15742:14506`, then `15694:13376`, `15694:13356`, `15694:13433`, `15694:13443`, `15699:24334`.
 - Enrol: hero `15672:10666`, title `15672:10668`, pinned `15672:10655`, then `15672:10632`, `15672:10612`, `15694:20104`, `15699:23440`, `15672:10589`.
 - Entry Points: hero `15699:15059`, title `15699:15061`, pinned `15699:15048`, then `15699:14979`, `15699:14995`, `15699:23498`, `15699:15045`.
-- HSC Results: hero `15621:13302`, title `15621:13304`, pinned `15621:13291`, body `15621:13393`.
+- HSC Results (`/results.html`, built): hero `15621:13302`, title `15621:13304`, breadcrumbs `15621:13339`, pinned `15621:13291`; body `15621:13393` (laid 35 over the pinned band's foot): results `15621:14837`, features `15621:13394`, graduate stories `15657:24463` (expanded state `15657:27409`), FAQs `15653:15625`, careers `15653:15637`, graduates + tiles `15653:15063`, Full Width CTA `15699:23502`, Where Next `15699:22920`, Keep Exploring `15699:23055`, CTA Upper Footer `15653:15758`, footer `15653:15759`.
 - Our People: hero `15657:24558`, title `15657:24560`, pinned `15657:24547`, body `15657:27271`, footer group `15657:24561`.
 - Contact: hero `15657:25832`, title `15657:25834`, pinned `15657:25821`, body `15657:25923`.
 - Internal Page Blocks: hero `15513:10033`, title `15513:10038`, pinned `15513:10022`, blocks `15550:34339` and `15699:23625`.

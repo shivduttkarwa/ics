@@ -1,0 +1,16 @@
+<section class="feature-grid">
+  <div class="container">
+    <div class="feature-grid__inner">
+      <h2 data-anim="split">{{ value.title | safe }}</h2>
+      <ul class="feature-grid__list" data-anim-group="fade-up">
+        {% for item in value.items %}
+        <li class="feature-grid__item">
+          <span class="feature-grid__rule"></span>
+          <h3>{{ item.title | safe }}</h3>
+          <p class="feature-grid__text">{{ item.text }}</p>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>

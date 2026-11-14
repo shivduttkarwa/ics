@@ -80,7 +80,7 @@
         "buttons": [
           {
             "text": "View all Results and pathways",
-            "url": "",
+            "url": "/results.html",
             "style": "moss"
           },
           {

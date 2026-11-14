@@ -165,6 +165,15 @@
   @media (min-width: @bp-lg) { font-size: 60 * @px; }
 }
 
+// "How do ICS students get these results?": Ulises Light 60 / 1.1, −4%; 45 on phones
+.type-section-title-mid() {
+  .type-serif(300);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  font-size: 45 * @px;
+  @media (min-width: @bp-lg) { font-size: 60 * @px; }
+}
+
 // the USPs and journey titles: Ulises Light 45 / 1.2, −3%, the same on phones
 .type-section-title-small() {
   .type-serif(300);
@@ -265,7 +274,23 @@
   font-size: 35 * @px;
 }
 
-// the breadcrumbs: Museo Sans 500 14 / 1.4, −3%; the current page in 900
+// "Heading 5": Ulises Bold 25 / 1.2, the same on phones
+.type-heading-5() {
+  .type-serif(700);
+  line-height: 1.2;
+  letter-spacing: 0;
+  font-size: 25 * @px;
+}
+
+// the Features Grid Text titles: Ulises Book 25 / 1.4, −3%, the same on phones
+.type-feature-title() {
+  .type-serif(400);
+  line-height: 1.4;
+  letter-spacing: -0.03em;
+  font-size: 25 * @px;
+}
+
+// the breadcrumbs: Museo Sans 500 14 / 1.4, −3%; the pages above this one in 900
 .type-breadcrumb() {
   .type-sans(500);
   line-height: 1.4;
@@ -304,6 +329,13 @@
   line-height: 1;
   letter-spacing: -0.03em;
   font-size: 60 * @px;
+}
+
+// the results grid figures: type-stat, 45 below sm, where two columns of "99.90" would not fit (no phone frame)
+.type-stat-grid() {
+  .type-stat();
+  font-size: 45 * @px;
+  @media (min-width: @bp-sm) { font-size: 60 * @px; }
 }
 
 // the quotes in cards and pinned sections: Ulises Medium Italic 20 / 1.4, −3%

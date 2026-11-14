@@ -3,7 +3,7 @@
 # Types are Wagtail block classes. figma = node id on page 15417:12061 of El5cAszLdnHFyIKN6g9uOc.
 # image = { src, alt, width, height } → ImageChooserBlock. video = { src, poster } → a document or URL block.
 # button = { text, url, style, size, icon } → StructBlock(text: CharBlock, url: URLBlock, style: ChoiceBlock, size: ChoiceBlock(required=False), icon: ChoiceBlock(required=False)).
-#   icon "none" drops the dot (Figma's outline buttons carry none); "arrow" is the plain label-and-arrow button; "play" the USP video card's button.
+#   icon "none" drops the dot (Figma's outline buttons carry none); "arrow" is the plain label-and-arrow button; "play" the USP video card's button; "open" draws the dot already grown into the arrow circle (the HSC download button).
 # title fields marked RichTextBlock(features=["italic"]) hold italic words as <em> and are rendered without the <p>; a <br> in the static data is the designer's forced line, honoured from lg only.
 
 settings:
@@ -50,6 +50,9 @@ pages:
   why:
     figma: "15550:30814 (Why ICS Landing page); no phone frame"
     fields: {}   # body: page_hero, pinned, pillar × 3 (bullets), testimonials, faqs (theme white), where_next, keep_exploring, cta_cards
+  results:
+    figma: "15621:13290 (HSC Results); 15657:27409 (Expanded Story); no phone frame"
+    fields: {}   # body: page_hero (shade deep, breadcrumbs), pinned, stat_grid, feature_grid, stories, faqs (theme white), bullet_list, graduates, testimonials (untitled), cta_band (height 682), where_next, keep_exploring, cta_cards (position low)
 
 blocks:
   hero:
@@ -75,16 +78,67 @@ blocks:
       image: ImageChooserBlock(required)   # cover, 800 tall from lg, under black 25%; decorative (alt empty)
       image_mobile: ImageChooserBlock(required=False)   # below lg; no phone frame exists, the Why page uses the photo's right-hand two thirds
       video: DocumentChooserBlock(required=False)   # from lg, muted loop over the image while on screen; { src, poster }
+      shade: ChoiceBlock(choices=["light", "deep"], default="light")   # light: black 25% (Why ICS); deep: black 40% fading out to the right over black 30% (HSC Results, 15621:13302)
       title: RichTextBlock(features=["italic"])   # Ulises Book 75; the designer's <br> holds the 1121 column from lg
-      breadcrumbs: ListBlock(StructBlock(label, url), required=False)   # the trail 33 above the title; the last entry is the page (900 weight, no link). Empty on the Why page, as Figma hides it; in Wagtail from the page's ancestors
+      breadcrumbs: ListBlock(StructBlock(label, url), required=False)   # the trail 33 above the title and 9 in from its edge; the pages above in 900, the last entry (the page itself, no link) in 500, as the Breadcrumbs component 15513:14084. Empty on the Why page, as Figma hides it; in Wagtail from the page's ancestors
 
   pinned:
-    figma: "15550:30879 (\"Pinned Section\": the canopy-deep band under the Why ICS hero; nothing pins)"
+    figma: "15550:30879 (\"Pinned Section\": the canopy-deep band under the Why ICS hero; nothing pins), 15621:13291 (HSC Results)"
     template: blocks/pinned.njk
     fields:
+      spread: BooleanBlock(required=False)   # from lg the copy column sits on the container's right edge (HSC Results, 15621:13291); off, 69 after the title (Why ICS)
       title: RichTextBlock(features=["italic"])   # Ulises Book 35, 511 wide
-      text: TextBlock   # Museo Sans 300 20, 620 wide, 580 in from the container's left edge
+      text: TextBlock   # Museo Sans 300 20, 620 wide, 580 in from the container's left edge (or flush right with spread)
       button: StructBlock(text, url, style, required=False)   # 25 under the text; Figma draws one hidden
+
+  stat_grid:
+    figma: "15621:14837 (Our 2025 HSC results), 15653:24261 (Stat with Icon); no phone frame"
+    template: blocks/stat_grid.njk
+    fields:
+      title: RichTextBlock(features=["italic"])   # Ulises Light 60, 712 wide
+      stats: ListBlock(StructBlock)   # four to a row from lg (two below), every row as tall as its tallest
+        icon: ChoiceBlock   # a sprite id: mountain, rocket, hands-clapping, trophy, star, hand-point-up, medal (or any bullet glyph)
+        value: CharBlock   # "99.90", "7th"; the number in it counts up from 0
+        label: RichTextBlock(features=[])   # Body 4, white 75%; double spaces and a <br> are kept as Figma writes them
+      button: StructBlock(text, url, style, icon, required=False)   # "Download Our 2025 HSC results": moss with icon "open", the dot drawn grown as Figma
+
+  feature_grid:
+    figma: "15621:13394 (How do ICS students get these results?), 15653:15041 (Features Grid Text); no phone frame"
+    template: blocks/feature_grid.njk
+    fields:
+      title: RichTextBlock(features=["italic"])   # Ulises Light 60 / 1.1, −4%, 592 wide
+      items: ListBlock(StructBlock)   # four columns from lg, two from md, one below
+        title: RichTextBlock(features=[])   # Ulises Book 25 / 1.4 under a canopy rule; a <br> holds from lg only
+        text: TextBlock   # Body 3
+
+  stories:
+    figma: "15657:24463 (Read about some of our HSC graduates), 15657:27590 (Graduate Story, normal), 15657:27589 (expanded, in 15657:27409); no phone frame"
+    template: blocks/stories.njk
+    fields:
+      title: RichTextBlock(features=["italic"])   # Ulises Light 60 / 1.1, −4%, 592 wide
+      stories: ListBlock(StructBlock)   # one card per slide, 1280 wide at 1440 with the next one showing at the right; the count and arrows above follow it
+        tag: CharBlock   # the pill above the row that goes to this story ("curious"); the story showing is the solid canopy pill
+        image: ImageChooserBlock(required)   # 550 × 640, cover
+        image_secondary: ImageChooserBlock(required=False)   # 550 × 403 under the first, shown once the story is open
+        title: RichTextBlock(features=["italic"])   # "Jeremy Smark <em>Dux</em>"
+        lead: TextBlock   # Museo Sans 300 20
+        summary: TextBlock   # Museo Sans 300 16, shown while the story is shut
+        story: RichTextBlock(features=["bold", "italic", "link"], required=False)   # the whole story, shown in place of the summary once open
+        button_label: CharBlock   # "Read Jeremy's Story"; the open card's button reads "Close"
+
+  bullet_list:
+    figma: "15653:15637 (Help with every pathway); the rows are Bullet Point with Icon (15431:14590); no phone frame"
+    template: blocks/bullet_list.njk
+    fields:
+      title: RichTextBlock(features=["italic"])   # Ulises Light 60 / 1.2, 411 wide; the designer's <br> from lg
+      text: TextBlock(required=False)   # Museo Sans 300 20
+      subtitle: CharBlock(required=False)   # "Their program includes:", Heading 5 (Ulises Bold 25)
+      bullets: ListBlock(StructBlock)   # the shared bullet list (snippets/bullets.njk), 494 wide
+        icon: ChoiceBlock   # a sprite id: user-magnifying-glass, briefcase, clipboard-list-check, user-chef, user-helmet-safety, signs-post, pen-field, comments (or any bullet glyph)
+        title: RichTextBlock(features=[])
+        text: RichTextBlock(features=[], required=False)
+      note: RichTextBlock(features=["link"], required=False)   # Body 3 under the list
+      button: StructBlock(text, url, style, required=False)
 
   announcement:
     figma: "15417:12133 (desktop content, in the 15417:12115 group), 15513:26719 (phone)"
@@ -209,10 +263,10 @@ blocks:
       # the three round buttons are site.socials (network = sprite icon id)
 
   testimonials:
-    figma: "15550:30893 (Why ICS: 'What our community say' + five Video Testimonial tiles), 15431:14902 (Video Testimonial: video and quote kinds); no phone frame"
+    figma: "15550:30893 (Why ICS: 'What our community say' + five Video Testimonial tiles), 15653:15104 (HSC Results: the row under the graduates logos), 15431:14902 (Video Testimonial: video and quote kinds); no phone frame"
     template: blocks/testimonials.njk
     fields:
-      title: RichTextBlock(features=["italic"])
+      title: RichTextBlock(features=["italic"], required=False)   # empty: the row carries on the white block above it (no top padding, 100 below from lg), as on the HSC Results page
       items: StreamBlock   # the row runs off the right of the screen and drags; the first tile is 360 wide, the rest 400
         video: StructBlock
           image: ImageChooserBlock(required)   # 400 × 720 slot (600 tall below lg), cover; the video's still
@@ -243,9 +297,10 @@ blocks:
       links: ListBlock(StructBlock(label, url))   # one row each, with a rule and a diagonal arrow; ends in a rounded foot over the CTA cards
 
   cta_band:
-    figma: "15513:12252 (Full Width CTA, Employment), 15536:28134 (phone)"
+    figma: "15513:12252 (Full Width CTA, Employment), 15536:28134 (phone), 15699:23502 (HSC Results: Join 500+ wonderful families)"
     template: blocks/cta_band.njk
     fields:
+      height: ChoiceBlock(choices=[662, 682], required=False)   # the band's height in design px from lg: 662 on the home page, 682 on the inner pages; empty = 662
       image: ImageChooserBlock(required)   # full width, 662 tall from lg (720 below); decorative (alt empty)
       image_mobile: ImageChooserBlock(required=False)   # below md; Figma's phone frame crops the same photo to a portrait
       video: DocumentChooserBlock(required=False)   # from lg, muted loop over the image while on screen
@@ -256,9 +311,10 @@ blocks:
       button_secondary: StructBlock(text, url, style, required=False)   # "View current roles", outline-white, rendered without the dot
 
   cta_cards:
-    figma: "15513:12196 (CTA Upper Footer), 15337:15529 (CTA Card), 15541:28895 (phone: 'What comes next?')"
+    figma: "15513:12196 (CTA Upper Footer), 15337:15529 (CTA Card), 15541:28895 (phone: 'What comes next?'), 15653:15758 (HSC Results)"
     template: blocks/cta_cards.njk
     fields:
+      position: ChoiceBlock(choices=["centre", "low"], default="centre")   # from lg: centre = the cards 57 from the top and bottom (home, Why ICS); low = 92 and 22, as the HSC Results instance draws them
       title: RichTextBlock(features=["italic"])   # "What comes next?": shown below lg only, where the cards collapse to their buttons
       cards: ListBlock(StructBlock, max_num=3)
         theme: ChoiceBlock(choices=["white", "beach", "moss"], default="white")   # the card's ground from lg

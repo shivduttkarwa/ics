@@ -1,0 +1,579 @@
+{
+  "seo": {
+    "title": "Results and pathways | Illawarra Christian School",
+    "description": "ICS is regularly one of the top schools in the Illawarra for HSC results. Our 2025 HSC results, how our students get them, graduate stories and careers help for every pathway."
+  },
+  "body": [
+    {
+      "type": "page_hero",
+      "value": {
+        "image": {
+          "src": "/assets/images/hsc/hsc-hero-1920.webp",
+          "alt": "",
+          "width": 1920,
+          "height": 1174,
+          "srcset": "/assets/images/hsc/hsc-hero-1280.webp 1280w, /assets/images/hsc/hsc-hero-1920.webp 1920w"
+        },
+        "image_mobile": {
+          "src": "/assets/images/hsc/hsc-hero-mobile.webp",
+          "alt": "",
+          "width": 900,
+          "height": 1014
+        },
+        "video": null,
+        "shade": "deep",
+        "title": "Strong results and a <br>pathway for <em>every</em> student",
+        "breadcrumbs": [
+          {
+            "label": "Why ICS",
+            "url": "/why.html"
+          },
+          {
+            "label": "Results and pathways",
+            "url": ""
+          }
+        ]
+      }
+    },
+    {
+      "type": "pinned",
+      "value": {
+        "spread": true,
+        "title": "ICS is regularly <em>one of the top schools</em> in the Illawarra for HSC results",
+        "text": "Our graduates go on to university, TAFE, apprenticeships and work, and they leave knowing who they are.",
+        "button": null
+      }
+    },
+    {
+      "type": "stat_grid",
+      "value": {
+        "title": "Our 2025 <em>HSC results</em>",
+        "stats": [
+          {
+            "icon": "mountain",
+            "value": "99.90",
+            "label": "Top ATAR  Jeremy Smark"
+          },
+          {
+            "icon": "rocket",
+            "value": "40",
+            "label": "Band 6 results"
+          },
+          {
+            "icon": "hands-clapping",
+            "value": "19",
+            "label": "Distinguished Achievers"
+          },
+          {
+            "icon": "trophy",
+            "value": "13",
+            "label": "students with ATAR over 90"
+          },
+          {
+            "icon": "star",
+            "value": "19",
+            "label": "subjects with Band 6 results"
+          },
+          {
+            "icon": "hand-point-up",
+            "value": "2",
+            "label": "nominations for HSC showcases"
+          },
+          {
+            "icon": "medal",
+            "value": "7th",
+            "label": "in State for Mathematics Ext 1<br>Jeremy Smark"
+          },
+          {
+            "icon": "medal",
+            "value": "10th",
+            "label": "in State  for Physics  Jeremy Smark"
+          }
+        ],
+        "button": {
+          "text": "Download Our 2025 HSC results",
+          "url": "",
+          "style": "moss",
+          "icon": "open"
+        }
+      }
+    },
+    {
+      "type": "feature_grid",
+      "value": {
+        "title": "How do ICS students get <em>these results</em>?",
+        "items": [
+          {
+            "title": "Teachers who mark the HSC",
+            "text": "Several of our teachers are official HSC markers for NESA, so they know what examiners want to see."
+          },
+          {
+            "title": "Small senior classes",
+            "text": "Senior classes are small enough for teachers to give each student real attention. Every Extension 1 and Extension 2 course is available."
+          },
+          {
+            "title": "A mentor for every Year 12 student",
+            "text": "Each Year 12 student meets with a staff mentor once a week. Mentors help students balance study with the rest of life and keep them on track with their goals."
+          },
+          {
+            "title": "Study skills from <br>Year 7",
+            "text": "Students learn how to study well through a seminar program that builds each year, along with study days in the senior years."
+          }
+        ]
+      }
+    },
+    {
+      "type": "stories",
+      "value": {
+        "title": "Read about some of our HSC <em>graduates</em>",
+        "stories": [
+          {
+            "tag": "curious",
+            "image": {
+              "src": "/assets/images/hsc/story-jeremy.webp",
+              "alt": "Jeremy Smark in his school uniform, smiling",
+              "width": 507,
+              "height": 623
+            },
+            "image_secondary": {
+              "src": "/assets/images/hsc/story-jeremy-group.webp",
+              "alt": "Jeremy and five classmates in lab coats at a university science faculty",
+              "width": 738,
+              "height": 547
+            },
+            "title": "Jeremy Smark <em>Dux</em>",
+            "lead": "Jeremy joined ICS in Year 6 and quickly embraced the opportunities to learn and grow within the school community. He has valued experiences that challenged him, from collaborative projects to creative pursuits, and has appreciated the friendships and support that have shaped his journey.",
+            "summary": "Academically, Jeremy’s inquisitive nature and determined effort have driven him to excel in a rigorous program that includes advanced mathematics, sciences, and languages.",
+            "story": "<p>Academically, Jeremy’s inquisitive nature and determined effort have driven him to excel in a rigorous program that includes advanced mathematics, sciences, and languages. His achievements reflect both intellectual curiosity and perseverance. Highlights include representing Australia in international problem-solving competitions, earning distinctions in national academic challenges, and participating in elite programs that extend learning well beyond the classroom. These experiences showcase his love of learning and his ability to thrive when faced with complex ideas and demanding expectations.</p><p>Beyond academics, Jeremy has embraced opportunities to serve and lead. His faith has been a guiding influence, shaping how he approaches study and life with humility and purpose. He has contributed to the school community through leadership roles, mentoring younger students, and fostering a culture of encouragement and integrity. Jeremy also pursued creative and technical interests, from performing in orchestras to engaging in engineering and robotics projects, demonstrating a commitment to growth across diverse fields.</p><p>Jeremy’s time at ICS reflects a balance of academic excellence, character development, and service. His achievements are a testament to his curiosity, resilience, and desire to use his gifts for the benefit of others.</p>",
+            "button_label": "Read Jeremy’s Story"
+          },
+          {
+            "tag": "courageous",
+            "image": {
+              "src": "/assets/images/hsc/story-jeremy.webp",
+              "alt": "Jeremy Smark in his school uniform, smiling",
+              "width": 507,
+              "height": 623
+            },
+            "image_secondary": {
+              "src": "/assets/images/hsc/story-jeremy-group.webp",
+              "alt": "Jeremy and five classmates in lab coats at a university science faculty",
+              "width": 738,
+              "height": 547
+            },
+            "title": "Jeremy Smark <em>Dux</em>",
+            "lead": "Jeremy joined ICS in Year 6 and quickly embraced the opportunities to learn and grow within the school community. He has valued experiences that challenged him, from collaborative projects to creative pursuits, and has appreciated the friendships and support that have shaped his journey.",
+            "summary": "Academically, Jeremy’s inquisitive nature and determined effort have driven him to excel in a rigorous program that includes advanced mathematics, sciences, and languages.",
+            "story": "<p>Academically, Jeremy’s inquisitive nature and determined effort have driven him to excel in a rigorous program that includes advanced mathematics, sciences, and languages. His achievements reflect both intellectual curiosity and perseverance. Highlights include representing Australia in international problem-solving competitions, earning distinctions in national academic challenges, and participating in elite programs that extend learning well beyond the classroom. These experiences showcase his love of learning and his ability to thrive when faced with complex ideas and demanding expectations.</p><p>Beyond academics, Jeremy has embraced opportunities to serve and lead. His faith has been a guiding influence, shaping how he approaches study and life with humility and purpose. He has contributed to the school community through leadership roles, mentoring younger students, and fostering a culture of encouragement and integrity. Jeremy also pursued creative and technical interests, from performing in orchestras to engaging in engineering and robotics projects, demonstrating a commitment to growth across diverse fields.</p><p>Jeremy’s time at ICS reflects a balance of academic excellence, character development, and service. His achievements are a testament to his curiosity, resilience, and desire to use his gifts for the benefit of others.</p>",
+            "button_label": "Read Jeremy’s Story"
+          },
+          {
+            "tag": "compassionate",
+            "image": {
+              "src": "/assets/images/hsc/story-jeremy.webp",
+              "alt": "Jeremy Smark in his school uniform, smiling",
+              "width": 507,
+              "height": 623
+            },
+            "image_secondary": {
+              "src": "/assets/images/hsc/story-jeremy-group.webp",
+              "alt": "Jeremy and five classmates in lab coats at a university science faculty",
+              "width": 738,
+              "height": 547
+            },
+            "title": "Jeremy Smark <em>Dux</em>",
+            "lead": "Jeremy joined ICS in Year 6 and quickly embraced the opportunities to learn and grow within the school community. He has valued experiences that challenged him, from collaborative projects to creative pursuits, and has appreciated the friendships and support that have shaped his journey.",
+            "summary": "Academically, Jeremy’s inquisitive nature and determined effort have driven him to excel in a rigorous program that includes advanced mathematics, sciences, and languages.",
+            "story": "<p>Academically, Jeremy’s inquisitive nature and determined effort have driven him to excel in a rigorous program that includes advanced mathematics, sciences, and languages. His achievements reflect both intellectual curiosity and perseverance. Highlights include representing Australia in international problem-solving competitions, earning distinctions in national academic challenges, and participating in elite programs that extend learning well beyond the classroom. These experiences showcase his love of learning and his ability to thrive when faced with complex ideas and demanding expectations.</p><p>Beyond academics, Jeremy has embraced opportunities to serve and lead. His faith has been a guiding influence, shaping how he approaches study and life with humility and purpose. He has contributed to the school community through leadership roles, mentoring younger students, and fostering a culture of encouragement and integrity. Jeremy also pursued creative and technical interests, from performing in orchestras to engaging in engineering and robotics projects, demonstrating a commitment to growth across diverse fields.</p><p>Jeremy’s time at ICS reflects a balance of academic excellence, character development, and service. His achievements are a testament to his curiosity, resilience, and desire to use his gifts for the benefit of others.</p>",
+            "button_label": "Read Jeremy’s Story"
+          }
+        ]
+      }
+    },
+    {
+      "type": "faqs",
+      "value": {
+        "theme": "white",
+        "title": "You might be <em>wondering...</em>",
+        "items": [
+          {
+            "question": "How does ICS go in the HSC?",
+            "answer": "<p>ICS is regularly among the top [TBC: 3] Illawarra schools for HSC results. In 2025, [TBC: percentage] of results were in the top two bands.</p>"
+          },
+          {
+            "question": "Is ICS only for academic students?",
+            "answer": "<p>[TBC: answer to come from the school.]</p>"
+          },
+          {
+            "question": "Do you offer scholarships?",
+            "answer": "<p>[TBC: answer to come from the school.]</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "bullet_list",
+      "value": {
+        "title": "Help with <br><em>every</em> pathway",
+        "text": "Not every student wants an ATAR, and that's fine. Our careers advisers work with students and families from Year 9 to Year 12.",
+        "subtitle": "Their program includes:",
+        "bullets": [
+          {
+            "icon": "user-magnifying-glass",
+            "title": "personality and career matching",
+            "text": ""
+          },
+          {
+            "icon": "briefcase",
+            "title": "a week of work experience in Year 10",
+            "text": ""
+          },
+          {
+            "icon": "clipboard-list-check",
+            "title": "help choosing subjects in Years 10 and 11",
+            "text": ""
+          },
+          {
+            "icon": "user-chef",
+            "title": "VET courses, school-based apprenticeships and distance education",
+            "text": ""
+          },
+          {
+            "icon": "user-helmet-safety",
+            "title": "White Card training",
+            "text": ""
+          },
+          {
+            "icon": "signs-post",
+            "title": "careers days at school and visits to university and TAFE open days in Wollongong and Sydney",
+            "text": ""
+          },
+          {
+            "icon": "pen-field",
+            "title": "help with early entry, scholarship, apprenticeship and cadetship applications",
+            "text": ""
+          },
+          {
+            "icon": "comments",
+            "title": "résumé writing and practice interviews",
+            "text": ""
+          }
+        ],
+        "note": "<p>Families can also use our careers website at icscareers.info</p>",
+        "button": {
+          "text": "Visit our Careers website",
+          "url": "",
+          "style": "moss"
+        }
+      }
+    },
+    {
+      "type": "graduates",
+      "value": {
+        "title": "<em>Where</em> do ICS<br> graduates go?",
+        "text": "Our recent graduates are studying medicine, business, engineering, sports science and law. Other pathways include trades, defence and tourism.",
+        "button": null,
+        "rows": [
+          {
+            "logos": [
+              {
+                "src": "/assets/images/logos/uow.svg",
+                "alt": "University of Wollongong Australia",
+                "width": 141,
+                "height": 46
+              },
+              {
+                "src": "/assets/images/logos/usyd.webp",
+                "alt": "The University of Sydney",
+                "width": 117,
+                "height": 42
+              },
+              {
+                "src": "/assets/images/logos/unsw.webp",
+                "alt": "UNSW Sydney",
+                "width": 104,
+                "height": 45
+              },
+              {
+                "src": "/assets/images/logos/uts.webp",
+                "alt": "UTS, University of Technology Sydney",
+                "width": 132,
+                "height": 57
+              },
+              {
+                "src": "/assets/images/logos/macquarie.webp",
+                "alt": "Macquarie University",
+                "width": 116,
+                "height": 34
+              },
+              {
+                "src": "/assets/images/logos/acu.webp",
+                "alt": "ACU, Australian Catholic University",
+                "width": 103,
+                "height": 28
+              },
+              {
+                "src": "/assets/images/logos/icms.webp",
+                "alt": "ICMS, International College of Management Sydney",
+                "width": 121,
+                "height": 38
+              },
+              {
+                "src": "/assets/images/logos/torrens.webp",
+                "alt": "Torrens University Australia",
+                "width": 111,
+                "height": 44
+              },
+              {
+                "src": "/assets/images/logos/newcastle.webp",
+                "alt": "The University of Newcastle Australia",
+                "width": 130,
+                "height": 44
+              }
+            ]
+          },
+          {
+            "logos": [
+              {
+                "src": "/assets/images/logos/adf-careers.webp",
+                "alt": "ADF Careers, Australian Defence Force",
+                "width": 92,
+                "height": 47
+              },
+              {
+                "src": "/assets/images/logos/megt.webp",
+                "alt": "MEGT",
+                "width": 109,
+                "height": 83
+              },
+              {
+                "src": "/assets/images/logos/uts-sport.webp",
+                "alt": "UTS Sport",
+                "width": 64,
+                "height": 43
+              },
+              {
+                "src": "/assets/images/logos/american-summers.webp",
+                "alt": "American Summers",
+                "width": 116,
+                "height": 57
+              },
+              {
+                "src": "/assets/images/logos/multiplex.webp",
+                "alt": "Multiplex",
+                "width": 146,
+                "height": 28
+              },
+              {
+                "src": "/assets/images/logos/master-builders.webp",
+                "alt": "Master Builders Australia",
+                "width": 164,
+                "height": 39
+              },
+              {
+                "src": "/assets/images/logos/wisetech.webp",
+                "alt": "WiseTech Global",
+                "width": 108,
+                "height": 43
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "testimonials",
+      "value": {
+        "title": "",
+        "items": [
+          {
+            "kind": "video",
+            "image": {
+              "src": "/assets/images/hsc/testimonial-lena.webp",
+              "alt": "Lena, an ICS graduate, standing in front of an ivy wall",
+              "width": 371,
+              "height": 742
+            },
+            "video": null,
+            "label": "Hear from Lena",
+            "url": ""
+          },
+          {
+            "kind": "quote",
+            "theme": "canopy",
+            "quote": "“What struck me wasn't a mission statement, it was watching a teacher kneel down and actually listen to my daughter. Faith here isn't taught, it's lived every single day.”",
+            "name": "Rob, Class of 2019"
+          },
+          {
+            "kind": "video",
+            "image": {
+              "src": "/assets/images/hsc/testimonial-rowan.webp",
+              "alt": "Rowan, an ICS graduate, speaking to the camera",
+              "width": 593,
+              "height": 1068
+            },
+            "video": null,
+            "label": "Hear from Rowan",
+            "url": ""
+          },
+          {
+            "kind": "quote",
+            "theme": "beach",
+            "quote": "“His teachers know his strengths, his struggles, even his sense of humour. After years of being one of many, that has made all the difference.”",
+            "name": "Chloe, Year 7 Parent"
+          },
+          {
+            "kind": "video",
+            "image": {
+              "src": "/assets/images/why/testimonial-dave.webp",
+              "alt": "Dave with his family at a cafe table",
+              "width": 682,
+              "height": 1365
+            },
+            "video": null,
+            "label": "Hear from dave",
+            "url": ""
+          }
+        ]
+      }
+    },
+    {
+      "type": "cta_band",
+      "value": {
+        "height": 682,
+        "image": {
+          "src": "/assets/images/hsc/cta-families-1879.webp",
+          "alt": "",
+          "width": 1879,
+          "height": 1032,
+          "srcset": "/assets/images/hsc/cta-families-1280.webp 1280w, /assets/images/hsc/cta-families-1879.webp 1879w"
+        },
+        "image_mobile": {
+          "src": "/assets/images/hsc/cta-families-mobile.webp",
+          "alt": "",
+          "width": 489,
+          "height": 819
+        },
+        "video": null,
+        "eyebrow": "",
+        "title": "Join 500+ <em>wonderful</em> <br>families at ICS.",
+        "text": "Apply today and give your child a place where they are known, cared for and encouraged to grow and flourish.",
+        "button": {
+          "text": "Apply now to enrol",
+          "url": "",
+          "style": "glass"
+        },
+        "button_secondary": {
+          "text": "Download Prospectus",
+          "url": "",
+          "style": "outline-white"
+        }
+      }
+    },
+    {
+      "type": "where_next",
+      "value": {
+        "title": "Where <em>next</em>?",
+        "cards": [
+          {
+            "image": {
+              "src": "/assets/images/why/next-faith.webp",
+              "alt": "Secondary students in a discussion circle with their teacher",
+              "width": 1256,
+              "height": 962
+            },
+            "label": "Our Faith",
+            "url": ""
+          },
+          {
+            "image": {
+              "src": "/assets/images/why/next-learning.webp",
+              "alt": "A teacher working with students at their laptops",
+              "width": 1179,
+              "height": 903
+            },
+            "label": "Learning",
+            "url": ""
+          }
+        ]
+      }
+    },
+    {
+      "type": "keep_exploring",
+      "value": {
+        "title": "Keep <em>exploring</em>",
+        "links": [
+          {
+            "label": "Our Faith",
+            "url": ""
+          },
+          {
+            "label": "Learning",
+            "url": ""
+          },
+          {
+            "label": "Life at ICS",
+            "url": ""
+          }
+        ]
+      }
+    },
+    {
+      "type": "cta_cards",
+      "value": {
+        "title": "What comes <em>next?</em>",
+        "cards": [
+          {
+            "theme": "white",
+            "image": {
+              "src": "/assets/images/home/cta-community.webp",
+              "alt": "Primary students smiling together in the playground",
+              "width": 826,
+              "height": 656
+            },
+            "title": "Meet our <em>community</em>.",
+            "text": "Walk the campus, meet our teachers and see what a school day at ICS is really like.",
+            "button": {
+              "text": "Book a tour",
+              "url": "",
+              "style": "canopy"
+            }
+          },
+          {
+            "theme": "beach",
+            "image": {
+              "src": "/assets/images/home/cta-enquire.webp",
+              "alt": "A student playing the violin on stage",
+              "width": 755,
+              "height": 600
+            },
+            "title": "Enquire and <br><em>have a chat</em>.",
+            "text": "Ask us anything about fees, year levels or what to expect. Our enrolments team is happy to help.",
+            "button": {
+              "text": "Make an enquiry",
+              "url": "",
+              "style": "canopy"
+            }
+          },
+          {
+            "theme": "moss",
+            "image": {
+              "src": "/assets/images/hsc/cta-apply-classroom.webp",
+              "alt": "Secondary students working on a task together at a classroom table",
+              "width": 826,
+              "height": 656
+            },
+            "title": "Start <em>your</em> <br>ICS journey",
+            "text": "Complete your application online and secure your child’s place. Early applications keep more options open.",
+            "button": {
+              "text": "Apply to enrol",
+              "url": "",
+              "style": "canopy"
+            }
+          }
+        ],
+        "position": "low"
+      }
+    }
+  ]
+}

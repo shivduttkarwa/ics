@@ -4,7 +4,8 @@
 @page-hero-foot: 57 * @px;
 @page-hero-foot-sm: 40 * @px;
 @page-hero-title-width: 1121 * @px;
-@page-hero-crumbs-gap: 33 * @px;
+@page-hero-crumbs-gap: 27 * @px;
+@page-hero-crumbs-indent: 9 * @px;
 // the photo overhangs the band by a tenth of its height and drifts that far as the page scrolls
 @page-hero-drift: 10%;
 @page-hero-drift-share: percentage((10 / 110));
@@ -22,6 +23,8 @@
   color: var(--color-white);
   background: var(--color-canopy-deep);
   @media (min-width: @bp-lg) { min-height: @page-hero-height; }
+
+  &--deep { --page-hero-shade: var(--gradient-page-hero); }
 
   &__media { .cover(); }
 
@@ -67,9 +70,12 @@
     @media (min-width: @bp-lg) { padding-bottom: @page-hero-foot; }
   }
 
+  // Figma sets the trail 9 in from the title's edge
   &__crumbs {
     margin-bottom: 25 * @px;
-    @media (min-width: @bp-lg) { margin-bottom: @page-hero-crumbs-gap; }
+    @media (min-width: @bp-lg) {
+      margin: 0 0 @page-hero-crumbs-gap @page-hero-crumbs-indent;
+    }
     ol {
       .reset-list();
       display: flex;
@@ -88,7 +94,9 @@
       color: inherit;
       text-box: trim-both cap alphabetic;
     }
-    [aria-current] { font-weight: 900; }
+    a { .tap-area(); }
+    a,
+    span:not([aria-current]) { font-weight: 900; }
     .icon {
       width: 16 * @px;
       height: 16 * @px;

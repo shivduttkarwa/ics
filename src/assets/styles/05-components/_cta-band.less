@@ -1,5 +1,7 @@
 @cta-band-height-sm: 720 * @px;
 @cta-band-height: 662 * @px;
+// the inner pages draw the band 682 tall
+@cta-band-height-tall: 682 * @px;
 @cta-band-pad: 50 * @px;
 @cta-band-width: 502 * @px;
 @cta-band-text-width: 397 * @px;
@@ -18,6 +20,10 @@
   @media (min-width: @bp-lg) {
     --cta-band-shade: var(--gradient-band);
     min-height: @cta-band-height;
+  }
+
+  &--682 {
+    @media (min-width: @bp-lg) { min-height: @cta-band-height-tall; }
   }
 
   &__media {

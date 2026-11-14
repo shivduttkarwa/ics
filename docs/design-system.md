@@ -16,9 +16,9 @@ The site uses the file's "premium" palette. The older "primary" swatches (blues,
 | `--color-dark-grey` | primary/dark-grey | `#373737` | the crest's lettering |
 | `--color-flame` | premium/flame-tree | `#e01a1a` | the red menu icon variant (not on the layouts) |
 | white / black alphas | WhiteAlpha/*, BlackAlpha/* | | frosted fills (white 20%), image shades (the inner-page hero: black 25%), hairlines (white 20%) |
-| `--color-moss-20`, `--color-moss-30` | | | the bullet icon squares; the Arrow circle's rest fill |
+| `--color-moss-10`, `--color-moss-20`, `--color-moss-30` | | | the graduate story cards; the bullet and stat icon squares; the Arrow circle's rest fill |
 
-The announcement bar's ground is canopy under 40% black (`--color-canopy-deep`, `#072d26`). Image shades are black linear gradients, one token each: `--gradient-hero` (the hero and the slides), `--gradient-hero-sm` (the phone hero), `--gradient-card-top` (USP cards), `--gradient-tile-top` and `--gradient-tile-open` (journey tiles, at rest and open), `--gradient-photo-foot` (pillar photos), `--gradient-band` (the employment band from lg). The scrolled header bar is `color-mix()` of canopy-deep at 88% over the glass blur.
+The announcement bar's ground is canopy under 40% black (`--color-canopy-deep`, `#072d26`). Image shades are black linear gradients, one token each: `--gradient-hero` (the hero and the slides), `--gradient-hero-sm` (the phone hero), `--gradient-card-top` (USP cards), `--gradient-tile-top` and `--gradient-tile-open` (journey tiles, at rest and open), `--gradient-photo-foot` (pillar photos), `--gradient-band` (the employment band from lg), `--gradient-page-hero` (the deeper inner-page hero: black 40% fading out to the right over black 30%). The scrolled header bar is `color-mix()` of canopy-deep at 88% over the glass blur.
 
 ## Type
 Two licensed families. **Ulises** (serif, light weights, italics for emphasis) and **Museo Sans** (sans for body, labels and buttons). The woff2 files in `src/assets/fonts/` (converted from the ICS landing pages' files, see the README):
@@ -50,7 +50,7 @@ Also in the frames but not needed as fonts: Ulises Heavy (one 120px quote mark: 
 | Heading 2 | Ulises Light | 45 / 1 / −3% | `type-heading-2` |
 | Heading 3 | Ulises Light | 35 / 1.1 / −3% | `type-heading-3` |
 | Heading 4 | Ulises Light | 30 / 1.1 / −2% | `type-heading-4` (h4) |
-| Heading 5 | Ulises Bold | 25 / 1.2 / 0 | — (see `type-h5`) |
+| Heading 5 | Ulises Bold | 25 / 1.2 / 0 | `type-heading-5` ("Their program includes:"; `type-h5` is the footer's Book 25) |
 | Heading 6 | Museo Sans 500 | 20 / 1.4 / 0, caps | `type-heading-6` (h6) |
 | Lead Paragraph Serif | Ulises Book | 25 / 1.4 / −2% | `type-lead-serif` |
 | Body 1 | Museo Sans 500 | 20 / 1.5 / −3% | `type-body-1` |
@@ -68,6 +68,7 @@ Also in the frames but not needed as fonts: Ulises Heavy (one 120px quote mark: 
 | Inner page hero titles | Ulises Book + Book Italic | 75 / 1.1 / −5% | interpreted 45 | `type-page-title` |
 | Section titles (pillars, FAQs, news, social) | Ulises Light + Light Italic | 60 / 1 / −3% | 45 | `type-section-title` |
 | "Preparing for remarkable futures." | Ulises Light + Light Italic | 60 / 1.2 / −3% | 45 | `type-section-title-tall` |
+| "How do ICS students get these results?", "Read about some of our HSC graduates" | Ulises Light + Light Italic | 60 / 1.1 / −4% | 45 | `type-section-title-mid` |
 | USPs and journey titles | Ulises Light + Light Italic | 45 / 1.2 / −3% | 45 | `type-section-title-small` |
 | CTA card titles | Ulises Book + Book Italic | 45 / 1.1 / −3% | 45 | `type-h2` (h2) |
 | Footer statement | Ulises Book + Book Italic | 35 / 1.2 / −3% | 35 | `type-h3` (h3) |
@@ -80,8 +81,9 @@ Also in the frames but not needed as fonts: Ulises Heavy (one 120px quote mark: 
 | Where Next card captions | Ulises Book | 35 / 1.1 / −5% | 35 | `type-card-caption` |
 | Keep Exploring link rows | Museo Sans 300 | 35 / 1.1 / −2% | 35 | `type-link-row` |
 | Bullet point titles | Museo Sans 700 | 16 / 1.4 / 0 | 16 | `type-bullet-title` |
-| Breadcrumbs | Museo Sans 500 (current page 900) | 14 / 1.4 / −3% | 14 | `type-breadcrumb` |
-| Stat figures | Ulises Light Italic | 60 / 1 / −3% | 60 | `type-stat` |
+| Features Grid Text titles | Ulises Book | 25 / 1.4 / −3% | 25 | `type-feature-title` |
+| Breadcrumbs | Museo Sans 900 for the pages above, 500 for the current page | 14 / 1.4 / −3% | 14 | `type-breadcrumb` |
+| Stat figures | Ulises Light Italic | 60 / 1 / −3% | 60 | `type-stat`; the results grid `type-stat-grid` (45 below sm) |
 | Quotes | Ulises Medium Italic | 20 / 1.4 / −3%; 16 / 1.5 | same | `type-quote`, `type-quote-small` |
 | FAQ questions | Ulises SemiBold | 20 / 1.5 / 0 | 20 | `type-faq-question` |
 | Slide count | Ulises Book Italic | 20 / 1.4 / 0 | 20 | `type-slides-count` |
@@ -117,10 +119,10 @@ The phone frames keep most of these at their desktop size, so only the 60 titles
 | `outline-moss` | 0.5 moss ring | moss | moss |
 | `outline-glass` | 1px white ring + blur | white | white |
 
-Large 52 tall, 25 side insets, 15 gap; small (`size: "small"`) 36 tall with 15 insets, 44 on touch (the menu and footer draw it 30 tall with a 44 hit area, as their frames). Hover grows the dot to 42 (26 small) with the arrow in the button's fill colour; `icon: "none"` or `plain` drops the dot (outline buttons, the header's "Book a tour"). The "Arrow" circle beside sliders is `.arrow-btn` (`_arrows.less`): 52 round, moss 30% with a moss arrow, recoloured per block.
+Large 52 tall, 25 side insets, 15 gap; small (`size: "small"`) 36 tall with 15 insets, 44 on touch (the menu and footer draw it 30 tall with a 44 hit area, as their frames). Hover grows the dot to 42 (26 small) with the arrow in the button's fill colour; `icon: "none"` or `plain` drops the dot (outline buttons, the header's "Book a tour"); `icon: "open"` draws the dot already grown (the HSC download button). The "Arrow" circle beside sliders is `.arrow-btn` (`_arrows.less`): 52 round, moss 30% with a moss arrow, recoloured per block.
 
 ## Icons
-Figma draws icons as Font Awesome 7 Pro glyphs (Sharp Light arrows, Light pictograms at 24 and 36, Regular/Solid play and search) and Font Awesome 6 Brands for social logos. Each one is outlined from Figma into `partials/icons.njk` as an `icon-<name>` symbol when its section is built. In the sprite: `icon-arrow-right`, `icon-arrow-diagonal` (FAQ rows, the menu, the Where Next cards), `icon-angle-right` (breadcrumbs), `icon-menu` (the burger, 30 × 18), `icon-play` (the hero video card's triangle), `icon-play-outline` and `icon-play-solid` (the USP video card, the testimonial tiles), `icon-search`, `icon-close`, `icon-facebook`, `icon-instagram`, `icon-linkedin`, and the fifteen Font Awesome 7 Light bullet glyphs of the Why ICS pillars (`icon-medal`, `star`, `trophy`, `chart-line`, `web-awesome`, `chart-pie`, `file-certificate`, `cross`, `hands-praying`, `book-bible`, `face-thinking`, `hand-holding-heart`, `head-side-heart`, `message-heart`, `family`). A new bullet icon is outlined from Figma into the sprite and named in `bullets[].icon`.
+Figma draws icons as Font Awesome 7 Pro glyphs (Sharp Light arrows, Light pictograms at 24 and 36, Regular/Solid play and search) and Font Awesome 6 Brands for social logos. Each one is outlined from Figma into `partials/icons.njk` as an `icon-<name>` symbol when its section is built. In the sprite: `icon-arrow-right`, `icon-arrow-diagonal` (FAQ rows, the menu, the Where Next cards), `icon-angle-right` (breadcrumbs), `icon-menu` (the burger, 30 × 18), `icon-play` (the hero video card's triangle), `icon-play-outline` and `icon-play-solid` (the USP video card, the testimonial tiles), `icon-search`, `icon-close`, `icon-facebook`, `icon-instagram`, `icon-linkedin`, and the fifteen Font Awesome 7 Light bullet glyphs of the Why ICS pillars (`icon-medal`, `star`, `trophy`, `chart-line`, `web-awesome`, `chart-pie`, `file-certificate`, `cross`, `hands-praying`, `book-bible`, `face-thinking`, `hand-holding-heart`, `head-side-heart`, `message-heart`, `family`). The HSC Results page adds the four Stat with Icon glyphs (Font Awesome 7 Light at 36 in a 45 box: `icon-mountain`, `rocket`, `hands-clapping`, `hand-point-up`; trophy, star and medal reuse the bullet glyphs, which scale exactly) and eight bullet glyphs (`icon-user-magnifying-glass`, `briefcase`, `clipboard-list-check`, `user-chef`, `user-helmet-safety`, `signs-post`, `pen-field`, `comments`). A new icon is outlined from Figma into the sprite (an SVG export of the list it sits in, each glyph's box as the symbol's viewBox) and named in the data.
 
 ## Logos
 `src/assets/icons/crest.svg` (79 × 79) and `wordmark.svg` (109 × 52, white) from the header's Logo Landscape, Full Colour Inverted. The kit also has Full Colour, White and Dark Green variants (`6140:12636`) for light grounds. Favicons: `favicon.ico` (16/32/48) and `apple-touch-icon.png` (the crest on canopy). Third-party logos live in `src/assets/images/logos/`: the sixteen university and employer marks of the graduates block (Figma holds them as small rasters; only UOW is a vector) and the six accreditation marks of the footer (`footer-*.svg`, `footer-cen.webp`) on a common 65-tall canvas.

@@ -1,6 +1,9 @@
 @cta-cards-pad-sm: 50 * @px;
 // Figma centres the 745 cards in the 859 section
 @cta-cards-pad: 57 * @px;
+// the results page's instance pads 120 above and 50 below in the same 859 frame, so the overflowing cards sit 92 down and 22 up
+@cta-cards-pad-low-top: 92 * @px;
+@cta-cards-pad-low-bottom: 22 * @px;
 @cta-cards-photo: 328 * @px;
 @cta-cards-body: 417 * @px;
 
@@ -10,6 +13,10 @@
   background: var(--color-canopy);
   color: var(--color-white);
   @media (min-width: @bp-lg) { padding: @cta-cards-pad 0; }
+
+  &--low {
+    @media (min-width: @bp-lg) { padding: @cta-cards-pad-low-top 0 @cta-cards-pad-low-bottom; }
+  }
 
   // the phone frame is this title over the three buttons; from lg the cards speak for themselves
   h2 {

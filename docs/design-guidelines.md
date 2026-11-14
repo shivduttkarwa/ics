@@ -43,3 +43,5 @@ There is no written brief yet. This file collects the designer's notes in the Fi
 | Hover videos on cards | `data-hover-video` (`initHoverVideos()`), never autoplays on touch |
 | Main menu | `menu.js`: a modal panel from the right, rows rising in turn, sections opening in place |
 | Stages card hover on touch | a tap opens the tile (`cards.js`) |
+| Graduate stories (HSC Results): value pills, count, arrows | `data-slider` in snap mode with `[data-slider-tab]` and the count (`slider.js`) |
+| "Read Jeremy's Story" → the Expanded Story frame | the card opens in place (`stories.js`); interpreted from the two Figma states |

@@ -1,4 +1,4 @@
-<section class="cta-cards">
+<section class="cta-cards{% if value.position == 'low' %} cta-cards--low{% endif %}">
   <div class="container">
     {% if value.title %}<h2 data-anim="split">{{ value.title | safe }}</h2>{% endif %}
     <div class="cta-cards__list" data-anim-group="rise">

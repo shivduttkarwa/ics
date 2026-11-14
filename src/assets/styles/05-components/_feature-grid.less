@@ -1,0 +1,58 @@
+@feature-grid-row: 1180 * @px;
+@feature-grid-title-width: 592 * @px;
+
+.feature-grid {
+  padding: 75 * @px 0;
+  background: var(--color-beach-light);
+  @media (min-width: @bp-lg) { padding: 120 * @px 0; }
+
+  &__inner {
+    @media (min-width: @bp-lg) {
+      max-width: @feature-grid-row;
+      margin: 0 auto;
+    }
+  }
+
+  h2 {
+    .type-section-title-mid();
+    max-width: @feature-grid-title-width;
+    margin: 0 0 50 * @px;
+    text-box: trim-both cap alphabetic;
+    @media (min-width: @bp-lg) { margin-bottom: 100 * @px; }
+  }
+
+  &__list {
+    .reset-list();
+    display: grid;
+    gap: 40 * @px;
+    @media (min-width: @bp-md) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    @media (min-width: @bp-lg) { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  &__rule {
+    display: block;
+    height: 1 * @px;
+    background: var(--color-canopy);
+  }
+
+  h3 {
+    .type-feature-title();
+    margin: 10 * @px 0 0;
+    // the designer's break is set for the 265 column
+    br {
+      display: none;
+      @media (min-width: @bp-lg) { display: inline; }
+    }
+  }
+
+  &__text {
+    .type-body-3();
+    margin: 25 * @px 0 0;
+  }
+}

@@ -1,0 +1,16 @@
+<section class="bullet-list">
+  <div class="container bullet-list__inner">
+    <h2 data-anim="split">{{ value.title | safe }}</h2>
+    <div class="bullet-list__body">
+      {% if value.text %}<p class="bullet-list__text" data-anim="reveal">{{ value.text }}</p>{% endif %}
+      <div class="bullet-list__group">
+        {% if value.subtitle %}<h3 data-anim="reveal">{{ value.subtitle }}</h3>{% endif %}
+        {% set bullets = value.bullets %}{% include "snippets/bullets.njk" %}
+        {% if value.note %}<div class="bullet-list__note rich-text" data-anim="reveal">{{ value.note | safe }}</div>{% endif %}
+      </div>
+      {% if value.button and value.button.text %}
+      <div data-anim="reveal">{% set btn = value.button %}{% include "snippets/button.njk" %}</div>
+      {% endif %}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,8 @@
+<ul class="bullets" data-anim-group="fade-up">
+  {% for bullet in bullets %}
+  <li class="bullets__item{% if bullet.text %} bullets__item--text{% endif %}">
+    <span class="bullets__icon" aria-hidden="true"><svg class="icon"><use href="#icon-{{ bullet.icon }}"></use></svg></span>
+    <span class="bullets__copy"><b>{{ bullet.title | safe }}</b>{% if bullet.text %}<span>{{ bullet.text | safe }}</span>{% endif %}</span>
+  </li>
+  {% endfor %}
+</ul>

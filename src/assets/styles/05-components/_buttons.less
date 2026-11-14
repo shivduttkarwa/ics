@@ -79,6 +79,23 @@
   }
 }
 
+// icon "open": the dot drawn already grown, as Figma's download button; hover nudges the arrow instead
+.btn--open {
+  padding-left: @btn-inset-open;
+  .btn__dot {
+    width: @btn-dot-open;
+    height: @btn-dot-open;
+    .icon {
+      opacity: 1;
+      scale: none;
+      transition: translate var(--duration-base) var(--ease-settle);
+    }
+  }
+  @media @fine {
+    &:hover .btn__dot .icon { translate: 3 * @px 0; }
+  }
+}
+
 .btn-sm {
   --bs-btn-padding-x: @btn-inset-sm;
   height: @tap-size;

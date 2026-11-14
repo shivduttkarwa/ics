@@ -1,0 +1,154 @@
+@stories-title-width: 592 * @px;
+@story-pad: 50 * @px;
+@story-media-width: 550 * @px;
+@story-photo-height: 640 * @px;
+@story-photo-more-height: 403 * @px;
+
+.stories {
+  --arrow-bg: var(--color-beach-light);
+  --arrow-ink: var(--color-canopy);
+  --arrow-bg-hover: var(--color-canopy);
+  --arrow-ink-hover: var(--color-white);
+  padding: 75 * @px 0;
+  overflow-x: clip;
+  background: var(--color-white);
+  @media (min-width: @bp-lg) { padding: 120 * @px 0; }
+
+  h2 {
+    .type-section-title-mid();
+    max-width: @stories-title-width;
+    margin: 0 0 50 * @px;
+    text-box: trim-both cap alphabetic;
+    @media (min-width: @bp-lg) { margin-bottom: 100 * @px; }
+  }
+
+  &__controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25 * @px 20 * @px;
+    margin-bottom: 50 * @px;
+  }
+
+  &__tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10 * @px;
+  }
+
+  // Figma's Button Rounded Solid (the story showing) and Button Rounded Outline, without dots
+  &__tab {
+    .btn-variant(transparent; var(--color-canopy); transparent; transparent; var(--color-canopy));
+    --bs-btn-hover-bg: var(--color-beach-light);
+    --btn-ring-width: var(--device-px, 1px);
+    &[aria-current="true"] {
+      .btn-variant(var(--color-canopy); var(--color-white); transparent; transparent; var(--color-canopy));
+    }
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    gap: 20 * @px;
+  }
+
+  &__count {
+    .type-slides-count();
+    margin: 0;
+    color: var(--color-canopy);
+    white-space: nowrap;
+  }
+
+  // the next story shows at the right, as Figma; a story already passed is cut at the container's left edge
+  &__slider {
+    overflow: visible;
+    clip-path: inset(-50% -100vw -50% 0);
+  }
+
+  // a story opened in place grows on its own; the others keep their height
+  &__list {
+    .reset-list();
+    align-items: flex-start;
+  }
+}
+
+.story {
+  display: flex;
+  flex-direction: column;
+  gap: 25 * @px;
+  height: auto;
+  padding: 20 * @px;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--color-moss-10);
+  @media (min-width: @bp-md) {
+    flex-direction: row;
+    gap: 20 * @px;
+    padding: @story-pad;
+  }
+
+  &__media {
+    display: contents;
+    @media (min-width: @bp-md) {
+      display: flex;
+      flex: 0 0 45%;
+      flex-direction: column;
+      gap: 20 * @px;
+    }
+    @media (min-width: @bp-lg) { flex-basis: @story-media-width; }
+  }
+
+  &__frame {
+    aspect-ratio: 550 / 640;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    @media (min-width: @bp-lg) {
+      aspect-ratio: auto;
+      height: @story-photo-height;
+    }
+    &--more {
+      order: 2;
+      aspect-ratio: 550 / 403;
+      @media (min-width: @bp-lg) { height: @story-photo-more-height; }
+    }
+  }
+
+  &__img { .img-cover(); }
+
+  &__copy {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 30 * @px;
+    min-width: 0;
+    @media (min-width: @bp-md) { padding-left: 10 * @px; }
+    @media (min-width: @bp-lg) { padding: 0 @story-pad; }
+  }
+
+  h3 {
+    .type-section-title();
+    margin: 0;
+  }
+
+  &__lead {
+    .type-body-1-light();
+    margin: 0;
+  }
+
+  &__summary,
+  &__full {
+    .type-body-3-light();
+    margin: 0;
+  }
+
+  // Figma separates the story's paragraphs by an empty line
+  &__full p { margin-bottom: 1.4em; }
+
+  &__toggle { margin-top: 10 * @px; }
+
+  &:not(.is-open) [data-story-more],
+  &.is-open &__summary { display: none; }
+}

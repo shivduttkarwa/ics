@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-11-14 — HSC Results page
+- `/results.html` from `15621:13290` ("Results and pathways" under Why ICS), linked from the "results and pathways" buttons on the home and Why pages. No phone frame: phone layouts follow the earlier pages' patterns, marked as interpreted in the handoff.
+- New blocks: `stat_grid` (Our 2025 HSC results, `15621:14837`, the Stat with Icon grid with counters), `feature_grid` (How do ICS students get these results?, `15621:13394`), `stories` (Read about some of our HSC graduates, `15657:24463`: tabbed, counted slider of Graduate Story cards that open in place as `15657:27409`, `stories.js`), `bullet_list` (Help with every pathway, `15653:15637`).
+- Reuse: the bullet list is now one snippet and component (`snippets/bullets.njk`, `_bullets.less`) for the pillar and `bullet_list`; the Why page measures identical before and after. `slider.js` fills a count and drives tabs for any card row.
+- Options on existing blocks: `page_hero.shade` (`deep`), `pinned.spread`, untitled `testimonials`, `cta_band.height` (682), `cta_cards.position` (`low`), button `icon: "open"`.
+- Fixes: breadcrumbs now set the pages above in 900 and the current page in 500, 27 above the title and 9 in, as the Breadcrumbs component and the HSC frame draw them (the trail was hidden on the only page before); crumb links have the 44px hit area on touch.
+- Tokens `--color-moss-10`, `--gradient-page-hero`; mixins `type-section-title-mid`, `type-heading-5`, `type-feature-title`, `type-stat-grid`; twelve Font Awesome 7 Light glyphs in the sprite.
+- Images: `hsc/` (hero 1920, 1280 and phone crops, Jeremy's two photos, Lena and Rowan tiles, the CTA band 1879, 1280 and phone crops with the video timecode filled in, the classroom CTA card).
+- Checked at 1440 against Figma: every section's top and height within 1.5px, text runs within about 1px, wraps and line counts as drawn; the open story 1280 × 1163 as Figma's expanded frame. In the user's Chrome at 1920 × 945 with motion on: every reveal lands, counters finish, tabs, arrows, count, opening and closing work, no console errors. 320, 375, 430, 667, 768, 1024, 1280 for breakage; `mobile-audit` clean at all of them.
+
 ## 2026-11-14 — Why ICS landing page
 - `/why.html` from `15550:30814`, linked from the header's "Why ICS". No phone frame exists: phone layouts follow the home page's patterns and are marked as interpreted in the handoff.
 - Inner-page hero (`blocks/page_hero.njk`, `_page-hero.less`) from `15550:30890`, `15550:30892` and the Breadcrumbs component `15513:14084`: the 800 photo band with the title at its foot, an optional breadcrumb trail, the photo drifting on scroll.

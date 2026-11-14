@@ -15,6 +15,12 @@
   background: var(--color-white);
   @media (min-width: @bp-lg) { padding: 49 * @px 0 62 * @px; }
 
+  // a row with no title carries on the white block above it: the results page's graduates
+  &--untitled {
+    padding: 0 0 50 * @px;
+    @media (min-width: @bp-lg) { padding: 0 0 100 * @px; }
+  }
+
   h2 {
     .type-section-title();
     margin: 0 0 50 * @px;

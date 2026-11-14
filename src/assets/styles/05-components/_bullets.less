@@ -1,0 +1,45 @@
+// Figma's "Bullet Point with Icon": a moss 20% square holding a moss glyph, then the bold line and any light lines
+@bullet-box: 46 * @px;
+@bullet-icon: 30 * @px;
+
+.bullets {
+  .reset-list();
+  display: flex;
+  flex-direction: column;
+  gap: 20 * @px;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 22 * @px;
+    &--text { align-items: flex-start; }
+  }
+
+  &__icon {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: @bullet-box;
+    height: @bullet-box;
+    border-radius: var(--radius-sm);
+    background: var(--color-moss-20);
+    color: var(--color-moss);
+    .icon {
+      width: @bullet-icon;
+      height: @bullet-icon;
+    }
+  }
+
+  &__copy {
+    .type-body-3-light();
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    b { .type-bullet-title(); }
+    // a bold line's forced break is set for the 494 column; a break in the light text separates two lines of copy
+    b br {
+      display: none;
+      @media (min-width: @bp-lg) { display: inline; }
+    }
+  }
+}

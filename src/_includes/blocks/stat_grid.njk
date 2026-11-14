@@ -1,0 +1,20 @@
+<section class="stat-grid rounded-foot">
+  <div class="container">
+    <div class="stat-grid__inner">
+      <h2 data-anim="split">{{ value.title | safe }}</h2>
+      <ul class="stat-grid__list" data-anim-group="fade-up">
+        {% for stat in value.stats %}
+        <li class="stat-grid__item">
+          <span class="stat-grid__icon" aria-hidden="true"><svg class="icon"><use href="#icon-{{ stat.icon }}"></use></svg></span>
+          <span class="stat-grid__figure" data-anim="counter">{{ stat.value }}</span>
+          <span class="stat-grid__rule" data-anim="reveal" data-anim-type="line"></span>
+          <span class="stat-grid__label">{{ stat.label | safe }}</span>
+        </li>
+        {% endfor %}
+      </ul>
+      {% if value.button and value.button.text %}
+      <div class="stat-grid__button" data-anim="reveal">{% set btn = value.button %}{% include "snippets/button.njk" %}</div>
+      {% endif %}
+    </div>
+  </div>
+</section>

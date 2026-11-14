@@ -222,13 +222,14 @@
         "buttons": [
           {
             "text": "View results and pathways",
-            "url": "",
+            "url": "/results.html",
             "style": "moss"
           },
           {
             "text": "Our fees",
             "url": "",
-            "style": "outline-moss", "icon": "none"
+            "style": "outline-moss",
+            "icon": "none"
           }
         ],
         "image": {
