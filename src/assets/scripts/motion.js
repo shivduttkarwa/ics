@@ -19,23 +19,46 @@ export const fine = window.matchMedia("(hover: hover) and (pointer: fine)");
 // a design px at the current fluid root
 export const designPx = (value) => (value * parseFloat(getComputedStyle(document.documentElement).fontSize)) / 16;
 
-// A move on a compositor layer is resampled at every fractional offset, so text and hairlines go soft and seem to
-// shiver through an ease's long tail, when they are already solid and barely moving. landing() ends the move once
-// under half a pixel is left: the curve keeps its shape up to that point and the tween runs that share of its duration.
+// a layer crawling through an ease's tail is resampled every frame and shimmers, so the move ends once it stays within a device pixel of home
 export function landing(ease, distance) {
   const curve = gsap.parseEase(ease);
   const span = Math.abs(distance);
-  if (!(span > 1)) return { ease: curve, cut: 1 };
-  const target = 1 - 0.5 / span;
+  const near = 1 / (window.devicePixelRatio || 1) / span;
+  if (!(near < 1)) return { ease: curve, cut: 1 };
+  const away = (p) => Math.abs(1 - curve(p)) >= near;
   let lo = 0;
-  let hi = 1;
-  for (let i = 0; i < 30; i++) {
+  for (let i = 100; i > 0; i--) {
+    if (away(i / 100)) {
+      lo = i / 100;
+      break;
+    }
+  }
+  let hi = Math.min(1, lo + 0.01);
+  for (let i = 0; i < 24; i++) {
     const mid = (lo + hi) / 2;
-    if (curve(mid) < target) lo = mid;
+    if (away(mid)) lo = mid;
     else hi = mid;
   }
   const end = curve(hi) || 1;
   return { ease: (p) => curve(p * hi) / end, cut: hi };
+}
+
+// a move drawn on whole device pixels: off a layer, text stays on the pixel grid and every item steps on the same frame
+export function whole(ease, distance) {
+  const curve = gsap.parseEase(ease);
+  return (progress) => {
+    const steps = Math.abs(distance) * (window.devicePixelRatio || 1);
+    return Math.round(curve(progress) * steps) / steps;
+  };
+}
+
+// a GSAP ease as a CSS easing, so the compositor can run it; without linear() the fallback curve is used
+const LINEAR = typeof CSS !== "undefined" && CSS.supports("animation-timing-function", "linear(0, 1)");
+export function cssEase(ease, fallback) {
+  if (!LINEAR) return fallback;
+  const curve = gsap.parseEase(ease);
+  const points = Array.from({ length: 41 }, (_, i) => +curve(i / 40).toFixed(4));
+  return `linear(${points.join(", ")})`;
 }
 
 // the same tween vars with the tail cut, measured from where `el` is now to where `vars` takes it

@@ -60,6 +60,8 @@ for (const step of stepsArg.split(",").filter(Boolean)) {
   else if (kind === "click") await evaluate(`document.querySelector(${JSON.stringify(arg)})?.click()`);
   else if (kind === "eval") await evaluate(arg);
 }
+await send("Page.bringToFront");
+await send("Emulation.setFocusEmulationEnabled", { enabled: true });
 await send("Page.startScreencast", { format: "png", everyNthFrame: 1 });
 capturing = true;
 const started = Date.now();

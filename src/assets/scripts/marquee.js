@@ -183,8 +183,17 @@ export function initMarquees() {
     return build;
   });
 
-  const rebuild = () => builds.forEach((build) => build());
-  rebuild();
+  // a lane is built once it comes near the screen, so none of this work lands in the page entrance
+  const live = new Set();
+  const rebuild = () => live.forEach((build) => build());
+  const near = new IntersectionObserver((entries) => entries.forEach(({ target, isIntersecting }) => {
+    if (!isIntersecting) return;
+    near.unobserve(target);
+    const build = builds[tracks.indexOf(target)];
+    live.add(build);
+    build();
+  }), { rootMargin: "100% 0px" });
+  tracks.forEach((track) => near.observe(track));
   document.fonts?.ready.then(rebuild);
   window.addEventListener("load", rebuild);
   // a phone's toolbar changes only the height, which leaves both of these alone

@@ -2,14 +2,20 @@
 @hero-header-room: 119 * @px;
 // below lg the title rests above the CTA bar (72), its 20 from the foot and 30 of air
 @hero-cta-room: 122 * @px;
-@hero-copy-foot: 177 * @px;
+@hero-foot: 29 * @px;
+@hero-copy-height: 518 * @px;
 @hero-copy-width: 626 * @px;
 @hero-text-width: 517 * @px;
 @hero-gap: 26 * @px;
-// Figma sets the 1920 × 1080 still at 100% in the 1440-wide hero, 219 in and 117 above the top: the crop follows the hero's width
-@hero-photo-top: unit((117 / 1440 * 100), cqw);
-@hero-photo-height: unit((1080 / 1440 * 100), cqw);
-@hero-photo-x: percentage((219 / (1920 - 1440)));
+// Figma sets the 1920 × 1080 still at 100% in the 1440-wide hero, its centre 21 right of the hero's and 117 above the top, the title's first line on the man's shoulder 382 down it
+@hero-photo-top: 117 * @px;
+@hero-photo-height: 1080 * @px;
+@hero-photo-x: 21 * @px;
+@hero-shoulder: (382 / 1080);
+// a screen taller or wider than Figma's proportion scales the photo up to cover it, 42 wider than the hero for the offset centre
+@hero-photo-spare: 24 * @px;
+@hero-photo-fill: ~"max(@{hero-photo-height}, 100cqh + @{hero-photo-top}, 56.25cqw + @{hero-photo-spare})";
+@hero-copy-top: ~"calc(@{hero-shoulder} * max(@{hero-photo-height}, 100svh + @{hero-photo-top}, 56.25% + @{hero-photo-spare}) - @{hero-photo-top})";
 @hero-card-width: 300 * @px;
 @hero-card-height: 180 * @px;
 
@@ -46,11 +52,10 @@
     inset: 0;
     @media (min-width: @bp-lg) {
       --parallax-from: 0%;
-      --parallax-to: @hero-photo-top;
+      --parallax-to: percentage((117 / 1080));
       top: -@hero-photo-top;
       bottom: auto;
-      height: @hero-photo-height;
-      min-height: calc(100cqh + @hero-photo-top);
+      height: @hero-photo-fill;
     }
   }
 
@@ -64,7 +69,7 @@
   &__video {
     .img-cover();
     object-position: 86% 50%;
-    @media (min-width: @bp-lg) { object-position: @hero-photo-x 100%; }
+    @media (min-width: @bp-lg) { object-position: ~"calc(50% + @{hero-photo-x})" 0; }
   }
 
   &__video {
@@ -95,10 +100,10 @@
     display: flex;
     flex: 1 0 auto;
     flex-direction: column;
+    // from lg the title's first line sits on the shoulder; a screen too short for that lifts the copy until it keeps the card's 29 to the foot
     @media (min-width: @bp-lg) {
-      justify-content: flex-end;
-      padding-top: @hero-header-room;
-      padding-bottom: @hero-copy-foot;
+      padding-top: ~"max(@{hero-header-room}, min(@{hero-copy-top}, 100svh - @{hero-copy-height} - @{hero-foot}))";
+      padding-bottom: @hero-foot;
     }
   }
 
@@ -122,6 +127,8 @@
 
   &__text {
     .type-hero-text();
+    // held on its layer after its lift: leaving it, the text redraws up to half a pixel away and visibly shifts
+    will-change: transform;
     max-width: @hero-text-width;
     margin: @hero-gap 0 0;
   }
@@ -162,7 +169,7 @@
     @media (min-width: @bp-lg) {
       position: absolute;
       right: 25 * @px;
-      bottom: 29 * @px;
+      bottom: @hero-foot;
       display: block;
       width: @hero-card-width;
       height: @hero-card-height;
