@@ -168,7 +168,9 @@ function revealUnit(el) {
     const { autoAlpha, ...move } = preset.from;
     gsap.set(el, { ...move, autoAlpha: parts[0] === el ? autoAlpha : 1, transition: "none" });
     if (parts[0] !== el) gsap.set(parts, { autoAlpha, transition: "none" });
-    return glideUnit(el, preset.glide, parts);
+    // data-anim-duration: the move takes this long and the fade keeps its share of it
+    const own = number(el, "data-anim-duration", 0);
+    return glideUnit(el, own ? { ...preset.glide, duration: own, fade: (own * preset.glide.fade) / preset.glide.duration } : preset.glide, parts);
   }
   if (moves(preset) && glassy(el)) preset = REVEAL.fade;
   const inner = preset.inner ? Array.from(el.querySelectorAll("img, video")) : [];

@@ -4,6 +4,8 @@
 - Title lines rise solid out of their masks (1.1s on `soft`, no fade; was `silk` 1.3s with a 0.6s fade, which read as a fade-up rather than a line coming from under the mask), site-wide so the hero matches the section titles.
 - The hero intro and its glass button both lift in (`fade-up-soft`), now a compositor glide: the wrapper moves, the glass fades on its own so its blur builds with it.
 - The header items drop on the compositor on held layers instead of stepping whole pixels (`fade-down`), so the last pixels no longer tick in; their text measures as crisp at rest as page-drawn text.
+- The home hero's photo no longer settles from 1.1 at load; it is simply there and the title rises first.
+- The hero's video card springs in over 1.6s (`data-anim-duration`, which a glide now takes: the move stretches, the fade keeps its share).
 - The announcement bar's contents lift in (`fade-up-soft`) from the first 12px of scroll (`data-anim-start="12"`), so the bar no longer simply appears in one wheel notch; the bar itself is still uncovered in place.
 - `fadeParts` fades an element as one unless it holds glass; `data-anim-start` takes a plain scroll position.
 - The page entrance is one GSAP timeline (`Anim.entrance`), sequenced as St Luke's is: `data-anim-order` is now the step's place in the sequence, each order starting 0.4s before the previous one lands (`data-anim-lead`, negative for a pause; `data-anim-landed` for a long settle), instead of a fixed 0.14s clock. The intro lifts as the title's last line lands, the button 0.2s after it, the title's own stagger. A group's items share its order and follow each other by `data-anim-stagger` (0.07); `data-anim-step` and `data-anim-order-mobile` are gone, the header's pill now an item of the bar.
