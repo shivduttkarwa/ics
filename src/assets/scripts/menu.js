@@ -31,13 +31,39 @@ export function initMenu() {
     const from = (opener.closest("[data-menu-origin]") || opener).getBoundingClientRect();
     if (!from.width || !from.height) return null;
     const box = panel.getBoundingClientRect();
+    // a pixel past the pill's edges, or its frosted rim shows as a light line under the strip's edge
+    const bleed = 1;
     return {
-      pill: { "--clip-t": px(from.top - box.top), "--clip-r": px(box.right - from.right), "--clip-b": px(box.bottom - from.bottom), "--clip-l": px(from.left - box.left), "--clip-round": px(from.height / 2) },
+      pill: { "--clip-t": px(from.top - box.top - bleed), "--clip-r": px(box.right - from.right - bleed), "--clip-b": px(box.bottom - from.bottom - bleed), "--clip-l": px(from.left - box.left - bleed), "--clip-round": px(from.height / 2 + bleed) },
       full: { "--clip-t": "0px", "--clip-r": "0px", "--clip-b": "0px", "--clip-l": "0px", "--clip-round": px(parseFloat(getComputedStyle(panel).borderTopLeftRadius) || 0) },
     };
   };
   const unclip = () => EDGES.forEach((edge) => panel.style.removeProperty(edge));
   const clipped = () => panel.style.getPropertyValue("--clip-t") !== "";
+
+  // the list's items are masks while they move: each one's contents drop in from above its top edge in turn, and lift back
+  // out the same way; the other rows (the search at the top, the buttons and links at the foot) fade
+  const items = rows.filter((row) => row.classList.contains("menu__item"));
+  const inner = items.flatMap((row) => Array.from(row.children));
+  const top = rows.find((row) => row.classList.contains("menu__top"));
+  const foot = rows.find((row) => row.classList.contains("menu__foot"));
+  const fades = [top, foot].filter(Boolean);
+  const bits = foot ? Array.from(foot.querySelectorAll(".btn, .menu__links li")) : []; // the foot's buttons and links, in turn
+  const MASK = "inset(0px 0px 0px 0px)";
+  const above = (i, el) => -(el.parentElement.offsetHeight + 2);
+  const rowsIn = (tl, at, stagger = 0.06) => {
+    gsap.set(items, { clipPath: MASK });
+    items.forEach((row, i) => tl.to(row.children, settled(row.firstElementChild, { y: 0, duration: 1, ease: "soft" }), at + i * stagger));
+    // the search with the first item; the foot's buttons and links one by one once the last item has dropped in
+    tl.to(fades, { opacity: 1, duration: 0.9, ease: "power1.out" }, at)
+      .to(bits, { opacity: 1, duration: 0.7, ease: "power1.out", stagger: 0.06 }, at + items.length * stagger + 0.3);
+  };
+  const rowsOut = (tl, at, stagger = 0.04) => {
+    gsap.set(items, { clipPath: MASK });
+    items.forEach((row, i) => tl.to(row.children, { y: above, duration: 0.6, ease: "power2.in" }, at + i * stagger));
+    tl.to(fades, { opacity: 0, duration: 0.35, ease: "power1.in" }, at);
+  };
+  const rowsSettle = () => gsap.set([...items, ...inner, ...fades, ...bits], { clearProps: "clipPath,transform,opacity" });
 
   const show = () => {
     if (open) return;
@@ -51,27 +77,29 @@ export function initMenu() {
     tl?.kill();
     if (still.matches) return;
     const shape = shapes();
-    // caught mid-close, it comes back from wherever it is; the rows fade on opacity alone, as hiding one would drop the focus
+    // caught mid-close, it comes back from wherever it is; the rows' contents stay in the tree while under their masks, so focus holds
     if (fresh) {
       gsap.set(backdrop, { autoAlpha: 0 });
-      gsap.set(rows, { y: 28, opacity: 0 });
+      gsap.set(inner, { y: above });
+      gsap.set([top, ...bits].filter(Boolean), { opacity: 0 });
+      if (foot) gsap.set(foot, { opacity: 1 });
       if (shape) gsap.set(panel, { ...shape.pill, opacity: 0 });
       else gsap.set(panel, { xPercent: AWAY });
     }
-    const rise = { ...settled(rows[0], { y: 0, duration: 0.8, ease: "soft" }), opacity: 1, stagger: 0.055 };
-    tl = gsap.timeline({ onComplete: () => { gsap.set([panel, ...rows], { clearProps: "transform,opacity" }); unclip(); } })
+    tl = gsap.timeline({ onComplete: () => { gsap.set(panel, { clearProps: "transform,opacity" }); unclip(); rowsSettle(); } })
       .to(backdrop, { autoAlpha: 1, duration: 0.6, ease: "power1.out" }, 0);
     if (!shape) {
-      tl.to(panel, settled(panel, { xPercent: 0, duration: 0.9, ease: "silk" }), 0).to(rows, rise, 0.25);
+      tl.to(panel, settled(panel, { xPercent: 0, duration: 0.9, ease: "silk" }), 0);
+      rowsIn(tl, 0.25);
       return;
     }
-    // it stretches out of the pill at the pill's height, and a beat later drops to its full height as its corners go from
-    // the pill's round to its own and its rows come in (gsa.uk.com); width and height on one curve, overlapping
+    // it grows left out of the pill at the pill's height, and once that has settled grows down to its full height as its
+    // corners go from the pill's round to its own and its rows come in (gsa.uk.com); width and height on one curve
     const { "--clip-t": t, "--clip-b": b, "--clip-round": round } = shape.full;
     tl.to(panel, { opacity: 1, duration: 0.3, ease: "power1.out" }, 0)
       .to(panel, { "--clip-l": "0px", "--clip-r": "0px", duration: 1.1, ease: "fold" }, 0)
-      .to(panel, { "--clip-t": t, "--clip-b": b, "--clip-round": round, duration: 1.4, ease: "fold" }, fresh ? 0.5 : 0)
-      .to(rows, rise, fresh ? 1.05 : 0.2);
+      .to(panel, { "--clip-t": t, "--clip-b": b, "--clip-round": round, duration: 1.3, ease: "fold" }, fresh ? 0.8 : 0);
+    rowsIn(tl, fresh ? 1.2 : 0.2);
   };
 
   const close = () => {
@@ -83,20 +111,21 @@ export function initMenu() {
     tl?.kill();
     if (still.matches) return hide();
     const shape = shapes();
-    tl = gsap.timeline({ onComplete: hide })
-      .to(rows, { opacity: 0, duration: 0.2, ease: "power1.in" }, 0)
-      .to(backdrop, { autoAlpha: 0, duration: 0.45, ease: "power1.in" }, 0.1);
+    tl = gsap.timeline({ onComplete: hide });
+    rowsOut(tl, 0);
     if (!shape) {
-      tl.to(panel, { xPercent: AWAY, duration: 0.55, ease: "power2.in" }, 0);
+      tl.to(backdrop, { autoAlpha: 0, duration: 0.45, ease: "power1.in" }, 0.1)
+        .to(panel, { xPercent: AWAY, duration: 0.55, ease: "power2.in" }, 0.3);
       return;
     }
-    // it folds back to the pill's height, and from a beat in narrows into the pill, settling on the same curve; caught
-    // mid-open it folds from wherever it is
+    // once its rows have sunk it folds back up to the pill's height, and once that has settled narrows into the pill,
+    // settling on the same curve; caught mid-open it folds from wherever it is
     if (!clipped()) gsap.set(panel, shape.full);
     const { "--clip-t": t, "--clip-b": b, "--clip-l": l, "--clip-r": r, "--clip-round": round } = shape.pill;
-    tl.to(panel, { "--clip-t": t, "--clip-b": b, "--clip-round": round, duration: 1, ease: "fold" }, 0)
-      .to(panel, { "--clip-l": l, "--clip-r": r, duration: 1.3, ease: "fold" }, 0.4)
-      .to(panel, { opacity: 0, duration: 0.35, ease: "power1.in" }, 1.35);
+    tl.to(backdrop, { autoAlpha: 0, duration: 0.45, ease: "power1.in" }, 0.5)
+      .to(panel, { "--clip-t": t, "--clip-b": b, "--clip-round": round, duration: 1, ease: "fold" }, 0.4)
+      .to(panel, { "--clip-l": l, "--clip-r": r, duration: 1.1, ease: "fold" }, 1.3)
+      .to(panel, { opacity: 0, duration: 0.35, ease: "power1.in" }, 2.1);
   };
 
   openers.forEach((button) => button.addEventListener("click", () => {
