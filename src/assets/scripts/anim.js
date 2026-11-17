@@ -1,6 +1,6 @@
 // Lenis smooth scroll + GSAP reveals, split titles, counters and parallax, driven by data-anim-* (docs/animation.md)
 import Lenis from "lenis";
-import { gsap, ScrollTrigger, SplitText, still, phone, fine, settled, glassy, landing, whole, cssEase } from "./motion.js";
+import { gsap, ScrollTrigger, SplitText, still, phone, fine, settled, glassy, fadeParts, landing, whole, cssEase, spring } from "./motion.js";
 
 const STAGGER = 0.09; // between reveals that come into view together
 const SPREAD = 0.6; // the longest a batch of them may take to start
@@ -21,18 +21,19 @@ const wipe = (inset) => ({
 // `to` is a list of tweens that start together; `inner` also moves every img and video inside
 const REVEAL = {
   "fade-up": { from: { y: 36, autoAlpha: 0 }, to: [{ y: 0, duration: 1.15 }, fade()] },
+  // a subtle lift for first-screen copy: 16 up while it fades, on a held layer (give the element will-change: transform)
+  "fade-up-soft": { from: { y: 16, autoAlpha: 0, force3D: true }, to: [{ y: 0, duration: 1, force3D: true }, fade(1)] },
   // the header's items: off a GPU layer and in whole pixels, landing under the fade, so the text never shifts or re-sharpens as it stops
   "fade-down": { from: { y: -24, autoAlpha: 0, force3D: false }, to: [{ autoAlpha: 1, duration: 0.7, ease: "power1.out", force3D: false, keyframes: { "57%": { y: 0, ease: whole("power2.out", 24) }, ease: "none" } }] },
-  // large copy on the first screen: a short lift on a held layer that lands under the fade, so nothing creeps once it is solid
-  "fade-up-held": { from: { y: 15, autoAlpha: 0, force3D: true }, to: [{ autoAlpha: 1, duration: 0.8, ease: "power1.out", force3D: true, keyframes: { "55%": { y: 0, ease: "power1.out" }, ease: "none" } }] },
   "fade": { from: { autoAlpha: 0 }, to: [fade(1.2)] },
   "from-left": { from: { x: -48, autoAlpha: 0 }, to: [{ x: 0, duration: 1.2 }, fade()] },
   "from-right": { from: { x: 48, autoAlpha: 0 }, to: [{ x: 0, duration: 1.2 }, fade()] },
   "rise": { from: { y: 72, autoAlpha: 0 }, to: [{ y: 0, duration: 1.3 }, fade(1)] },
   "scale": { from: { scale: 0.94, autoAlpha: 0 }, to: [{ scale: 1, duration: 1.3 }, fade()] },
+  // from beyond the right edge on a spring, on the compositor (`glide`); give the element will-change: transform
   "from-right-edge": {
     from: { x: (i, el) => document.documentElement.clientWidth - el.getBoundingClientRect().left, autoAlpha: 0 },
-    to: [{ x: 0, duration: 1.4, ease: "back.out(1)" }, fade(0.6)],
+    glide: { duration: 1, ease: spring(), fade: 0.4, fallback: "cubic-bezier(0.34, 1.4, 0.64, 1)" },
   },
   "zoom-out": { from: { scale: 1.1, autoAlpha: 0 }, to: [{ scale: 1, duration: 2.6, ease: "power2.out" }, fade(1.4)] },
   "line": { from: { scaleX: 0, transformOrigin: "0% 50%", autoAlpha: 1 }, to: [{ scaleX: 1, duration: 1.3, ease: "silk" }] },
@@ -127,26 +128,60 @@ function expandGroups(root) {
 
 const moves = (preset) => ["x", "y", "scale"].some((key) => key in preset.from);
 
+// a glide runs on the compositor (element.animate), so its curve holds however busy the page is; once landed it settles
+// with no change, its layer kept by the element's own will-change
+function glideUnit(el, glide) {
+  return {
+    el,
+    play: (delay) => gsap.delayedCall(delay, () => {
+      const from = gsap.getProperty(el, "x");
+      const { ease, cut } = landing(glide.ease, from);
+      const easing = cssEase(ease, null, 80);
+      const move = el.animate([{ transform: `translateX(${from}px)` }, { transform: "none" }], {
+        duration: glide.duration * (easing ? cut : 1) * 1000,
+        easing: easing || glide.fallback,
+        fill: "both",
+      });
+      const show = el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: glide.fade * 1000, easing: "ease-out", fill: "both" });
+      gsap.set(el, { visibility: "inherit" });
+      Promise.all([move.finished, show.finished]).then(() => {
+        settle(el);
+        move.cancel();
+        show.cancel();
+      }, () => {});
+    }),
+    show: () => settle(el),
+  };
+}
+
 function revealUnit(el) {
   let preset = REVEAL[attr(el, variant(el, "data-anim-type"), "fade-up")] || REVEAL["fade-up"];
   if (moves(preset) && glassy(el)) preset = REVEAL.fade;
+  if (preset.glide) {
+    gsap.set(el, { ...preset.from, transition: "none" });
+    return glideUnit(el, preset.glide);
+  }
   const inner = preset.inner ? Array.from(el.querySelectorAll("img, video")) : [];
+  // a plain fade over glass fades the glass itself and the parts beside it, the wrapper staying solid (fadeParts)
+  const parts = preset === REVEAL.fade ? fadeParts(el) : [el];
+  const also = parts[0] === el ? inner : [...inner, ...parts];
   // a CSS transition on the element would smear every frame of the tween
-  gsap.set(el, { ...preset.from, transition: "none" });
+  if (parts[0] !== el) gsap.set(el, { autoAlpha: 1 });
+  gsap.set(parts, { ...preset.from, transition: "none" });
   if (inner.length) gsap.set(inner, preset.inner.from);
   return {
     el,
     play(delay) {
-      const tl = gsap.timeline({ delay, onComplete: () => settle(el, inner) });
+      const tl = gsap.timeline({ delay, onComplete: () => settle(el, also) });
       const fadeFor = number(el, "data-anim-fade", 0);
       const even = (vars) => (fadeFor && "autoAlpha" in vars && !moves({ from: vars }) ? { ...vars, duration: fadeFor, ease: "none" } : vars);
-      preset.to.forEach((vars) => tl.to(el, settled(el, even(vars)), 0));
+      preset.to.forEach((vars) => tl.to(parts, settled(parts[0], even(vars)), 0));
       if (inner.length) tl.to(inner, settled(inner[0], preset.inner.to), 0);
       const duration = number(el, "data-anim-duration", 0);
       if (duration) tl.duration(duration);
       return tl;
     },
-    show: () => settle(el, inner),
+    show: () => settle(el, also),
   };
 }
 

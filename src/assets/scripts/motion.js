@@ -54,11 +54,19 @@ export function whole(ease, distance) {
 
 // a GSAP ease as a CSS easing, so the compositor can run it; without linear() the fallback curve is used
 const LINEAR = typeof CSS !== "undefined" && CSS.supports("animation-timing-function", "linear(0, 1)");
-export function cssEase(ease, fallback) {
+export function cssEase(ease, fallback, steps = 40) {
   if (!LINEAR) return fallback;
   const curve = gsap.parseEase(ease);
-  const points = Array.from({ length: 41 }, (_, i) => +curve(i / 40).toFixed(4));
+  const points = Array.from({ length: steps + 1 }, (_, i) => +curve(i / steps).toFixed(4));
   return `linear(${points.join(", ")})`;
+}
+
+// a damped spring over the tween's length: it arrives in about a quarter of it, swings about 8% past, and settles with a
+// barely-there second swing, for something that should land with a little give
+export function spring(damping = 0.62, stiffness = 11) {
+  const swing = stiffness * Math.sqrt(1 - damping * damping);
+  const decay = damping * stiffness;
+  return (p) => 1 - Math.exp(-decay * p) * (Math.cos(swing * p) + (decay / swing) * Math.sin(swing * p));
 }
 
 // the same tween vars with the tail cut, measured from where `el` is now to where `vars` takes it
@@ -91,6 +99,21 @@ export function glassy(el) {
     const b = media.getBoundingClientRect();
     return b.width * b.height >= area * 0.5;
   });
+}
+
+// Opacity under 1 on an ancestor cuts a backdrop-filter off from what is behind it (a backdrop root), so glass faded through
+// its wrapper shows only its tint and snaps to its blur as the fade ends. These are the parts to fade instead: the glass
+// itself and whatever beside it holds none.
+export function fadeParts(el) {
+  if (blurred(el)) return [el];
+  const parts = [];
+  const walk = (node) => Array.from(node.children).forEach((child) => {
+    if (blurred(child)) parts.push(child);
+    else if (Array.from(child.querySelectorAll("*")).some(blurred)) walk(child);
+    else parts.push(child);
+  });
+  walk(el);
+  return parts.length ? parts : [el];
 }
 
 export { gsap, ScrollTrigger, SplitText, Observer };

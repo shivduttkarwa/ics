@@ -176,6 +176,8 @@
       overflow: hidden;
       border-radius: var(--radius-md);
       color: var(--color-white);
+      // held on its layer after its spring in, so its label does not redraw half a pixel away as it lands
+      will-change: transform;
     }
     &::after {
       content: "";
