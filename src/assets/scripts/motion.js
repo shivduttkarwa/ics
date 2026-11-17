@@ -11,6 +11,8 @@ CustomEase.create("soft", "0.22, 1, 0.36, 1");
 CustomEase.create("silk", "0.16, 1, 0.3, 1");
 CustomEase.create("glide", "0.65, 0, 0.35, 1");
 CustomEase.create("rise", "0.33, 1, 0.68, 1");
+// the menu's fold, open and shut: an unhurried start and a long, soft landing
+CustomEase.create("fold", "0.5, 0, 0.1, 1");
 gsap.defaults({ ease: "soft", duration: 1 });
 
 export const still = window.matchMedia("(prefers-reduced-motion: reduce)");

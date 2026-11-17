@@ -193,4 +193,6 @@ html.is-locked {
   overflow: hidden;
   body,
   .site-header { padding-right: var(--scrollbar-gutter, 0); }
+  // the overlay stays inside the page's own width too, so the menu's panel keeps its gap from the page edge, not from where the scrollbar was
+  .menu { right: var(--scrollbar-gutter, 0); }
 }

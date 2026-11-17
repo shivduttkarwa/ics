@@ -31,6 +31,8 @@
     padding: 30 * @px @menu-pad-sm @menu-pad-sm;
     border-radius: var(--radius-lg);
     background: var(--color-canopy-deep);
+    // menu.js moves these edges apart, so the width and the height fold at their own pace; at rest the clip is the panel's own shape
+    clip-path: inset(var(--clip-t, 0px) var(--clip-r, 0px) var(--clip-b, 0px) var(--clip-l, 0px) round var(--clip-round, var(--radius-lg)));
     @media (min-height: @bp-tall) { gap: 50 * @px; }
     @media (min-width: @bp-lg) {
       left: auto;

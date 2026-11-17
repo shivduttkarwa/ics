@@ -139,15 +139,16 @@ function glideUnit(el, glide, parts = [el]) {
   const axis = glide.axis || "x";
   const translate = (px) => (axis === "y" ? `translate(0px, ${px}px)` : `translate(${px}px, 0px)`);
   const fade = { duration: glide.fade * 1000, easing: glide.fadeEase ? cssEase(glide.fadeEase, "ease-out") : "ease-out", fill: "both" };
-  // a deferred step: the entrance's timeline calls start() at its position and holds a slot of `duration`
+  // a deferred step: the entrance's timeline starts it with a delay on the compositor's own clock and holds a slot of `duration`
   const build = () => {
     const from = gsap.getProperty(el, axis);
     const { ease, cut } = landing(glide.ease, from);
     const easing = cssEase(ease, null, 80);
     const length = glide.duration * (easing ? cut : 1);
-    const start = () => {
-      const move = el.animate([{ transform: translate(from) }, { transform: "none" }], { duration: length * 1000, easing: easing || glide.fallback, fill: "both" });
-      const runs = [move, ...parts.map((part) => part.animate([{ opacity: 0 }, { opacity: 1 }], fade))];
+    const start = (delay = 0) => {
+      const wait = delay * 1000;
+      const move = el.animate([{ transform: translate(from) }, { transform: "none" }], { duration: length * 1000, delay: wait, easing: easing || glide.fallback, fill: "both" });
+      const runs = [move, ...parts.map((part) => part.animate([{ opacity: 0 }, { opacity: 1 }], { ...fade, delay: wait }))];
       gsap.set([el, ...parts], { visibility: "inherit" });
       Promise.all(runs.map((run) => run.finished)).then(() => {
         settle(el, parts);
@@ -306,9 +307,9 @@ function glideLines(el, { stagger, fade, onComplete }) {
     const rise = { duration: length * 1000, easing: easing || "cubic-bezier(0.22, 1, 0.36, 1)", fill: "both" };
     const fadeFor = fade || LINES.fade;
     const show = { duration: fadeFor * 1000, easing: fade ? "linear" : cssEase("power1.out", "ease-out"), fill: "both" };
-    const start = () => {
+    const start = (wait = 0) => {
       runs = lines.flatMap((line, i) => {
-        const delay = i * stagger * 1000;
+        const delay = (wait + i * stagger) * 1000;
         return [
           line.animate([{ transform: `translateY(${LINES.from}%)` }, { transform: "translateY(0)" }], { ...rise, delay }),
           ...(fadeFor ? [line.animate([{ opacity: 0 }, { opacity: 1 }], { ...show, delay })] : []),
@@ -336,7 +337,7 @@ function splitUnit(el) {
     const glide = glideLines(el, { stagger: number(el, "data-anim-stagger", LINES.stagger), fade: number(el, "data-anim-fade", 0), onComplete: () => settle(el) });
     return { el, build: glide.build, play: (delay) => gsap.delayedCall(delay, glide.play), show: glide.show };
   }
-  const pieces = () => {
+  const pieces = (delay = 0) => {
     const split = new SplitText(el, { type: type === "chars" ? "words,chars" : "words", aria: "none" });
     const parts = type === "chars" ? split.chars : split.words;
     gsap.set(parts, { yPercent: 60, autoAlpha: 0 });
@@ -344,6 +345,7 @@ function splitUnit(el) {
     return gsap.to(parts, {
       ...settled(parts[0], { yPercent: 0, duration: PIECES.duration }),
       autoAlpha: 1,
+      delay,
       stagger: PIECES.stagger[type],
       onComplete: () => {
         split.revert();
@@ -352,11 +354,11 @@ function splitUnit(el) {
     });
   };
   // split as it starts: the lines are read from the layout of that moment
-  const start = () => (type === "lines" ? lines() : pieces());
+  const start = (delay = 0) => (type === "lines" ? lines({ delay }) : pieces(delay));
   return {
     el,
     build: () => ({ deferred: true, start, duration: type === "lines" ? LINES.duration : PIECES.duration }),
-    play: (delay) => gsap.delayedCall(delay, start),
+    play: (delay) => gsap.delayedCall(delay, () => start()),
     show: () => settle(el),
   };
 }
@@ -431,11 +433,15 @@ function watch(unit) {
 // together (data-anim-delay after it), and each order starts LEAD seconds before the order before it has landed
 // (data-anim-lead on any of its steps sets another lead, negative for a pause after). A step lands when its animation
 // ends, or data-anim-landed seconds after it starts (a long settle needn't hold up what follows). A deferred step (the
-// title's lines, a glide on the compositor) is started by the timeline at its position and holds a slot of its length.
-// Whatever else is on the first screen follows the entrance.
+// title's lines, a glide on the compositor) is started at once with its position as a delay on the compositor's own
+// clock, and holds a slot of its length in the timeline: a first load stalls the main thread (the hero photo decoding,
+// fonts arriving), the ticker's clock leaps over a stall, and a step started by a callback in it started late while the
+// next kept its time, so the intro arrived under a title still rising. Whatever else is on the first screen follows.
+const BASE = 0.15; // the entrance's clock starts this long after the setup
+
 function playEntrance(units) {
   if (!units.length) return null;
-  const tl = gsap.timeline({ delay: 0.15 });
+  const tl = gsap.timeline({ delay: BASE });
   const orderOf = (unit) => number(unit.el, variant(unit.el, "data-anim-order"), 0);
   let at = 0;
   let landed = 0;
@@ -447,14 +453,14 @@ function playEntrance(units) {
       const start = at + number(unit.el, "data-anim-delay", 0);
       const anim = unit.build();
       if (anim.deferred) {
-        tl.call(anim.start, [], start);
+        anim.start(BASE + start);
         tl.to({}, { duration: anim.duration }, start);
       } else tl.add(anim, start);
       landed = Math.max(landed, start + (number(unit.el, "data-anim-landed", 0) || (anim.deferred ? anim.duration : anim.duration())));
     });
   });
-  holdUntil = gsap.ticker.time + 0.15 + tl.duration() - LEAD;
-  entranceEnd = gsap.ticker.time + 0.15 + tl.duration() + 0.5;
+  holdUntil = gsap.ticker.time + BASE + tl.duration() - LEAD;
+  entranceEnd = gsap.ticker.time + BASE + tl.duration() + 0.5;
   return tl;
 }
 
@@ -671,13 +677,28 @@ const Anim = {
       try {
         const entrance = setup(document);
         ScrollTrigger.refresh();
-        // the entrance's clock starts once the setup and its measuring are done, or they eat into its first frames
-        this.entrance = playEntrance(entrance);
+        // the entrance's clock starts once the setup and its measuring are done, or they eat into its first frames; a page
+        // opened in a background tab waits for its first look, as hidden the clock stands still and the timeline would
+        // leap on return, its steps firing together
+        const start = () => { this.entrance = playEntrance(entrance); };
+        if (document.visibilityState !== "hidden") start();
+        else document.addEventListener("visibilitychange", function once() {
+          if (document.visibilityState === "hidden") return;
+          document.removeEventListener("visibilitychange", once);
+          start();
+        });
       } catch (err) {
         fail(err);
       }
     };
     Promise.race([fonts, new Promise((resolve) => setTimeout(resolve, 900))]).then(go, go);
+    // hidden mid-way, the entrance pauses rather than leaping ahead when the tab is seen again
+    document.addEventListener("visibilitychange", () => {
+      const tl = this.entrance;
+      if (!tl || tl.progress() === 1) return;
+      if (document.visibilityState === "hidden") tl.pause();
+      else tl.play();
+    });
     window.addEventListener("load", () => afterEntrance(() => ScrollTrigger.refresh()));
     return this;
   },

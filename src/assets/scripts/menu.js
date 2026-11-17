@@ -23,21 +23,21 @@ export function initMenu() {
     lockScroll(false);
   };
 
-  // the panel clipped to the box it grows out of (the header's pill), that box stretched to the panel's width, and the whole panel
+  // The panel's clip is inset(--clip-t --clip-r --clip-b --clip-l round --clip-round) in the stylesheet: the edges of the
+  // box it grows out of (the header's pill), each its own property, so the width and the height fold at their own pace
+  const EDGES = ["--clip-t", "--clip-r", "--clip-b", "--clip-l", "--clip-round"];
+  const px = (n) => `${n}px`;
   const shapes = () => {
     const from = (opener.closest("[data-menu-origin]") || opener).getBoundingClientRect();
     if (!from.width || !from.height) return null;
     const box = panel.getBoundingClientRect();
-    const t = from.top - box.top;
-    const b = box.bottom - from.bottom;
-    const pill = from.height / 2;
-    const round = parseFloat(getComputedStyle(panel).borderTopLeftRadius) || 0;
     return {
-      pill: `inset(${t}px ${box.right - from.right}px ${b}px ${from.left - box.left}px round ${pill}px)`,
-      wide: `inset(${t}px 0px ${b}px 0px round ${pill}px)`,
-      full: `inset(0px 0px 0px 0px round ${round}px)`,
+      pill: { "--clip-t": px(from.top - box.top), "--clip-r": px(box.right - from.right), "--clip-b": px(box.bottom - from.bottom), "--clip-l": px(from.left - box.left), "--clip-round": px(from.height / 2) },
+      full: { "--clip-t": "0px", "--clip-r": "0px", "--clip-b": "0px", "--clip-l": "0px", "--clip-round": px(parseFloat(getComputedStyle(panel).borderTopLeftRadius) || 0) },
     };
   };
+  const unclip = () => EDGES.forEach((edge) => panel.style.removeProperty(edge));
+  const clipped = () => panel.style.getPropertyValue("--clip-t") !== "";
 
   const show = () => {
     if (open) return;
@@ -55,21 +55,23 @@ export function initMenu() {
     if (fresh) {
       gsap.set(backdrop, { autoAlpha: 0 });
       gsap.set(rows, { y: 28, opacity: 0 });
-      if (shape) gsap.set(panel, { clipPath: shape.pill, opacity: 0 });
+      if (shape) gsap.set(panel, { ...shape.pill, opacity: 0 });
       else gsap.set(panel, { xPercent: AWAY });
     }
     const rise = { ...settled(rows[0], { y: 0, duration: 0.8, ease: "soft" }), opacity: 1, stagger: 0.055 };
-    tl = gsap.timeline({ onComplete: () => gsap.set([panel, ...rows], { clearProps: "transform,opacity,clipPath" }) })
+    tl = gsap.timeline({ onComplete: () => { gsap.set([panel, ...rows], { clearProps: "transform,opacity" }); unclip(); } })
       .to(backdrop, { autoAlpha: 1, duration: 0.6, ease: "power1.out" }, 0);
     if (!shape) {
       tl.to(panel, settled(panel, { xPercent: 0, duration: 0.9, ease: "silk" }), 0).to(rows, rise, 0.25);
       return;
     }
-    // it stretches out of the pill at the pill's height, then drops to its full height as its rows come in (gsa.uk.com)
-    tl.to(panel, { opacity: 1, duration: 0.3, ease: "power1.out" }, 0);
-    if (fresh) tl.to(panel, { clipPath: shape.wide, duration: 0.55, ease: "soft" }, 0);
-    tl.to(panel, { clipPath: shape.full, duration: 0.75, ease: "glide" }, fresh ? 0.45 : 0)
-      .to(rows, rise, fresh ? 0.8 : 0.2);
+    // it stretches out of the pill at the pill's height, and a beat later drops to its full height as its corners go from
+    // the pill's round to its own and its rows come in (gsa.uk.com); width and height on one curve, overlapping
+    const { "--clip-t": t, "--clip-b": b, "--clip-round": round } = shape.full;
+    tl.to(panel, { opacity: 1, duration: 0.3, ease: "power1.out" }, 0)
+      .to(panel, { "--clip-l": "0px", "--clip-r": "0px", duration: 1.1, ease: "fold" }, 0)
+      .to(panel, { "--clip-t": t, "--clip-b": b, "--clip-round": round, duration: 1.4, ease: "fold" }, fresh ? 0.5 : 0)
+      .to(rows, rise, fresh ? 1.05 : 0.2);
   };
 
   const close = () => {
@@ -88,9 +90,13 @@ export function initMenu() {
       tl.to(panel, { xPercent: AWAY, duration: 0.55, ease: "power2.in" }, 0);
       return;
     }
-    tl.to(panel, { clipPath: shape.wide, duration: 0.45, ease: "glide" }, 0.1)
-      .to(panel, { clipPath: shape.pill, duration: 0.35, ease: "power2.in" }, 0.5)
-      .to(panel, { opacity: 0, duration: 0.2, ease: "power1.in" }, 0.65);
+    // it folds back to the pill's height, and from a beat in narrows into the pill, settling on the same curve; caught
+    // mid-open it folds from wherever it is
+    if (!clipped()) gsap.set(panel, shape.full);
+    const { "--clip-t": t, "--clip-b": b, "--clip-l": l, "--clip-r": r, "--clip-round": round } = shape.pill;
+    tl.to(panel, { "--clip-t": t, "--clip-b": b, "--clip-round": round, duration: 1, ease: "fold" }, 0)
+      .to(panel, { "--clip-l": l, "--clip-r": r, duration: 1.3, ease: "fold" }, 0.4)
+      .to(panel, { opacity: 0, duration: 0.35, ease: "power1.in" }, 1.35);
   };
 
   openers.forEach((button) => button.addEventListener("click", () => {
