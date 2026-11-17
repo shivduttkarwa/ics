@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-11-17 — The client's brief, built as motion only
+- The home page's three pillars stack on scroll from lg, as gsa.uk.com's panels do (`data-anim="stack"`, `pillar.stack`). Each holds once its foot reaches the foot of the screen, and the next is uncovered over it across one screen of scroll, its content standing where it will rest. This runs on a CSS scroll timeline, so it stays in step with the scroll (Lenis drives it where there is none). Measured at 1920 × 945 and 1440 × 900: the held pillar and the incoming title and photo stay within 0.5px while the edge rises, and the handovers move under 0.5px. Each held pillar's rounded foot shows the next pillar's colour as before. The incoming pillar's small copy brightens from 35% as it docks, and its figures count as the edge uncovers them. Below lg and under reduced motion nothing changes.
+- The announcement bar and the footer's lower band are uncovered in place: each waits stuck to the foot of the screen under the section before it, which scrolls up off it. Their own fades are gone, since the uncovering is now the reveal.
+- The graduates' logo rows run in opposite directions at St Luke's one slow speed (35 design px a second; the second row was "left" at 32).
+- The main menu grows out of the header's pill: it stretches to its width at the pill's height, then drops to its full height as its rows come in, and folds back into the pill on close. Below lg it grows out of the burger. The page behind stays undimmed, as Figma draws it.
+- A USP card's Play Video button opens its `url` (a video file, YouTube or Vimeo) in a popup (`partials/video-popup.njk`). It stays dormant while the url is empty, as it is now.
+- The design is unchanged throughout: no corners, colours, spacing or sizes moved. The touch audit at 320–1280 is clean, and Why ICS and HSC Results load without errors.
+
+## 2026-11-17 — The client's motion brief
+- `docs/design-guidelines.md` now opens with the client's chat brief of 2026-11-16, read from the chat and the client's recording of gsa.uk.com. It covers GSA as the motion reference, the pillars stacking on scroll, the announcement bar and the footer's accreditation strip uncovered in place, the graduates' logo rows in opposite directions, a USP video popup and GSA's menu opening. Each item the cutup does not do yet is marked **To build**, and the open questions for the client are listed.
+
 ## 2026-11-15 — Home hero title stagger
 - The hero title's lines start 0.2s apart (was the 0.11 default): each rise covers most of its distance in its first quarter-second, so at 0.11 the four lines arrived almost together, the last two most of all. Measured at 1920 × 945: 0, 207, 386 and 599ms. The intro and button move a step later (9 and 10). The intro lifts 16 all at once as it fades in (`fade-up-soft`, replacing `fade-up-held`), on a held layer: it reaches its place at 99% opacity and changes 0 pixels as it settles.
 - The hero's video card springs in instead of easing in on `back.out` over 1.4s, whose return crept for most of a second: on the compositor, from beyond the right edge it is in place at 0.28s, swings 31px past (8.6%), takes one 1.5px second swing and is settled at 0.9s, with no change after (measured at 1920 × 945; `spring()` in `motion.js`, `glide` presets in `anim.js`).

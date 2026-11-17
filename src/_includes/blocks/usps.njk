@@ -23,7 +23,7 @@
           {% if card.button and card.button.text %}
           <div class="usp-card__foot">
             {% if card.button.icon == "play" %}
-            <a class="btn usp-card__play"{% if card.button.url %} href="{{ card.button.url }}"{% endif %}><span class="btn__label">{{ card.button.text }}</span><svg class="icon usp-card__play-solid" aria-hidden="true"><use href="#icon-play-solid"></use></svg><svg class="icon usp-card__play-outline" aria-hidden="true"><use href="#icon-play-outline"></use></svg></a>
+            <a class="btn usp-card__play"{% if card.button.url %} href="{{ card.button.url }}" data-video-popup{% endif %}><span class="btn__label">{{ card.button.text }}</span><svg class="icon usp-card__play-solid" aria-hidden="true"><use href="#icon-play-solid"></use></svg><svg class="icon usp-card__play-outline" aria-hidden="true"><use href="#icon-play-outline"></use></svg></a>
             {% else %}
             {% set btn = card.button %}{% include "snippets/button.njk" %}
             {% endif %}

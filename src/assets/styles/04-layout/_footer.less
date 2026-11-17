@@ -11,6 +11,7 @@
   color: var(--color-white);
 
   &__upper {
+    z-index: 1;
     padding: 50 * @px 0;
     background: var(--color-canopy);
     @media (min-width: @bp-lg) { padding: 32 * @px 0 147 * @px; }
@@ -192,6 +193,12 @@
     &__links a[href]:hover,
     &__text a[href]:hover,
     &__legal a[href]:hover { color: var(--color-moss); }
+  }
+
+  // it waits stuck to the foot of the screen under the upper band, which scrolls up off it
+  &__upper + &__lower {
+    position: sticky;
+    bottom: 0;
   }
 
   &__lower {

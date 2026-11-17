@@ -1,5 +1,13 @@
+// the bar waits stuck to the foot of the screen under the section before it, which scrolls up off it
+:has(+ .announcement) {
+  position: relative;
+  z-index: 1;
+}
+
 .announcement {
   --focus-ring: var(--color-moss);
+  position: sticky;
+  bottom: 0;
   padding: 29 * @px 0 38 * @px;
   background: var(--color-canopy-deep);
   color: var(--color-white);

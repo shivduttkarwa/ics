@@ -1,4 +1,4 @@
-// the main menu: a modal panel that slides in from the right, its rows rising in turn; parent items open in place
+// the main menu: a modal panel that grows out of the header's pill, its rows rising in turn; parent items open in place
 import { gsap, still, settled, landing } from "./motion.js";
 import { lockScroll } from "./ui.js";
 
@@ -23,6 +23,22 @@ export function initMenu() {
     lockScroll(false);
   };
 
+  // the panel clipped to the box it grows out of (the header's pill), that box stretched to the panel's width, and the whole panel
+  const shapes = () => {
+    const from = (opener.closest("[data-menu-origin]") || opener).getBoundingClientRect();
+    if (!from.width || !from.height) return null;
+    const box = panel.getBoundingClientRect();
+    const t = from.top - box.top;
+    const b = box.bottom - from.bottom;
+    const pill = from.height / 2;
+    const round = parseFloat(getComputedStyle(panel).borderTopLeftRadius) || 0;
+    return {
+      pill: `inset(${t}px ${box.right - from.right}px ${b}px ${from.left - box.left}px round ${pill}px)`,
+      wide: `inset(${t}px 0px ${b}px 0px round ${pill}px)`,
+      full: `inset(0px 0px 0px 0px round ${round}px)`,
+    };
+  };
+
   const show = () => {
     if (open) return;
     open = true;
@@ -34,16 +50,26 @@ export function initMenu() {
     menu.querySelector(".menu__close").focus({ preventScroll: true });
     tl?.kill();
     if (still.matches) return;
+    const shape = shapes();
     // caught mid-close, it comes back from wherever it is; the rows fade on opacity alone, as hiding one would drop the focus
     if (fresh) {
       gsap.set(backdrop, { autoAlpha: 0 });
-      gsap.set(panel, { xPercent: AWAY });
       gsap.set(rows, { y: 28, opacity: 0 });
+      if (shape) gsap.set(panel, { clipPath: shape.pill, opacity: 0 });
+      else gsap.set(panel, { xPercent: AWAY });
     }
-    tl = gsap.timeline({ onComplete: () => gsap.set([panel, ...rows], { clearProps: "transform,opacity" }) })
-      .to(backdrop, { autoAlpha: 1, duration: 0.6, ease: "power1.out" }, 0)
-      .to(panel, settled(panel, { xPercent: 0, duration: 0.9, ease: "silk" }), 0)
-      .to(rows, { ...settled(rows[0], { y: 0, duration: 0.8, ease: "soft" }), opacity: 1, stagger: 0.055 }, 0.25);
+    const rise = { ...settled(rows[0], { y: 0, duration: 0.8, ease: "soft" }), opacity: 1, stagger: 0.055 };
+    tl = gsap.timeline({ onComplete: () => gsap.set([panel, ...rows], { clearProps: "transform,opacity,clipPath" }) })
+      .to(backdrop, { autoAlpha: 1, duration: 0.6, ease: "power1.out" }, 0);
+    if (!shape) {
+      tl.to(panel, settled(panel, { xPercent: 0, duration: 0.9, ease: "silk" }), 0).to(rows, rise, 0.25);
+      return;
+    }
+    // it stretches out of the pill at the pill's height, then drops to its full height as its rows come in (gsa.uk.com)
+    tl.to(panel, { opacity: 1, duration: 0.3, ease: "power1.out" }, 0);
+    if (fresh) tl.to(panel, { clipPath: shape.wide, duration: 0.55, ease: "soft" }, 0);
+    tl.to(panel, { clipPath: shape.full, duration: 0.75, ease: "glide" }, fresh ? 0.45 : 0)
+      .to(rows, rise, fresh ? 0.8 : 0.2);
   };
 
   const close = () => {
@@ -54,10 +80,17 @@ export function initMenu() {
     opener.focus({ preventScroll: true });
     tl?.kill();
     if (still.matches) return hide();
+    const shape = shapes();
     tl = gsap.timeline({ onComplete: hide })
       .to(rows, { opacity: 0, duration: 0.2, ease: "power1.in" }, 0)
-      .to(panel, { xPercent: AWAY, duration: 0.55, ease: "power2.in" }, 0)
       .to(backdrop, { autoAlpha: 0, duration: 0.45, ease: "power1.in" }, 0.1);
+    if (!shape) {
+      tl.to(panel, { xPercent: AWAY, duration: 0.55, ease: "power2.in" }, 0);
+      return;
+    }
+    tl.to(panel, { clipPath: shape.wide, duration: 0.45, ease: "glide" }, 0.1)
+      .to(panel, { clipPath: shape.pill, duration: 0.35, ease: "power2.in" }, 0.5)
+      .to(panel, { opacity: 0, duration: 0.2, ease: "power1.in" }, 0.65);
   };
 
   openers.forEach((button) => button.addEventListener("click", () => {

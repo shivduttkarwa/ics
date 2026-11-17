@@ -18,7 +18,7 @@
     {% set loading = "eager" %}
     {% for row in value.rows %}
     <div class="graduates__lane">
-      <div class="graduates__track" data-marquee="left"{% if not loop.first %} data-marquee-speed="32"{% endif %}>
+      <div class="graduates__track" data-marquee="{% if loop.first %}left{% else %}right{% endif %}" data-marquee-speed="35">
         <ul class="graduates__list">
           {% for img in row.logos %}
           <li class="graduates__logo">{% set cls = "graduates__img" %}{% include "snippets/image.njk" %}</li>

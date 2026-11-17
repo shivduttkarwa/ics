@@ -1,5 +1,5 @@
 import { Anim } from "./anim.js";
-import { still } from "./motion.js";
+import { gsap, still, landing } from "./motion.js";
 
 export function lockScroll(lock) {
   const root = document.documentElement;
@@ -91,6 +91,64 @@ export function initAmbientVideos() {
     view.observe(video);
   });
   still.addEventListener("change", () => videos.forEach(sync));
+}
+
+const embed = (url) => {
+  const youtube = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{11})/);
+  const vimeo = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+  const src = youtube ? `https://www.youtube-nocookie.com/embed/${youtube[1]}?autoplay=1&rel=0&playsinline=1` : vimeo ? `https://player.vimeo.com/video/${vimeo[1]}?autoplay=1` : null;
+  if (!src) return Object.assign(document.createElement("video"), { src: url, controls: true, autoplay: true, playsInline: true });
+  return Object.assign(document.createElement("iframe"), { src, title: "Video", allow: "autoplay; fullscreen; picture-in-picture", allowFullscreen: true });
+};
+
+// a[data-video-popup] opens its href (a video file, a YouTube or a Vimeo link) in the popup instead of leaving the page
+export function initVideoPopup() {
+  const dialog = document.getElementById("video-popup");
+  const links = Array.from(document.querySelectorAll("a[data-video-popup][href]"));
+  if (!dialog || !links.length) return;
+  const frame = dialog.querySelector("[data-video-popup-frame]");
+  let opener = null;
+  let tl = null;
+
+  const finish = () => {
+    dialog.close();
+    frame.replaceChildren();
+    lockScroll(false);
+    opener?.focus({ preventScroll: true });
+  };
+
+  const close = () => {
+    if (!dialog.open) return;
+    tl?.kill();
+    if (still.matches) return finish();
+    tl = gsap.timeline({ onComplete: finish })
+      .to(frame, { opacity: 0, duration: 0.25, ease: "power1.in" }, 0)
+      .to(dialog, { opacity: 0, duration: 0.4, ease: "power1.in" }, 0.05);
+  };
+
+  links.forEach((link) => link.addEventListener("click", (event) => {
+    event.preventDefault();
+    opener = link;
+    tl?.kill();
+    frame.replaceChildren(embed(link.href));
+    lockScroll(true);
+    dialog.showModal();
+    dialog.querySelector("[data-video-popup-close]").focus();
+    if (still.matches) return;
+    const land = landing("soft", 24);
+    tl = gsap.timeline({ onComplete: () => gsap.set([dialog, frame], { clearProps: "opacity,transform" }) })
+      .fromTo(dialog, { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0)
+      .fromTo(frame, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.9 * land.cut, ease: land.ease }, 0.15);
+  }));
+
+  dialog.querySelector("[data-video-popup-close]").addEventListener("click", close);
+  dialog.addEventListener("click", (event) => {
+    if (event.target === dialog) close();
+  });
+  dialog.addEventListener("cancel", (event) => {
+    event.preventDefault();
+    close();
+  });
 }
 
 export function initScrollState() {

@@ -8,7 +8,7 @@ import { initMenu } from "./menu.js";
 import { initNews } from "./news.js";
 import { initCards } from "./cards.js";
 import { initStories } from "./stories.js";
-import { initAmbientVideos, initDevicePixel, initEagerPhotos, initFocusMode, initHoverVideos, initScrollState } from "./ui.js";
+import { initAmbientVideos, initDevicePixel, initEagerPhotos, initFocusMode, initHoverVideos, initScrollState, initVideoPopup } from "./ui.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   initFocusMode();
@@ -27,4 +27,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initCards();
   initStories();
   initHoverVideos();
+  initVideoPopup();
 });

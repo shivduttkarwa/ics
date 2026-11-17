@@ -399,12 +399,14 @@ function enqueue(unit) {
   if (!flushing) flushing = gsap.delayedCall(0.02, flush);
 }
 
+const STARTS = new WeakMap(); // a start of its own, as a scroll position (stackRun)
+
 function watch(unit) {
   const el = unit.el;
   ScrollTrigger.create({
     trigger: el.closest("[data-anim-trigger]") || el,
     // clamped, so a piece at the very foot of the page still starts when the page can scroll no further
-    start: `clamp(${startOf(el)})`,
+    start: STARTS.get(el) || `clamp(${startOf(el)})`,
     end: "max",
     once: true,
     onEnter: () => enqueue(unit),
@@ -467,9 +469,112 @@ function setupProgress(root) {
   });
 }
 
+// without scroll timelines the uncovering follows Lenis here instead of running in CSS
+const TIMELINE = typeof CSS !== "undefined" && CSS.supports("animation-timeline", "scroll()");
+
+function setupStacks(root) {
+  const runs = [];
+  scoped(root, '[data-anim="stack"]').forEach((el) => {
+    bind(el);
+    const run = runs.find((list) => list[list.length - 1] === el.previousElementSibling);
+    if (run) run.push(el);
+    else runs.push([el]);
+  });
+  runs.filter((run) => run.length > 1).forEach(stackRun);
+}
+
+function stackRun(panels) {
+  if (phone.matches || !(TIMELINE || fine.matches)) return;
+  const last = panels.length - 1;
+  const incoming = panels.slice(1);
+  // uncovered where they stand, so their own reveals are dropped; counters still count
+  incoming.forEach((panel) => {
+    panel.querySelectorAll('[data-anim="reveal"], [data-anim="split"]').forEach((el) => {
+      bind(el);
+      el.classList.add("is-revealed");
+    });
+    panel.querySelectorAll("[data-anim-group]").forEach((group) => {
+      bind(group);
+      Array.from(group.children).forEach((child) => child.classList.add("is-revealed"));
+    });
+  });
+  // a figure counts once the rising edge has uncovered half of it
+  incoming.forEach((panel, n) => panel.querySelectorAll('[data-anim="counter"]').forEach((el) => STARTS.set(el, () => {
+    const box = el.getBoundingClientRect();
+    const top = box.top + window.scrollY;
+    return marks ? 2 * marks[n + 1].top - top - box.height / 2 : top - 0.88 * window.innerHeight;
+  })));
+  const contents = incoming.map((panel) => Array.from(panel.firstElementChild.children));
+  const dims = incoming.map((panel) => Array.from(panel.querySelectorAll("[data-anim-stack-dim]")));
+  let marks = null;
+
+  const clear = () => {
+    panels.forEach((panel) => panel.classList.remove("is-held", "is-incoming"));
+    if (!TIMELINE) gsap.set([...contents.flat(), ...dims.flat()], { clearProps: "transform,opacity" });
+  };
+
+  // the natural layout: where each starts, how tall it is, the scroll at which it holds and its top while held
+  const measure = () => {
+    clear();
+    marks = null;
+    if (phone.matches) return;
+    const y = window.scrollY;
+    const view = document.documentElement.clientHeight;
+    marks = panels.map((panel) => {
+      const box = panel.getBoundingClientRect();
+      const top = box.top + y;
+      return { top, stick: top + Math.max(0, box.height - view), hold: Math.min(0, view - box.height), pad: panel.firstElementChild.getBoundingClientRect().top - box.top };
+    });
+    panels.forEach((panel, i) => {
+      if (i < last) panel.style.setProperty("--stack-top", `${marks[i].hold}px`);
+      if (!i) return;
+      const { stick: from } = marks[i - 1];
+      const { top: to, pad } = marks[i];
+      Object.assign(marks[i], { from, to });
+      panel.style.setProperty("--stack-from", `${from}px`);
+      panel.style.setProperty("--stack-to", `${to}px`);
+      panel.style.setProperty("--stack-shift", `${from - to}px`);
+      panel.style.setProperty("--stack-pad", `${pad}px`);
+    });
+  };
+
+  // a section holds from its top reaching the top of the screen until the next one covers it
+  const update = () => {
+    if (!marks) return;
+    const s = window.scrollY;
+    panels.forEach((panel, i) => {
+      if (i < last) panel.classList.toggle("is-held", s >= marks[i].top - 1 && s < marks[i + 1].top);
+    });
+    if (TIMELINE) return;
+    incoming.forEach((panel, n) => {
+      const { from, to } = marks[n + 1];
+      const p = gsap.utils.clamp(0, 1, (s - from) / (to - from || 1));
+      gsap.set(contents[n], { y: (from - to) * (1 - p), force3D: true });
+      gsap.set(dims[n], { opacity: p < 0.4 ? 0.35 : 0.35 + ((p - 0.4) / 0.6) * 0.65 });
+    });
+  };
+
+  const apply = () => {
+    if (!marks) return;
+    incoming.forEach((panel) => panel.classList.add("is-incoming"));
+    update();
+  };
+
+  // a keyboard user tabbing into a held section that the next one has partly covered is taken back to see it whole
+  panels.slice(0, last).forEach((panel, i) => panel.addEventListener("focusin", (event) => {
+    if (!marks || !event.target.matches(":focus-visible") || window.scrollY <= marks[i].stick) return;
+    lenis ? lenis.scrollTo(marks[i].stick) : window.scrollTo(0, marks[i].stick);
+  }));
+
+  ScrollTrigger.addEventListener("refreshInit", measure);
+  ScrollTrigger.addEventListener("refresh", apply);
+  lenis?.on("scroll", update);
+}
+
 function setup(root, opts = {}) {
   const entrance = [];
   const scroll = [];
+  setupStacks(root);
   expandGroups(root);
   const add = (el, unit) => {
     if (!unit) return;

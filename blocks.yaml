@@ -159,7 +159,7 @@ blocks:
         image: ImageChooserBlock(required)   # 311 × 414 slot, cover; for a video card, the video's still
         image_mobile: ImageChooserBlock(required=False)   # below lg; only where the phone frame shows another photo (the video card)
         video: DocumentChooserBlock(required=False)   # { src }: from lg it plays muted over the image while the card is hovered
-        button: StructBlock(text, url, style, icon)   # click-through card: "Discover more", style "white", shown on hover. icon "play" makes the video card: "Play Video", always shown, url = the full video
+        button: StructBlock(text, url, style, icon)   # click-through card: "Discover more", style "white", shown on hover. icon "play" makes the video card: "Play Video", always shown, url = the full video (a file, YouTube or Vimeo link), opened in the popup
 
   pillar:
     figma: "15417:12529 (Pillar #01, canopy), 15417:12495 (Pillar #02, beach light), 15417:12078 (Pillar #03, white); phone 15513:27044, 15513:27097, 15513:27142; Stat Homepage 15339:17886"
@@ -167,6 +167,7 @@ blocks:
     fields:
       theme: ChoiceBlock(choices=["canopy", "beach", "white"], default="white")   # the ground and its ink; every pillar ends in a rounded foot
       spread: BooleanBlock(required=False)   # from lg the copy starts at the photo's top and the proof points sit at its foot (Pillar #01, the long one); off, the column is centred on the photo
+      stack: BooleanBlock(required=False)   # from lg, adjacent stacked pillars hold and are uncovered over one another as you scroll (the home page's three; data-anim="stack")
       title: RichTextBlock(features=["italic"])
       lead: TextBlock(required=False)   # the 20px opening paragraph
       text: RichTextBlock(required=False, features=["bold", "italic", "link"])   # the 16px copy; paragraphs a blank line apart
@@ -209,7 +210,7 @@ blocks:
       title: RichTextBlock(features=["italic"])
       text: TextBlock
       button: StructBlock(text, url, style)   # "Where ICS graduates go", moss with the dot at every size
-      rows: ListBlock(StructBlock(logos: ListBlock(ImageChooserBlock)))   # two rows in Figma; each runs right to left without end, every second row starting 100 in and a touch slower
+      rows: ListBlock(StructBlock(logos: ListBlock(ImageChooserBlock)))   # two rows in Figma; the first runs right to left, the second left to right, both at one slow speed, the second starting 100 in
         # a logo's alt is the organisation's name; its width is its size in design px (Figma sizes each logo by eye), the file about twice that
 
   slides:

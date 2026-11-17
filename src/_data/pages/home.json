@@ -198,6 +198,7 @@
       "type": "pillar",
       "value": {
         "theme": "canopy",
+        "stack": true,
         "spread": true,
         "title": "Strong outcomes <em>without the premium price.</em>",
         "lead": "ICS students regularly achieve some of the best HSC results in the Illawarra.",
@@ -257,6 +258,7 @@
       "type": "pillar",
       "value": {
         "theme": "beach",
+        "stack": true,
         "spread": false,
         "title": "<em>Real faith</em>,<br> not just values.",
         "lead": "Faith isn't a subject at ICS. You'll see it in how teachers greet your child in the morning and how students are taught to treat each other.",
@@ -315,6 +317,7 @@
       "type": "pillar",
       "value": {
         "theme": "white",
+        "stack": true,
         "spread": false,
         "title": "A community that <em>knows<br> your child.</em>",
         "lead": "Every student at ICS belongs to a small pastoral care group with a teacher who stays with them. If your child needs extra support, our own psychologist, counsellors and occupational therapist are on site.",
