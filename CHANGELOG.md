@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-11-17 — Home entrance smoothed
+- Title lines rise solid out of their masks (1.1s on `soft`, no fade; was `silk` 1.3s with a 0.6s fade, which read as a fade-up rather than a line coming from under the mask), site-wide so the hero matches the section titles.
+- The hero intro and its glass button both lift in (`fade-up-soft`), now a compositor glide: the wrapper moves, the glass fades on its own so its blur builds with it.
+- The header items drop on the compositor on held layers instead of stepping whole pixels (`fade-down`), so the last pixels no longer tick in; their text measures as crisp at rest as page-drawn text.
+- The announcement bar's contents lift in (`fade-up-soft`) from the first 12px of scroll (`data-anim-start="12"`), so the bar no longer simply appears in one wheel notch; the bar itself is still uncovered in place.
+- `fadeParts` fades an element as one unless it holds glass; `data-anim-start` takes a plain scroll position.
+- The page entrance is one GSAP timeline (`Anim.entrance`), sequenced as St Luke's is: `data-anim-order` is now the step's place in the sequence, each order starting 0.4s before the previous one lands (`data-anim-lead`, negative for a pause; `data-anim-landed` for a long settle), instead of a fixed 0.14s clock. The intro lifts as the title's last line lands, the button 0.2s after it, the title's own stagger. A group's items share its order and follow each other by `data-anim-stagger` (0.07); `data-anim-step` and `data-anim-order-mobile` are gone, the header's pill now an item of the bar.
+
 ## 2026-11-17 — The client's brief, built as motion only
 - The home page's three pillars stack on scroll from lg, as gsa.uk.com's panels do (`data-anim="stack"`, `pillar.stack`). Each holds once its foot reaches the foot of the screen, and the next is uncovered over it across one screen of scroll, its content standing where it will rest. This runs on a CSS scroll timeline, so it stays in step with the scroll (Lenis drives it where there is none). Measured at 1920 × 945 and 1440 × 900: the held pillar and the incoming title and photo stay within 0.5px while the edge rises, and the handovers move under 0.5px. Each held pillar's rounded foot shows the next pillar's colour as before. The incoming pillar's small copy brightens from 35% as it docks, and its figures count as the edge uncovers them. Below lg and under reduced motion nothing changes.
 - The announcement bar and the footer's lower band are uncovered in place: each waits stuck to the foot of the screen under the section before it, which scrolls up off it. Their own fades are gone, since the uncovering is now the reveal.

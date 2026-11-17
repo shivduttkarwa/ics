@@ -6,10 +6,11 @@ import { Observer } from "gsap/Observer";
 
 gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase, Observer);
 
-// the house curves, the same as --ease-out, --ease-silk and --ease-in-out in _tokens.less
+// the house curves, the same as --ease-out, --ease-silk, --ease-in-out and --ease-rise in _tokens.less
 CustomEase.create("soft", "0.22, 1, 0.36, 1");
 CustomEase.create("silk", "0.16, 1, 0.3, 1");
 CustomEase.create("glide", "0.65, 0, 0.35, 1");
+CustomEase.create("rise", "0.33, 1, 0.68, 1");
 gsap.defaults({ ease: "soft", duration: 1 });
 
 export const still = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -103,9 +104,9 @@ export function glassy(el) {
 
 // Opacity under 1 on an ancestor cuts a backdrop-filter off from what is behind it (a backdrop root), so glass faded through
 // its wrapper shows only its tint and snaps to its blur as the fade ends. These are the parts to fade instead: the glass
-// itself and whatever beside it holds none.
+// itself and whatever beside it holds none. An element with no glass inside fades as one.
 export function fadeParts(el) {
-  if (blurred(el)) return [el];
+  if (blurred(el) || !Array.from(el.querySelectorAll("*")).some(blurred)) return [el];
   const parts = [];
   const walk = (node) => Array.from(node.children).forEach((child) => {
     if (blurred(child)) parts.push(child);

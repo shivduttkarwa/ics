@@ -40,6 +40,9 @@
   &.is-stuck { position: fixed; }
   &.is-hidden { translate: 0 -101%; }
 
+  // each item drops in on the compositor and keeps its layer: leaving it, text redraws up to half a pixel away
+  [data-anim-item] { will-change: transform; }
+
   &::before {
     content: "";
     position: absolute;

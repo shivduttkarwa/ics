@@ -138,6 +138,8 @@
     flex-wrap: wrap;
     gap: 10 * @px;
     margin: @hero-gap 0 42 * @px;
+    // held on its layer after its lift, as the intro
+    will-change: transform;
     @media (min-width: @bp-lg) { margin-bottom: 0; }
     .btn__dot {
       display: none;

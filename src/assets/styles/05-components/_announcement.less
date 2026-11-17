@@ -18,6 +18,8 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 25 * @px;
+    // the contents lift in once the hero's foot has left them, held on their layer after
+    will-change: transform;
     @media (min-width: @bp-lg) {
       flex-direction: row;
       align-items: center;

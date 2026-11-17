@@ -1,10 +1,11 @@
 // Lenis smooth scroll + GSAP reveals, split titles, counters and parallax, driven by data-anim-* (docs/animation.md)
 import Lenis from "lenis";
-import { gsap, ScrollTrigger, SplitText, still, phone, fine, settled, glassy, fadeParts, landing, whole, cssEase, spring } from "./motion.js";
+import { gsap, ScrollTrigger, SplitText, still, phone, fine, settled, glassy, fadeParts, landing, cssEase, spring } from "./motion.js";
 
 const STAGGER = 0.09; // between reveals that come into view together
 const SPREAD = 0.6; // the longest a batch of them may take to start
-const STEP = 0.14; // between two data-anim-order steps of the page entrance
+const LEAD = 0.4; // an entrance step starts this long before the step before it has landed (data-anim-lead; negative for a pause)
+const ITEMS = 0.07; // between the items of a hero-tier group (data-anim-stagger on the group)
 const START = { default: "top 88%", secondary: "top 96%" };
 const HERO = "hero";
 const BOUND = "data-anim-bound";
@@ -21,10 +22,10 @@ const wipe = (inset) => ({
 // `to` is a list of tweens that start together; `inner` also moves every img and video inside
 const REVEAL = {
   "fade-up": { from: { y: 36, autoAlpha: 0 }, to: [{ y: 0, duration: 1.15 }, fade()] },
-  // a subtle lift for first-screen copy: 16 up while it fades, on a held layer (give the element will-change: transform)
-  "fade-up-soft": { from: { y: 16, autoAlpha: 0, force3D: true }, to: [{ y: 0, duration: 1, force3D: true }, fade(1)] },
-  // the header's items: off a GPU layer and in whole pixels, landing under the fade, so the text never shifts or re-sharpens as it stops
-  "fade-down": { from: { y: -24, autoAlpha: 0, force3D: false }, to: [{ autoAlpha: 1, duration: 0.7, ease: "power1.out", force3D: false, keyframes: { "57%": { y: 0, ease: whole("power2.out", 24) }, ease: "none" } }] },
+  // a gentle lift for first-screen copy: 25 up on the compositor while it fades, on a held layer (give the element will-change: transform)
+  "fade-up-soft": { from: { y: 25, autoAlpha: 0 }, glide: { axis: "y", duration: 0.6, ease: "rise", fade: 0.6, fadeEase: "power1.out", fallback: "cubic-bezier(0.33, 1, 0.68, 1)" } },
+  // the header's items: 24 down on the compositor, landing under the fade, on a held layer (give the element will-change: transform)
+  "fade-down": { from: { y: -24, autoAlpha: 0 }, glide: { axis: "y", duration: 0.7, ease: "power2.out", fade: 0.7, fadeEase: "power1.out", fallback: "cubic-bezier(0.33, 1, 0.68, 1)" } },
   "fade": { from: { autoAlpha: 0 }, to: [fade(1.2)] },
   "from-left": { from: { x: -48, autoAlpha: 0 }, to: [{ x: 0, duration: 1.2 }, fade()] },
   "from-right": { from: { x: 48, autoAlpha: 0 }, to: [{ x: 0, duration: 1.2 }, fade()] },
@@ -44,7 +45,9 @@ const REVEAL = {
 };
 REVEAL.clip = REVEAL["wipe-down"];
 
-const LINES = { from: 125, duration: 1.3, ease: "silk", stagger: 0.11, fade: 0.6 };const PIECES = { duration: 0.9, stagger: { words: 0.045, chars: 0.018 } };
+// no fade: a line is solid as it clears the mask's edge, which is what reads as rising from under it
+const LINES = { from: 125, duration: 1.1, ease: "soft", stagger: 0.11, fade: 0 };
+const PIECES = { duration: 0.9, stagger: { words: 0.045, chars: 0.018 } };
 const COUNTER = { duration: 2.2, ease: "power2.out" };
 
 const attr = (el, name, fallback = null) => (el.hasAttribute(name) ? el.getAttribute(name) : fallback);
@@ -103,8 +106,7 @@ const PASSED = ["data-anim-tier", "data-anim-start", "data-anim-start-mobile", "
 function expandGroups(root) {
   scoped(root, "[data-anim-group]").forEach((group) => {
     const type = group.getAttribute("data-anim-group") || "fade-up";
-    const base = number(group, "data-anim-order", 0);
-    const step = number(group, "data-anim-step", 1);
+    const gap = number(group, "data-anim-stagger", ITEMS);
     const marked = Array.from(group.querySelectorAll("[data-anim-item]"));
     const items = marked.length ? marked : Array.from(group.children);
     let turn = 0;
@@ -116,7 +118,9 @@ function expandGroups(root) {
       PASSED.forEach((name) => {
         if (group.hasAttribute(name) && !child.hasAttribute(name)) child.setAttribute(name, group.getAttribute(name));
       });
-      if (!child.hasAttribute("data-anim-order")) child.setAttribute("data-anim-order", String(base + turn * step));
+      // in the entrance the items share the group's step and follow each other `gap` apart
+      if (group.hasAttribute("data-anim-order") && !child.hasAttribute("data-anim-order")) child.setAttribute("data-anim-order", group.getAttribute("data-anim-order"));
+      if (tierOf(child) === HERO && !child.hasAttribute("data-anim-delay")) child.setAttribute("data-anim-delay", (turn * gap).toFixed(2));
       // an item not displayed at this width gives up its turn
       if (child.getClientRects().length) turn++;
     });
@@ -129,38 +133,44 @@ function expandGroups(root) {
 const moves = (preset) => ["x", "y", "scale"].some((key) => key in preset.from);
 
 // a glide runs on the compositor (element.animate), so its curve holds however busy the page is; once landed it settles
-// with no change, its layer kept by the element's own will-change
-function glideUnit(el, glide) {
-  return {
-    el,
-    play: (delay) => gsap.delayedCall(delay, () => {
-      const from = gsap.getProperty(el, "x");
-      const { ease, cut } = landing(glide.ease, from);
-      const easing = cssEase(ease, null, 80);
-      const move = el.animate([{ transform: `translateX(${from}px)` }, { transform: "none" }], {
-        duration: glide.duration * (easing ? cut : 1) * 1000,
-        easing: easing || glide.fallback,
-        fill: "both",
-      });
-      const show = el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: glide.fade * 1000, easing: "ease-out", fill: "both" });
-      gsap.set(el, { visibility: "inherit" });
-      Promise.all([move.finished, show.finished]).then(() => {
-        settle(el);
-        move.cancel();
-        show.cancel();
+// with no change, its layer kept by the element's own will-change. The fade runs on `parts` (the glass and the plain
+// parts beside it, as fadeParts), the element itself when it holds no glass.
+function glideUnit(el, glide, parts = [el]) {
+  const axis = glide.axis || "x";
+  const translate = (px) => (axis === "y" ? `translate(0px, ${px}px)` : `translate(${px}px, 0px)`);
+  const fade = { duration: glide.fade * 1000, easing: glide.fadeEase ? cssEase(glide.fadeEase, "ease-out") : "ease-out", fill: "both" };
+  // a deferred step: the entrance's timeline calls start() at its position and holds a slot of `duration`
+  const build = () => {
+    const from = gsap.getProperty(el, axis);
+    const { ease, cut } = landing(glide.ease, from);
+    const easing = cssEase(ease, null, 80);
+    const length = glide.duration * (easing ? cut : 1);
+    const start = () => {
+      const move = el.animate([{ transform: translate(from) }, { transform: "none" }], { duration: length * 1000, easing: easing || glide.fallback, fill: "both" });
+      const runs = [move, ...parts.map((part) => part.animate([{ opacity: 0 }, { opacity: 1 }], fade))];
+      gsap.set([el, ...parts], { visibility: "inherit" });
+      Promise.all(runs.map((run) => run.finished)).then(() => {
+        settle(el, parts);
+        runs.forEach((run) => run.cancel());
       }, () => {});
-    }),
-    show: () => settle(el),
+    };
+    return { deferred: true, start, duration: Math.max(length, glide.fade) };
   };
+  return { el, build, play: (delay) => gsap.delayedCall(delay, () => build().start()), show: () => settle(el, parts) };
 }
 
 function revealUnit(el) {
   let preset = REVEAL[attr(el, variant(el, "data-anim-type"), "fade-up")] || REVEAL["fade-up"];
-  if (moves(preset) && glassy(el)) preset = REVEAL.fade;
   if (preset.glide) {
-    gsap.set(el, { ...preset.from, transition: "none" });
-    return glideUnit(el, preset.glide);
+    // the move runs on the element, the fade on its glass and the plain parts beside it (fadeParts), so a frosted button
+    // builds its blur with its opacity while its wrapper lifts
+    const parts = fadeParts(el);
+    const { autoAlpha, ...move } = preset.from;
+    gsap.set(el, { ...move, autoAlpha: parts[0] === el ? autoAlpha : 1, transition: "none" });
+    if (parts[0] !== el) gsap.set(parts, { autoAlpha, transition: "none" });
+    return glideUnit(el, preset.glide, parts);
   }
+  if (moves(preset) && glassy(el)) preset = REVEAL.fade;
   const inner = preset.inner ? Array.from(el.querySelectorAll("img, video")) : [];
   // a plain fade over glass fades the glass itself and the parts beside it, the wrapper staying solid (fadeParts)
   const parts = preset === REVEAL.fade ? fadeParts(el) : [el];
@@ -169,20 +179,17 @@ function revealUnit(el) {
   if (parts[0] !== el) gsap.set(el, { autoAlpha: 1 });
   gsap.set(parts, { ...preset.from, transition: "none" });
   if (inner.length) gsap.set(inner, preset.inner.from);
-  return {
-    el,
-    play(delay) {
-      const tl = gsap.timeline({ delay, onComplete: () => settle(el, also) });
-      const fadeFor = number(el, "data-anim-fade", 0);
-      const even = (vars) => (fadeFor && "autoAlpha" in vars && !moves({ from: vars }) ? { ...vars, duration: fadeFor, ease: "none" } : vars);
-      preset.to.forEach((vars) => tl.to(parts, settled(parts[0], even(vars)), 0));
-      if (inner.length) tl.to(inner, settled(inner[0], preset.inner.to), 0);
-      const duration = number(el, "data-anim-duration", 0);
-      if (duration) tl.duration(duration);
-      return tl;
-    },
-    show: () => settle(el, also),
+  const build = (delay = 0) => {
+    const tl = gsap.timeline({ delay, onComplete: () => settle(el, also) });
+    const fadeFor = number(el, "data-anim-fade", 0);
+    const even = (vars) => (fadeFor && "autoAlpha" in vars && !moves({ from: vars }) ? { ...vars, duration: fadeFor, ease: "none" } : vars);
+    preset.to.forEach((vars) => tl.to(parts, settled(parts[0], even(vars)), 0));
+    if (inner.length) tl.to(inner, settled(inner[0], preset.inner.to), 0);
+    const duration = number(el, "data-anim-duration", 0);
+    if (duration) tl.duration(duration);
+    return tl;
   };
+  return { el, build, play: build, show: () => settle(el, also) };
 }
 
 // where each line of the text really starts: the word whose top drops below the line before it
@@ -290,24 +297,28 @@ function glideLines(el, { stagger, fade, onComplete }) {
     };
     window.addEventListener("resize", rewrap);
   };
-  const play = () => {
+  const build = () => {
     const { ease, cut } = landing(LINES.ease, (lines[0].offsetHeight * LINES.from) / 100);
-    const easing = cssEase(ease, null);
-    const rise = easing
-      ? { duration: LINES.duration * cut * 1000, easing, fill: "both" }
-      : { duration: LINES.duration * 1000, easing: "cubic-bezier(0.16, 1, 0.3, 1)", fill: "both" };
-    const show = { duration: (fade || LINES.fade) * 1000, easing: fade ? "linear" : cssEase("power1.out", "ease-out"), fill: "both" };
-    runs = lines.flatMap((line, i) => {
-      const delay = i * stagger * 1000;
-      return [
-        line.animate([{ transform: `translateY(${LINES.from}%)` }, { transform: "translateY(0)" }], { ...rise, delay }),
-        line.animate([{ opacity: 0 }, { opacity: 1 }], { ...show, delay }),
-      ];
-    });
-    gsap.set(lines, { visibility: "inherit" });
-    Promise.all(runs.map((run) => run.finished)).then(done, () => {});
+    const easing = cssEase(ease, null, 100);
+    const length = easing ? LINES.duration * cut : LINES.duration;
+    const rise = { duration: length * 1000, easing: easing || "cubic-bezier(0.22, 1, 0.36, 1)", fill: "both" };
+    const fadeFor = fade || LINES.fade;
+    const show = { duration: fadeFor * 1000, easing: fade ? "linear" : cssEase("power1.out", "ease-out"), fill: "both" };
+    const start = () => {
+      runs = lines.flatMap((line, i) => {
+        const delay = i * stagger * 1000;
+        return [
+          line.animate([{ transform: `translateY(${LINES.from}%)` }, { transform: "translateY(0)" }], { ...rise, delay }),
+          ...(fadeFor ? [line.animate([{ opacity: 0 }, { opacity: 1 }], { ...show, delay })] : []),
+        ];
+      });
+      gsap.set(lines, fadeFor ? { visibility: "inherit" } : { autoAlpha: 1 });
+      Promise.all(runs.map((run) => run.finished)).then(done, () => {});
+    };
+    // landed once the last line has stopped, the slot the entrance's timeline holds for it
+    return { deferred: true, start, duration: (lines.length - 1) * stagger + Math.max(length, fadeFor) };
   };
-  return { play, show: done };
+  return { build, play: () => build().start(), show: done };
 }
 
 function splitUnit(el) {
@@ -321,14 +332,14 @@ function splitUnit(el) {
   // a hero title is split during setup, so no split lands in a frame of the entrance
   if (type === "lines" && tierOf(el) === HERO) {
     const glide = glideLines(el, { stagger: number(el, "data-anim-stagger", LINES.stagger), fade: number(el, "data-anim-fade", 0), onComplete: () => settle(el) });
-    return { el, play: (delay) => gsap.delayedCall(delay, glide.play), show: glide.show };
+    return { el, build: glide.build, play: (delay) => gsap.delayedCall(delay, glide.play), show: glide.show };
   }
   const pieces = () => {
     const split = new SplitText(el, { type: type === "chars" ? "words,chars" : "words", aria: "none" });
     const parts = type === "chars" ? split.chars : split.words;
     gsap.set(parts, { yPercent: 60, autoAlpha: 0 });
     gsap.set(el, { autoAlpha: 1 });
-    gsap.to(parts, {
+    return gsap.to(parts, {
       ...settled(parts[0], { yPercent: 0, duration: PIECES.duration }),
       autoAlpha: 1,
       stagger: PIECES.stagger[type],
@@ -338,10 +349,12 @@ function splitUnit(el) {
       },
     });
   };
+  // split as it starts: the lines are read from the layout of that moment
+  const start = () => (type === "lines" ? lines() : pieces());
   return {
     el,
-    // split as it starts: the lines are read from the layout of that moment
-    play: (delay) => gsap.delayedCall(delay, () => (type === "lines" ? lines() : pieces())),
+    build: () => ({ deferred: true, start, duration: type === "lines" ? LINES.duration : PIECES.duration }),
+    play: (delay) => gsap.delayedCall(delay, start),
     show: () => settle(el),
   };
 }
@@ -368,14 +381,11 @@ function counterUnit(el) {
   // the final width is held while the digits grow, so whatever sits beside the number stays put
   num.style.minWidth = `${num.getBoundingClientRect().width}px`;
   render(0);
-  return {
-    el,
-    play(delay) {
-      const state = { p: 0 };
-      return gsap.to(state, { p: 1, delay, ...COUNTER, onUpdate: () => render(state.p), onComplete: restore });
-    },
-    show: restore,
+  const build = (delay = 0) => {
+    const state = { p: 0 };
+    return gsap.to(state, { p: 1, delay, ...COUNTER, onUpdate: () => render(state.p), onComplete: restore });
   };
+  return { el, build, play: build, show: restore };
 }
 
 // Reveals that come into view on the same tick start one after another in page order
@@ -403,27 +413,47 @@ const STARTS = new WeakMap(); // a start of its own, as a scroll position (stack
 
 function watch(unit) {
   const el = unit.el;
+  const start = startOf(el);
   ScrollTrigger.create({
     trigger: el.closest("[data-anim-trigger]") || el,
-    // clamped, so a piece at the very foot of the page still starts when the page can scroll no further
-    start: STARTS.get(el) || `clamp(${startOf(el)})`,
+    // clamped, so a piece at the very foot of the page still starts when the page can scroll no further; a plain number
+    // is a scroll position (the announcement bar, uncovered from under the hero wherever it sits)
+    start: STARTS.get(el) || (Number.isNaN(+start) ? `clamp(${start})` : +start),
     end: "max",
     once: true,
     onEnter: () => enqueue(unit),
   });
 }
 
-// hero-tier steps play on load in data-anim-order; whatever else is on the first screen follows them
+// Hero-tier steps play on load as one GSAP timeline (Anim.entrance), in data-anim-order: the steps of one order start
+// together (data-anim-delay after it), and each order starts LEAD seconds before the order before it has landed
+// (data-anim-lead on any of its steps sets another lead, negative for a pause after). A step lands when its animation
+// ends, or data-anim-landed seconds after it starts (a long settle needn't hold up what follows). A deferred step (the
+// title's lines, a glide on the compositor) is started by the timeline at its position and holds a slot of its length.
+// Whatever else is on the first screen follows the entrance.
 function playEntrance(units) {
-  if (!units.length) return;
-  let last = 0;
-  units.forEach((unit) => {
-    const at = 0.15 + number(unit.el, variant(unit.el, "data-anim-order"), 0) * STEP + number(unit.el, "data-anim-delay", 0);
-    unit.play(at);
-    last = Math.max(last, at);
+  if (!units.length) return null;
+  const tl = gsap.timeline({ delay: 0.15 });
+  const orderOf = (unit) => number(unit.el, variant(unit.el, "data-anim-order"), 0);
+  let at = 0;
+  let landed = 0;
+  [...new Set(units.map(orderOf))].sort((a, b) => a - b).forEach((order, i) => {
+    const group = units.filter((unit) => orderOf(unit) === order);
+    const lead = Math.max(...group.map((unit) => number(unit.el, variant(unit.el, "data-anim-lead"), LEAD)));
+    if (i) at = Math.max(at, landed - lead);
+    group.forEach((unit) => {
+      const start = at + number(unit.el, "data-anim-delay", 0);
+      const anim = unit.build();
+      if (anim.deferred) {
+        tl.call(anim.start, [], start);
+        tl.to({}, { duration: anim.duration }, start);
+      } else tl.add(anim, start);
+      landed = Math.max(landed, start + (number(unit.el, "data-anim-landed", 0) || (anim.deferred ? anim.duration : anim.duration())));
+    });
   });
-  holdUntil = gsap.ticker.time + last + 0.3;
-  entranceEnd = gsap.ticker.time + last + 1.8;
+  holdUntil = gsap.ticker.time + 0.15 + tl.duration() - LEAD;
+  entranceEnd = gsap.ticker.time + 0.15 + tl.duration() + 0.5;
+  return tl;
 }
 
 function setupParallax(root) {
@@ -610,6 +640,7 @@ function revealEverything() {
 
 const Anim = {
   lenis: null,
+  entrance: null, // the page entrance's GSAP timeline, once it has started
 
   init(opts = {}) {
     if (started) return this;
@@ -639,7 +670,7 @@ const Anim = {
         const entrance = setup(document);
         ScrollTrigger.refresh();
         // the entrance's clock starts once the setup and its measuring are done, or they eat into its first frames
-        playEntrance(entrance);
+        this.entrance = playEntrance(entrance);
       } catch (err) {
         fail(err);
       }
