@@ -1,4 +1,6 @@
-// the bar waits stuck to the foot of the screen under the section before it, which scrolls up off it
+// gsa.uk.com's bar: tucked wholly under the foot of the section before it (which sits above it), it slides down out from
+// under the foot as the page scrolls (--tuck, 0 to 1, from anim.js's data-anim="tuck"). Its corners round off on the
+// way: tucked, square corners keep the foot's rounded corners dark
 :has(+ .announcement) {
   position: relative;
   z-index: 1;
@@ -6,20 +8,38 @@
 
 .announcement {
   --focus-ring: var(--color-moss);
-  position: sticky;
-  bottom: 0;
-  padding: 29 * @px 0 38 * @px;
-  background: var(--color-canopy-deep);
+  position: relative;
+  // the ground of the section after it shows while the sheet is still up under the foot
+  background: var(--color-canopy);
   color: var(--color-white);
-  @media (min-width: @bp-lg) { padding: 20 * @px 0; }
+
+  // the bar itself, moving as one piece and carrying the corner fill with it; without the script (or under reduced motion) --tuck is unset and it sits in place
+  &::before { content: none; }
+  &__sheet {
+    position: relative;
+    padding: 29 * @px 0 38 * @px;
+    border-radius: 0 0 ~"calc(var(--tuck, 1) * var(--radius-lg))" ~"calc(var(--tuck, 1) * var(--radius-lg))";
+    background: var(--color-canopy-deep);
+    transform: translateY(~"calc((var(--tuck, 1) - 1) * 100%)");
+    will-change: transform;
+    @media (min-width: @bp-lg) { padding: 20 * @px 0; }
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      right: 0;
+      bottom: 100%;
+      left: 0;
+      height: var(--radius-lg);
+      background: inherit;
+    }
+  }
 
   &__inner {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 25 * @px;
-    // the contents lift in once the hero's foot has left them, held on their layer after
-    will-change: transform;
     @media (min-width: @bp-lg) {
       flex-direction: row;
       align-items: center;

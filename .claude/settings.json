@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Read(//d/Kailash/ci-marketing-sites/static/st-lukes/src/assets/scripts/**)",
-      "Read(//d/Shiv/static/port-sdk-playground/**)"
+      "Read(//d/Shiv/static/port-sdk-playground/**)",
+      "WebFetch(domain:gsa.uk.com)"
     ]
   }
 }

@@ -80,9 +80,9 @@ Rows marked *(brief)* come from the client's brief, built on 2026-11-17 as motio
 |---|---|
 | Smooth scroll, reveals, split titles, parallax | `anim.js` (Lenis + GSAP), `data-anim-*` (`docs/animation.md`) |
 | Hero video or image, stats counting up | every media slot is `image` + optional `video`; `data-anim="counter"` |
-| Announcement bar revealed on scroll *(brief)* | the bar waits stuck to the foot of the screen under the hero (`position: sticky; bottom: 0`, the hero above it) and is uncovered as the hero scrolls off it |
+| Announcement bar revealed on scroll *(brief)* | as gsa.uk.com's: the bar is tucked up under the hero's foot and slides down out from under it as the page scrolls, at about a third of the scroll's pace, and holds on the way back up until the page is nearly back at the foot (`data-anim="tuck"`, `anim.js` + `_announcement.less`) |
 | Pillars stacking *(brief)* | `data-anim="stack"` (`pillar.stack`): each pillar holds and the next is uncovered over it on a scroll timeline, its content standing still; from lg, none under reduced motion |
-| Phone hero "On Scroll" state | the photo holds still, the shade deepens and the intro fades in on a CSS scroll timeline (`_hero.less`); the header holds over it, then slides away (`header.js`) |
+| Phone hero "On Scroll" state | the photo holds still, the shade deepens and the intro fades in on a CSS scroll timeline (`_hero.less`); the header is not sticky at the client's ask: the logo scrolls away and only the burger (the pill from lg) stays fixed (`_header.less`, `header.js`) |
 | Draggable sliders (USPs, entry points) | Swiper free mode (`data-slider`, `slider.js`), left edge on the container, overflow visible to the right; the journey tiles snap and wrap round |
 | USP video popup *(brief)* | `data-video-popup` on the Play Video button (`ui.js`, `partials/video-popup.njk`): a video file, YouTube or Vimeo link in a modal dialog; dormant while the `url` is empty |
 | Co-curricular autoplay, 3–5 s | `data-stage data-stage-autoplay="4500"` (`stage.js`): a wipe between slides, paused under the pointer, on keyboard focus and off screen |

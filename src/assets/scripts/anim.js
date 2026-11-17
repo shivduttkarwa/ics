@@ -1,6 +1,6 @@
 // Lenis smooth scroll + GSAP reveals, split titles, counters and parallax, driven by data-anim-* (docs/animation.md)
 import Lenis from "lenis";
-import { gsap, ScrollTrigger, SplitText, still, phone, fine, settled, glassy, fadeParts, landing, cssEase, spring } from "./motion.js";
+import { gsap, ScrollTrigger, SplitText, still, phone, fine, settled, glassy, fadeParts, landing, cssEase, spring, designPx } from "./motion.js";
 
 const STAGGER = 0.09; // between reveals that come into view together
 const SPREAD = 0.6; // the longest a batch of them may take to start
@@ -148,7 +148,7 @@ function glideUnit(el, glide, parts = [el]) {
     const start = (delay = 0) => {
       const wait = delay * 1000;
       const move = el.animate([{ transform: translate(from) }, { transform: "none" }], { duration: length * 1000, delay: wait, easing: easing || glide.fallback, fill: "both" });
-      const runs = [move, ...parts.map((part) => part.animate([{ opacity: 0 }, { opacity: 1 }], { ...fade, delay: wait }))];
+      const runs = [move, ...(glide.fade ? parts.map((part) => part.animate([{ opacity: 0 }, { opacity: 1 }], { ...fade, delay: wait })) : [])];
       gsap.set([el, ...parts], { visibility: "inherit" });
       Promise.all(runs.map((run) => run.finished)).then(() => {
         settle(el, parts);
@@ -167,8 +167,9 @@ function revealUnit(el) {
     // builds its blur with its opacity while its wrapper lifts
     const parts = fadeParts(el);
     const { autoAlpha, ...move } = preset.from;
-    gsap.set(el, { ...move, autoAlpha: parts[0] === el ? autoAlpha : 1, transition: "none" });
-    if (parts[0] !== el) gsap.set(parts, { autoAlpha, transition: "none" });
+    const fades = autoAlpha !== undefined;
+    gsap.set(el, { ...move, ...(fades ? { autoAlpha: parts[0] === el ? autoAlpha : 1 } : {}), transition: "none" });
+    if (fades && parts[0] !== el) gsap.set(parts, { autoAlpha, transition: "none" });
     // data-anim-duration: the move takes this long and the fade keeps its share of it
     const own = number(el, "data-anim-duration", 0);
     return glideUnit(el, own ? { ...preset.glide, duration: own, fade: (own * preset.glide.fade) / preset.glide.duration } : preset.glide, parts);
@@ -492,6 +493,62 @@ function setupParallax(root) {
   });
 }
 
+// data-anim="tuck": a sheet tucked wholly under the section before it (the announcement bar) slides down out from under
+// its foot as the page scrolls, from data-anim-wait px of scroll over data-anim-run px (design px), --tuck going 0 to 1
+// for the CSS to move it by. Scrolling back up it holds where it is until the shorter way home (data-anim-back px from
+// the wait) catches it, so it is not pulled back under the foot the moment the page turns. The sheet eases towards that
+// scroll target rather than tracking it, so a fast flick still gives a slow glide
+const TUCK_EASE = 4; // per second: 90% of the way to the target in about 0.6s
+
+function setupSheets(root) {
+  scoped(root, '[data-anim="tuck"]').forEach((el) => {
+    bind(el);
+    if (still.matches) return;
+    let wait, run, back;
+    const measure = () => {
+      wait = designPx(number(el, "data-anim-wait", 40));
+      run = designPx(number(el, "data-anim-run", 200));
+      back = designPx(number(el, "data-anim-back", 80));
+    };
+    let target = -1;
+    let shown = -1;
+    let ticking = false;
+    let last = window.scrollY;
+    const show = (value) => {
+      shown = value;
+      el.style.setProperty("--tuck", String(value));
+    };
+    const tick = (time, dt) => {
+      let next = shown + (target - shown) * (1 - Math.exp(-(dt / 1000) * TUCK_EASE));
+      if (Math.abs(target - next) < 0.0005) {
+        next = target;
+        gsap.ticker.remove(tick);
+        ticking = false;
+      }
+      show(next);
+    };
+    const update = () => {
+      const s = window.scrollY;
+      const down = s >= last;
+      last = s;
+      const out = gsap.utils.clamp(0, 1, (s - wait) / run);
+      const home = gsap.utils.clamp(0, 1, (s - wait) / back);
+      const next = target < 0 ? out : down ? Math.max(target, out) : Math.min(target, home);
+      if (next === target) return;
+      target = next;
+      if (shown < 0) return show(next);
+      if (!ticking) {
+        ticking = true;
+        gsap.ticker.add(tick);
+      }
+    };
+    measure();
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", () => { measure(); update(); });
+  });
+}
+
 // data-anim="progress": --anim-progress runs 0 to 1 as the block passes, for CSS to hang a scroll-linked state on
 function setupProgress(root) {
   scoped(root, '[data-anim="progress"]').forEach((el) => {
@@ -639,6 +696,7 @@ function setup(root, opts = {}) {
   });
   setupParallax(root);
   setupProgress(root);
+  setupSheets(root);
   scroll.forEach(watch);
   return entrance;
 }

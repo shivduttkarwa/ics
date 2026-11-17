@@ -11,9 +11,9 @@
         {% endfor %}
       </ul>
     </nav>
-    <div class="site-header__tools" data-menu-origin data-anim="reveal" data-anim-type="fade" data-anim-item>
-      {% set btn = site.header_button %}{% set plain = true %}{% set anim_item = true %}{% include "snippets/button.njk" %}{% set plain = false %}{% set anim_item = false %}
-      <button class="site-header__menu" type="button" aria-label="Open menu" aria-haspopup="dialog" aria-controls="menu" aria-expanded="false" data-menu-open data-anim-item>
+    <div class="site-header__tools" data-menu-origin data-anim-item>
+      {% set btn = site.header_button %}{% set plain = true %}{% include "snippets/button.njk" %}{% set plain = false %}
+      <button class="site-header__menu" type="button" aria-label="Open menu" aria-haspopup="dialog" aria-controls="menu" aria-expanded="false" data-menu-open>
         <svg class="icon" aria-hidden="true"><use href="#icon-menu"></use></svg>
       </button>
     </div>

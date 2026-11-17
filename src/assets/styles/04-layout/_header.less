@@ -2,24 +2,16 @@
 @header-inset: 40 * @px;
 @header-pad-sm: 16 * @px;
 @header-pad: 20 * @px;
+@header-gap: 20 * @px;
 @header-crest: 79 * @px;
 @header-wordmark-width: 109 * @px;
 @header-wordmark-height: 52 * @px;
 @header-menu: 60 * @px;
 @header-menu-height: 52 * @px;
-// the scrolled bar is not in Figma: the same header, 10 above and below a 56 crest
-@header-pad-stuck: 10 * @px;
-@header-crest-stuck: 56 * @px;
-@header-wordmark-width-stuck: 77 * @px;
-@header-wordmark-height-stuck: 37 * @px;
-@header-menu-stuck: 52 * @px;
-@header-slide: 0.6s;
-
-.header-morph(@properties) {
-  transition-property: @properties;
-  transition-duration: var(--duration-base);
-  transition-timing-function: var(--ease-out);
-}
+@header-pill-pad: 5 * @px;
+// the pill sits where the bar's row would put it: centred on the crest, at the bar's inset
+@header-tools-top-sm: (@header-pad-sm + (@header-crest - @header-menu) / 2);
+@header-tools-top: (@header-pad + (@header-crest - @header-menu-height - 2 * @header-pill-pad) / 2);
 
 .site-header {
   --focus-ring: var(--color-moss);
@@ -29,45 +21,19 @@
   left: 0;
   z-index: var(--z-header);
   color: var(--color-white);
-  transition: translate @header-slide var(--ease-out);
 
-  // below lg the header holds over the top of the page, as Figma's "Hero - On Scroll" frame
-  &.is-held {
-    position: fixed;
-    @media (min-width: @bp-lg) { position: absolute; }
-  }
-
-  &.is-stuck { position: fixed; }
-  &.is-hidden { translate: 0 -101%; }
-
-  // each item drops in on the compositor and keeps its layer: leaving it, text redraws up to half a pixel away
-  [data-anim-item] { will-change: transform; }
-
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background: color-mix(in srgb, var(--color-canopy-deep) 88%, transparent);
-    -webkit-backdrop-filter: blur(var(--blur-glass));
-    backdrop-filter: blur(var(--blur-glass));
-    opacity: 0;
-    .header-morph(opacity);
-  }
-  &.is-stuck::before { opacity: 1; }
-
+  // the bar scrolls away with the page, keeping the pill's room at its right (--header-tools, measured by header.js)
   &__bar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20 * @px;
+    gap: @header-gap;
     padding: @header-pad-sm @header-inset-sm;
-    .header-morph(padding);
-    @media (min-width: @bp-lg) { padding: @header-pad @header-inset; }
-  }
-  &.is-stuck &__bar {
-    padding-top: @header-pad-stuck;
-    padding-bottom: @header-pad-stuck;
+    padding-right: ~"calc(@{header-inset-sm} + var(--header-tools, 0px) + @{header-gap})";
+    @media (min-width: @bp-lg) {
+      padding: @header-pad @header-inset;
+      padding-right: ~"calc(@{header-inset} + var(--header-tools, 0px) + @{header-gap})";
+    }
   }
 
   &__logo {
@@ -80,29 +46,22 @@
   &__crest {
     width: @header-crest;
     height: @header-crest;
-    .header-morph(~"width, height");
-  }
-  &.is-stuck &__crest {
-    width: @header-crest-stuck;
-    height: @header-crest-stuck;
   }
 
   &__wordmark {
     width: @header-wordmark-width;
     height: @header-wordmark-height;
-    .header-morph(~"width, height");
-  }
-  &.is-stuck &__wordmark {
-    width: @header-wordmark-width-stuck;
-    height: @header-wordmark-height-stuck;
   }
 
+  // centred between the logo and the pill's room, where the row put it when the pill was in it
   &__nav {
     display: none;
+    flex: 1 1 auto;
     @media (min-width: @bp-lg) { display: block; }
     ul {
       .reset-list();
       display: flex;
+      justify-content: center;
       gap: 40 * @px;
     }
     a {
@@ -117,13 +76,20 @@
     }
   }
 
+  // only the pill stays as the page scrolls
   &__tools {
+    position: fixed;
+    top: @header-tools-top-sm;
+    right: @header-inset-sm;
+    z-index: var(--z-header);
     display: flex;
     flex: none;
     align-items: center;
     @media (min-width: @bp-lg) {
+      top: @header-tools-top;
+      right: @header-inset;
       .glass();
-      padding: 5 * @px;
+      padding: @header-pill-pad;
       border-radius: var(--radius-pill);
     }
     .btn {
@@ -142,7 +108,6 @@
     border-radius: var(--radius-pill);
     background: var(--color-white);
     color: var(--color-canopy);
-    .header-morph(~"width, height");
     .icon {
       width: 30 * @px;
       height: 18 * @px;
@@ -157,33 +122,11 @@
       &:hover .icon { scale: 0.86 1; }
     }
   }
-  &.is-stuck &__menu {
-    width: @header-menu-stuck;
-    height: @header-menu-stuck;
-    @media (min-width: @bp-lg) { width: @header-menu; }
-  }
 
-  // sticking as it slides out of sight, the bar takes its look only once it is gone
-  &.is-stuck.is-hidden {
-    &::before,
-    .site-header__bar,
-    .site-header__crest,
-    .site-header__wordmark,
-    .site-header__menu {
-      transition-duration: 0s;
-      transition-delay: @header-slide;
-    }
-  }
-
-  &.is-instant {
-    &,
-    &::before,
-    * { transition: none !important; }
-  }
+  // each item drops in on the compositor and keeps its layer: leaving it, text redraws up to half a pixel away
+  [data-anim-item] { will-change: transform; }
 
   @media (prefers-reduced-motion: reduce) {
-    &,
-    &::before,
     * { transition: none !important; }
   }
 }
@@ -193,6 +136,7 @@ html.is-locked {
   overflow: hidden;
   body,
   .site-header { padding-right: var(--scrollbar-gutter, 0); }
+  .site-header__tools { margin-right: var(--scrollbar-gutter, 0); }
   // the overlay stays inside the page's own width too, so the menu's panel keeps its gap from the page edge, not from where the scrollbar was
   .menu { right: var(--scrollbar-gutter, 0); }
 }
