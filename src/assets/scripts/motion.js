@@ -62,12 +62,16 @@ export function cssEase(ease, fallback, steps = 40) {
   return `linear(${points.join(", ")})`;
 }
 
-// a damped spring over the tween's length: it arrives in about a quarter of it, swings about 8% past, and settles with a
-// barely-there second swing, for something that should land with a little give
+// a damped spring: it arrives in about a quarter of the tween, swings about 8% past and comes back to rest, for something
+// that should land with a little give. It ends at its first rest after the swing, with that rest as home: the fainter
+// swings after it, a couple of pixels over a third of a second, read as the thing shifting once it had landed
 export function spring(damping = 0.62, stiffness = 11) {
   const swing = stiffness * Math.sqrt(1 - damping * damping);
   const decay = damping * stiffness;
-  return (p) => 1 - Math.exp(-decay * p) * (Math.cos(swing * p) + (decay / swing) * Math.sin(swing * p));
+  const curve = (p) => 1 - Math.exp(-decay * p) * (Math.cos(swing * p) + (decay / swing) * Math.sin(swing * p));
+  const rest = (2 * Math.PI) / swing;
+  const end = curve(rest);
+  return (p) => curve(p * rest) / end;
 }
 
 // the same tween vars with the tail cut, measured from where `el` is now to where `vars` takes it
