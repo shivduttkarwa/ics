@@ -271,7 +271,9 @@ export function riseLines(el, vars = {}) {
       stagger: {
         each: stagger,
         onComplete() {
+          // the line lands: off its layer, and its mask's clip off, so its descenders complete
           gsap.set(this.targets(), { clearProps: "transform,willChange" });
+          this.targets().forEach((line) => { line.parentElement.style.clipPath = "none"; });
         },
       },
     }, 0)
@@ -310,10 +312,10 @@ function glideLines(el, { stagger, fade, onComplete }) {
     const start = (wait = 0) => {
       runs = lines.flatMap((line, i) => {
         const delay = (wait + i * stagger) * 1000;
-        return [
-          line.animate([{ transform: `translateY(${LINES.from}%)` }, { transform: "translateY(0)" }], { ...rise, delay }),
-          ...(fadeFor ? [line.animate([{ opacity: 0 }, { opacity: 1 }], { ...show, delay })] : []),
-        ];
+        const move = line.animate([{ transform: `translateY(${LINES.from}%)` }, { transform: "translateY(0)" }], { ...rise, delay });
+        // the line lands: its mask's clip comes off, so its descenders complete
+        move.finished.then(() => { line.parentElement.style.clipPath = "none"; }, () => {});
+        return [move, ...(fadeFor ? [line.animate([{ opacity: 0 }, { opacity: 1 }], { ...show, delay })] : [])];
       });
       gsap.set(lines, fadeFor ? { visibility: "inherit" } : { autoAlpha: 1 });
       Promise.all(runs.map((run) => run.finished)).then(done, () => {});

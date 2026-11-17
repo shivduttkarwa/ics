@@ -162,6 +162,8 @@
     color: inherit;
     text-align: left;
     .type-menu-title();
+    // held on its layer after dropping in: leaving it, the text redraws up to half a pixel away and shivers
+    will-change: transform;
   }
 
   &__label {
@@ -196,6 +198,7 @@
     height: 0;
     overflow: hidden;
     visibility: hidden;
+    will-change: transform;
     ul {
       .reset-list();
       padding-bottom: 20 * @px;

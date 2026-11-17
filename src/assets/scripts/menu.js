@@ -51,16 +51,16 @@ export function initMenu() {
   const bits = foot ? Array.from(foot.querySelectorAll(".btn, .menu__links li")) : []; // the foot's buttons and links, in turn
   const MASK = "inset(0px 0px 0px 0px)";
   const above = (i, el) => -(el.parentElement.offsetHeight + 2);
-  const rowsIn = (tl, at, stagger = 0.06) => {
+  const rowsIn = (tl, at, stagger = 0.07) => {
     gsap.set(items, { clipPath: MASK });
-    items.forEach((row, i) => tl.to(row.children, settled(row.firstElementChild, { y: 0, duration: 1, ease: "soft" }), at + i * stagger));
+    items.forEach((row, i) => tl.to(row.children, { ...settled(row.firstElementChild, { y: 0, duration: 1, ease: "soft" }), force3D: true }, at + i * stagger));
     // the search with the first item; the foot's buttons and links one by one once the last item has dropped in
     tl.to(fades, { opacity: 1, duration: 0.9, ease: "power1.out" }, at)
       .to(bits, { opacity: 1, duration: 0.7, ease: "power1.out", stagger: 0.06 }, at + items.length * stagger + 0.3);
   };
   const rowsOut = (tl, at, stagger = 0.04) => {
     gsap.set(items, { clipPath: MASK });
-    items.forEach((row, i) => tl.to(row.children, { y: above, duration: 0.6, ease: "power2.in" }, at + i * stagger));
+    items.forEach((row, i) => tl.to(row.children, { y: above, duration: 0.6, ease: "power2.in", force3D: true }, at + i * stagger));
     tl.to(fades, { opacity: 0, duration: 0.35, ease: "power1.in" }, at);
   };
   const rowsSettle = () => gsap.set([...items, ...inner, ...fades, ...bits], { clearProps: "clipPath,transform,opacity" });
@@ -80,7 +80,7 @@ export function initMenu() {
     // caught mid-close, it comes back from wherever it is; the rows' contents stay in the tree while under their masks, so focus holds
     if (fresh) {
       gsap.set(backdrop, { autoAlpha: 0 });
-      gsap.set(inner, { y: above });
+      gsap.set(inner, { y: above, force3D: true });
       gsap.set([top, ...bits].filter(Boolean), { opacity: 0 });
       if (foot) gsap.set(foot, { opacity: 1 });
       if (shape) gsap.set(panel, { ...shape.pill, opacity: 0 });
