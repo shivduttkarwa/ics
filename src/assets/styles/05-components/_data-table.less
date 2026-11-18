@@ -1,0 +1,53 @@
+@data-table-min: 640 * @px;
+@data-table-head-rule: 4 * @px;
+
+.data-table {
+  padding: 75 * @px 0;
+  background: var(--color-beach-light);
+  color: var(--color-canopy);
+  @media (min-width: @bp-lg) { padding: 120 * @px 0; }
+
+  h2 {
+    .type-section-title();
+    margin: 0 0 30 * @px;
+    color: inherit;
+    @media (min-width: @bp-lg) { margin-bottom: 50 * @px; }
+  }
+
+  // four columns stay readable on a phone by scrolling sideways inside the block
+  &__scroll {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+  }
+
+  table {
+    width: 100%;
+    min-width: @data-table-min;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+
+  th,
+  td {
+    padding: 20 * @px 12 * @px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  // Figma draws the rules inside the rows, so they come out of the padding
+  thead th {
+    .type-table-head();
+    padding-bottom: 16 * @px;
+    border-bottom: @data-table-head-rule solid var(--color-moss);
+  }
+
+  tbody th,
+  tbody td {
+    padding-top: 19 * @px;
+    border-top: 1 * @px solid var(--color-moss);
+  }
+
+  tbody th { .type-signature(); }
+
+  tbody td { .type-body-3(); }
+}

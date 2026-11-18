@@ -5,9 +5,9 @@
     </div>
     <div class="faqs__list" data-accordion data-accordion-closed-mobile data-anim-group="fade-up">
       {% for item in value.items %}
-      <div class="faqs__item{% if loop.first %} is-open{% endif %}" data-accordion-item>
+      <div class="faqs__item{% if loop.first and not value.all_closed %} is-open{% endif %}" data-accordion-item>
         <h3>
-          <button class="faqs__toggle" type="button" aria-expanded="{% if loop.first %}true{% else %}false{% endif %}">
+          <button class="faqs__toggle" type="button" aria-expanded="{% if loop.first and not value.all_closed %}true{% else %}false{% endif %}">
             <span class="faqs__question">{{ item.question }}</span>
             <span class="faqs__icon" aria-hidden="true"><svg class="icon"><use href="#icon-arrow-diagonal"></use></svg></span>
           </button>
@@ -20,6 +20,7 @@
         </div>
       </div>
       {% endfor %}
+      {% if value.button and value.button.text %}<div class="faqs__more">{% set btn = value.button %}{% include "snippets/button.njk" %}</div>{% endif %}
     </div>
   </div>
 </section>

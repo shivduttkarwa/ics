@@ -82,6 +82,23 @@ Also in the frames but not needed as fonts: Ulises Heavy (one 120px quote mark: 
 | Keep Exploring link rows | Museo Sans 300 | 35 / 1.1 / −2% | 35 | `type-link-row` |
 | Bullet point titles | Museo Sans 700 | 16 / 1.4 / 0 | 16 | `type-bullet-title` |
 | Features Grid Text titles | Ulises Book | 25 / 1.4 / −3% | 25 | `type-feature-title` |
+| Profile card names (Our People) | Ulises Book | 25 / 1.2 / −3% | 25 | `type-profile-name` |
+| The principal's welcome | Ulises Book Italic | 20 / 1.4 / 0 | 20 | `type-message` |
+| A signature's name | Museo Sans 900 | 16 / 1.5 / −1% | 16 | `type-signature` |
+| Enrolment step numbers and titles | Ulises Light Italic | 120 / 1 / −3% (90 below lg); 30 / 1 / −3% | | `type-step-number`, `type-step-title` |
+| Table header cells | Museo Sans 700 | 25 / 1.2 / 0 | 25 | `type-table-head` |
+| Pull quote (Entry Points) | Ulises Light Italic; Museo Sans 700 caps | 35 / 1.4 / −3% (25 below md); 12 / 1.4 / +10% | | `type-pull-quote`, `type-attribution` |
+| Table Row values (Contact) | Museo Sans 300 | 16 / 1.5 / −1% | 16 | `type-row-text` |
+| Form field labels | Museo Sans 700 caps | 14 / 1 / +2% | 14 | `type-field-label` |
+| Moments' time and title (Faith) | Ulises Book (Italic / Bold) | 60 / 1.1 / −4% | 45 | `type-moment-title` |
+| A light 20 lead (moments, media-text) | Museo Sans 300 | 20 / 1.4 / −3% | 20 | `type-lead-light` |
+| A note under 18 copy | Ulises Medium Italic | 18 / 1.4 / −3% | 18 | `type-note-small` |
+| Dotted list rows | Museo Sans 500 | 16 / 1.4 | 16 | `type-list-item` |
+| Large introduction | Ulises Light | 45 / 1.1 / −5% | 35 | `type-intro` |
+| Photo captions | Ulises Book Italic | 16 / 1.5 / −1% | 16 | `type-caption` |
+| Promo card titles | Ulises Light | 35 / 1.1 / −5% | 35 | `type-promo-title` |
+| Article quote attribution | Museo Sans 500 caps | 16 / 1.4 / +10% | 16 | `type-attribution-large` |
+| Staff quote tiles | Ulises Book Italic; Museo Sans 900 / 300 caps | 24 / 1.2 / −3%; 13 / 1.4 (the component at 94%) | same | `type-staff-quote`, `type-staff-caption` |
 | Breadcrumbs | Museo Sans 900 for the pages above, 500 for the current page | 14 / 1.4 / −3% | 14 | `type-breadcrumb` |
 | Stat figures | Ulises Light Italic | 60 / 1 / −3% | 60 | `type-stat`; the results grid `type-stat-grid` (45 below sm) |
 | Quotes | Ulises Medium Italic | 20 / 1.4 / −3%; 16 / 1.5 | same | `type-quote`, `type-quote-small` |

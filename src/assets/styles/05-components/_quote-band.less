@@ -1,0 +1,44 @@
+@quote-band-width: 1000 * @px;
+@quote-band-mark-width: 56 * @px;
+
+.quote-band {
+  padding: 75 * @px 0 90 * @px;
+  background: var(--color-beach-light);
+  color: var(--color-canopy);
+  @media (min-width: @bp-lg) { padding: 120 * @px 0 150 * @px; }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    text-align: center;
+  }
+
+  &__mark {
+    width: @quote-band-mark-width;
+    height: auto;
+    aspect-ratio: 83.9 / 65.4565;
+    margin-bottom: 14 * @px;
+    color: var(--color-moss);
+  }
+
+  blockquote {
+    .type-pull-quote();
+    max-width: @quote-band-width;
+    margin: 0;
+  }
+
+  figcaption {
+    .type-attribution();
+    margin-top: 18 * @px;
+  }
+
+  // white: an article's pull quote (Internal Page Blocks), 124 under the band above, its attribution larger
+  &--white {
+    padding: 50 * @px 0 25 * @px;
+    background: var(--color-white);
+    @media (min-width: @bp-lg) { padding: 124 * @px 0 58 * @px; }
+    figcaption { .type-attribution-large(); }
+  }
+}

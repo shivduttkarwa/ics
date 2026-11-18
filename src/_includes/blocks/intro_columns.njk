@@ -1,0 +1,14 @@
+<section class="intro-columns">
+  <div class="container">
+    <h2 data-anim="split">{{ value.title | safe }}</h2>
+    <div class="intro-columns__list" data-anim-group="fade-up">
+      {% for column in value.columns %}
+      <div class="intro-columns__item">
+        <h3>{{ column.title }}</h3>
+        {% if column.text %}<div class="intro-columns__text">{{ column.text | safe }}</div>{% endif %}
+        {% if column.button and column.button.text %}<div class="intro-columns__button">{% set btn = column.button %}{% include "snippets/button.njk" %}</div>{% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

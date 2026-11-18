@@ -7,6 +7,7 @@
 @journey-peek: 30 * @px;
 @journey-peek-first: 70 * @px;
 @journey-title-width: 740 * @px;
+@journey-lead-width: 493 * @px;
 
 @journey-more-stagger: 0.2s;
 
@@ -48,6 +49,22 @@
     }
   }
 
+  &--intro &__head {
+    @media (min-width: @bp-lg) {
+      padding-top: 120 * @px;
+      padding-bottom: 100 * @px;
+    }
+  }
+
+  &__title {
+    display: contents;
+    @media (min-width: @bp-lg) {
+      display: flex;
+      flex-direction: column;
+      gap: 10 * @px;
+    }
+  }
+
   &__foot {
     @media (min-width: @bp-lg) {
       padding-top: 75 * @px;
@@ -63,6 +80,20 @@
     padding: 75 * @px var(--gutter) 0;
     color: inherit;
     text-wrap-style: auto;
+    @media (min-width: @bp-lg) { padding: 0; }
+  }
+
+  &--intro h2 { .type-section-title-tall(); }
+
+  // the entry points' longer copy opens over a flat shade, black 60% in all with the photo's own 20%
+  &--intro &__tile::after { background: var(--color-black-50); }
+
+  &__lead {
+    .type-body-1-light();
+    order: 1;
+    max-width: @journey-lead-width;
+    margin: 0;
+    padding: 15 * @px var(--gutter) 0;
     @media (min-width: @bp-lg) { padding: 0; }
   }
 
@@ -122,7 +153,7 @@
     background: var(--color-canopy-deep);
     @media (min-width: @bp-lg) { height: ~"min(@{journey-tile-height}, 100svh - @{fit-room})"; }
 
-    &:first-child { width: ~"min(@{journey-tile-first}, calc(100vw - @{journey-peek-first}))"; }
+    &--narrow { width: ~"min(@{journey-tile-first}, calc(100vw - @{journey-peek-first}))"; }
 
     &::after {
       content: "";
@@ -201,9 +232,11 @@
       @media (prefers-reduced-motion: reduce) { translate: none; }
     }
     > :last-child { transition-delay: 0s; }
-    p {
-      .type-stage-text();
-      margin: 0;
-    }
+  }
+
+  &__copy {
+    .type-stage-text();
+    p { margin: 0 0 1.2em; }
+    .last-mb-0();
   }
 }

@@ -381,12 +381,13 @@
               "width": 720,
               "height": 1440
             },
-            "text": "From a nervous first day in Prep to a confident last day in Year 12, your child is never starting over. They’re known at every step and each stage builds on the last, so the journey feels like one story.",
+            "text": "<p>From a nervous first day in Prep to a confident last day in Year 12, your child is never starting over. They’re known at every step and each stage builds on the last, so the journey feels like one story.</p>",
             "button": {
               "text": "Discover Prep",
               "url": "",
               "style": "white"
-            }
+            },
+            "narrow": true
           },
           {
             "tag": "Kindy-Year 6",
@@ -397,7 +398,7 @@
               "width": 800,
               "height": 1440
             },
-            "text": "Small classes and a strong focus on reading, writing and maths, with specialist music and Japanese teachers.",
+            "text": "<p>Small classes and a strong focus on reading, writing and maths, with specialist music and Japanese teachers.</p>",
             "button": {
               "text": "Discover Primary",
               "url": "",
@@ -413,7 +414,7 @@
               "width": 333,
               "height": 599
             },
-            "text": "From a nervous first day in Prep to a confident last day in Year 12, your child is never starting over. They’re known at every step and each stage builds on the last, so the journey feels like one story.",
+            "text": "<p>From a nervous first day in Prep to a confident last day in Year 12, your child is never starting over. They’re known at every step and each stage builds on the last, so the journey feels like one story.</p>",
             "button": {
               "text": "Discover Year 5 entry",
               "url": "",
@@ -429,7 +430,7 @@
               "width": 387,
               "height": 696
             },
-            "text": "From a nervous first day in Prep to a confident last day in Year 12, your child is never starting over. They’re known at every step and each stage builds on the last, so the journey feels like one story.",
+            "text": "<p>From a nervous first day in Prep to a confident last day in Year 12, your child is never starting over. They’re known at every step and each stage builds on the last, so the journey feels like one story.</p>",
             "button": {
               "text": "Discover Secondary",
               "url": "",
@@ -445,7 +446,7 @@
               "width": 592,
               "height": 1066
             },
-            "text": "From a nervous first day in Prep to a confident last day in Year 12, your child is never starting over. They’re known at every step and each stage builds on the last, so the journey feels like one story.",
+            "text": "<p>From a nervous first day in Prep to a confident last day in Year 12, your child is never starting over. They’re known at every step and each stage builds on the last, so the journey feels like one story.</p>",
             "button": {
               "text": "Discover Senior Years",
               "url": "",

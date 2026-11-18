@@ -151,6 +151,58 @@ export function initVideoPopup() {
   });
 }
 
+// [data-dialog-open] opens the <dialog data-dialog> in its [data-dialog-scope]; its close button, Esc or a click outside the panel shuts it
+export function initDialogs() {
+  document.querySelectorAll("[data-dialog-open]").forEach((opener) => {
+    const dialog = opener.closest("[data-dialog-scope]")?.querySelector("dialog[data-dialog]");
+    if (!dialog) return;
+    const panel = dialog.querySelector("[data-dialog-panel]") || dialog;
+    let tl = null;
+
+    const finish = () => {
+      dialog.close();
+      gsap.set([dialog, panel], { clearProps: "opacity,transform" });
+      lockScroll(false);
+      opener.focus({ preventScroll: true });
+    };
+
+    const close = () => {
+      if (!dialog.open) return;
+      tl?.kill();
+      if (still.matches) return finish();
+      tl = gsap.timeline({ onComplete: finish })
+        .to(panel, { opacity: 0, y: 12, duration: 0.3, ease: "power1.in" }, 0)
+        .to(dialog, { opacity: 0, duration: 0.4, ease: "power1.in" }, 0.05);
+    };
+
+    opener.addEventListener("click", () => {
+      tl?.kill();
+      lockScroll(true);
+      dialog.showModal();
+      dialog.querySelector("[data-dialog-close]")?.focus();
+      if (still.matches) return;
+      const land = landing("soft", 24);
+      tl = gsap.timeline({ onComplete: () => gsap.set([dialog, panel], { clearProps: "opacity,transform" }) })
+        .fromTo(dialog, { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0)
+        .fromTo(panel, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.9 * land.cut, ease: land.ease }, 0.15);
+    });
+
+    dialog.querySelectorAll("[data-dialog-close]").forEach((button) => button.addEventListener("click", close));
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) close();
+    });
+    dialog.addEventListener("cancel", (event) => {
+      event.preventDefault();
+      close();
+    });
+  });
+}
+
+// a form whose action is not set yet (the static build) stays on the page
+export function initForms() {
+  document.querySelectorAll("form[data-form]:not([action])").forEach((form) => form.addEventListener("submit", (event) => event.preventDefault()));
+}
+
 export function initScrollState() {
   const root = document.documentElement;
   const sync = () => root.classList.toggle("is-scrolled", window.scrollY > 0);

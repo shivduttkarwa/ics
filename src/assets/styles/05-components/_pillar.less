@@ -278,7 +278,7 @@
   }
 
   // from lg Figma's faith pillar is a video frame with no shade
-  &--beach &__frame::after {
+  &--beach:not(&--shade) &__frame::after {
     @media (min-width: @bp-lg) { content: none; }
   }
 }

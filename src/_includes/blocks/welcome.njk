@@ -1,0 +1,19 @@
+<section class="welcome">
+  <div class="container">
+    <div class="welcome__inner">
+      <div class="welcome__media">
+        <div class="welcome__frame" data-anim="reveal" data-anim-type="wipe-up" data-anim-parallax-trigger>
+          <div class="welcome__layer" data-anim="parallax">
+            {% set img = value.image %}{% set cls = "welcome__img" %}{% include "snippets/image.njk" %}
+          </div>
+        </div>
+      </div>
+      <div class="welcome__copy">
+        <h2 data-anim="split">{{ value.title | safe }}</h2>
+        <blockquote class="welcome__message" data-anim="reveal">{{ value.message }}</blockquote>
+        {% if value.name %}<p class="welcome__author" data-anim="reveal"><b>{{ value.name }}</b>{% if value.role %} <span>{{ value.role }}</span>{% endif %}</p>{% endif %}
+        {% if value.button and value.button.text %}<div class="welcome__button" data-anim="reveal">{% set btn = value.button %}{% include "snippets/button.njk" %}</div>{% endif %}
+      </div>
+    </div>
+  </div>
+</section>

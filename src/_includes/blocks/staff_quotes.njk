@@ -1,0 +1,25 @@
+<section class="staff-quotes" data-slider-scope>
+  <div class="staff-quotes__head container">
+    <h2 data-anim="split">{{ value.title | safe }}</h2>
+    <div class="staff-quotes__arrows arrows" data-anim="reveal">
+      <button class="arrow-btn arrow-btn--prev" type="button" aria-label="Previous quotes" data-slider-prev><svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg></button>
+      <button class="arrow-btn arrow-btn--next" type="button" aria-label="Next quotes" data-slider-next><svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg></button>
+    </div>
+  </div>
+  <div class="staff-quotes__slider swiper" data-slider data-slider-rewind>
+    <ul class="staff-quotes__list swiper-wrapper" data-anim-group="fade" data-tiles>
+      {% for item in value.quotes %}
+      {% if loop.index0 | divisibleby(2) %}<li class="staff-quotes__column swiper-slide">{% endif %}
+        <figure class="staff-quote" tabindex="0" data-tile>
+          {% set img = item.image %}{% set cls = "staff-quote__img" %}{% include "snippets/image.njk" %}
+          <svg class="staff-quote__arrow icon" aria-hidden="true"><use href="#icon-arrow-diagonal"></use></svg>
+          <div class="staff-quote__copy">
+            <blockquote>{{ item.quote }}</blockquote>
+            <figcaption><b>{{ item.name }}</b>{% if item.role %}<span>{{ item.role }}</span>{% endif %}</figcaption>
+          </div>
+        </figure>
+      {% if loop.index | divisibleby(2) or loop.last %}</li>{% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+</section>

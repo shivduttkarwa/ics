@@ -1,0 +1,21 @@
+<section class="moments moments--{{ value.items[0].theme | default('canopy') }} rounded-foot" data-moments>
+  <div class="moments__track">
+    <div class="moments__stage">
+      {% for item in value.items %}
+      <article class="moments__item moments__item--{{ item.theme | default('canopy') }}" data-moments-item>
+        <div class="moments__inner container" data-moments-inner>
+          <div class="moments__frame" data-anim="reveal" data-anim-type="wipe-up">
+            <div class="moments__photo" data-moments-photo>{% set img = item.image %}{% set cls = "moments__img" %}{% include "snippets/image.njk" %}</div>
+          </div>
+          <div class="moments__copy">
+            {% if value.label %}<p class="moments__label" data-anim="reveal">{{ value.label }}</p>{% endif %}
+            <h2 data-anim="split"><span class="moments__time">{{ item.time }}</span> <span class="moments__name">{{ item.title | safe }}</span></h2>
+            {% if item.text %}<p class="moments__text" data-anim="reveal">{{ item.text }}</p>{% endif %}
+            {% if item.note %}<p class="moments__note" data-anim="reveal">{{ item.note | safe }}</p>{% endif %}
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>

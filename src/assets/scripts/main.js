@@ -8,7 +8,8 @@ import { initMenu } from "./menu.js";
 import { initNews } from "./news.js";
 import { initCards } from "./cards.js";
 import { initStories } from "./stories.js";
-import { initAmbientVideos, initDevicePixel, initEagerPhotos, initFocusMode, initHoverVideos, initScrollState, initVideoPopup } from "./ui.js";
+import { initMoments } from "./moments.js";
+import { initAmbientVideos, initDevicePixel, initDialogs, initEagerPhotos, initForms, initFocusMode, initHoverVideos, initScrollState, initVideoPopup } from "./ui.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   initFocusMode();
@@ -20,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initEagerPhotos();
   initMarquees();
   initAmbientVideos();
+  initMoments();
   Anim.init();
   initMenu();
   initAccordions();
@@ -28,4 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initStories();
   initHoverVideos();
   initVideoPopup();
+  initDialogs();
+  initForms();
 });

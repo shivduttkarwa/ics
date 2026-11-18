@@ -1,4 +1,4 @@
-<section class="pinned{% if value.spread %} pinned--spread{% endif %} rounded-foot">
+<section class="pinned{% if value.theme == 'beach' %} pinned--beach{% endif %}{% if value.spread %} pinned--spread{% endif %} rounded-foot">
   <div class="pinned__inner container">
     <h2 data-anim="split">{{ value.title | safe }}</h2>
     <div class="pinned__aside">

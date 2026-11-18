@@ -1,0 +1,24 @@
+<section class="location rounded-foot">
+  <div class="container">
+    <div class="location__inner">
+      <div class="location__copy">
+        <h2 data-anim="split">{{ value.title | safe }}</h2>
+        {% if value.text %}<p class="location__text" data-anim="reveal">{{ value.text }}</p>{% endif %}
+        {% if value.rows %}
+        <dl class="location__rows" data-anim-group="fade-up">
+          {% for row in value.rows %}
+          <div class="location__row">
+            <dt>{{ row.label }}</dt>
+            <dd>{{ row.text | safe }}</dd>
+          </div>
+          {% endfor %}
+        </dl>
+        {% endif %}
+        {% if value.button and value.button.text %}<div class="location__button" data-anim="reveal">{% set btn = value.button %}{% include "snippets/button.njk" %}</div>{% endif %}
+      </div>
+      <a class="location__map" data-anim="reveal" data-anim-type="wipe-up"{% if value.map_url %} href="{{ value.map_url }}" target="_blank" rel="noopener"{% endif %}>
+        {% set img = value.image %}{% set cls = "location__img" %}{% include "snippets/image.njk" %}
+      </a>
+    </div>
+  </div>
+</section>

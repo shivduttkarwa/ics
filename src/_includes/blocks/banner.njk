@@ -1,0 +1,8 @@
+<section class="banner" data-anim-parallax-trigger>
+  <div class="banner__media" aria-hidden="true" data-anim="reveal" data-anim-type="fade">
+    <div class="banner__layer" data-anim="parallax">{% set img = value.image %}{% set cls = "banner__img" %}{% include "snippets/image.njk" %}</div>
+  </div>
+  <div class="banner__body container">
+    <h2 data-anim="split">{{ value.title | safe }}</h2>
+  </div>
+</section>

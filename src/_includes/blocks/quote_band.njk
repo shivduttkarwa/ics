@@ -1,0 +1,9 @@
+<section class="quote-band{% if value.theme == 'white' %} quote-band--white{% endif %} rounded-foot">
+  <div class="container">
+    <figure class="quote-band__inner">
+      <svg class="quote-band__mark icon" aria-hidden="true" data-anim="reveal" data-anim-type="fade"><use href="#icon-quote"></use></svg>
+      <blockquote data-anim="reveal">{{ value.quote }}</blockquote>
+      {% if value.attribution %}<figcaption data-anim="reveal">{{ value.attribution }}</figcaption>{% endif %}
+    </figure>
+  </div>
+</section>

@@ -6,10 +6,10 @@
   "theme_color": "#0c4b40",
   "header_links": [
     { "label": "Why ICS", "url": "/why.html" },
-    { "label": "Our Faith", "url": "" },
+    { "label": "Our Faith", "url": "/faith.html" },
     { "label": "Learning", "url": "" },
     { "label": "Life at ICS", "url": "" },
-    { "label": "Enrol", "url": "" }
+    { "label": "Enrol", "url": "/enrol.html" }
   ],
   "header_button": { "text": "Book a tour", "url": "", "style": "moss" },
   "nav": [
@@ -20,14 +20,21 @@
         { "label": "Why choose ICS", "url": "/why.html" },
         { "label": "Results and pathways", "url": "/results.html" },
         { "label": "Wellbeing and care", "url": "" },
-        { "label": "Our people", "url": "" }
+        { "label": "Our people", "url": "/people.html" }
       ]
     },
-    { "label": "Our Faith", "url": "" },
+    { "label": "Our Faith", "url": "/faith.html" },
     { "label": "Learning", "url": "" },
     { "label": "Life at ICS", "url": "" },
-    { "label": "Enrol", "url": "" },
-    { "label": "Contact Us", "url": "" }
+    {
+      "label": "Enrol",
+      "url": "/enrol.html",
+      "children": [
+        { "label": "Enrolling at ICS", "url": "/enrol.html" },
+        { "label": "Entry points", "url": "/entry-points.html" }
+      ]
+    },
+    { "label": "Contact Us", "url": "/contact.html" }
   ],
   "menu_buttons": [
     { "text": "Book a tour", "url": "", "style": "moss", "size": "small" },
@@ -37,7 +44,7 @@
   "menu_links": [
     { "label": "Parent Portal", "url": "" },
     { "label": "Employment", "url": "" },
-    { "label": "Contact Us", "url": "" }
+    { "label": "Contact Us", "url": "/contact.html" }
   ],
   "socials": [
     { "network": "facebook", "label": "Facebook", "url": "" },
@@ -60,7 +67,7 @@
       "phone": "(02) 4239 5200",
       "phone_url": "tel:+61242395200",
       "email": "reception@ics.nsw.edu.au",
-      "button": { "text": "Get in touch", "url": "", "style": "white", "size": "small" }
+      "button": { "text": "Get in touch", "url": "/contact.html", "style": "white", "size": "small" }
     },
     "links_title": "Next Steps",
     "links": [

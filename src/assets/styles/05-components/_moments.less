@@ -1,0 +1,154 @@
+@moments-photo-width: 510 * @px;
+@moments-photo-height: 637 * @px;
+@moments-copy-pad: 80 * @px;
+// the scroll each panel holds for before the next is uncovered
+@moments-step: 90svh;
+
+.moments {
+  background: var(--color-canopy);
+
+  &--white { background: var(--color-white); }
+  &--beach { background: var(--color-beach-light); }
+
+  &__track {
+    overflow: clip;
+    border-radius: inherit;
+  }
+
+  &__item {
+    --moments-ground: var(--color-canopy);
+    --moments-ink: var(--color-white);
+    --moments-text: var(--color-white);
+    --focus-ring: var(--color-moss);
+    padding: 75 * @px 0;
+    background: var(--moments-ground);
+    color: var(--moments-ink);
+    @media (min-width: @bp-lg) { padding: 80 * @px 0; }
+
+    &--white,
+    &--beach {
+      --moments-ink: var(--color-canopy);
+      --moments-text: var(--color-coal);
+      --focus-ring: var(--color-canopy);
+    }
+    &--white { --moments-ground: var(--color-white); }
+    &--beach { --moments-ground: var(--color-beach-light); }
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 40 * @px;
+    @media (min-width: @bp-lg) {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  &__frame {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 510 / 637;
+    border-radius: var(--radius-lg);
+    @media (min-width: @bp-md) { max-width: @moments-photo-width; }
+    @media (min-width: @bp-lg) {
+      flex: 0 0 @moments-photo-width;
+      aspect-ratio: auto;
+      height: @moments-photo-height;
+    }
+  }
+
+  &__photo {
+    position: absolute;
+    inset: 0;
+  }
+
+  &__img { .img-cover(); }
+
+  &__copy {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20 * @px;
+    min-width: 0;
+    @media (min-width: @bp-lg) { padding-inline: @moments-copy-pad; }
+  }
+
+  &__label {
+    .type-label();
+    display: flex;
+    align-items: center;
+    gap: 10 * @px;
+    margin: 0;
+    &::before {
+      content: "";
+      flex: none;
+      width: 10 * @px;
+      height: 10 * @px;
+      border-radius: 50%;
+      background: var(--color-moss);
+    }
+  }
+
+  h2 {
+    .type-moment-title();
+    display: flex;
+    flex-direction: column;
+    gap: 20 * @px;
+    margin: 0;
+    color: inherit;
+  }
+
+  &__time,
+  &__name {
+    display: block;
+    text-box: trim-both cap alphabetic;
+  }
+
+  &__name strong { font-weight: 700; }
+
+  &__text {
+    .type-lead-light();
+    margin: 0;
+    color: var(--moments-text);
+  }
+
+  &__note {
+    .type-quote();
+    margin: 0;
+    br {
+      display: none;
+      @media (min-width: @bp-lg) { display: inline; }
+    }
+  }
+}
+
+// from lg the block holds on screen and each panel is uncovered over the one before (moments.js)
+.moments.is-pinned {
+  @media (min-width: @bp-lg) {
+    height: calc(100svh + (var(--moments-count, 1) - 1) * @moments-step);
+
+    .moments__track { height: 100%; }
+
+    .moments__stage {
+      position: sticky;
+      top: 0;
+      display: grid;
+      height: 100svh;
+    }
+
+    .moments__item {
+      display: flex;
+      grid-area: 1 / 1;
+      align-items: center;
+      padding: 0;
+    }
+
+    .moments__inner { flex: 1; }
+
+    .moments__frame { height: ~"min(@{moments-photo-height}, 100svh - 2 * @{fit-room})"; }
+
+    .moments__photo { transform-origin: 50% 60%; }
+  }
+}

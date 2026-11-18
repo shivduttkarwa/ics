@@ -1,0 +1,21 @@
+<section class="data-table rounded-foot">
+  <div class="container">
+    <h2 data-anim="split">{{ value.title | safe }}</h2>
+    <div class="data-table__scroll" data-anim="reveal" tabindex="0" role="region" aria-label="{{ value.table.table_caption | default('Table') }}">
+      <table>
+        {% if value.table.first_row_is_table_header %}
+        <thead>
+          <tr>{% for cell in value.table.data[0] %}<th scope="col">{{ cell }}</th>{% endfor %}</tr>
+        </thead>
+        {% endif %}
+        <tbody>
+          {% for row in value.table.data %}
+          {% if not (loop.first and value.table.first_row_is_table_header) %}
+          <tr>{% for cell in row %}{% if loop.first and value.table.first_col_is_header %}<th scope="row">{{ cell }}</th>{% else %}<td>{{ cell }}</td>{% endif %}{% endfor %}</tr>
+          {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

@@ -1,6 +1,9 @@
-<section class="journey" data-slider-scope>
+<section class="journey{% if value.text %} journey--intro{% endif %}" data-slider-scope>
   <div class="journey__head container">
-    <h2 data-anim="split">{{ value.title | safe }}</h2>
+    <div class="journey__title">
+      <h2 data-anim="split">{{ value.title | safe }}</h2>
+      {% if value.text %}<p class="journey__lead" data-anim="reveal">{{ value.text }}</p>{% endif %}
+    </div>
     <div class="journey__arrows arrows" data-anim="reveal">
       <button class="arrow-btn arrow-btn--prev" type="button" aria-label="Previous stage" data-slider-prev><svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg></button>
       <button class="arrow-btn arrow-btn--next" type="button" aria-label="Next stage" data-slider-next><svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg></button>
@@ -9,7 +12,7 @@
   <div class="journey__slider swiper" data-slider data-slider-mode="snap" data-slider-rewind>
     <ul class="journey__list swiper-wrapper" data-anim-group="wipe-up" data-tiles>
       {% for stage in value.stages %}
-      <li class="journey__tile swiper-slide" data-tile>
+      <li class="journey__tile{% if stage.narrow %} journey__tile--narrow{% endif %} swiper-slide" data-tile>
         <div class="journey__media">
           {% set img = stage.image %}{% set cls = "journey__img" %}{% include "snippets/image.njk" %}
         </div>
@@ -18,7 +21,7 @@
           <h3>{{ stage.title }}</h3>
         </div>
         <div class="journey__more">
-          {% if stage.text %}<p>{{ stage.text }}</p>{% endif %}
+          {% if stage.text %}<div class="journey__copy">{{ stage.text | safe }}</div>{% endif %}
           {% set btn = stage.button %}{% include "snippets/button.njk" %}
         </div>
       </li>

@@ -6,6 +6,15 @@
   background: var(--color-beach-light);
   @media (min-width: @bp-lg) { padding: 120 * @px 0; }
 
+  &--canopy {
+    --focus-ring: var(--color-moss);
+    --feature-grid-rule: var(--color-white);
+    background: var(--color-canopy);
+    color: var(--color-white);
+    h2,
+    h3 { color: inherit; }
+  }
+
   &__inner {
     @media (min-width: @bp-lg) {
       max-width: @feature-grid-row;
@@ -38,7 +47,7 @@
   &__rule {
     display: block;
     height: 1 * @px;
-    background: var(--color-canopy);
+    background: var(--feature-grid-rule, var(--color-canopy));
   }
 
   h3 {
@@ -54,5 +63,17 @@
   &__text {
     .type-body-3();
     margin: 25 * @px 0 0;
+    p { margin: 0; }
+    a {
+      color: inherit;
+      text-decoration: none;
+      @media (hover: hover) { &:hover { text-decoration: underline; } }
+    }
+  }
+
+  // a column's button sits at the foot of the row, level with its neighbours'
+  &__button {
+    margin-top: auto;
+    padding-top: 50 * @px;
   }
 }

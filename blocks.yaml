@@ -53,6 +53,27 @@ pages:
   results:
     figma: "15621:13290 (HSC Results); 15657:27409 (Expanded Story); no phone frame"
     fields: {}   # body: page_hero (shade deep, breadcrumbs), pinned, stat_grid, feature_grid, stories, faqs (theme white), bullet_list, graduates, testimonials (untitled), cta_band (height 682), where_next, keep_exploring, cta_cards (position low)
+  people:
+    figma: "15657:24546 (Our People); 15735:14218 (Staff Bio Overlay); no phone frame"
+    fields: {}   # body: page_hero (shade medium, breadcrumbs), pinned, welcome, feature_video, people, staff_quotes, cta_band, where_next, keep_exploring, cta_cards (position low)
+  enrol:
+    figma: "15672:10588 (Enrol Landing Page); no phone frame"
+    fields: {}   # body: page_hero (shade none), pinned, steps, data_table, faqs (theme white, all_closed), cta_band (height 682), where_next, keep_exploring, cta_cards (position low)
+  entry_points:
+    figma: "15699:14978 (Entry Points); no phone frame"
+    fields: {}   # body: page_hero (shade medium, breadcrumbs), pinned, journey (text), quote_band, where_next, keep_exploring, cta_cards (position low)
+  contact:
+    figma: "15657:25820 (Contact ICS); no phone frame"
+    fields: {}   # body: page_hero (shade none, breadcrumbs), pinned, feature_grid (theme canopy, buttons), location, faqs (theme white, button), contact_form, cta_band, where_next, keep_exploring, cta_cards (position low)
+  faith:
+    figma: "15694:13352 (Faith Landing); 15694:17682 (Pinned Sections, the three moments); no phone frame"
+    fields: {}   # body: page_hero (shade medium), pinned (spread), moments, pillar × 2 (stack, bullets, leaf icons; the first with shade), testimonials, faqs (theme white), where_next, keep_exploring, cta_cards (position low)
+  page_blocks:
+    figma: "15513:9960 (Internal Page Blocks); no phone frame"
+    fields: {}   # a kit page, not in the menu: page_hero (shade medium, breadcrumbs), pinned (spread), media_text × 2, cta_band (height 633), faqs (theme white), usps (theme white), banner, pinned (theme beach), intro_columns, where_next, keep_exploring, cta_cards (position low)
+  page_blocks_2:
+    figma: "15550:32965 (Internal Page Blocks, second); no phone frame"
+    fields: {}   # a kit page, not in the menu: page_hero, pinned, quote_band (theme white), photo, body_text, author, gallery, promo_cards, media_text (boxed), where_next, keep_exploring, cta_cards (position low)
 
 blocks:
   hero:
@@ -78,7 +99,7 @@ blocks:
       image: ImageChooserBlock(required)   # cover, 800 tall from lg, under black 25%; decorative (alt empty)
       image_mobile: ImageChooserBlock(required=False)   # below lg; no phone frame exists, the Why page uses the photo's right-hand two thirds
       video: DocumentChooserBlock(required=False)   # from lg, muted loop over the image while on screen; { src, poster }
-      shade: ChoiceBlock(choices=["light", "deep"], default="light")   # light: black 25% (Why ICS); deep: black 40% fading out to the right over black 30% (HSC Results, 15621:13302)
+      shade: ChoiceBlock(choices=["light", "deep", "medium", "none"], default="light")   # light: black 25% (Why ICS); deep: black 40% fading out to the right over black 30% (HSC Results, 15621:13302); medium: black 40% fading out to the right over black 20%, the home hero's shade (Our People, 15657:24558); none: no shade (Enrol, 15672:10666)
       title: RichTextBlock(features=["italic"])   # Ulises Book 75; the designer's <br> holds the 1121 column from lg
       breadcrumbs: ListBlock(StructBlock(label, url), required=False)   # the trail 33 above the title and 9 in from its edge; the pages above in 900, the last entry (the page itself, no link) in 500, as the Breadcrumbs component 15513:14084. Empty on the Why page, as Figma hides it; in Wagtail from the page's ancestors
 
@@ -86,6 +107,7 @@ blocks:
     figma: "15550:30879 (\"Pinned Section\": the canopy-deep band under the Why ICS hero; nothing pins), 15621:13291 (HSC Results)"
     template: blocks/pinned.njk
     fields:
+      theme: ChoiceBlock(choices=["deep", "beach"], default="deep")   # beach: Ulises Light title and canopy copy on beach light, 80 above when it follows a banner (Internal Page Blocks, 15550:32942)
       spread: BooleanBlock(required=False)   # from lg the copy column sits on the container's right edge (HSC Results, 15621:13291); off, 69 after the title (Why ICS)
       title: RichTextBlock(features=["italic"])   # Ulises Book 35, 511 wide
       text: TextBlock   # Museo Sans 300 20, 620 wide, 580 in from the container's left edge (or flush right with spread)
@@ -103,13 +125,15 @@ blocks:
       button: StructBlock(text, url, style, icon, required=False)   # "Download Our 2025 HSC results": moss with icon "open", the dot drawn grown as Figma
 
   feature_grid:
-    figma: "15621:13394 (How do ICS students get these results?), 15653:15041 (Features Grid Text); no phone frame"
+    figma: "15621:13394 (How do ICS students get these results?), 15653:15041 (Features Grid Text), 15657:27771 (Contact details); no phone frame"
     template: blocks/feature_grid.njk
     fields:
+      theme: ChoiceBlock(choices=["beach", "canopy"], default="beach")   # canopy: white type and rules on canopy, with a rounded foot (Contact)
       title: RichTextBlock(features=["italic"])   # Ulises Light 60 / 1.1, −4%, 592 wide
       items: ListBlock(StructBlock)   # four columns from lg, two from md, one below
-        title: RichTextBlock(features=[])   # Ulises Book 25 / 1.4 under a canopy rule; a <br> holds from lg only
-        text: TextBlock   # Body 3
+        title: RichTextBlock(features=[])   # Ulises Book 25 / 1.4 under a rule; a <br> holds from lg only
+        text: RichTextBlock(features=["link"])   # Body 3; lines by <br>, a phone number or email as a link
+        button: StructBlock(text, url, style, icon, required=False)   # at the foot of the row, level across the columns; Contact's are outline-white with icon "none"
 
   stories:
     figma: "15657:24463 (Read about some of our HSC graduates), 15657:27590 (Graduate Story, normal), 15657:27589 (expanded, in 15657:27409); no phone frame"
@@ -140,6 +164,188 @@ blocks:
       note: RichTextBlock(features=["link"], required=False)   # Body 3 under the list
       button: StructBlock(text, url, style, required=False)
 
+  welcome:
+    figma: "15657:27244 (Our People: 'Welcome to our community'); no phone frame"
+    template: blocks/welcome.njk
+    fields:
+      image: ImageChooserBlock(required)   # 550 × 640 slot on the left from lg (550:640 above the copy below), cover, rounded 20, drifting on a parallax layer
+      title: RichTextBlock(features=["italic"])   # Ulises Light 60 / 1.1, −4%; the designer's <br> from lg
+      message: TextBlock   # Ulises Book Italic 20 / 1.4, 469 wide, with its own quote marks
+      name: CharBlock(required=False)   # Museo Sans 900 16
+      role: CharBlock(required=False)   # under the name, Museo Sans 500 16
+      button: StructBlock(text, url, style, required=False)   # "Book a tour", moss
+
+  feature_video:
+    figma: "15701:26791 (Our People: the campus film under the welcome); no phone frame"
+    template: blocks/feature_video.njk
+    fields:
+      image: ImageChooserBlock(required)   # the film's still: the container's width, 740 tall from lg (no taller than the screen less 60), 1280:740 below; cover, rounded 20, drifting on a parallax layer
+      video: DocumentChooserBlock(required=False)   # { src, poster }: plays muted and looped over the still while on screen (data-ambient)
+
+  people:
+    figma: "15657:27101 (Our People: 'Leaders who love to serve'), 15581:34431 (Profile Card), 15735:14218 (Staff Bio Overlay, popup 15735:14219); no phone frame"
+    template: blocks/people.njk
+    fields:
+      title: RichTextBlock(features=["italic"])   # Ulises Light 60 / 1.1, −4%, 494 wide
+      text: TextBlock(required=False)   # Museo Sans 300 20, 473 wide, 660 in from the title's left edge and level with its foot, from lg
+      people: ListBlock(StructBlock)   # four to a row from lg, three from md, two below
+        image: ImageChooserBlock(required)   # 305 × 304 on the card, 362 × 424 in the bio, cover in both: one portrait, square or taller
+        name: CharBlock   # "Mr Simon Lainson"
+        role: CharBlock   # set in caps
+        qualifications: CharBlock(required=False)   # "BEd, DipB&M, MEd"
+        bio_intro: TextBlock(required=False)   # the bio's first paragraph, Museo Sans 300 20
+        bio: RichTextBlock(required=False)   # the rest, Museo Sans 300 16; a card with a bio shows "View full bio" and opens it in a dialog
+
+  staff_quotes:
+    figma: "15657:27270 (Our People: 'What our staff say'), 15581:34513 (Staff Quote); no phone frame"
+    template: blocks/staff_quotes.njk
+    fields:
+      title: RichTextBlock(features=["italic"])   # Ulises Light 60 / 1, −3%, the arrows on its right
+      quotes: ListBlock(StructBlock)   # two tiles to a column, top then bottom (paired with divisibleby); five columns to the screen from lg, three from md, two below; the row drags and the arrows page it
+        image: ImageChooserBlock(required)   # square tile, cover, under black 20%
+        quote: TextBlock   # with its own quote marks; shows on hover, keyboard focus or a tap, over canopy 90%
+        name: CharBlock
+        role: CharBlock(required=False)   # set in caps
+
+  steps:
+    figma: "15672:10632 (Enrol: 'What are the enrolment steps?'), 15694:19553 (Enrolment Step); no phone frame"
+    template: blocks/steps.njk
+    fields:
+      title: RichTextBlock(features=["italic"])   # Ulises Light 60 / 1.2, −3%; the designer's <br> from lg
+      steps: ListBlock(StructBlock)   # four to a row from lg, two from sm, one below; numbered 01, 02… in order
+        title: CharBlock   # Ulises Light Italic 30
+        text: TextBlock   # Body 4, beach light, under a white 20% rule
+      buttons: ListBlock(StructBlock(text, url, style, icon), required=False)   # "Apply now" moss, "Book a tour" white, "Download the prospectus" outline-white with icon "none"
+
+  data_table:
+    figma: "15672:10612 (Enrol: 'Key dates'), 15657:27820 (Table Row); no phone frame"
+    template: blocks/data_table.njk
+    fields:
+      title: RichTextBlock(features=["italic"])   # Ulises Light 60 / 1, −3%
+      table: TableBlock   # wagtail.contrib.table_block: data, first_row_is_table_header (Museo Sans 700 25 over a 4 moss rule), first_col_is_header (Museo Sans 900 16), table_caption (the scroll region's label); body rows split by 1 moss rules; below 640 wide the table scrolls sideways in its block
+
+  quote_band:
+    figma: "15699:14995 (Entry Points: the parent's quote), 15431:15118 (Quote Marks); no phone frame"
+    template: blocks/quote_band.njk
+    fields:
+      theme: ChoiceBlock(choices=["beach", "white"], default="beach")   # white: an article's pull quote, 124 above and 58 below from lg, its attribution Museo Sans 500 16 caps (Internal Page Blocks, 15564:34375)
+      quote: TextBlock   # Ulises Light Italic 35 / 1.4, −3%, centred, 1000 wide; without quote marks (the moss mark is drawn above it)
+      attribution: CharBlock(required=False)   # Museo Sans 700 12 caps, +10%
+
+  location:
+    figma: "15667:26047 (Contact: 'Find us right below Mt Kembla'), 15657:27819 (Table Row); no phone frame"
+    template: blocks/location.njk
+    fields:
+      title: RichTextBlock(features=["italic"])   # Ulises Light 60 / 1.1, −4%; the designer's <br> from lg
+      text: TextBlock(required=False)   # Body 2, coal
+      rows: ListBlock(StructBlock, required=False)   # Figma's Table Row: a canopy rule over the label (Museo Sans 700 16, 149 wide) and the text (Museo Sans 300 16 / 1.5) 40 on
+        label: CharBlock
+        text: RichTextBlock(features=["link"])
+      button: StructBlock(text, url, style, required=False)   # "Open route in Google Maps", moss; full width without the dot below lg
+      image: ImageChooserBlock(required)   # the map: 550 wide from lg, as tall as the copy, cover, rounded 20
+      map_url: URLBlock(required=False)   # the map links out in a new tab
+
+  contact_form:
+    figma: "15657:27040 (Contact: 'Send us a message'), 15667:26169 / 15667:26167 (Form Input Field: text, multiline); no phone frame"
+    template: blocks/contact_form.njk
+    fields:
+      title: RichTextBlock(features=["italic"])   # Ulises Light 60 / 1.1, −4% (all italic in Figma)
+      text: TextBlock(required=False)   # Body 2, coal
+      image: ImageChooserBlock(required)   # the left half from lg, full height, cover, drifting on a parallax layer; 4:3 above the form below lg
+      action: URLBlock(required=False)   # in Wagtail the form page's own URL; empty in the static build, where submitting stays on the page
+      fields: ListBlock(StructBlock)   # Wagtail form fields: label (caps), name, type (text, email, tel, select, textarea), autocomplete, required, options (select), placeholder (textarea)
+      submit: StructBlock(text, style)   # "Send message", moss, full width
+
+  moments:
+    figma: "15742:14506 (Faith: the Pinned Section), 15694:17682 (its three states); no phone frame"
+    template: blocks/moments.njk
+    fields:
+      label: CharBlock(required=False)   # the overline over every moment: a moss dot and Museo Sans 700 14 caps ("Making it personal")
+      items: ListBlock(StructBlock)   # from lg the block holds on screen and each moment is uncovered over the last as the page scrolls (moments.js); below lg, and under reduced motion, they stack as bands
+        theme: ChoiceBlock(choices=["canopy", "white", "beach"], default="canopy")   # the moment's ground: white type on canopy, canopy type (coal copy) on white or beach light
+        time: CharBlock   # "8:15am", Ulises Book 60 / 1.1, −4%
+        title: RichTextBlock(features=["italic", "bold"])   # the second line: italic (Book Italic) or bold (Ulises Bold), as Figma sets each state
+        text: TextBlock   # Museo Sans 300 20 / 1.4, −3%
+        note: RichTextBlock(features=[])   # Ulises Medium Italic 20 / 1.4; the designer's <br> from lg
+        image: ImageChooserBlock(required)   # 510 × 637, radius 20, cover
+
+  media_text:
+    figma: "15550:34195 (image left, beach), 15550:34147 (image right, white, with a list), 15550:32920 (the boxed large promo, 15699:23619); no phone frame"
+    template: blocks/media_text.njk
+    fields:
+      theme: ChoiceBlock(choices=["white", "beach"], default="white")   # the section's ground; boxed, the card's
+      media_side: ChoiceBlock(choices=["right", "left"], default="right")   # from lg
+      boxed: BooleanBlock(required=False)   # the large promo: the row on a rounded card, padded 50, on white
+      shade: BooleanBlock(required=False)   # black 50% rising over the photo's lower half
+      title: RichTextBlock(features=["italic"])   # Ulises Light 60 / 1.1, −4%
+      lead: RichTextBlock(features=["link"], required=False)   # Museo Sans 300 20 / 1.4, −3%; paragraphs a line apart
+      text: RichTextBlock(features=["link"], required=False)   # Body 2 (18), 50 under the title
+      small: RichTextBlock(features=["link"], required=False)   # Museo Sans 300 16 / 1.4 (the large promo's second paragraph)
+      note: TextBlock(required=False)   # Ulises Medium Italic, the size of the copy above it (20 after a lead, 18 after text)
+      list_title: CharBlock(required=False)   # Museo Sans 500 25 / 1.2
+      list: ListBlock(CharBlock, required=False)   # moss dots, Museo Sans 500 16 / 1.4
+      button: StructBlock(text, url, style, required=False)   # below lg full width, its label free to wrap, no dot
+      image: ImageChooserBlock(required)   # 550 × 640, radius 20, cover, drifting on a parallax layer
+
+  banner:
+    figma: "15550:32648 (Full Width Slide, 515 tall); no phone frame"
+    template: blocks/banner.njk
+    fields:
+      title: RichTextBlock(features=["italic"])   # Ulises Light 60 / 1.1, −5%, white, 508 wide, at the foot
+      image: ImageChooserBlock(required)   # full width, 515 tall from lg (420 below), under the hero's shade, drifting on a parallax layer; decorative
+
+  intro_columns:
+    figma: "15699:23624 (large introduction and two columns); no phone frame"
+    template: blocks/intro_columns.njk
+    fields:
+      title: RichTextBlock(features=["italic"])   # Ulises Light 45 / 1.1, −5%, 785 wide; 98 above the columns
+      columns: ListBlock(StructBlock, max_num=2)   # 510 wide, 140 apart from lg; stacked below md
+        title: CharBlock   # Heading 4
+        text: RichTextBlock(features=["bold", "italic", "link"])   # Museo Sans 300 16 / 1.4
+        button: StructBlock(text, url, style, required=False)
+
+  photo:
+    figma: "15564:34382 (1280 × 779); no phone frame"
+    template: blocks/photo.njk
+    fields:
+      image: ImageChooserBlock(required)   # the container's width at 1280:779, radius 20, drifting on a parallax layer
+      caption: CharBlock(required=False)   # Ulises Book Italic 16 under it
+
+  body_text:
+    figma: "15564:34392 (630 wide copy); no phone frame"
+    template: blocks/body_text.njk
+    fields:
+      text: RichTextBlock(features=["h2", "h3", "bold", "italic", "link", "ul", "ol"])   # Body 2 in a centred 630 column; paragraphs a line apart
+
+  author:
+    figma: "15564:34395 (author card); no phone frame"
+    template: blocks/author.njk
+    fields:
+      image: ImageChooserBlock(required)   # 129 wide, as tall as the copy, radius 20
+      name: CharBlock   # Heading 4
+      role: CharBlock(required=False)   # Museo Sans 700 14 caps
+      text: TextBlock(required=False)   # Body 2, black 75%
+
+  gallery:
+    figma: "15581:34672 (title), 15550:34374 (slides and their foot); no phone frame"
+    template: blocks/gallery.njk
+    fields:
+      title: RichTextBlock(features=["italic"], required=False)   # Ulises Light 60 / 1, −3%
+      slides: ListBlock(StructBlock)   # 846 × 585, radius 20, the active one centred with its neighbours either side, looping
+        image: ImageChooserBlock(required)
+        caption: CharBlock(required=False)   # shown under the slides while its slide is active (Ulises Book Italic 16, black 75%)
+
+  promo_cards:
+    figma: "15699:23579 ('Discover your new passion'), 15550:32861 (Internal Promo Card Portrait); no phone frame"
+    template: blocks/promo_cards.njk
+    fields:
+      title: RichTextBlock(features=["italic"])   # Ulises Light 60 / 1, −3%, 413 wide
+      text: TextBlock(required=False)   # Body 2, black 75%, 568 wide
+      cards: ListBlock(StructBlock)   # 413 × 585, 20 apart, running off the right of the screen; drags with momentum, arrows top right
+        title: RichTextBlock(features=[])   # Ulises Light 35 / 1.1, −5%, white, 322 wide
+        url: URLBlock(required=False)   # the whole card is the link
+        image: ImageChooserBlock(required)   # cover, under clear → black 30% → black 65%
+
   announcement:
     figma: "15417:12133 (desktop content, in the 15417:12115 group), 15513:26719 (phone)"
     template: blocks/announcement.njk
@@ -152,6 +358,7 @@ blocks:
     figma: "15417:12107 (title + CTA), 15417:12487 (cards row), 15337:7399 (USP Card: normal + hover), 15513:27001 (phone)"
     template: blocks/usps.njk
     fields:
+      theme: ChoiceBlock(choices=["canopy", "white"], default="canopy")   # white: canopy title on white, 100 above and below (Internal Page Blocks, 15550:31989)
       title: RichTextBlock(features=["italic"])
       button: StructBlock(text, url, style)   # "View all the reasons", moss; the dot shows from lg
       cards: ListBlock(StructBlock)
@@ -175,6 +382,7 @@ blocks:
         icon: ChoiceBlock   # a sprite id: medal, star, trophy, chart-line, web-awesome, chart-pie, file-certificate, cross, hands-praying, book-bible, face-thinking, hand-holding-heart, head-side-heart, message-heart, family
         title: RichTextBlock(features=[])   # the bold line
         text: RichTextBlock(features=[], required=False)   # the light line(s) under it
+      shade: BooleanBlock(required=False)   # keeps the photo's foot shade on a beach pillar from lg (the Faith page's faith pillar); the home page's beach pillar is a video frame with none
       media_height: ChoiceBlock(choices=[640, 648, 750], required=False)   # the photo's height in design px from lg; Figma draws 750 on the home page, 640 and 648 on the Why page; empty = 750
       stats: ListBlock(StructBlock(...), max_num=3, required=False)   # the "Proof Points"; left out of a bullet pillar
         value: CharBlock   # the figure as written: "99.90", "100%", "150+", "~900"; the number in it counts up from 0 when it scrolls in
@@ -191,17 +399,19 @@ blocks:
         avatar: ImageChooserBlock(required=False)   # 40 round
 
   journey:
-    figma: "15699:23363 (desktop), 15337:7691 (Stages Card: normal + hover), 15417:13672 (all cards), 15513:27184 (phone)"
+    figma: "15699:23363 (desktop), 15337:7691 (Stages Card: normal + hover), 15417:13672 (all cards), 15513:27184 (phone), 15699:14979 (Entry Points, with text)"
     template: blocks/journey.njk
     fields:
-      title: RichTextBlock(features=["italic"])
+      title: RichTextBlock(features=["italic"])   # Ulises Light 45 / 1.2; 60 / 1.2 with text
+      text: TextBlock(required=False)   # Entry Points: a line under a larger title (journey--intro)
       stages: ListBlock(StructBlock)
         tag: CharBlock(required=False)   # "Age 4", set in caps in a frosted pill
         title: CharBlock   # "Prep"
-        image: ImageChooserBlock(required)   # 400 × 720 slot (600 tall below lg), cover
-        text: TextBlock(required=False)   # the line shown on hover, or on a tap where there is no hover
+        narrow: BooleanBlock(required=False)   # a 360 tile in place of 400 (Prep; Kindergarten on Entry Points)
+        image: ImageChooserBlock(required)   # 400 × 720 slot (360 when narrow; 600 tall below lg), cover
+        text: RichTextBlock(required=False)   # shown on hover, or on a tap where there is no hover; paragraphs an empty line apart
         button: StructBlock(text, url, style)   # "Discover Primary", style "white"; shown with the text
-      buttons: ListBlock(StructBlock(text, url, style, icon), max_num=2)   # "Enrolment Process" moss, "Book a Tour" outline-moss with icon "none"
+      buttons: ListBlock(StructBlock(text, url, style, icon), max_num=2, required=False)   # "Enrolment Process" moss, "Book a Tour" outline-moss with icon "none"; none on Entry Points
 
   graduates:
     figma: "15699:23323 (desktop), 15513:27312 (phone)"
@@ -234,7 +444,9 @@ blocks:
     fields:
       theme: ChoiceBlock(choices=["beach", "white"], default="beach")   # beach light, 800 tall (the home page); white, 120 above and below with the list on the container's right edge (the inner pages, 15550:30902)
       title: RichTextBlock(features=["italic"])
-      items: ListBlock(StructBlock)   # the first opens at load from lg; below lg every row starts shut, as the phone frame
+      button: StructBlock(text, url, style, required=False)   # 50 under the list (Contact: "View more transport info", moss)
+      all_closed: BooleanBlock(required=False)   # every row starts shut, as Enrol draws them; otherwise the first opens at load from lg
+      items: ListBlock(StructBlock)   # below lg every row starts shut, as the phone frame
         question: CharBlock
         answer: RichTextBlock
         button: StructBlock(text, url, style, required=False)   # under the answer; moss in Figma
@@ -301,7 +513,7 @@ blocks:
     figma: "15513:12252 (Full Width CTA, Employment), 15536:28134 (phone), 15699:23502 (HSC Results: Join 500+ wonderful families)"
     template: blocks/cta_band.njk
     fields:
-      height: ChoiceBlock(choices=[662, 682], required=False)   # the band's height in design px from lg: 662 on the home page, 682 on the inner pages; empty = 662
+      height: ChoiceBlock(choices=[633, 662, 682], required=False)   # the band's height in design px from lg: 662 on the home page, 682 on the inner pages, 633 on the Internal Page Blocks; empty = 662
       image: ImageChooserBlock(required)   # full width, 662 tall from lg (720 below); decorative (alt empty)
       image_mobile: ImageChooserBlock(required=False)   # below md; Figma's phone frame crops the same photo to a portrait
       video: DocumentChooserBlock(required=False)   # from lg, muted loop over the image while on screen

@@ -1,0 +1,22 @@
+<section class="gallery" data-slider-scope>
+  {% if value.title %}<div class="container"><h2 data-anim="split">{{ value.title | safe }}</h2></div>{% endif %}
+  <div class="gallery__slider swiper" data-slider data-slider-mode="snap" data-slider-centred data-slider-loop data-slider-gap="20" data-anim="reveal" data-anim-type="fade">
+    <ul class="gallery__list swiper-wrapper">
+      {% for slide in value.slides %}
+      <li class="gallery__slide swiper-slide" data-caption="{{ slide.caption }}">{% set img = slide.image %}{% set cls = "gallery__img" %}{% include "snippets/image.njk" %}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="container">
+    <div class="gallery__foot" data-anim="reveal">
+      <p class="gallery__caption" aria-live="polite" data-slider-caption>{{ value.slides[0].caption }}</p>
+      <div class="gallery__nav">
+        <p class="gallery__count" aria-hidden="true"><span data-slider-current>01</span> / <span data-slider-total>{% if value.slides | length < 10 %}0{% endif %}{{ value.slides | length }}</span></p>
+        <div class="arrows">
+          <button class="arrow-btn arrow-btn--prev" type="button" aria-label="Previous photo" data-slider-prev><svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg></button>
+          <button class="arrow-btn arrow-btn--next" type="button" aria-label="Next photo" data-slider-next><svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

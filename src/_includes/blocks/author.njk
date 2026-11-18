@@ -1,0 +1,11 @@
+<section class="author">
+  <div class="container">
+    <div class="author__card" data-anim="reveal">
+      <div class="author__photo">{% set img = value.image %}{% set cls = "author__img" %}{% include "snippets/image.njk" %}</div>
+      <div class="author__copy">
+        <p class="author__who"><span class="author__name">{{ value.name }}</span>{% if value.role %}<span class="author__role">{{ value.role }}</span>{% endif %}</p>
+        {% if value.text %}<p class="author__text">{{ value.text }}</p>{% endif %}
+      </div>
+    </div>
+  </div>
+</section>

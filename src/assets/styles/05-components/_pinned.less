@@ -25,6 +25,19 @@
     }
   }
 
+  // beach: Ulises Light title and canopy copy on beach light (the Internal Page Blocks band under a banner)
+  &--beach {
+    --focus-ring: var(--color-canopy);
+    background: var(--color-beach-light);
+    color: var(--color-canopy);
+    h2 { font-weight: 300; }
+  }
+
+  // Figma sets the band straight under a banner, with no foot to tuck under
+  .banner + & {
+    @media (min-width: @bp-lg) { padding-top: 80 * @px; }
+  }
+
   // spread: the copy column flush with the container's right edge (HSC Results), instead of 69 after the title
   &--spread &__inner {
     @media (min-width: @bp-lg) { justify-content: space-between; }

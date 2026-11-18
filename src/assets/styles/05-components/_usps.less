@@ -13,6 +13,18 @@
   color: var(--color-white);
   @media (min-width: @bp-lg) { padding: 103 * @px 0 106 * @px; }
 
+  // white: canopy title on white (Internal Page Blocks)
+  &--white {
+    --focus-ring: var(--color-canopy);
+    background: var(--color-white);
+    color: var(--color-canopy);
+    @media (min-width: @bp-lg) { padding: 100 * @px 0; }
+  }
+
+  &--white &__head {
+    @media (min-width: @bp-lg) { margin-bottom: 50 * @px; }
+  }
+
   &__head {
     display: flex;
     flex-direction: column;

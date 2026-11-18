@@ -1,0 +1,45 @@
+<section class="people">
+  <div class="container">
+    <div class="people__head">
+      <h2 data-anim="split">{{ value.title | safe }}</h2>
+      {% if value.text %}<p class="people__text" data-anim="reveal">{{ value.text }}</p>{% endif %}
+    </div>
+    <ul class="people__list" data-anim-group="fade-up">
+      {% for person in value.people %}
+      <li class="profile" data-dialog-scope>
+        <div class="profile__media">
+          {% set img = person.image %}{% set cls = "profile__img" %}{% include "snippets/image.njk" %}
+          {% if person.bio %}
+          <button class="profile__more" type="button" data-dialog-open>
+            <span class="profile__bar">View full bio<svg class="icon" aria-hidden="true"><use href="#icon-arrow-diagonal"></use></svg></span>
+            <span class="visually-hidden">: {{ person.name }}</span>
+          </button>
+          {% endif %}
+        </div>
+        <h3>{{ person.name }}</h3>
+        <p class="profile__role"><b>{{ person.role }}</b>{% if person.qualifications %}<span>{{ person.qualifications }}</span>{% endif %}</p>
+        {% if person.bio %}
+        <dialog class="bio" aria-label="{{ person.name }}" data-dialog>
+          <div class="bio__panel" data-dialog-panel data-lenis-prevent>
+            <div class="bio__head">
+              <div class="bio__title">
+                <h2>{{ person.name }}</h2>
+                <p class="profile__role"><b>{{ person.role }}</b>{% if person.qualifications %}<span>{{ person.qualifications }}</span>{% endif %}</p>
+              </div>
+              <button class="bio__close" type="button" data-dialog-close aria-label="Close"><svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg></button>
+            </div>
+            <div class="bio__body">
+              <div class="bio__photo">{% set img = person.image %}{% set cls = "bio__img" %}{% include "snippets/image.njk" %}</div>
+              <div class="bio__text">
+                {% if person.bio_intro %}<p class="bio__intro">{{ person.bio_intro }}</p>{% endif %}
+                <div class="rich-text">{{ person.bio | safe }}</div>
+              </div>
+            </div>
+          </div>
+        </dialog>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>

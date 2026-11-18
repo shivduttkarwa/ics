@@ -1,0 +1,354 @@
+{
+  "seo": {
+    "title": "Contact us | Illawarra Christian School",
+    "description": "Find us at 4 Tyalla Place, Cordeaux Heights, call the school office on (02) 4239 5200, or send us a message. We’d love to hear from you."
+  },
+  "body": [
+    {
+      "type": "page_hero",
+      "value": {
+        "image": {
+          "src": "/assets/images/contact/contact-hero.webp",
+          "alt": "",
+          "width": 1440,
+          "height": 679
+        },
+        "image_mobile": {
+          "src": "/assets/images/contact/contact-hero-mobile.webp",
+          "alt": "",
+          "width": 604,
+          "height": 679
+        },
+        "video": null,
+        "shade": "none",
+        "title": "Contact <br><em>Illawarra Christian School</em>",
+        "breadcrumbs": [
+          {
+            "label": "Contact",
+            "url": "/contact.html"
+          },
+          {
+            "label": "Contact Details",
+            "url": ""
+          }
+        ]
+      }
+    },
+    {
+      "type": "pinned",
+      "value": {
+        "title": "Get in touch with us. <br><em>We’d love to hear from you.</em>",
+        "text": "Whether you have a quick question or you’re ready to visit, our team is happy to help. Get in touch and we’ll point you in the right direction.",
+        "button": null
+      }
+    },
+    {
+      "type": "feature_grid",
+      "value": {
+        "theme": "canopy",
+        "title": "Contact <em>details</em>",
+        "items": [
+          {
+            "title": "Where to find us",
+            "text": "<p>4 Tyalla Place<br>Cordeaux Heights NSW 2526</p>",
+            "button": {
+              "text": "Get directions",
+              "url": "",
+              "style": "outline-white",
+              "icon": "none"
+            }
+          },
+          {
+            "title": "Contact us",
+            "text": "<p>School Office<br>8.30am–4pm (Mon–Fri)<br><a href=\"tel:+61242395200\">(02) 4239 5200</a></p>",
+            "button": {
+              "text": "Call now",
+              "url": "tel:+61242395200",
+              "style": "outline-white",
+              "icon": "none"
+            }
+          },
+          {
+            "title": "Send us a message",
+            "text": "<p>Write to us with any questions or if you need help with something specific.<br><a href=\"mailto:reception@ics.nsw.edu.au\">reception@ics.nsw.edu.au</a></p>",
+            "button": {
+              "text": "Send message",
+              "url": "",
+              "style": "outline-white",
+              "icon": "none"
+            }
+          },
+          {
+            "title": "Opening hours",
+            "text": "<p>8.30am–4pm (Mon–Fri)</p>",
+            "button": {
+              "text": "Call now",
+              "url": "tel:+61242395200",
+              "style": "outline-white",
+              "icon": "none"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "location",
+      "value": {
+        "title": "<em>Find us</em> right <br>below Mt Kembla",
+        "text": "We’re in Cordeaux Heights, about ten minutes from the centre of Wollongong. Come and see the campus for yourself.",
+        "rows": [
+          {
+            "label": "By car",
+            "text": "Search “4 Tyalla Place, Cordeaux Heights” in your maps app. It’s about ten minutes from the centre of Wollongong. Visitor parking: [TBC]."
+          },
+          {
+            "label": "By bus",
+            "text": "The school bus route S120 (Premier Illawarra) runs to Cordeaux Heights via Unanderra on school days, stopping on Derribong Drive near Odenpa Road. Check the current timetable on transportnsw.info."
+          },
+          {
+            "label": "Student travel",
+            "text": "Eligible students may receive free or subsidised travel with a school travel pass. Find out more at transportnsw.info/school-students."
+          },
+          {
+            "label": "Drop-off and pick-up",
+            "text": "[TBC: drop-off zone, times and visitor sign-in at reception]"
+          }
+        ],
+        "button": {
+          "text": "Open route in Google Maps",
+          "url": "",
+          "style": "moss"
+        },
+        "image": {
+          "src": "/assets/images/contact/map.webp",
+          "alt": "Map of Cordeaux Heights, Figtree and Unanderra, with Illawarra Christian School marked",
+          "width": 1556,
+          "height": 975
+        },
+        "map_url": ""
+      }
+    },
+    {
+      "type": "faqs",
+      "value": {
+        "theme": "white",
+        "title": "Quick <em>answers...</em>",
+        "items": [
+          {
+            "question": "Is there a school bus to ICS?",
+            "answer": "<p>Yes. The S120 school bus (Premier Illawarra) runs on school days via Unanderra and stops on Derribong Drive near Odenpa Road in Cordeaux Heights. Check the current timetable on the Transport for NSW website.</p>"
+          },
+          {
+            "question": "Can my child get free or subsidised travel?",
+            "answer": "<p>[TBC: answer to come from the school.]</p>"
+          },
+          {
+            "question": "Can I drive my child to school?",
+            "answer": "<p>[TBC: answer to come from the school.]</p>"
+          }
+        ],
+        "button": {
+          "text": "View more transport info",
+          "url": "",
+          "style": "moss"
+        }
+      }
+    },
+    {
+      "type": "contact_form",
+      "value": {
+        "title": "<em>Send us a message</em>",
+        "text": "We’re in Cordeaux Heights, about ten minutes from the centre of Wollongong. Come and see the campus for yourself.",
+        "action": "",
+        "fields": [
+          {
+            "label": "Full name",
+            "name": "name",
+            "type": "text",
+            "autocomplete": "name",
+            "required": true
+          },
+          {
+            "label": "Email address",
+            "name": "email",
+            "type": "email",
+            "autocomplete": "email",
+            "required": true
+          },
+          {
+            "label": "Phone number",
+            "name": "phone",
+            "type": "tel",
+            "autocomplete": "tel",
+            "required": false
+          },
+          {
+            "label": "I’m enquiring about",
+            "name": "topic",
+            "type": "select",
+            "options": [
+              "Enrolment",
+              "Booking a tour",
+              "Something else"
+            ],
+            "required": false
+          },
+          {
+            "label": "Message",
+            "name": "message",
+            "type": "textarea",
+            "placeholder": "Write your message here",
+            "required": true
+          }
+        ],
+        "submit": {
+          "text": "Send message",
+          "style": "moss"
+        },
+        "image": {
+          "src": "/assets/images/contact/message-photo.webp",
+          "alt": "A primary student with braided hair smiling, her chin on her hand",
+          "width": 426,
+          "height": 562
+        }
+      }
+    },
+    {
+      "type": "cta_band",
+      "value": {
+        "image": {
+          "src": "/assets/images/people/cta-meet-1600.webp",
+          "srcset": "/assets/images/people/cta-meet-1280.webp 1280w, /assets/images/people/cta-meet-1600.webp 1600w",
+          "alt": "",
+          "width": 1600,
+          "height": 903
+        },
+        "image_mobile": {
+          "src": "/assets/images/people/cta-meet-mobile.webp",
+          "alt": "",
+          "width": 489,
+          "height": 819
+        },
+        "video": null,
+        "eyebrow": "",
+        "title": "Come and <em>meet</em> us.",
+        "text": "The best way to see who we are is to visit. Walk the campus and meet the people who’ll know your child.",
+        "button": {
+          "text": "Book a tour",
+          "url": "",
+          "style": "glass"
+        },
+        "button_secondary": {
+          "text": "Join our team",
+          "url": "",
+          "style": "outline-white"
+        }
+      }
+    },
+    {
+      "type": "where_next",
+      "value": {
+        "title": "Where <em>next</em>?",
+        "cards": [
+          {
+            "image": {
+              "src": "/assets/images/why/next-faith.webp",
+              "alt": "Secondary students in a discussion circle with their teacher",
+              "width": 1256,
+              "height": 962
+            },
+            "label": "Our Faith",
+            "url": "/faith.html"
+          },
+          {
+            "image": {
+              "src": "/assets/images/why/next-learning.webp",
+              "alt": "A teacher working with students at their laptops",
+              "width": 1179,
+              "height": 903
+            },
+            "label": "Learning",
+            "url": ""
+          }
+        ]
+      }
+    },
+    {
+      "type": "keep_exploring",
+      "value": {
+        "title": "Keep <em>exploring</em>",
+        "links": [
+          {
+            "label": "Our Faith",
+            "url": "/faith.html"
+          },
+          {
+            "label": "Learning",
+            "url": ""
+          },
+          {
+            "label": "Life at ICS",
+            "url": ""
+          }
+        ]
+      }
+    },
+    {
+      "type": "cta_cards",
+      "value": {
+        "title": "What comes <em>next?</em>",
+        "cards": [
+          {
+            "theme": "white",
+            "image": {
+              "src": "/assets/images/home/cta-community.webp",
+              "alt": "Primary students smiling together in the playground",
+              "width": 826,
+              "height": 656
+            },
+            "title": "Meet our <em>community</em>.",
+            "text": "Walk the campus, meet our teachers and see what a school day at ICS is really like.",
+            "button": {
+              "text": "Book a tour",
+              "url": "",
+              "style": "canopy"
+            }
+          },
+          {
+            "theme": "beach",
+            "image": {
+              "src": "/assets/images/home/cta-enquire.webp",
+              "alt": "A student playing the violin on stage",
+              "width": 755,
+              "height": 600
+            },
+            "title": "Enquire and <br><em>have a chat</em>.",
+            "text": "Ask us anything about fees, year levels or what to expect. Our enrolments team is happy to help.",
+            "button": {
+              "text": "Make an enquiry",
+              "url": "",
+              "style": "canopy"
+            }
+          },
+          {
+            "theme": "moss",
+            "image": {
+              "src": "/assets/images/hsc/cta-apply-classroom.webp",
+              "alt": "Secondary students working on a task together at a classroom table",
+              "width": 826,
+              "height": 656
+            },
+            "title": "Start <em>your</em> <br>ICS journey",
+            "text": "Complete your application online and secure your child’s place. Early applications keep more options open.",
+            "button": {
+              "text": "Apply to enrol",
+              "url": "",
+              "style": "canopy"
+            }
+          }
+        ],
+        "position": "low"
+      }
+    }
+  ]
+}

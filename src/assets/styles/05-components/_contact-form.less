@@ -1,0 +1,113 @@
+@contact-form-select-room: 30 * @px;
+@contact-form-area: 102 * @px;
+@contact-form-chevron: 16 * @px;
+
+.contact-form {
+  background: var(--color-beach-light);
+  color: var(--color-canopy);
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    @media (min-width: @bp-lg) { flex-direction: row; }
+  }
+
+  &__media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    @media (min-width: @bp-lg) {
+      flex: 0 0 50%;
+      aspect-ratio: auto;
+    }
+  }
+
+  &__layer { .parallax-layer(6); }
+
+  &__img { .img-cover(); }
+
+  &__body {
+    padding: 75 * @px var(--gutter);
+    @media (min-width: @bp-lg) {
+      flex: 0 0 50%;
+      padding: 120 * @px 100 * @px;
+    }
+  }
+
+  h2 {
+    .type-section-title-mid();
+    margin: 0 0 50 * @px;
+    color: inherit;
+    text-box: trim-both cap alphabetic;
+  }
+
+  &__text {
+    .type-body-2();
+    margin: 0 0 40 * @px;
+    color: var(--color-coal);
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 30 * @px;
+  }
+
+  &__submit {
+    justify-content: center;
+    width: 100%;
+    margin-top: 10 * @px;
+  }
+}
+
+// Figma's "Form Input Field": a caps label over an underlined control
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 5 * @px;
+
+  &__label {
+    .type-field-label();
+    color: var(--color-canopy);
+    text-box: trim-both cap alphabetic;
+  }
+
+  &__control {
+    .type-control();
+    width: 100%;
+    min-height: var(--tap-size);
+    padding: 5 * @px 0;
+    border: 0;
+    border-bottom: 1 * @px solid var(--color-canopy);
+    border-radius: 0;
+    background: transparent;
+    color: var(--color-coal);
+    appearance: none;
+    @media @fine { min-height: 0; }
+    &::placeholder {
+      color: var(--color-coal);
+      opacity: 1;
+    }
+    &--area {
+      height: @contact-form-area;
+      resize: vertical;
+    }
+  }
+
+  &__select {
+    position: relative;
+    display: block;
+    .field__control { padding-right: @contact-form-select-room; }
+    .icon {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      width: @contact-form-chevron;
+      height: @contact-form-chevron;
+      color: var(--color-canopy);
+      rotate: 90deg;
+      translate: 0 -50%;
+      pointer-events: none;
+    }
+  }
+}

@@ -1,0 +1,101 @@
+@promo-card-width: 413 * @px;
+@promo-card-height: 585 * @px;
+@promo-card-title-width: 322 * @px;
+@promo-cards-intro-width: 568 * @px;
+@promo-cards-title-width: 413 * @px;
+// a narrow phone keeps this much of the next card in view
+@promo-card-peek: 60 * @px;
+
+.promo-cards {
+  padding: 75 * @px 0;
+  overflow-x: clip;
+  background: var(--color-white);
+  @media (min-width: @bp-lg) { padding: 120 * @px 0; }
+
+  &__head {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25 * @px;
+    margin-bottom: 40 * @px;
+    @media (min-width: @bp-md) {
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+    @media (min-width: @bp-lg) { margin-bottom: 50 * @px; }
+  }
+
+  &__intro {
+    display: flex;
+    flex-direction: column;
+    gap: 23 * @px;
+    max-width: @promo-cards-intro-width;
+  }
+
+  h2 {
+    .type-section-title();
+    max-width: @promo-cards-title-width;
+    margin: 0;
+    color: var(--color-canopy);
+  }
+
+  &__text {
+    .type-body-2();
+    margin: 0;
+    color: var(--color-black-75);
+  }
+
+  .arrows {
+    --arrow-bg: var(--color-beach-light);
+    --arrow-ink: var(--color-canopy);
+  }
+
+  &__slider { overflow: visible; }
+
+  &__list { .reset-list(); }
+}
+
+.promo-card {
+  width: ~"min(@{promo-card-width}, calc(100vw - @{promo-card-peek}))";
+  height: @promo-card-height;
+
+  &__link {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+    padding: 25 * @px;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    color: var(--color-white);
+    text-decoration: none;
+  }
+
+  &__media {
+    .cover();
+    z-index: -1;
+    &::after {
+      content: "";
+      .cover();
+      background: var(--gradient-promo-card);
+    }
+  }
+
+  &__img {
+    .img-cover();
+    transition: scale var(--duration-slow) var(--ease-out);
+  }
+
+  h3 {
+    .type-promo-title();
+    max-width: @promo-card-title-width;
+    margin: 0;
+    color: inherit;
+  }
+
+  @media (hover: hover) {
+    &__link[href]:hover &__img { scale: 1.04; }
+  }
+}

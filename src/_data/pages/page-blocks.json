@@ -1,0 +1,422 @@
+{
+  "seo": {
+    "title": "Internal page blocks | Illawarra Christian School",
+    "description": "The building blocks for an Illawarra Christian School inner page."
+  },
+  "body": [
+    {
+      "type": "page_hero",
+      "value": {
+        "image": {
+          "src": "/assets/images/faith/faith-hero-1920.webp",
+          "srcset": "/assets/images/faith/faith-hero-1280.webp 1280w, /assets/images/faith/faith-hero-1920.webp 1920w",
+          "alt": "",
+          "width": 1920,
+          "height": 1080
+        },
+        "image_mobile": {
+          "src": "/assets/images/faith/faith-hero-mobile.webp",
+          "alt": "",
+          "width": 900,
+          "height": 1013
+        },
+        "video": null,
+        "shade": "medium",
+        "title": "Internal page <br><em>example headline</em>",
+        "breadcrumbs": [
+          {
+            "label": "Why ICS",
+            "url": "/why.html"
+          },
+          {
+            "label": "Wellbeing and Care",
+            "url": ""
+          }
+        ]
+      }
+    },
+    {
+      "type": "pinned",
+      "value": {
+        "spread": true,
+        "title": "Get in touch with us. <br><em>We’d love to hear from you.</em>",
+        "text": "We haven't built ICS on grand buildings or prestige. Our money and energy go into good teaching and real relationships with students. That's how our results stay strong while our fees stay modest.",
+        "button": null
+      }
+    },
+    {
+      "type": "media_text",
+      "value": {
+        "theme": "beach",
+        "media_side": "left",
+        "title": "Some schools sell prestige. <em>We focus <br>on results.</em>",
+        "lead": "<p>Our students consistently achieve academic outcomes that stand alongside, and in some areas exceed, the most expensive schools in the region. The difference?</p><p>You're not paying for sandstone buildings and branding. You're paying for teaching, care, and opportunity.</p>",
+        "note": "Not elite for the sake of it. Excellent because it matters.",
+        "button": {
+          "text": "Faith at ICS",
+          "url": "/faith.html",
+          "style": "moss"
+        },
+        "image": {
+          "src": "/assets/images/blocks/text-image-results.webp",
+          "alt": "Primary students smiling at their desks in front of a world map",
+          "width": 430,
+          "height": 500
+        }
+      }
+    },
+    {
+      "type": "media_text",
+      "value": {
+        "theme": "white",
+        "shade": true,
+        "title": "What accessible fees <em>really</em> mean.",
+        "text": "<p>Choosing an independent school shouldn't mean sacrificing family holidays, a second income, or your peace of mind. Our fee structure is deliberately accessible, and with a full K to 12 pathway you get one predictable, affordable schooling journey.</p>",
+        "note": "No navigating multiple schools. No surprise transitions.",
+        "list_title": "Quick comparison points for parents:",
+        "list": [
+          "Fees significantly lower than the region's premium private schools",
+          "Comparable, and often stronger, academic outcomes",
+          "One campus, one community, Kindergarten to Year 12",
+          "Sibling-friendly and genuinely family-oriented"
+        ],
+        "button": {
+          "text": "Discover faith at ICS on a School Tour",
+          "url": "",
+          "style": "moss"
+        },
+        "image": {
+          "src": "/assets/images/blocks/text-image-fees.webp",
+          "alt": "A smiling secondary student with curly hair in her school uniform",
+          "width": 766,
+          "height": 891
+        }
+      }
+    },
+    {
+      "type": "cta_band",
+      "value": {
+        "image": {
+          "src": "/assets/images/blocks/cta-classroom.webp",
+          "alt": "",
+          "width": 1600,
+          "height": 703
+        },
+        "video": null,
+        "eyebrow": "",
+        "title": "A <em>great</em> place to teach and <em>close</em> <br>to home.",
+        "text": "Join a close team and a supportive community where you’ll know your students by name and grow your career.",
+        "button": {
+          "text": "Work with us",
+          "url": "",
+          "style": "glass"
+        },
+        "button_secondary": {
+          "text": "View current roles",
+          "url": "",
+          "style": "outline-white"
+        },
+        "height": 633
+      }
+    },
+    {
+      "type": "faqs",
+      "value": {
+        "theme": "white",
+        "title": "Accordion <em>section...</em>",
+        "items": [
+          {
+            "question": "How is ICS different from other independent schools in the Illawarra?",
+            "answer": "<p>ICS has strong HSC results and a genuinely Christian culture, and its fees are well below most independent schools in the region. Every staff member is a Christian and every student is known by name.</p>"
+          },
+          {
+            "question": "Is ICS a good school academically?",
+            "answer": "<p>Yes. ICS is regularly ranked among the top [TBC: 3] Illawarra schools for HSC results [TBC: source]. Every Extension course is offered and several of our teachers are HSC markers.</p>"
+          },
+          {
+            "question": "Is ICS a private school?",
+            "answer": "<p>ICS is an independent, not-for-profit Christian school run by Illawarra Christian Education, an association of Christian parents.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "usps",
+      "value": {
+        "title": "Ask families <em>why</em> they chose ICS and you’ll hear answers like these.",
+        "button": {
+          "text": "View all the reasons",
+          "url": "",
+          "style": "moss"
+        },
+        "cards": [
+          {
+            "title": "There’s one set fee with no hidden costs",
+            "image": {
+              "src": "/assets/images/home/usp-violin.webp",
+              "alt": "A boy smiling as he plays the violin on stage",
+              "width": 451,
+              "height": 600
+            },
+            "video": null,
+            "button": {
+              "text": "Discover more",
+              "url": "",
+              "style": "white"
+            }
+          },
+          {
+            "title": "Prep-Year 12 is all on one campus together",
+            "image": {
+              "src": "/assets/images/home/usp-campus.webp",
+              "alt": "A young student in uniform walking through the campus with a teacher and older students",
+              "width": 622,
+              "height": 828
+            },
+            "image_mobile": {
+              "src": "/assets/images/home/usp-campus-mobile.webp",
+              "alt": "",
+              "width": 376,
+              "height": 500
+            },
+            "video": null,
+            "button": {
+              "text": "Play Video",
+              "url": "",
+              "icon": "play"
+            }
+          },
+          {
+            "title": "Faith is lived each and every morning",
+            "image": {
+              "src": "/assets/images/home/usp-assembly.webp",
+              "alt": "A teacher speaking to primary students seated on the hall floor",
+              "width": 622,
+              "height": 828
+            },
+            "video": null,
+            "button": {
+              "text": "Discover more",
+              "url": "",
+              "style": "white"
+            }
+          },
+          {
+            "title": "Every child is known by their name",
+            "image": {
+              "src": "/assets/images/home/usp-welcome.webp",
+              "alt": "A staff member greeting a young student at the school gate",
+              "width": 622,
+              "height": 828
+            },
+            "video": null,
+            "button": {
+              "text": "Discover more",
+              "url": "",
+              "style": "white"
+            }
+          },
+          {
+            "title": "Strong results without the premium price tag",
+            "image": {
+              "src": "/assets/images/home/usp-classroom.webp",
+              "alt": "Secondary students working together at a classroom table",
+              "width": 622,
+              "height": 828
+            },
+            "video": null,
+            "button": {
+              "text": "Discover more",
+              "url": "",
+              "style": "white"
+            }
+          },
+          {
+            "title": "It’s a beautiful, leafy campus at Mt Kembla",
+            "image": {
+              "src": "/assets/images/home/usp-grounds.webp",
+              "alt": "School buildings among tall gum trees",
+              "width": 622,
+              "height": 828
+            },
+            "video": null,
+            "button": {
+              "text": "Discover more",
+              "url": "",
+              "style": "white"
+            }
+          },
+          {
+            "title": "Loads of co-curricular opportunities",
+            "image": {
+              "src": "/assets/images/home/usp-strings.webp",
+              "alt": "A girl playing the violin in the school strings group",
+              "width": 451,
+              "height": 600
+            },
+            "video": null,
+            "button": {
+              "text": "Discover more",
+              "url": "",
+              "style": "white"
+            }
+          }
+        ],
+        "theme": "white"
+      }
+    },
+    {
+      "type": "banner",
+      "value": {
+        "title": "Section headline <em>with emphasis</em>",
+        "image": {
+          "src": "/assets/images/blocks/banner-sport.webp",
+          "alt": "",
+          "width": 1920,
+          "height": 686
+        }
+      }
+    },
+    {
+      "type": "pinned",
+      "value": {
+        "theme": "beach",
+        "spread": true,
+        "title": "Get in touch with us. <br><em>We’d love to hear from you.</em>",
+        "text": "We haven't built ICS on grand buildings or prestige. Our money and energy go into good teaching and real relationships with students. That's how our results stay strong while our fees stay modest.",
+        "button": null
+      }
+    },
+    {
+      "type": "intro_columns",
+      "value": {
+        "title": "Large introduction for impact. You'll see it in <em>how teachers greet your child</em> in the morning and how students are taught to treat each other.",
+        "columns": [
+          {
+            "title": "Subheading",
+            "text": "<p>Every staff member at ICS is a follower of Jesus. We teach the Bible clearly and help students read it for themselves, so they can think it through and reach their own response.</p><p>Faith isn't a subject at ICS. You'll see it in how teachers greet your child in the morning and how students are taught to treat each other.</p>",
+            "button": {
+              "text": "Faith at ICS",
+              "url": "/faith.html",
+              "style": "moss"
+            }
+          },
+          {
+            "title": "Subheading",
+            "text": "<p>Every staff member at ICS is a follower of Jesus. We teach the Bible clearly and help students read it for themselves, so they can think it through and reach their own response.</p><p>Faith isn't a subject at ICS. You'll see it in how teachers greet your child in the morning and how students are taught to treat each other.</p>",
+            "button": {
+              "text": "Faith at ICS",
+              "url": "/faith.html",
+              "style": "moss"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "where_next",
+      "value": {
+        "title": "Where <em>next</em>?",
+        "cards": [
+          {
+            "image": {
+              "src": "/assets/images/why/next-faith.webp",
+              "alt": "Secondary students in a discussion circle with their teacher",
+              "width": 1256,
+              "height": 962
+            },
+            "label": "Our Faith",
+            "url": "/faith.html"
+          },
+          {
+            "image": {
+              "src": "/assets/images/why/next-learning.webp",
+              "alt": "A teacher working with students at their laptops",
+              "width": 1179,
+              "height": 903
+            },
+            "label": "Learning",
+            "url": ""
+          }
+        ]
+      }
+    },
+    {
+      "type": "keep_exploring",
+      "value": {
+        "title": "Keep <em>exploring</em>",
+        "links": [
+          {
+            "label": "Our Faith",
+            "url": "/faith.html"
+          },
+          {
+            "label": "Learning",
+            "url": ""
+          },
+          {
+            "label": "Life at ICS",
+            "url": ""
+          }
+        ]
+      }
+    },
+    {
+      "type": "cta_cards",
+      "value": {
+        "title": "What comes <em>next?</em>",
+        "cards": [
+          {
+            "theme": "white",
+            "image": {
+              "src": "/assets/images/home/cta-community.webp",
+              "alt": "Primary students smiling together in the playground",
+              "width": 826,
+              "height": 656
+            },
+            "title": "Meet our <em>community</em>.",
+            "text": "Walk the campus, meet our teachers and see what a school day at ICS is really like.",
+            "button": {
+              "text": "Book a tour",
+              "url": "",
+              "style": "canopy"
+            }
+          },
+          {
+            "theme": "beach",
+            "image": {
+              "src": "/assets/images/home/cta-enquire.webp",
+              "alt": "A student playing the violin on stage",
+              "width": 755,
+              "height": 600
+            },
+            "title": "Enquire and <br><em>have a chat</em>.",
+            "text": "Ask us anything about fees, year levels or what to expect. Our enrolments team is happy to help.",
+            "button": {
+              "text": "Make an enquiry",
+              "url": "",
+              "style": "canopy"
+            }
+          },
+          {
+            "theme": "moss",
+            "image": {
+              "src": "/assets/images/hsc/cta-apply-classroom.webp",
+              "alt": "Secondary students working on a task together at a classroom table",
+              "width": 826,
+              "height": 656
+            },
+            "title": "Start <em>your</em> <br>ICS journey",
+            "text": "Complete your application online and secure your child’s place. Early applications keep more options open.",
+            "button": {
+              "text": "Apply to enrol",
+              "url": "",
+              "style": "canopy"
+            }
+          }
+        ],
+        "position": "low"
+      }
+    }
+  ]
+}

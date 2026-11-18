@@ -1,0 +1,117 @@
+@location-row: 1180 * @px;
+@location-map-width: 550 * @px;
+@location-label-width: 149 * @px;
+
+.location {
+  padding: 75 * @px 0;
+  background: var(--color-beach-light);
+  color: var(--color-canopy);
+  @media (min-width: @bp-lg) { padding: 100 * @px 0; }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 50 * @px;
+    @media (min-width: @bp-lg) {
+      flex-direction: row;
+      align-items: stretch;
+      gap: 100 * @px;
+      max-width: @location-row;
+      margin-inline: auto;
+    }
+  }
+
+  &__copy {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+  }
+
+  h2 {
+    .type-section-title-mid();
+    margin: 0 0 50 * @px;
+    color: inherit;
+    text-box: trim-both cap alphabetic;
+  }
+
+  &__text {
+    .type-body-2();
+    margin: 0;
+    color: var(--color-coal);
+  }
+
+  &__rows {
+    align-self: stretch;
+    margin: 40 * @px 0 0;
+  }
+
+  &__row {
+    display: flex;
+    flex-direction: column;
+    gap: 5 * @px;
+    padding: 10 * @px 0 20 * @px;
+    border-top: 1 * @px solid var(--color-canopy);
+    @media (min-width: @bp-sm) {
+      flex-direction: row;
+      gap: 40 * @px;
+    }
+    dt {
+      .type-bullet-title();
+      flex: none;
+      @media (min-width: @bp-sm) { width: @location-label-width; }
+    }
+    dd {
+      .type-row-text();
+      flex: 1;
+      margin: 0;
+      a {
+        color: inherit;
+        text-decoration: none;
+        @media (hover: hover) { &:hover { text-decoration: underline; } }
+      }
+    }
+  }
+
+  &__button {
+    align-self: stretch;
+    margin-top: 40 * @px;
+    @media (min-width: @bp-lg) { align-self: flex-start; }
+    .btn {
+      justify-content: center;
+      width: 100%;
+      height: auto;
+      min-height: var(--tap-size);
+      white-space: normal;
+      @media (min-width: @bp-lg) {
+        width: auto;
+        height: @btn-height;
+        white-space: nowrap;
+      }
+    }
+    .btn__dot {
+      display: none;
+      @media (min-width: @bp-lg) { display: grid; }
+    }
+  }
+
+  &__map {
+    position: relative;
+    display: block;
+    aspect-ratio: 550 / 771;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    @media (min-width: @bp-md) { max-width: @location-map-width; }
+    @media (min-width: @bp-lg) {
+      flex: 0 0 @location-map-width;
+      aspect-ratio: auto;
+    }
+  }
+
+  &__img {
+    .img-cover();
+    position: absolute;
+    inset: 0;
+  }
+}

@@ -1,4 +1,4 @@
-<section class="page-hero{% if value.shade == 'deep' %} page-hero--deep{% endif %} rounded-foot" data-anim-parallax-trigger>
+<section class="page-hero{% if value.shade and value.shade != 'light' %} page-hero--{{ value.shade }}{% endif %} rounded-foot" data-anim-parallax-trigger>
   <div class="page-hero__media" aria-hidden="true" data-anim="reveal" data-anim-type="zoom-out" data-anim-tier="hero" data-anim-order="0" data-anim-landed="0.8">
     <div class="page-hero__layer" data-anim="parallax" data-anim-start="top top" data-anim-disable-mobile>
       <picture class="page-hero__picture">

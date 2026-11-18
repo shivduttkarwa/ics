@@ -1,0 +1,26 @@
+<section class="promo-cards" data-slider-scope>
+  <div class="container">
+    <div class="promo-cards__head">
+      <div class="promo-cards__intro">
+        <h2 data-anim="split">{{ value.title | safe }}</h2>
+        {% if value.text %}<p class="promo-cards__text" data-anim="reveal">{{ value.text }}</p>{% endif %}
+      </div>
+      <div class="arrows" data-anim="reveal">
+        <button class="arrow-btn arrow-btn--prev" type="button" aria-label="Previous" data-slider-prev><svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg></button>
+        <button class="arrow-btn arrow-btn--next" type="button" aria-label="Next" data-slider-next><svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg></button>
+      </div>
+    </div>
+    <div class="promo-cards__slider swiper" data-slider data-slider-gap="20">
+      <ul class="promo-cards__list swiper-wrapper" data-anim-group="rise">
+        {% for card in value.cards %}
+        <li class="promo-card swiper-slide">
+          <a class="promo-card__link"{% if card.url %} href="{{ card.url }}"{% endif %}>
+            <span class="promo-card__media">{% set img = card.image %}{% set cls = "promo-card__img" %}{% include "snippets/image.njk" %}</span>
+            <h3>{{ card.title | safe }}</h3>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>

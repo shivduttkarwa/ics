@@ -105,19 +105,19 @@
         "items": [
           {
             "title": "Teachers who mark the HSC",
-            "text": "Several of our teachers are official HSC markers for NESA, so they know what examiners want to see."
+            "text": "<p>Several of our teachers are official HSC markers for NESA, so they know what examiners want to see.</p>"
           },
           {
             "title": "Small senior classes",
-            "text": "Senior classes are small enough for teachers to give each student real attention. Every Extension 1 and Extension 2 course is available."
+            "text": "<p>Senior classes are small enough for teachers to give each student real attention. Every Extension 1 and Extension 2 course is available.</p>"
           },
           {
             "title": "A mentor for every Year 12 student",
-            "text": "Each Year 12 student meets with a staff mentor once a week. Mentors help students balance study with the rest of life and keep them on track with their goals."
+            "text": "<p>Each Year 12 student meets with a staff mentor once a week. Mentors help students balance study with the rest of life and keep them on track with their goals.</p>"
           },
           {
             "title": "Study skills from <br>Year 7",
-            "text": "Students learn how to study well through a seminar program that builds each year, along with study days in the senior years."
+            "text": "<p>Students learn how to study well through a seminar program that builds each year, along with study days in the senior years.</p>"
           }
         ]
       }
@@ -483,7 +483,7 @@
               "height": 962
             },
             "label": "Our Faith",
-            "url": ""
+            "url": "/faith.html"
           },
           {
             "image": {
@@ -505,7 +505,7 @@
         "links": [
           {
             "label": "Our Faith",
-            "url": ""
+            "url": "/faith.html"
           },
           {
             "label": "Learning",

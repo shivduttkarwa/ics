@@ -1,0 +1,24 @@
+.photo {
+  padding: 25 * @px 0;
+  background: var(--color-white);
+  @media (min-width: @bp-lg) { padding: 59 * @px 0; }
+
+  &__inner { margin: 0; }
+
+  &__frame {
+    position: relative;
+    aspect-ratio: 1280 / 779;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+  }
+
+  &__layer { .parallax-layer(6); }
+
+  &__img { .img-cover(); }
+
+  figcaption {
+    .type-caption();
+    margin-top: 15 * @px;
+    color: var(--color-black-75);
+  }
+}

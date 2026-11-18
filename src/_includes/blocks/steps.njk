@@ -1,0 +1,19 @@
+<section class="steps rounded-foot">
+  <div class="container">
+    <h2 data-anim="split">{{ value.title | safe }}</h2>
+    <ol class="steps__list" data-anim-group="fade-up">
+      {% for step in value.steps %}
+      <li class="steps__step">
+        <span class="steps__number" aria-hidden="true">{% if loop.index < 10 %}0{% endif %}{{ loop.index }}</span>
+        <h3>{{ step.title }}</h3>
+        <p class="steps__text">{{ step.text }}</p>
+      </li>
+      {% endfor %}
+    </ol>
+    {% if value.buttons %}
+    <div class="steps__buttons" data-anim="reveal">
+      {% for btn in value.buttons %}{% include "snippets/button.njk" %}{% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</section>

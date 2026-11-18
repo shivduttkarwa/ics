@@ -1,4 +1,4 @@
-<section class="usps">
+<section class="usps{% if value.theme == 'white' %} usps--white{% endif %}">
   <div class="container">
     <div class="usps__head">
       <h2 data-anim="split">{{ value.title | safe }}</h2>

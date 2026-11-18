@@ -35,6 +35,9 @@ export default function (eleventyConfig) {
 
   if (PROD) eleventyConfig.ignores.add("src/lab/**");
 
+  // Django's own filter, so templates stay within what Wagtail can render
+  eleventyConfig.addFilter("divisibleby", (value, divisor) => Number(value) % Number(divisor) === 0);
+
   eleventyConfig.on("eleventy.before", compileCss);
   eleventyConfig.addWatchTarget("src/assets/styles/");
   eleventyConfig.addWatchTarget("dist/assets/js/");

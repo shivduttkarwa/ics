@@ -1,0 +1,447 @@
+{
+  "seo": {
+    "title": "Our people | Illawarra Christian School",
+    "description": "Meet the leaders, teachers and staff who know your child: a team who share one conviction, that every child deserves to be known, cared for and challenged."
+  },
+  "body": [
+    {
+      "type": "page_hero",
+      "value": {
+        "image": {
+          "src": "/assets/images/people/people-hero-1600.webp",
+          "srcset": "/assets/images/people/people-hero-1280.webp 1280w, /assets/images/people/people-hero-1600.webp 1600w",
+          "alt": "",
+          "width": 1600,
+          "height": 1066
+        },
+        "image_mobile": {
+          "src": "/assets/images/people/people-hero-mobile.webp",
+          "alt": "",
+          "width": 900,
+          "height": 1013
+        },
+        "video": null,
+        "shade": "medium",
+        "title": "Meet the people who <br><em>know</em> your child",
+        "breadcrumbs": [
+          {
+            "label": "Why ICS",
+            "url": "/why.html"
+          },
+          {
+            "label": "Our People",
+            "url": ""
+          }
+        ]
+      }
+    },
+    {
+      "type": "pinned",
+      "value": {
+        "title": "Our team are passionate about <em>Christian education</em>.",
+        "text": "Behind every ICS student is a team of leaders, teachers and staff who share one conviction. Every child deserves to be known, cared for and challenged.",
+        "button": null
+      }
+    },
+    {
+      "type": "welcome",
+      "value": {
+        "image": {
+          "src": "/assets/images/people/staff-simon.webp",
+          "alt": "Mr Simon Lainson, Principal of Illawarra Christian School",
+          "width": 700,
+          "height": 700
+        },
+        "title": "Welcome to <br>our <em>community</em>",
+        "message": "“I have been part of ICS for more than 25 years, as a teacher, as Principal and as a parent. What keeps me here is the people. We partner with families because we believe a child does best when home and school work together. Here we celebrate learning, enjoy community and seek to serve Christ in everything we do. I’d love for you to come and see it for yourself.”",
+        "name": "Mr Simon Lainson",
+        "role": "Principal",
+        "button": {
+          "text": "Book a tour",
+          "url": "",
+          "style": "moss"
+        }
+      }
+    },
+    {
+      "type": "feature_video",
+      "value": {
+        "image": {
+          "src": "/assets/images/people/campus-still.webp",
+          "alt": "The ICS campus from the air, among the trees below the escarpment",
+          "width": 1280,
+          "height": 740
+        },
+        "video": null
+      }
+    },
+    {
+      "type": "people",
+      "value": {
+        "title": "Leaders who <br><em>love to serve</em>.",
+        "text": "Our executive team leads with faith, experience and a genuine care for every family in our community.",
+        "people": [
+          {
+            "image": {
+              "src": "/assets/images/people/staff-simon.webp",
+              "alt": "Mr Simon Lainson, Principal",
+              "width": 700,
+              "height": 700
+            },
+            "name": "Mr Simon Lainson",
+            "role": "Principal",
+            "qualifications": "BEd, DipB&M, MEd",
+            "bio_intro": "Simon joined the staff team at Illawarra Christian School in 1999 and was appointed Principal in 2008.",
+            "bio": "<p>He has a Bachelor of Secondary Education (Humanities and Social Sciences) from the University of Sydney, a Graduate Diploma in Bible and Ministry from Sydney Missionary and Bible College, and a Master of Education (Leadership) from the National Institute of Christian Education.</p><p>Simon is married to Sarah, and they have six children. He values the partnership his family enjoys with Illawarra Christian School through his children’s education. Simon is an elder at Wollongong Baptist Church. As a member of the CEN NSW/ACT State Council, Simon plays an active role in the wider Christian education community.</p><p>Passionate about equipping staff and students with a faithful, Christ-centred worldview that informs all of life, Simon is excited to be leading a community of Christian educators, parents and students who learn and grow together under God’s grace.</p>"
+          },
+          {
+            "image": {
+              "src": "/assets/images/people/staff-melinda.webp",
+              "alt": "Mrs Melinda Sharpe, Deputy Principal",
+              "width": 500,
+              "height": 500
+            },
+            "name": "Mrs Melinda Sharpe",
+            "role": "Deputy Principal (Prep – Year 12)",
+            "qualifications": "BEd",
+            "bio_intro": "",
+            "bio": ""
+          },
+          {
+            "image": {
+              "src": "/assets/images/people/staff-peter.webp",
+              "alt": "Mr Peter Richardson, Director of 7–12",
+              "width": 700,
+              "height": 700
+            },
+            "name": "Mr Peter Richardson",
+            "role": "Director of 7-12",
+            "qualifications": "BEd, MEd",
+            "bio_intro": "",
+            "bio": ""
+          },
+          {
+            "image": {
+              "src": "/assets/images/people/staff-caleb.webp",
+              "alt": "Mr Caleb Jones, Director of K–6",
+              "width": 467,
+              "height": 466
+            },
+            "name": "Mr Caleb Jones",
+            "role": "Director of K-6",
+            "qualifications": "BEd",
+            "bio_intro": "",
+            "bio": ""
+          },
+          {
+            "image": {
+              "src": "/assets/images/people/staff-simone.webp",
+              "alt": "Mrs Simone Brown, Director of Student Learning Opportunities",
+              "width": 700,
+              "height": 700
+            },
+            "name": "Mrs Simone Brown",
+            "role": "Director of Student Learning Opportunities",
+            "qualifications": "BA, DipEd, DipPsych, MEd, COGE",
+            "bio_intro": "",
+            "bio": ""
+          },
+          {
+            "image": {
+              "src": "/assets/images/people/staff-heather.webp",
+              "alt": "Miss Heather Mansley, Director of Wellbeing",
+              "width": 700,
+              "height": 700
+            },
+            "name": "Miss Heather Mansley",
+            "role": "Director of Wellbeing",
+            "qualifications": "BEd",
+            "bio_intro": "",
+            "bio": ""
+          },
+          {
+            "image": {
+              "src": "/assets/images/people/staff-david.webp",
+              "alt": "Mr David Russell, Director of Christian Pedagogy and Practice",
+              "width": 700,
+              "height": 698
+            },
+            "name": "Mr David Russell",
+            "role": "Director of Christian Pedagogy & Practice",
+            "qualifications": "BA, GDipEd (Secondary), GDDiv",
+            "bio_intro": "",
+            "bio": ""
+          },
+          {
+            "image": {
+              "src": "/assets/images/people/staff-rob.webp",
+              "alt": "Mr Rob Thomas, Business Manager",
+              "width": 700,
+              "height": 700
+            },
+            "name": "Mr Rob Thomas",
+            "role": "Business Manager",
+            "qualifications": "",
+            "bio_intro": "",
+            "bio": ""
+          }
+        ]
+      }
+    },
+    {
+      "type": "staff_quotes",
+      "value": {
+        "title": "What our staff <em>say</em>",
+        "quotes": [
+          {
+            "image": {
+              "src": "/assets/images/people/staff-melinda.webp",
+              "alt": "Mrs Melinda Sharpe, Deputy Principal",
+              "width": 500,
+              "height": 500
+            },
+            "quote": "“What a delight to work with such committed and expert educators! ICS is a hidden gem.”",
+            "name": "Melinda Sharpe",
+            "role": "Deputy Principal"
+          },
+          {
+            "image": {
+              "src": "/assets/images/people/staff-david.webp",
+              "alt": "Mr David Russell, Director of Christian Pedagogy and Practice",
+              "width": 700,
+              "height": 698
+            },
+            "quote": "“What a delight to work with such committed and expert educators! ICS is a hidden gem.”",
+            "name": "David Russell",
+            "role": "Director of Christian Pedagogy & Practice"
+          },
+          {
+            "image": {
+              "src": "/assets/images/people/staff-melinda.webp",
+              "alt": "Mrs Melinda Sharpe, Deputy Principal",
+              "width": 500,
+              "height": 500
+            },
+            "quote": "“What a delight to work with such committed and expert educators! ICS is a hidden gem.”",
+            "name": "Melinda Sharpe",
+            "role": "Deputy Principal"
+          },
+          {
+            "image": {
+              "src": "/assets/images/people/staff-rob.webp",
+              "alt": "Mr Rob Thomas, Business Manager",
+              "width": 700,
+              "height": 700
+            },
+            "quote": "“What a delight to work with such committed and expert educators! ICS is a hidden gem.”",
+            "name": "Rob Thomas",
+            "role": "Business Manager"
+          },
+          {
+            "image": {
+              "src": "/assets/images/people/staff-example.webp",
+              "alt": "A member of the ICS staff",
+              "width": 500,
+              "height": 500
+            },
+            "quote": "“What a delight to work with such committed and expert educators! ICS is a hidden gem.”",
+            "name": "Example Name",
+            "role": "ICS Staff"
+          },
+          {
+            "image": {
+              "src": "/assets/images/people/staff-simon.webp",
+              "alt": "Mr Simon Lainson, Principal",
+              "width": 700,
+              "height": 700
+            },
+            "quote": "“What a delight to work with such committed and expert educators! ICS is a hidden gem.”",
+            "name": "Simon Lainson",
+            "role": "Principal"
+          },
+          {
+            "image": {
+              "src": "/assets/images/people/staff-peter.webp",
+              "alt": "Mr Peter Richardson, Director of 7–12",
+              "width": 700,
+              "height": 700
+            },
+            "quote": "“What a delight to work with such committed and expert educators! ICS is a hidden gem.”",
+            "name": "Peter Richardson",
+            "role": "Director of 7-12"
+          },
+          {
+            "image": {
+              "src": "/assets/images/people/staff-simone.webp",
+              "alt": "Mrs Simone Brown, Director of Student Learning Opportunities",
+              "width": 700,
+              "height": 700
+            },
+            "quote": "“What a delight to work with such committed and expert educators! ICS is a hidden gem.”",
+            "name": "Simone Brown",
+            "role": "Director of Student Learning Opportunities"
+          },
+          {
+            "image": {
+              "src": "/assets/images/people/staff-caleb.webp",
+              "alt": "Mr Caleb Jones, Director of K–6",
+              "width": 467,
+              "height": 466
+            },
+            "quote": "“What a delight to work with such committed and expert educators! ICS is a hidden gem.”",
+            "name": "Caleb Jones",
+            "role": "Director of K-6"
+          },
+          {
+            "image": {
+              "src": "/assets/images/people/staff-heather.webp",
+              "alt": "Miss Heather Mansley, Director of Wellbeing",
+              "width": 700,
+              "height": 700
+            },
+            "quote": "“What a delight to work with such committed and expert educators! ICS is a hidden gem.”",
+            "name": "Heather Mansley",
+            "role": "Director of Wellbeing"
+          }
+        ]
+      }
+    },
+    {
+      "type": "cta_band",
+      "value": {
+        "image": {
+          "src": "/assets/images/people/cta-meet-1600.webp",
+          "srcset": "/assets/images/people/cta-meet-1280.webp 1280w, /assets/images/people/cta-meet-1600.webp 1600w",
+          "alt": "",
+          "width": 1600,
+          "height": 903
+        },
+        "image_mobile": {
+          "src": "/assets/images/people/cta-meet-mobile.webp",
+          "alt": "",
+          "width": 489,
+          "height": 819
+        },
+        "video": null,
+        "eyebrow": "",
+        "title": "Come and <em>meet</em> us.",
+        "text": "The best way to see who we are is to visit. Walk the campus and meet the people who’ll know your child.",
+        "button": {
+          "text": "Book a tour",
+          "url": "",
+          "style": "glass"
+        },
+        "button_secondary": {
+          "text": "Join our team",
+          "url": "",
+          "style": "outline-white"
+        }
+      }
+    },
+    {
+      "type": "where_next",
+      "value": {
+        "title": "Where <em>next</em>?",
+        "cards": [
+          {
+            "image": {
+              "src": "/assets/images/why/next-faith.webp",
+              "alt": "Secondary students in a discussion circle with their teacher",
+              "width": 1256,
+              "height": 962
+            },
+            "label": "Our Faith",
+            "url": "/faith.html"
+          },
+          {
+            "image": {
+              "src": "/assets/images/why/next-learning.webp",
+              "alt": "A teacher working with students at their laptops",
+              "width": 1179,
+              "height": 903
+            },
+            "label": "Learning",
+            "url": ""
+          }
+        ]
+      }
+    },
+    {
+      "type": "keep_exploring",
+      "value": {
+        "title": "Keep <em>exploring</em>",
+        "links": [
+          {
+            "label": "Our Faith",
+            "url": "/faith.html"
+          },
+          {
+            "label": "Learning",
+            "url": ""
+          },
+          {
+            "label": "Life at ICS",
+            "url": ""
+          }
+        ]
+      }
+    },
+    {
+      "type": "cta_cards",
+      "value": {
+        "title": "What comes <em>next?</em>",
+        "cards": [
+          {
+            "theme": "white",
+            "image": {
+              "src": "/assets/images/home/cta-community.webp",
+              "alt": "Primary students smiling together in the playground",
+              "width": 826,
+              "height": 656
+            },
+            "title": "Meet our <em>community</em>.",
+            "text": "Walk the campus, meet our teachers and see what a school day at ICS is really like.",
+            "button": {
+              "text": "Book a tour",
+              "url": "",
+              "style": "canopy"
+            }
+          },
+          {
+            "theme": "beach",
+            "image": {
+              "src": "/assets/images/home/cta-enquire.webp",
+              "alt": "A student playing the violin on stage",
+              "width": 755,
+              "height": 600
+            },
+            "title": "Enquire and <br><em>have a chat</em>.",
+            "text": "Ask us anything about fees, year levels or what to expect. Our enrolments team is happy to help.",
+            "button": {
+              "text": "Make an enquiry",
+              "url": "",
+              "style": "canopy"
+            }
+          },
+          {
+            "theme": "moss",
+            "image": {
+              "src": "/assets/images/hsc/cta-apply-classroom.webp",
+              "alt": "Secondary students working on a task together at a classroom table",
+              "width": 826,
+              "height": 656
+            },
+            "title": "Start <em>your</em> <br>ICS journey",
+            "text": "Complete your application online and secure your child’s place. Early applications keep more options open.",
+            "button": {
+              "text": "Apply to enrol",
+              "url": "",
+              "style": "canopy"
+            }
+          }
+        ],
+        "position": "low"
+      }
+    }
+  ]
+}

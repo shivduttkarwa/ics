@@ -25,9 +25,14 @@ function build(el) {
   const current = scope.querySelector("[data-slider-current]");
   const total = scope.querySelector("[data-slider-total]");
   const tabs = [...scope.querySelectorAll("[data-slider-tab]")];
+  // [data-slider-caption] shows the active card's data-caption
+  const caption = scope.querySelector("[data-slider-caption]");
+  const loop = el.hasAttribute("data-slider-loop");
   const mark = (swiper) => {
-    if (current) current.textContent = pad(swiper.activeIndex + 1);
-    tabs.forEach((tab, i) => tab.setAttribute("aria-current", String(i === swiper.activeIndex)));
+    const index = loop ? swiper.realIndex : swiper.activeIndex;
+    if (current) current.textContent = pad(index + 1);
+    if (caption) caption.textContent = swiper.slides[swiper.activeIndex]?.dataset.caption || "";
+    tabs.forEach((tab, i) => tab.setAttribute("aria-current", String(i === index)));
   };
   const swiper = new Swiper(el, {
     modules: [A11y, FreeMode, Keyboard, Navigation],
@@ -39,7 +44,10 @@ function build(el) {
     resistanceRatio: 0.5,
     freeMode: snap ? false : { enabled: true, momentumRatio: 0.9, momentumVelocityRatio: 0.9, momentumBounce: false },
     // data-slider-rewind: the arrows wrap round, so neither is ever switched off
-    rewind: el.hasAttribute("data-slider-rewind"),
+    rewind: !loop && el.hasAttribute("data-slider-rewind"),
+    // data-slider-loop with data-slider-centred: the card in view sits centred, its neighbours showing either side, round and round
+    loop,
+    centeredSlides: el.hasAttribute("data-slider-centred"),
     keyboard: { enabled: true, onlyInViewport: true },
     navigation: {
       prevEl: scope.querySelector("[data-slider-prev]"),
@@ -56,7 +64,7 @@ function build(el) {
     },
   });
   if (total) total.textContent = pad(swiper.slides.length);
-  tabs.forEach((tab, i) => tab.addEventListener("click", () => swiper.slideTo(i)));
+  tabs.forEach((tab, i) => tab.addEventListener("click", () => (loop ? swiper.slideToLoop(i) : swiper.slideTo(i))));
   // Safari loads a lazy photo only once it is on screen, so a card arrived blank and its photo popped in
   new IntersectionObserver((entries, watch) => {
     if (!entries[0].isIntersecting) return;

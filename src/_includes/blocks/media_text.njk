@@ -1,0 +1,35 @@
+<section class="media-text media-text--{{ value.theme | default('white') }}{% if value.media_side == 'left' %} media-text--left{% endif %}{% if value.boxed %} media-text--boxed{% endif %}{% if value.shade %} media-text--shade{% endif %}">
+  <div class="container">
+    <div class="media-text__inner">
+      <div class="media-text__copy">
+        <div class="media-text__text">
+          <h2 data-anim="split">{{ value.title | safe }}</h2>
+          {% if value.lead or value.text or value.small or value.note %}
+          <div class="media-text__body" data-anim="reveal">
+            {% if value.lead %}<div class="media-text__lead">{{ value.lead | safe }}</div>{% endif %}
+            {% if value.text %}<div class="media-text__rich">{{ value.text | safe }}</div>{% endif %}
+            {% if value.small %}<div class="media-text__small">{{ value.small | safe }}</div>{% endif %}
+            {% if value.note %}<p class="media-text__note">{{ value.note }}</p>{% endif %}
+          </div>
+          {% endif %}
+          {% if value.list %}
+          <div class="media-text__list">
+            {% if value.list_title %}<h3 data-anim="reveal">{{ value.list_title }}</h3>{% endif %}
+            <ul data-anim-group="fade-up">
+              {% for item in value.list %}<li>{{ item }}</li>{% endfor %}
+            </ul>
+          </div>
+          {% endif %}
+        </div>
+        {% if value.button and value.button.text %}
+        <div class="media-text__button" data-anim="reveal">{% set btn = value.button %}{% include "snippets/button.njk" %}</div>
+        {% endif %}
+      </div>
+      <div class="media-text__media">
+        <div class="media-text__frame" data-anim="reveal" data-anim-type="wipe-up" data-anim-parallax-trigger>
+          <div class="media-text__layer" data-anim="parallax">{% set img = value.image %}{% set cls = "media-text__img" %}{% include "snippets/image.njk" %}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

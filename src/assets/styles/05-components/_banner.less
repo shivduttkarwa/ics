@@ -1,0 +1,45 @@
+@banner-height: 515 * @px;
+@banner-height-sm: 420 * @px;
+@banner-title-width: 508 * @px;
+
+.banner {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: flex-end;
+  min-height: @banner-height-sm;
+  padding: 40 * @px 0;
+  overflow: clip;
+  color: var(--color-white);
+  @media (min-width: @bp-lg) {
+    min-height: ~"min(@{banner-height}, 100svh)";
+    padding: 50 * @px 0;
+  }
+
+  &__media {
+    .cover();
+    z-index: -1;
+    overflow: hidden;
+    &::after {
+      content: "";
+      .cover();
+      background: var(--gradient-hero);
+    }
+  }
+
+  &__layer { .parallax-layer(16); }
+
+  &__img { .img-cover(); }
+
+  &__body {
+    position: relative;
+    width: 100%;
+  }
+
+  h2 {
+    .type-h1();
+    max-width: @banner-title-width;
+    margin: 0;
+    color: inherit;
+  }
+}

@@ -1,0 +1,294 @@
+{
+  "seo": {
+    "title": "Enrolling at ICS | Illawarra Christian School",
+    "description": "Applications for 2027 and 2028 are open now. The four enrolment steps, key dates for each entry point and answers to common questions."
+  },
+  "body": [
+    {
+      "type": "page_hero",
+      "value": {
+        "image": {
+          "src": "/assets/images/enrol/enrol-hero.webp",
+          "alt": "",
+          "width": 1440,
+          "height": 680
+        },
+        "image_mobile": {
+          "src": "/assets/images/enrol/enrol-hero-mobile.webp",
+          "alt": "",
+          "width": 604,
+          "height": 680
+        },
+        "video": null,
+        "shade": "none",
+        "title": "Enrolling at <br><em>Illawarra Christian School</em>",
+        "breadcrumbs": []
+      }
+    },
+    {
+      "type": "pinned",
+      "value": {
+        "title": "Choosing a school for <br>your child is a <em>big step</em>.",
+        "text": "Applications for 2027 and 2028 are open now. Our enrolments team will help you through each step.",
+        "button": null
+      }
+    },
+    {
+      "type": "steps",
+      "value": {
+        "title": "What are the <br>enrolment <em>steps?</em>",
+        "steps": [
+          {
+            "title": "Visit us",
+            "text": "Book a tour or come along to an open day. It's the best way to get a feel for the school."
+          },
+          {
+            "title": "Apply online",
+            "text": "Fill in the application form and pay the [TBC: $X] application fee. You'll need [TBC: e.g. birth certificate, recent school reports, NAPLAN results, any specialist reports, and a church reference if required]."
+          },
+          {
+            "title": "Meet with us",
+            "text": "You and your child will have a relaxed chat with [TBC: the Principal, or the Director of K-6 or 7-12] so we can get to know your family and talk about your child's needs."
+          },
+          {
+            "title": "Accept your offer",
+            "text": "If there's a place, we'll send you a letter of offer. To secure the place, accept the offer and pay the [TBC: enrolment acceptance fee]."
+          }
+        ],
+        "buttons": [
+          {
+            "text": "Apply now",
+            "url": "",
+            "style": "moss"
+          },
+          {
+            "text": "Book a tour",
+            "url": "",
+            "style": "white"
+          },
+          {
+            "text": "Download the prospectus",
+            "url": "",
+            "style": "outline-white",
+            "icon": "none"
+          }
+        ]
+      }
+    },
+    {
+      "type": "data_table",
+      "value": {
+        "title": "Key <em>dates</em>",
+        "table": {
+          "table_caption": "Key enrolment dates",
+          "first_row_is_table_header": true,
+          "first_col_is_header": true,
+          "data": [
+            [
+              "Entry",
+              "Applications open",
+              "Interviews",
+              "Offers"
+            ],
+            [
+              "Prep 2027",
+              "[TBC]",
+              "[TBC]",
+              "[TBC]"
+            ],
+            [
+              "Kindergarten 2027 and 2028",
+              "[TBC]",
+              "[TBC]",
+              "[TBC]"
+            ],
+            [
+              "Year 5 2027 and 2028",
+              "[TBC]",
+              "[TBC]",
+              "[TBC]"
+            ],
+            [
+              "Year 7 2028",
+              "[TBC]",
+              "[TBC]",
+              "[TBC]"
+            ],
+            [
+              "Year 11 2027",
+              "[TBC]",
+              "[TBC]",
+              "[TBC]"
+            ],
+            [
+              "Other years",
+              "Any time, if places are available",
+              "[TBC]",
+              "[TBC]"
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "type": "faqs",
+      "value": {
+        "theme": "white",
+        "title": "You might be <em>wondering...</em>",
+        "items": [
+          {
+            "question": "Can we start mid-year?",
+            "answer": "<p>[TBC: answer to come from the school.]</p>"
+          },
+          {
+            "question": "Is there a waiting list?",
+            "answer": "<p>[TBC: answer to come from the school.]</p>"
+          },
+          {
+            "question": "Do brothers and sisters get priority?",
+            "answer": "<p>[TBC: answer to come from the school.]</p>"
+          }
+        ],
+        "all_closed": true
+      }
+    },
+    {
+      "type": "cta_band",
+      "value": {
+        "height": 682,
+        "image": {
+          "src": "/assets/images/enrol/cta-violin-1600.webp",
+          "srcset": "/assets/images/enrol/cta-violin-1280.webp 1280w, /assets/images/enrol/cta-violin-1600.webp 1600w",
+          "alt": "",
+          "width": 1600,
+          "height": 903
+        },
+        "image_mobile": {
+          "src": "/assets/images/enrol/cta-violin-mobile.webp",
+          "alt": "",
+          "width": 489,
+          "height": 819
+        },
+        "video": null,
+        "eyebrow": "",
+        "title": "Join 500+ <em>wonderful</em> <br>families at ICS.",
+        "text": "Apply today and give your child a place where they are known, cared for and encouraged to grow and flourish.",
+        "button": {
+          "text": "Apply now to enrol",
+          "url": "",
+          "style": "glass"
+        },
+        "button_secondary": {
+          "text": "Download Prospectus",
+          "url": "",
+          "style": "outline-white"
+        }
+      }
+    },
+    {
+      "type": "where_next",
+      "value": {
+        "title": "Where <em>next</em>?",
+        "cards": [
+          {
+            "image": {
+              "src": "/assets/images/why/next-faith.webp",
+              "alt": "Secondary students in a discussion circle with their teacher",
+              "width": 1256,
+              "height": 962
+            },
+            "label": "Our Faith",
+            "url": "/faith.html"
+          },
+          {
+            "image": {
+              "src": "/assets/images/people/cta-meet-1280.webp",
+              "alt": "A teacher and a student laughing together at a laptop",
+              "width": 1280,
+              "height": 722
+            },
+            "label": "Learning",
+            "url": ""
+          }
+        ]
+      }
+    },
+    {
+      "type": "keep_exploring",
+      "value": {
+        "title": "Keep <em>exploring</em>",
+        "links": [
+          {
+            "label": "Our Faith",
+            "url": "/faith.html"
+          },
+          {
+            "label": "Learning",
+            "url": ""
+          },
+          {
+            "label": "Life at ICS",
+            "url": ""
+          }
+        ]
+      }
+    },
+    {
+      "type": "cta_cards",
+      "value": {
+        "title": "What comes <em>next?</em>",
+        "cards": [
+          {
+            "theme": "white",
+            "image": {
+              "src": "/assets/images/home/cta-community.webp",
+              "alt": "Primary students smiling together in the playground",
+              "width": 826,
+              "height": 656
+            },
+            "title": "Meet our <em>community</em>.",
+            "text": "Walk the campus, meet our teachers and see what a school day at ICS is really like.",
+            "button": {
+              "text": "Book a tour",
+              "url": "",
+              "style": "canopy"
+            }
+          },
+          {
+            "theme": "beach",
+            "image": {
+              "src": "/assets/images/home/cta-enquire.webp",
+              "alt": "A student playing the violin on stage",
+              "width": 755,
+              "height": 600
+            },
+            "title": "Enquire and <br><em>have a chat</em>.",
+            "text": "Ask us anything about fees, year levels or what to expect. Our enrolments team is happy to help.",
+            "button": {
+              "text": "Make an enquiry",
+              "url": "",
+              "style": "canopy"
+            }
+          },
+          {
+            "theme": "moss",
+            "image": {
+              "src": "/assets/images/hsc/cta-apply-classroom.webp",
+              "alt": "Secondary students working on a task together at a classroom table",
+              "width": 826,
+              "height": 656
+            },
+            "title": "Start <em>your</em> <br>ICS journey",
+            "text": "Complete your application online and secure your child’s place. Early applications keep more options open.",
+            "button": {
+              "text": "Apply to enrol",
+              "url": "",
+              "style": "canopy"
+            }
+          }
+        ],
+        "position": "low"
+      }
+    }
+  ]
+}

@@ -1,0 +1,251 @@
+{
+  "seo": {
+    "title": "Entry points | Illawarra Christian School",
+    "description": "Your child can join ICS in any year if there's a place, but most families start at Prep, Kindergarten, Year 5, Year 7 or Year 11."
+  },
+  "body": [
+    {
+      "type": "page_hero",
+      "value": {
+        "image": {
+          "src": "/assets/images/enrol/entry-hero-1600.webp",
+          "srcset": "/assets/images/enrol/entry-hero-1280.webp 1280w, /assets/images/enrol/entry-hero-1600.webp 1600w",
+          "alt": "",
+          "width": 1600,
+          "height": 1066
+        },
+        "image_mobile": {
+          "src": "/assets/images/enrol/entry-hero-mobile.webp",
+          "alt": "",
+          "width": 900,
+          "height": 1013
+        },
+        "video": null,
+        "shade": "medium",
+        "title": "Entry points to start <br><em>your</em> ICS journey",
+        "breadcrumbs": [
+          {
+            "label": "Enrol",
+            "url": "/enrol.html"
+          },
+          {
+            "label": "Entry Points",
+            "url": ""
+          }
+        ]
+      }
+    },
+    {
+      "type": "pinned",
+      "value": {
+        "title": "Starting at ICS looks <br>different for <em>every</em> family.",
+        "text": "Join us in Year 5, Year 7 or Year 11. Applications are open now. Our enrolments team will help you through each step.",
+        "button": null
+      }
+    },
+    {
+      "type": "journey",
+      "value": {
+        "title": "<em>When</em> to start at ICS",
+        "text": "Your child can join ICS in any year if there's a place, but most families start at one of the five points below.",
+        "stages": [
+          {
+            "tag": "Age 4",
+            "title": "Prep",
+            "image": {
+              "src": "/assets/images/home/journey-prep.webp",
+              "alt": "A Prep student in a school hat at the wheel of a fire engine",
+              "width": 720,
+              "height": 1440
+            },
+            "text": "<p>From a nervous first day in Prep to a confident last day in Year 12, your child is never starting over. They’re known at every step and each stage builds on the last, so the journey feels like one story.</p>",
+            "button": {
+              "text": "Discover Prep",
+              "url": "",
+              "style": "white"
+            },
+            "narrow": true
+          },
+          {
+            "tag": "Age 5",
+            "title": "Kindergarten",
+            "image": {
+              "src": "/assets/images/enrol/journey-kindergarten.webp",
+              "alt": "A Kindergarten student in a paper crown laughing with his teddy",
+              "width": 657,
+              "height": 1314
+            },
+            "text": "<p>Small classes and a strong focus on reading, writing and maths, with specialist music and Japanese teachers.</p>",
+            "button": {
+              "text": "Discover Primary",
+              "url": "",
+              "style": "white"
+            },
+            "narrow": true
+          },
+          {
+            "tag": "Age 10",
+            "title": "Year 5",
+            "image": {
+              "src": "/assets/images/home/journey-year-5.webp",
+              "alt": "A Year 5 student playing the violin on stage",
+              "width": 333,
+              "height": 599
+            },
+            "text": "<p>Year 5 is one of the main entry points at ICS. Starting two years before high school gives your child time to settle in and make good friends before Year 7. Students who join in Year 5 can take on leadership roles in Year 6, such as house captain, the service team or helping lead assemblies. When they start Year 7, they're already at home on the campus.</p><p>If moving earlier than you planned is a worry financially, please talk to us. There is one set fee with no hidden extras, and with sibling discounts and Edstart payment plans many families find it more manageable than they expected.</p>",
+            "button": {
+              "text": "Discover Primary",
+              "url": "",
+              "style": "white"
+            }
+          },
+          {
+            "tag": "Age 12",
+            "title": "Year 7",
+            "image": {
+              "src": "/assets/images/home/journey-secondary.webp",
+              "alt": "Secondary students walking up the path to school",
+              "width": 387,
+              "height": 696
+            },
+            "text": "<p>From a nervous first day in Prep to a confident last day in Year 12, your child is never starting over. They’re known at every step and each stage builds on the last, so the journey feels like one story.</p>",
+            "button": {
+              "text": "Discover Secondary",
+              "url": "",
+              "style": "white"
+            }
+          },
+          {
+            "tag": "Years 11-12",
+            "title": "Senior Years",
+            "image": {
+              "src": "/assets/images/home/journey-senior.webp",
+              "alt": "A senior student talking with a teacher outside a classroom",
+              "width": 592,
+              "height": 1066
+            },
+            "text": "<p>From a nervous first day in Prep to a confident last day in Year 12, your child is never starting over. They’re known at every step and each stage builds on the last, so the journey feels like one story.</p>",
+            "button": {
+              "text": "Discover Senior Years",
+              "url": "",
+              "style": "white"
+            }
+          }
+        ],
+        "buttons": null
+      }
+    },
+    {
+      "type": "quote_band",
+      "value": {
+        "quote": "We worried about moving schools in Year 7. Within a fortnight our son had friends, a favourite teacher and a spring in his step. The enrolment team made it easy.",
+        "attribution": "— parent of a Year 8 student who joined in Year 7"
+      }
+    },
+    {
+      "type": "where_next",
+      "value": {
+        "title": "Where <em>next</em>?",
+        "cards": [
+          {
+            "image": {
+              "src": "/assets/images/why/next-faith.webp",
+              "alt": "Secondary students in a discussion circle with their teacher",
+              "width": 1256,
+              "height": 962
+            },
+            "label": "Our Faith",
+            "url": "/faith.html"
+          },
+          {
+            "image": {
+              "src": "/assets/images/people/cta-meet-1280.webp",
+              "alt": "A teacher and a student laughing together at a laptop",
+              "width": 1280,
+              "height": 722
+            },
+            "label": "Learning",
+            "url": ""
+          }
+        ]
+      }
+    },
+    {
+      "type": "keep_exploring",
+      "value": {
+        "title": "Keep <em>exploring</em>",
+        "links": [
+          {
+            "label": "Our Faith",
+            "url": "/faith.html"
+          },
+          {
+            "label": "Learning",
+            "url": ""
+          },
+          {
+            "label": "Life at ICS",
+            "url": ""
+          }
+        ]
+      }
+    },
+    {
+      "type": "cta_cards",
+      "value": {
+        "title": "What comes <em>next?</em>",
+        "cards": [
+          {
+            "theme": "white",
+            "image": {
+              "src": "/assets/images/home/cta-community.webp",
+              "alt": "Primary students smiling together in the playground",
+              "width": 826,
+              "height": 656
+            },
+            "title": "Meet our <em>community</em>.",
+            "text": "Walk the campus, meet our teachers and see what a school day at ICS is really like.",
+            "button": {
+              "text": "Book a tour",
+              "url": "",
+              "style": "canopy"
+            }
+          },
+          {
+            "theme": "beach",
+            "image": {
+              "src": "/assets/images/home/cta-enquire.webp",
+              "alt": "A student playing the violin on stage",
+              "width": 755,
+              "height": 600
+            },
+            "title": "Enquire and <br><em>have a chat</em>.",
+            "text": "Ask us anything about fees, year levels or what to expect. Our enrolments team is happy to help.",
+            "button": {
+              "text": "Make an enquiry",
+              "url": "",
+              "style": "canopy"
+            }
+          },
+          {
+            "theme": "moss",
+            "image": {
+              "src": "/assets/images/hsc/cta-apply-classroom.webp",
+              "alt": "Secondary students working on a task together at a classroom table",
+              "width": 826,
+              "height": 656
+            },
+            "title": "Start <em>your</em> <br>ICS journey",
+            "text": "Complete your application online and secure your child’s place. Early applications keep more options open.",
+            "button": {
+              "text": "Apply to enrol",
+              "url": "",
+              "style": "canopy"
+            }
+          }
+        ],
+        "position": "low"
+      }
+    }
+  ]
+}

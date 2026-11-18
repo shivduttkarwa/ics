@@ -1,0 +1,30 @@
+@feature-video-height: 740 * @px;
+
+.feature-video {
+  padding-bottom: 50 * @px;
+  background: var(--color-canopy);
+  @media (min-width: @bp-lg) { padding-bottom: 120 * @px; }
+
+  &__frame {
+    position: relative;
+    aspect-ratio: 1280 / 740;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    @media (min-width: @bp-lg) {
+      height: ~"min(@{feature-video-height}, 100svh - @{fit-room})";
+      aspect-ratio: auto;
+    }
+  }
+
+  &__layer { .parallax-layer(6); }
+
+  &__img { .img-cover(); }
+
+  &__video {
+    .cover();
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity var(--duration-slow) ease;
+    &.is-live { opacity: 1; }
+  }
+}

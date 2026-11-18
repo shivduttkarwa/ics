@@ -1,4 +1,4 @@
-<section class="feature-grid">
+<section class="feature-grid{% if value.theme == 'canopy' %} feature-grid--canopy rounded-foot{% endif %}">
   <div class="container">
     <div class="feature-grid__inner">
       <h2 data-anim="split">{{ value.title | safe }}</h2>
@@ -7,7 +7,8 @@
         <li class="feature-grid__item">
           <span class="feature-grid__rule"></span>
           <h3>{{ item.title | safe }}</h3>
-          <p class="feature-grid__text">{{ item.text }}</p>
+          <div class="feature-grid__text">{{ item.text | safe }}</div>
+          {% if item.button and item.button.text %}<div class="feature-grid__button">{% set btn = item.button %}{% include "snippets/button.njk" %}</div>{% endif %}
         </li>
         {% endfor %}
       </ul>

@@ -1,0 +1,363 @@
+{
+  "seo": {
+    "title": "Faith at ICS | Illawarra Christian School",
+    "description": "Faith isn’t a subject at Illawarra Christian School. Christian faith shapes how teachers greet your child each morning and how classmates are taught to treat each other."
+  },
+  "body": [
+    {
+      "type": "page_hero",
+      "value": {
+        "image": {
+          "src": "/assets/images/faith/faith-hero-1920.webp",
+          "srcset": "/assets/images/faith/faith-hero-1280.webp 1280w, /assets/images/faith/faith-hero-1920.webp 1920w",
+          "alt": "",
+          "width": 1920,
+          "height": 1080
+        },
+        "image_mobile": {
+          "src": "/assets/images/faith/faith-hero-mobile.webp",
+          "alt": "",
+          "width": 900,
+          "height": 1013
+        },
+        "video": null,
+        "shade": "medium",
+        "title": "Real faith, <br><em>not just values</em>.",
+        "breadcrumbs": []
+      }
+    },
+    {
+      "type": "pinned",
+      "value": {
+        "spread": true,
+        "title": "Faith isn’t a subject here. <br><em>Faith is everything to us.</em>",
+        "text": "Christian faith shapes how teachers greet your child each morning and how classmates are taught to treat each other. At ICS, the truth of the Bible shapes how we approach everything.",
+        "button": null
+      }
+    },
+    {
+      "type": "moments",
+      "value": {
+        "label": "Making it personal",
+        "items": [
+          {
+            "theme": "canopy",
+            "time": "8:15am",
+            "title": "<em>Morning Devotions</em>",
+            "text": "Before the first bell for lessons, primary students gather with their class teacher for a short devotion. It’s unhurried — a story, a question, space for a child to say what’s actually on their mind that morning.",
+            "note": "This is where pastoral care starts: not in a program, <br>but in the first ten minutes of the day.",
+            "image": {
+              "src": "/assets/images/faith/moment-devotions.webp",
+              "alt": "A teacher leading a primary devotion on stage, students sitting on the floor in front of her",
+              "width": 921,
+              "height": 1151
+            }
+          },
+          {
+            "theme": "white",
+            "time": "8:15am",
+            "title": "<strong>Secondary Pastoral Care Groups</strong>",
+            "text": "Secondary students meet in small Pastoral Care groups led by a teacher who stays with them across the year — not a rotating roster.",
+            "note": "Bible study, discussion, the ordinary business of checking in on each other. Small enough that nobody is anonymous.",
+            "image": {
+              "src": "/assets/images/faith/moment-pastoral-care.webp",
+              "alt": "Secondary students singing on stage in front of their year group",
+              "width": 1020,
+              "height": 1275
+            }
+          },
+          {
+            "theme": "beach",
+            "time": "All day, every day",
+            "title": "<strong>In the classroom</strong>",
+            "text": "A biblical worldview isn’t taught as a separate subject — it’s the lens the whole curriculum is considered through, in Maths as much as Scripture.",
+            "note": "Staff are people who hold this conviction themselves, <br>not contractors reciting a values statement.",
+            "image": {
+              "src": "/assets/images/faith/moment-classroom.webp",
+              "alt": "A teacher laughing with a student as they work at their laptops",
+              "width": 723,
+              "height": 903
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "pillar",
+      "value": {
+        "theme": "beach",
+        "stack": true,
+        "spread": false,
+        "media_height": 640,
+        "title": "<em>Real faith</em>,<br> not just values.",
+        "bullets": [
+          {
+            "icon": "leaf",
+            "title": "Every staff member is a follower of Jesus.",
+            "text": ""
+          },
+          {
+            "icon": "leaf",
+            "title": "Each day starts with devotions and prayer.",
+            "text": "Primary students do this with their class and secondary students meet in small pastoral care groups."
+          },
+          {
+            "icon": "leaf",
+            "title": "Biblical Studies runs from Prep to Year 12",
+            "text": "Students work through the whole story of the Bible at a level that suits each age."
+          },
+          {
+            "icon": "leaf",
+            "title": "We don't try to control what your child believes.",
+            "text": "We teach them to read the Bible for themselves and think it through."
+          }
+        ],
+        "buttons": [
+          {
+            "text": "Faith at ICS",
+            "url": "/faith.html",
+            "style": "moss"
+          }
+        ],
+        "image": {
+          "src": "/assets/images/faith/pillar-faith.webp",
+          "alt": "Secondary students in a discussion circle with their teacher",
+          "width": 1100,
+          "height": 1280
+        },
+        "video": null,
+        "quote": null,
+        "shade": true
+      }
+    },
+    {
+      "type": "pillar",
+      "value": {
+        "theme": "white",
+        "stack": true,
+        "spread": false,
+        "media_height": 648,
+        "title": "A community that <em>knows <br>your child.</em>",
+        "bullets": [
+          {
+            "icon": "leaf",
+            "title": "Eash students joins a small pastoral care group",
+            "text": "In secondary school your child joins a small pastoral care group, and the same teacher usually stays with that group from Year 7 to Year 12."
+          },
+          {
+            "icon": "leaf",
+            "title": "Qualified health professionals",
+            "text": "Our wellbeing team includes a school psychologist, two counsellors and an occupational therapist."
+          },
+          {
+            "icon": "leaf",
+            "title": "Year 12 students meet with Staff Mentors",
+            "text": "Every Year 12 student meets one-on-one with a staff mentor each week."
+          },
+          {
+            "icon": "leaf",
+            "title": "Founded and Governed by local Christian parents",
+            "text": "ICS was started by local Christian parents in 1982, and parents still govern the school today."
+          }
+        ],
+        "buttons": [
+          {
+            "text": "Wellbeing and care",
+            "url": "",
+            "style": "moss"
+          }
+        ],
+        "image": {
+          "src": "/assets/images/home/pillar-community.webp",
+          "alt": "Parents chatting together at a school event",
+          "width": 1320,
+          "height": 1649
+        },
+        "video": null,
+        "quote": null
+      }
+    },
+    {
+      "type": "testimonials",
+      "value": {
+        "title": "What our parents <em>say</em>",
+        "items": [
+          {
+            "kind": "video",
+            "image": {
+              "src": "/assets/images/faith/testimonial-maria.webp",
+              "alt": "Maria, a parent, smiling with a friend",
+              "width": 682,
+              "height": 1365
+            },
+            "video": null,
+            "label": "Hear from Maria",
+            "url": ""
+          },
+          {
+            "kind": "quote",
+            "theme": "canopy",
+            "quote": "“What struck me wasn't a mission statement, it was watching a teacher kneel down and actually listen to my daughter. Faith here isn't taught, it's lived every single day.”",
+            "name": "Maria, Year 7 Parent"
+          },
+          {
+            "kind": "video",
+            "image": {
+              "src": "/assets/images/faith/testimonial-ethan.webp",
+              "alt": "Parents chatting together at a school event",
+              "width": 683,
+              "height": 1229
+            },
+            "video": null,
+            "label": "Hear from ethan",
+            "url": ""
+          },
+          {
+            "kind": "quote",
+            "theme": "beach",
+            "quote": "“His teachers know his strengths, his struggles, even his sense of humour. After years of being one of many, that has made all the difference.”",
+            "name": "Maria, Year 7 Parent"
+          },
+          {
+            "kind": "video",
+            "image": {
+              "src": "/assets/images/why/testimonial-dave.webp",
+              "alt": "Dave with his family at a cafe table",
+              "width": 682,
+              "height": 1365
+            },
+            "video": null,
+            "label": "Hear from dave",
+            "url": ""
+          }
+        ]
+      }
+    },
+    {
+      "type": "faqs",
+      "value": {
+        "theme": "white",
+        "title": "You might be <em>wondering...</em>",
+        "items": [
+          {
+            "question": "How is ICS different from other independent schools in the Illawarra?",
+            "answer": "<p>ICS has strong HSC results and a genuinely Christian culture, and its fees are well below most independent schools in the region. Every staff member is a Christian and every student is known by name.</p>"
+          },
+          {
+            "question": "Is ICS a good school academically?",
+            "answer": "<p>Yes. ICS is regularly ranked among the top [TBC: 3] Illawarra schools for HSC results [TBC: source]. Every Extension course is offered and several of our teachers are HSC markers.</p>"
+          },
+          {
+            "question": "Is ICS a private school?",
+            "answer": "<p>ICS is an independent, not-for-profit Christian school run by Illawarra Christian Education, an association of Christian parents.</p>"
+          }
+        ]
+      }
+    },
+    {
+      "type": "where_next",
+      "value": {
+        "title": "Where <em>next</em>?",
+        "cards": [
+          {
+            "image": {
+              "src": "/assets/images/why/next-faith.webp",
+              "alt": "Secondary students in a discussion circle with their teacher",
+              "width": 1256,
+              "height": 962
+            },
+            "label": "Our Faith",
+            "url": "/faith.html"
+          },
+          {
+            "image": {
+              "src": "/assets/images/why/next-learning.webp",
+              "alt": "A teacher working with students at their laptops",
+              "width": 1179,
+              "height": 903
+            },
+            "label": "Learning",
+            "url": ""
+          }
+        ]
+      }
+    },
+    {
+      "type": "keep_exploring",
+      "value": {
+        "title": "Keep <em>exploring</em>",
+        "links": [
+          {
+            "label": "Our Faith",
+            "url": "/faith.html"
+          },
+          {
+            "label": "Learning",
+            "url": ""
+          },
+          {
+            "label": "Life at ICS",
+            "url": ""
+          }
+        ]
+      }
+    },
+    {
+      "type": "cta_cards",
+      "value": {
+        "title": "What comes <em>next?</em>",
+        "cards": [
+          {
+            "theme": "white",
+            "image": {
+              "src": "/assets/images/home/cta-community.webp",
+              "alt": "Primary students smiling together in the playground",
+              "width": 826,
+              "height": 656
+            },
+            "title": "Meet our <em>community</em>.",
+            "text": "Walk the campus, meet our teachers and see what a school day at ICS is really like.",
+            "button": {
+              "text": "Book a tour",
+              "url": "",
+              "style": "canopy"
+            }
+          },
+          {
+            "theme": "beach",
+            "image": {
+              "src": "/assets/images/home/cta-enquire.webp",
+              "alt": "A student playing the violin on stage",
+              "width": 755,
+              "height": 600
+            },
+            "title": "Enquire and <br><em>have a chat</em>.",
+            "text": "Ask us anything about fees, year levels or what to expect. Our enrolments team is happy to help.",
+            "button": {
+              "text": "Make an enquiry",
+              "url": "",
+              "style": "canopy"
+            }
+          },
+          {
+            "theme": "moss",
+            "image": {
+              "src": "/assets/images/hsc/cta-apply-classroom.webp",
+              "alt": "Secondary students working on a task together at a classroom table",
+              "width": 826,
+              "height": 656
+            },
+            "title": "Start <em>your</em> <br>ICS journey",
+            "text": "Complete your application online and secure your child’s place. Early applications keep more options open.",
+            "button": {
+              "text": "Apply to enrol",
+              "url": "",
+              "style": "canopy"
+            }
+          }
+        ],
+        "position": "low"
+      }
+    }
+  ]
+}

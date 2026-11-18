@@ -1,0 +1,335 @@
+{
+  "seo": {
+    "title": "Internal page blocks, second set | Illawarra Christian School",
+    "description": "More building blocks for an Illawarra Christian School inner page: a pull quote, a photo, body copy, an author, a gallery and promos."
+  },
+  "body": [
+    {
+      "type": "page_hero",
+      "value": {
+        "image": {
+          "src": "/assets/images/faith/faith-hero-1920.webp",
+          "srcset": "/assets/images/faith/faith-hero-1280.webp 1280w, /assets/images/faith/faith-hero-1920.webp 1920w",
+          "alt": "",
+          "width": 1920,
+          "height": 1080
+        },
+        "image_mobile": {
+          "src": "/assets/images/faith/faith-hero-mobile.webp",
+          "alt": "",
+          "width": 900,
+          "height": 1013
+        },
+        "video": null,
+        "shade": "medium",
+        "title": "Internal page <br><em>example headline</em>",
+        "breadcrumbs": [
+          {
+            "label": "Why ICS",
+            "url": "/why.html"
+          },
+          {
+            "label": "Wellbeing and Care",
+            "url": ""
+          }
+        ]
+      }
+    },
+    {
+      "type": "pinned",
+      "value": {
+        "spread": true,
+        "title": "Get in touch with us. <br><em>We’d love to hear from you.</em>",
+        "text": "We haven't built ICS on grand buildings or prestige. Our money and energy go into good teaching and real relationships with students. That's how our results stay strong while our fees stay modest.",
+        "button": null
+      }
+    },
+    {
+      "type": "quote_band",
+      "value": {
+        "theme": "white",
+        "quote": "“My daughter's found close friends through her Pastoral Care group, and I've built real friendships through our year-level Facebook group and Friday assemblies each week.”",
+        "attribution": "— ICS community member"
+      }
+    },
+    {
+      "type": "photo",
+      "value": {
+        "image": {
+          "src": "/assets/images/blocks/image-children.webp",
+          "alt": "Three primary students laughing as they play together",
+          "width": 1600,
+          "height": 974
+        },
+        "caption": ""
+      }
+    },
+    {
+      "type": "body_text",
+      "value": {
+        "text": "<p>ICS has strong HSC results and a genuinely Christian culture, and its fees are well below most independent schools in the region. Every staff member is a Christian and every student is known by name.</p><p>Children learn in different ways. Our learning support teams for K-6 and 7-12 work with individual students and small groups, and in Years 7 to 10 there are smaller English and Maths classes for students who need extra help. Students who need more challenge are extended through LogICS (Learning Opportunities for Growth at ICS), our enrichment program, which is led by our Director of Student Learning Opportunities.</p><p>We also have a sensory room. For HSC students who are eligible, we apply to NESA for disability provisions.</p><p>Yes. We have learning support teams for K-6 and 7-12 and smaller literacy and numeracy classes in Years 7 to 10. Our psychologist and occupational therapist work on site. We'll talk with you about your child's needs before they start.</p>"
+      }
+    },
+    {
+      "type": "author",
+      "value": {
+        "image": {
+          "src": "/assets/images/blocks/author-principal.webp",
+          "alt": "Simon Lainson, College Principal",
+          "width": 377,
+          "height": 447
+        },
+        "name": "Simon Lainson",
+        "role": "College Principal",
+        "text": "Short bio description of author.  is an independent, not-for-profit Christian school run by Illawarra Christian Education, an association of Christian parents."
+      }
+    },
+    {
+      "type": "gallery",
+      "value": {
+        "title": "Photo <em>gallery</em>",
+        "slides": [
+          {
+            "image": {
+              "src": "/assets/images/blocks/gallery-parents.webp",
+              "alt": "Two mothers smiling together at a school event",
+              "width": 1692,
+              "height": 1170
+            },
+            "caption": "ICS has strong HSC results and a genuinely Christian culture, and its fees."
+          },
+          {
+            "image": {
+              "src": "/assets/images/home/hero-1920.webp",
+              "alt": "Students in the school grounds",
+              "width": 1920,
+              "height": 1080
+            },
+            "caption": "ICS has strong HSC results and a genuinely Christian culture, and its fees."
+          },
+          {
+            "image": {
+              "src": "/assets/images/blocks/promo-drama.webp",
+              "alt": "A student performing on stage in the school musical",
+              "width": 826,
+              "height": 1170
+            },
+            "caption": "ICS has strong HSC results and a genuinely Christian culture, and its fees."
+          },
+          {
+            "image": {
+              "src": "/assets/images/blocks/banner-sport.webp",
+              "alt": "Students playing touch football on the oval",
+              "width": 1920,
+              "height": 686
+            },
+            "caption": "ICS has strong HSC results and a genuinely Christian culture, and its fees."
+          },
+          {
+            "image": {
+              "src": "/assets/images/blocks/promo-duke.webp",
+              "alt": "A Duke of Edinburgh group on a granite outcrop in the mountains",
+              "width": 826,
+              "height": 1170
+            },
+            "caption": "ICS has strong HSC results and a genuinely Christian culture, and its fees."
+          },
+          {
+            "image": {
+              "src": "/assets/images/home/slide-arts-1920.webp",
+              "alt": "Students at a creative arts showcase",
+              "width": 1920,
+              "height": 1080
+            },
+            "caption": "ICS has strong HSC results and a genuinely Christian culture, and its fees."
+          },
+          {
+            "image": {
+              "src": "/assets/images/blocks/image-children.webp",
+              "alt": "Three primary students laughing as they play together",
+              "width": 1600,
+              "height": 974
+            },
+            "caption": "ICS has strong HSC results and a genuinely Christian culture, and its fees."
+          }
+        ]
+      }
+    },
+    {
+      "type": "promo_cards",
+      "value": {
+        "title": "Discover your <em>new passion</em>",
+        "text": "From camps, competitions, cultural exchanges, Duke of Ed and da Vinci Decathlon, to fundraising, Future Problem Solving, musicals and more. You name it, we've probably got it.",
+        "cards": [
+          {
+            "title": "Drama and <br>Creative Arts",
+            "url": "",
+            "image": {
+              "src": "/assets/images/blocks/promo-drama.webp",
+              "alt": "A student performing on stage in the school musical",
+              "width": 826,
+              "height": 1170
+            }
+          },
+          {
+            "title": "Sport",
+            "url": "",
+            "image": {
+              "src": "/assets/images/blocks/promo-sport.webp",
+              "alt": "Students running with the ball in a game of touch football",
+              "width": 826,
+              "height": 1172
+            }
+          },
+          {
+            "title": "Duke of Edinburgh Program",
+            "url": "",
+            "image": {
+              "src": "/assets/images/blocks/promo-duke.webp",
+              "alt": "A Duke of Edinburgh group on a granite outcrop in the mountains",
+              "width": 826,
+              "height": 1170
+            }
+          },
+          {
+            "title": "Clubs and Activities",
+            "url": "",
+            "image": {
+              "src": "/assets/images/blocks/promo-clubs.webp",
+              "alt": "Students walking along a beach at sunrise",
+              "width": 826,
+              "height": 1170
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "media_text",
+      "value": {
+        "theme": "beach",
+        "boxed": true,
+        "shade": true,
+        "title": "<em>Large promo</em>, <br>for internal page.",
+        "lead": "<p>Faith isn't a subject at ICS. You'll see it in how teachers greet your child in the morning and how students are taught to treat each other.</p>",
+        "small": "<p>Every staff member at ICS is a follower of Jesus. We teach the Bible clearly and help students read it for themselves, so they can think it through and reach their own response.</p>",
+        "button": {
+          "text": "Faith at ICS",
+          "url": "/faith.html",
+          "style": "moss"
+        },
+        "image": {
+          "src": "/assets/images/faith/pillar-faith.webp",
+          "alt": "Secondary students in a discussion circle with their teacher",
+          "width": 1100,
+          "height": 1280
+        }
+      }
+    },
+    {
+      "type": "where_next",
+      "value": {
+        "title": "Where <em>next</em>?",
+        "cards": [
+          {
+            "image": {
+              "src": "/assets/images/why/next-faith.webp",
+              "alt": "Secondary students in a discussion circle with their teacher",
+              "width": 1256,
+              "height": 962
+            },
+            "label": "Our Faith",
+            "url": "/faith.html"
+          },
+          {
+            "image": {
+              "src": "/assets/images/why/next-learning.webp",
+              "alt": "A teacher working with students at their laptops",
+              "width": 1179,
+              "height": 903
+            },
+            "label": "Learning",
+            "url": ""
+          }
+        ]
+      }
+    },
+    {
+      "type": "keep_exploring",
+      "value": {
+        "title": "Keep <em>exploring</em>",
+        "links": [
+          {
+            "label": "Our Faith",
+            "url": "/faith.html"
+          },
+          {
+            "label": "Learning",
+            "url": ""
+          },
+          {
+            "label": "Life at ICS",
+            "url": ""
+          }
+        ]
+      }
+    },
+    {
+      "type": "cta_cards",
+      "value": {
+        "title": "What comes <em>next?</em>",
+        "cards": [
+          {
+            "theme": "white",
+            "image": {
+              "src": "/assets/images/home/cta-community.webp",
+              "alt": "Primary students smiling together in the playground",
+              "width": 826,
+              "height": 656
+            },
+            "title": "Meet our <em>community</em>.",
+            "text": "Walk the campus, meet our teachers and see what a school day at ICS is really like.",
+            "button": {
+              "text": "Book a tour",
+              "url": "",
+              "style": "canopy"
+            }
+          },
+          {
+            "theme": "beach",
+            "image": {
+              "src": "/assets/images/home/cta-enquire.webp",
+              "alt": "A student playing the violin on stage",
+              "width": 755,
+              "height": 600
+            },
+            "title": "Enquire and <br><em>have a chat</em>.",
+            "text": "Ask us anything about fees, year levels or what to expect. Our enrolments team is happy to help.",
+            "button": {
+              "text": "Make an enquiry",
+              "url": "",
+              "style": "canopy"
+            }
+          },
+          {
+            "theme": "moss",
+            "image": {
+              "src": "/assets/images/hsc/cta-apply-classroom.webp",
+              "alt": "Secondary students working on a task together at a classroom table",
+              "width": 826,
+              "height": 656
+            },
+            "title": "Start <em>your</em> <br>ICS journey",
+            "text": "Complete your application online and secure your child’s place. Early applications keep more options open.",
+            "button": {
+              "text": "Apply to enrol",
+              "url": "",
+              "style": "canopy"
+            }
+          }
+        ],
+        "position": "low"
+      }
+    }
+  ]
+}

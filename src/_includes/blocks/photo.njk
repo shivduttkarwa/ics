@@ -1,0 +1,10 @@
+<section class="photo">
+  <div class="container">
+    <figure class="photo__inner">
+      <div class="photo__frame" data-anim="reveal" data-anim-type="wipe-up" data-anim-parallax-trigger>
+        <div class="photo__layer" data-anim="parallax">{% set img = value.image %}{% set cls = "photo__img" %}{% include "snippets/image.njk" %}</div>
+      </div>
+      {% if value.caption %}<figcaption data-anim="reveal">{{ value.caption }}</figcaption>{% endif %}
+    </figure>
+  </div>
+</section>

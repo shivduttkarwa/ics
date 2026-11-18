@@ -1,0 +1,24 @@
+@body-text-width: 630 * @px;
+
+// body copy in the page's centre column; Figma sets it 98 under a photo and the author card 64 under it
+.body-text {
+  padding: 25 * @px 0;
+  background: var(--color-white);
+  color: var(--color-coal);
+  @media (min-width: @bp-lg) { padding: 98 * @px 0 32 * @px; }
+
+  &__body {
+    .type-body-2();
+    max-width: @body-text-width;
+    margin-inline: auto;
+    > * { margin: 0; }
+    > * + * { margin-top: 1.4em; }
+    h2,
+    h3 {
+      .type-heading-4();
+      color: var(--color-canopy);
+    }
+    ul { padding-left: 1.2em; }
+    a { color: var(--color-canopy); }
+  }
+}
