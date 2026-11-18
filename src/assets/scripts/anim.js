@@ -329,16 +329,22 @@ function glideLines(el, { stagger, fade, onComplete }) {
 
 function splitUnit(el) {
   const type = attr(el, "data-anim-type", "lines");
-  const lines = (vars = {}) => riseLines(el, {
-    ...vars,
-    stagger: number(el, "data-anim-stagger", LINES.stagger),
-    fade: number(el, "data-anim-fade", 0),
-    onComplete: () => settle(el),
-  });
+  const opts = { stagger: number(el, "data-anim-stagger", LINES.stagger), fade: number(el, "data-anim-fade", 0), onComplete: () => settle(el) };
   // a hero title is split during setup, so no split lands in a frame of the entrance
   if (type === "lines" && tierOf(el) === HERO) {
-    const glide = glideLines(el, { stagger: number(el, "data-anim-stagger", LINES.stagger), fade: number(el, "data-anim-fade", 0), onComplete: () => settle(el) });
+    const glide = glideLines(el, opts);
     return { el, build: glide.build, play: (delay) => gsap.delayedCall(delay, glide.play), show: glide.show };
+  }
+  // every other title glides the same way, split as it starts, so its lines are read from the layout of that moment
+  if (type === "lines") {
+    let glide = null;
+    const make = () => (glide = glideLines(el, opts));
+    return {
+      el,
+      build: () => make().build(),
+      play: (delay) => gsap.delayedCall(delay, () => make().play()),
+      show: () => (glide ? glide.show() : settle(el)),
+    };
   }
   const pieces = (delay = 0) => {
     const split = new SplitText(el, { type: type === "chars" ? "words,chars" : "words", aria: "none" });
@@ -356,11 +362,11 @@ function splitUnit(el) {
       },
     });
   };
-  // split as it starts: the lines are read from the layout of that moment
-  const start = (delay = 0) => (type === "lines" ? lines({ delay }) : pieces(delay));
+  // split as it starts: the pieces are read from the layout of that moment
+  const start = (delay = 0) => pieces(delay);
   return {
     el,
-    build: () => ({ deferred: true, start, duration: type === "lines" ? LINES.duration : PIECES.duration }),
+    build: () => ({ deferred: true, start, duration: PIECES.duration }),
     play: (delay) => gsap.delayedCall(delay, () => start()),
     show: () => settle(el),
   };

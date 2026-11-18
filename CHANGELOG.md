@@ -4,6 +4,9 @@
 - A dot button pinned to the end of its row (the USPs' "View all the reasons", the news block's button) grows to the right on hover, past the row's end, as every other button does, instead of out to the left (`.btn-grow-past-end()`). The hover itself is Figma's `15841:13704`, unchanged.
 - The dot's arrow and the USP card's button row are held on their layers, so neither redraws half a pixel away as its hover motion ends.
 
+## 2026-11-18 — Section titles glide like the hero's
+- Every split title now rises as the hero's does: its lines glide on the compositor (the same 1.1s on `soft`, tail cut, 0.11s apart) and stay on their layers once landed, the markup kept split until the width changes. They rose on the main thread, dropped their layers line by line and had their markup put back after the last, which shivered as they rose and shifted the title once it looked settled.
+
 ## 2026-11-18 — Pillar stack pins at the top
 - Each pillar pins with its content centred on the screen (54 above the top at 1920 × 945), instead of by its foot 130 further on with its title above the screen, so the title and the buttons both have room.
 - The pillar photo's parallax is off while the pillars stack (from lg): it kept running under the hold and the wipe, and the photo jumped.
