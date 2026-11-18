@@ -35,7 +35,7 @@
   height: @btn-height;
   white-space: nowrap;
   box-shadow: inset 0 0 0 var(--btn-ring-width, 0) var(--btn-ring, transparent);
-  transition: padding var(--duration-base) var(--ease-settle), background-color var(--duration-base) ease, color var(--duration-base) ease;
+  transition: padding var(--duration-base) var(--ease-settle), margin var(--duration-base) var(--ease-settle), background-color var(--duration-base) ease, color var(--duration-base) ease;
 }
 
 .btn__dot {
@@ -53,6 +53,8 @@
     height: @btn-arrow;
     opacity: 0;
     scale: 0.5;
+    // held on its layer, so the arrow does not redraw half a pixel away as its grow ends
+    will-change: transform;
     transition: opacity var(--duration-fast) ease, scale var(--duration-base) var(--ease-settle);
   }
 }
@@ -76,6 +78,14 @@
   .btn-sm:has(.btn__dot):hover .btn__dot {
     width: @btn-dot-open-sm;
     height: @btn-dot-open-sm;
+  }
+}
+
+// a button pinned to the end of its row still grows to the right on hover, past that end, as every other button does
+@btn-grow: @btn-dot-open - @btn-dot - (@btn-inset - @btn-inset-open);
+.btn-grow-past-end() {
+  @media @fine {
+    .btn:has(.btn__dot):not(.btn--open):hover { margin-right: -@btn-grow; }
   }
 }
 

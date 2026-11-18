@@ -42,6 +42,7 @@
       display: none;
       @media (min-width: @bp-lg) { display: grid; }
     }
+    @media (min-width: @bp-lg) { .btn-grow-past-end(); }
   }
 
   &__slider { overflow: visible; }
@@ -123,7 +124,11 @@
         inset: 0;
       }
     }
-    @media @fine { translate: 0 10 * @px; }
+    @media @fine {
+      translate: 0 10 * @px;
+      // held on its layer after its rise, so the button does not redraw half a pixel away as it lands
+      will-change: transform;
+    }
   }
 
   &:not(&--video):focus-within &__foot {

@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-18 — Buttons
+- A dot button pinned to the end of its row (the USPs' "View all the reasons", the news block's button) grows to the right on hover, past the row's end, as every other button does, instead of out to the left (`.btn-grow-past-end()`). The hover itself is Figma's `15841:13704`, unchanged.
+- The dot's arrow and the USP card's button row are held on their layers, so neither redraws half a pixel away as its hover motion ends.
+
 ## 2026-11-17 — Home entrance smoothed
 - A title line's mask is tight at its foot, as the menu's rows are, so each line surfaces from its own box's edge instead of from 0.24em inside the line beneath; each line's clip comes off as it lands, so its descenders complete then.
 - Title lines rise solid out of their masks (1.1s on `soft`, no fade; was `silk` 1.3s with a 0.6s fade, which read as a fade-up rather than a line coming from under the mask), site-wide so the hero matches the section titles.
