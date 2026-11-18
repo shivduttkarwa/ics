@@ -4,6 +4,14 @@
 - A dot button pinned to the end of its row (the USPs' "View all the reasons", the news block's button) grows to the right on hover, past the row's end, as every other button does, instead of out to the left (`.btn-grow-past-end()`). The hover itself is Figma's `15841:13704`, unchanged.
 - The dot's arrow and the USP card's button row are held on their layers, so neither redraws half a pixel away as its hover motion ends.
 
+## 2026-11-18 — Pillar stack pins at the top
+- Each pillar pins with its content centred on the screen (54 above the top at 1920 × 945), instead of by its foot 130 further on with its title above the screen, so the title and the buttons both have room.
+- The pillar photo's parallax is off while the pillars stack (from lg): it kept running under the hold and the wipe, and the photo jumped.
+- The incoming pillar rises with its top corners rounded (20), as GSA's panels do, over the held one.
+- The incoming pillar's content stands truly still through the wipe, both ways: under a mouse or trackpad its counter-move is set in the same frame as Lenis's scroll, not on a CSS scroll timeline, which ran a frame behind and shook it by up to 20px (most as the scroll turned back up, the middle pillar settling after it was uncovered). A held pillar lets go once the next one holds, not when that one's top reaches the screen's.
+- The pillar quote card sits the same on every pillar (20 in from the photo's edges, padded 20 / 30, rounded 15, gap 14), so it no longer shifts a few px at each wipe; the canopy pillar's values, which the beach and white ones now share.
+- The next pillar is drawn up under the held one's hidden foot (`--stack-pull`), so its edge rises from the foot of the screen the moment the held one stops, and it docks exactly where it holds: nothing travels on after the wipe, and all three pin at the same place.
+
 ## 2026-11-17 — Home entrance smoothed
 - A title line's mask is tight at its foot, as the menu's rows are, so each line surfaces from its own box's edge instead of from 0.24em inside the line beneath; each line's clip comes off as it lands, so its descenders complete then.
 - Title lines rise solid out of their masks (1.1s on `soft`, no fade; was `silk` 1.3s with a 0.6s fade, which read as a fade-up rather than a line coming from under the mask), site-wide so the hero matches the section titles.

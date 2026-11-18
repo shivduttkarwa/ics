@@ -474,6 +474,7 @@ function setupParallax(root) {
     if (CSS.supports("animation-timeline", "view()")) return;
     // the fallback follows Lenis, so it only runs where Lenis smooths the scroll
     if (!fine.matches || (el.hasAttribute("data-anim-disable-mobile") && phone.matches)) return;
+    if (el.closest('[data-anim="stack"]') && !phone.matches) return;
     const style = getComputedStyle(el);
     const top = attr(el, "data-anim-start") === "top top";
     gsap.fromTo(
@@ -599,34 +600,52 @@ function stackRun(panels) {
   incoming.forEach((panel, n) => panel.querySelectorAll('[data-anim="counter"]').forEach((el) => STARTS.set(el, () => {
     const box = el.getBoundingClientRect();
     const top = box.top + window.scrollY;
-    return marks ? 2 * marks[n + 1].top - top - box.height / 2 : top - 0.88 * window.innerHeight;
+    return marks ? 2 * marks[n + 1].top - marks[n + 1].hold - top - box.height / 2 : top - 0.88 * window.innerHeight;
   })));
   const contents = incoming.map((panel) => Array.from(panel.firstElementChild.children));
   const dims = incoming.map((panel) => Array.from(panel.querySelectorAll("[data-anim-stack-dim]")));
   let marks = null;
+  // a CSS scroll timeline runs a frame behind Lenis's scroll and the standing content shook, so under Lenis they move together
+  const scripted = !TIMELINE || fine.matches;
 
   const clear = () => {
-    panels.forEach((panel) => panel.classList.remove("is-held", "is-incoming"));
-    if (!TIMELINE) gsap.set([...contents.flat(), ...dims.flat()], { clearProps: "transform,opacity" });
+    panels.forEach((panel) => {
+      panel.classList.remove("is-held", "is-incoming", "is-scripted");
+      panel.style.removeProperty("--stack-pull");
+    });
+    if (scripted) gsap.set([...contents.flat(), ...dims.flat()], { clearProps: "transform,opacity" });
   };
 
-  // the natural layout: where each starts, how tall it is, the scroll at which it holds and its top while held
+  // from the natural layout: where each starts, its top while held, the scroll at which it holds
   const measure = () => {
     clear();
     marks = null;
     if (phone.matches) return;
     const y = window.scrollY;
     const view = document.documentElement.clientHeight;
-    marks = panels.map((panel) => {
+    const boxes = panels.map((panel) => {
       const box = panel.getBoundingClientRect();
-      const top = box.top + y;
-      return { top, stick: top + Math.max(0, box.height - view), hold: Math.min(0, view - box.height), pad: panel.firstElementChild.getBoundingClientRect().top - box.top };
+      const inner = panel.firstElementChild.getBoundingClientRect();
+      return { top: box.top + y, height: box.height, pad: inner.top - box.top, end: inner.bottom - box.top };
+    });
+    marks = [];
+    let pulled = 0;
+    boxes.forEach((box, i) => {
+      const prev = marks[i - 1];
+      // drawn up under the held one's foot below the screen, so its edge starts rising the moment that one holds
+      const pull = prev ? Math.max(0, prev.height + prev.hold - view) : 0;
+      pulled += pull;
+      const top = box.top - pulled;
+      // held with its content centred on the screen, never lower than its top on the top of the screen
+      const hold = Math.min(0, Math.round((view - (box.end - box.pad)) / 2 - box.pad));
+      marks.push({ top, height: box.height, hold, stick: top - hold, pad: box.pad, pull });
     });
     panels.forEach((panel, i) => {
       if (i < last) panel.style.setProperty("--stack-top", `${marks[i].hold}px`);
       if (!i) return;
+      if (marks[i].pull) panel.style.setProperty("--stack-pull", `${-marks[i].pull}px`);
       const { stick: from } = marks[i - 1];
-      const { top: to, pad } = marks[i];
+      const { stick: to, pad } = marks[i];
       Object.assign(marks[i], { from, to });
       panel.style.setProperty("--stack-from", `${from}px`);
       panel.style.setProperty("--stack-to", `${to}px`);
@@ -640,9 +659,9 @@ function stackRun(panels) {
     if (!marks) return;
     const s = window.scrollY;
     panels.forEach((panel, i) => {
-      if (i < last) panel.classList.toggle("is-held", s >= marks[i].top - 1 && s < marks[i + 1].top);
+      if (i < last) panel.classList.toggle("is-held", s >= marks[i].top - 1 && s < marks[i + 1].stick);
     });
-    if (TIMELINE) return;
+    if (!scripted) return;
     incoming.forEach((panel, n) => {
       const { from, to } = marks[n + 1];
       const p = gsap.utils.clamp(0, 1, (s - from) / (to - from || 1));
@@ -653,7 +672,7 @@ function stackRun(panels) {
 
   const apply = () => {
     if (!marks) return;
-    incoming.forEach((panel) => panel.classList.add("is-incoming"));
+    incoming.forEach((panel) => panel.classList.add("is-incoming", ...(scripted ? ["is-scripted"] : [])));
     update();
   };
 

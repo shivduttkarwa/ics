@@ -10,17 +10,26 @@
 }
 
 [data-anim="stack"] {
+  margin-top: var(--stack-pull, 0);
+
   &.is-held {
     position: sticky;
     top: var(--stack-top);
   }
 
+  &.is-incoming { border-radius: var(--radius-lg); }
+
   // clipped at the section's own top edge, not the container's
   &.is-incoming > * { clip-path: inset(calc(var(--stack-pad) * -1) -100vw -100vh); }
+
+  // nothing inside a stacked section moves; a parallax kept running under the hold and the wipe, and its photo jumped
+  @media (min-width: @bp-lg) {
+    [data-anim="parallax"] { animation: none; }
+  }
 }
 
 @supports (animation-timeline: scroll()) {
-  [data-anim="stack"].is-incoming {
+  [data-anim="stack"].is-incoming:not(.is-scripted) {
     > * > *,
     [data-anim-stack-dim] {
       animation: stack-uncover linear both;
