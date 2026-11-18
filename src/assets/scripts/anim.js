@@ -591,9 +591,9 @@ function stackRun(panels) {
   if (phone.matches || !(TIMELINE || fine.matches)) return;
   const last = panels.length - 1;
   const incoming = panels.slice(1);
-  // uncovered where they stand, so their own reveals are dropped; counters still count
-  incoming.forEach((panel) => {
-    panel.querySelectorAll('[data-anim="reveal"], [data-anim="split"]').forEach((el) => {
+  // uncovered as it stands, its reveals and counters dropped; its title rises once the rising edge has uncovered half of it
+  incoming.forEach((panel, n) => {
+    panel.querySelectorAll('[data-anim="reveal"], [data-anim="counter"]').forEach((el) => {
       bind(el);
       el.classList.add("is-revealed");
     });
@@ -601,25 +601,27 @@ function stackRun(panels) {
       bind(group);
       Array.from(group.children).forEach((child) => child.classList.add("is-revealed"));
     });
+    panel.querySelectorAll('[data-anim="split"]').forEach((el) => STARTS.set(el, () => {
+      const box = el.getBoundingClientRect();
+      const top = box.top + window.scrollY;
+      return marks ? 2 * marks[n + 1].top - marks[n + 1].hold - top - box.height / 2 : top - 0.88 * window.innerHeight;
+    }));
   });
-  // a figure counts once the rising edge has uncovered half of it
-  incoming.forEach((panel, n) => panel.querySelectorAll('[data-anim="counter"]').forEach((el) => STARTS.set(el, () => {
-    const box = el.getBoundingClientRect();
-    const top = box.top + window.scrollY;
-    return marks ? 2 * marks[n + 1].top - marks[n + 1].hold - top - box.height / 2 : top - 0.88 * window.innerHeight;
-  })));
   const contents = incoming.map((panel) => Array.from(panel.firstElementChild.children));
   const dims = incoming.map((panel) => Array.from(panel.querySelectorAll("[data-anim-stack-dim]")));
+  const layers = panels.map((panel) => Array.from(panel.querySelectorAll('[data-anim="parallax"]')));
+  const travel = (layer) => ["--parallax-from", "--parallax-to"].map((name) => parseFloat(getComputedStyle(layer).getPropertyValue(name)) || 0);
+  let spans = [];
   let marks = null;
   // a CSS scroll timeline runs a frame behind Lenis's scroll and the standing content shook, so under Lenis they move together
   const scripted = !TIMELINE || fine.matches;
 
   const clear = () => {
     panels.forEach((panel) => {
-      panel.classList.remove("is-held", "is-incoming", "is-scripted");
+      panel.classList.remove("is-held", "is-incoming", "is-scripted", "is-stacked");
       panel.style.removeProperty("--stack-pull");
     });
-    if (scripted) gsap.set([...contents.flat(), ...dims.flat()], { clearProps: "transform,opacity" });
+    if (scripted) gsap.set([...contents.flat(), ...layers.flat(), ...dims.flat()], { clearProps: "transform,opacity" });
   };
 
   // from the natural layout: where each starts, its top while held, the scroll at which it holds
@@ -645,6 +647,13 @@ function stackRun(panels) {
       // held with its content centred on the screen, never lower than its top on the top of the screen
       const hold = Math.min(0, Math.round((view - (box.end - box.pad)) / 2 - box.pad));
       marks.push({ top, height: box.height, hold, stick: top - hold, pad: box.pad, pull });
+    });
+    // the photo drifts across the whole time its section is on screen: from its first showing until the next one holds over it
+    spans = layers.map((list) => list.map(travel));
+    marks.forEach((mark, i) => {
+      mark.drift = [i ? marks[i - 1].stick : mark.top - view, i < last ? marks[i + 1].stick : mark.top + mark.height];
+      panels[i].style.setProperty("--stack-drift-from", `${mark.drift[0]}px`);
+      panels[i].style.setProperty("--stack-drift-to", `${mark.drift[1]}px`);
     });
     panels.forEach((panel, i) => {
       if (i < last) panel.style.setProperty("--stack-top", `${marks[i].hold}px`);
@@ -674,11 +683,19 @@ function stackRun(panels) {
       gsap.set(contents[n], { y: (from - to) * (1 - p), force3D: true });
       gsap.set(dims[n], { opacity: p < 0.4 ? 0.35 : 0.35 + ((p - 0.4) / 0.6) * 0.65 });
     });
+    layers.forEach((list, i) => {
+      const [a, b] = marks[i].drift;
+      const p = gsap.utils.clamp(0, 1, (s - a) / (b - a || 1));
+      list.forEach((layer, j) => {
+        const [start, end] = spans[i][j];
+        gsap.set(layer, { yPercent: start + (end - start) * p, force3D: true });
+      });
+    });
   };
 
   const apply = () => {
     if (!marks) return;
-    incoming.forEach((panel) => panel.classList.add("is-incoming", ...(scripted ? ["is-scripted"] : [])));
+    panels.forEach((panel, i) => panel.classList.add("is-stacked", ...(scripted ? ["is-scripted"] : []), ...(i ? ["is-incoming"] : [])));
     update();
   };
 

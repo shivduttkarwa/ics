@@ -22,10 +22,8 @@
   // clipped at the section's own top edge, not the container's
   &.is-incoming > * { clip-path: inset(calc(var(--stack-pad) * -1) -100vw -100vh); }
 
-  // nothing inside a stacked section moves; a parallax kept running under the hold and the wipe, and its photo jumped
-  @media (min-width: @bp-lg) {
-    [data-anim="parallax"] { animation: none; }
-  }
+  // the photo's drift is the stack's own, timed by the scroll alone; a view timeline jumped under the hold and the wipe
+  &.is-stacked [data-anim="parallax"] { animation: none; }
 }
 
 @supports (animation-timeline: scroll()) {
@@ -37,5 +35,11 @@
       animation-range: var(--stack-from) var(--stack-to);
     }
     [data-anim-stack-dim] { animation-name: stack-dim; }
+  }
+
+  [data-anim="stack"].is-stacked:not(.is-scripted) [data-anim="parallax"] {
+    animation: parallax-y linear both;
+    animation-timeline: scroll(root);
+    animation-range: var(--stack-drift-from) var(--stack-drift-to);
   }
 }
