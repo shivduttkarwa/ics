@@ -14,12 +14,14 @@
           {% endfor %}
         </ul>
       </div>
-      <div class="news__photo" data-anim="reveal" data-anim-type="wipe-up">
-        {% for item in value.items %}
-        <div class="news__frame{% if item.featured %} is-active{% endif %}" data-news-photo>
-          {% set img = item.image %}{% set cls = "news__img" %}{% include "snippets/image.njk" %}
+      <div class="news__photo" data-anim="reveal" data-anim-type="wipe-right" data-anim-parallax-trigger>
+        <div class="news__layer" data-anim="parallax">
+          {% for item in value.items %}
+          <div class="news__frame{% if item.featured %} is-active{% endif %}" data-news-photo>
+            {% set img = item.image %}{% set cls = "news__img" %}{% include "snippets/image.njk" %}
+          </div>
+          {% endfor %}
         </div>
-        {% endfor %}
       </div>
       {% if value.button and value.button.text %}
       <div class="news__more" data-anim="reveal">

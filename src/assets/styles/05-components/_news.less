@@ -59,6 +59,8 @@
     padding: 15 * @px 0;
     color: inherit;
     opacity: 0.5;
+    // a row answers the pointer by changing the photo, so it shows the hand even while its url is empty
+    cursor: pointer;
     transition: opacity var(--duration-slow) ease;
     @media (hover: hover) {
       &[href]:hover { color: inherit; }
@@ -111,6 +113,9 @@
     }
   }
 
+  // the photos drift with the scroll inside the frame
+  &__layer { .parallax-layer(8); }
+
   &__frame {
     position: absolute;
     inset: 0;
@@ -118,7 +123,7 @@
   }
 
   &__frame.is-active,
-  &__photo:not(:has(.is-active)) > :first-child {
+  &__photo:not(:has(.is-active)) &__frame:first-child {
     visibility: visible;
   }
 

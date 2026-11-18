@@ -4,6 +4,10 @@
 - A dot button pinned to the end of its row (the USPs' "View all the reasons", the news block's button) grows to the right on hover, past the row's end, as every other button does, instead of out to the left (`.btn-grow-past-end()`). The hover itself is Figma's `15841:13704`, unchanged.
 - The dot's arrow and the USP card's button row are held on their layers, so neither redraws half a pixel away as its hover motion ends.
 
+## 2026-11-18 — News photo wipes, drifts and opens left to right
+- The news photo opens left to right as it scrolls in (`wipe-right`, was `wipe-up`) and drifts 8% with the scroll (`news__layer`, `data-anim="parallax"`).
+- Pointing at a row wipes its photo in over the last the way the pointer moved (down the list from the foot, up the list from the top; 1.1s, `glide`), settling from 1.15 while the photo under it eases back to 1.06, instead of a 0.8s crossfade; going back to a photo still on screen slides the ones over it away. The rows show the hand cursor while their urls are empty.
+
 ## 2026-11-18 — FAQ rows open steadily, button dot keeps its height, slides hold only on the card
 - An FAQ row opens and shuts at a steady few pixels a frame (`power1.inOut`, 0.5–0.8s by distance, still in whole pixels), where the 0.7s `glide` crept a pixel at a time at both ends and the rows below shivered; its last frame is the exact height, so nothing shifts as it goes back to auto. The answer only fades (it rose 12 and settled as it landed), the arrow is held on its layer through its turn, and the page re-measures once the browser is idle rather than on the frame the motion ends.
 - A dot button's grown dot takes no more height than the small one (negative block margins), so a button sized to its label, as the slides' card button, no longer grows 10 taller on hover and lifts its card.
