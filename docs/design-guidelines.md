@@ -85,7 +85,7 @@ Rows marked *(brief)* come from the client's brief, built on 2026-11-17 as motio
 | Phone hero "On Scroll" state | the photo holds still, the shade deepens and the intro fades in on a CSS scroll timeline (`_hero.less`); the header is not sticky at the client's ask: the logo scrolls away and only the burger (the pill from lg) stays fixed (`_header.less`, `header.js`) |
 | Draggable sliders (USPs, entry points) | Swiper free mode (`data-slider`, `slider.js`), left edge on the container, overflow visible to the right; the journey tiles snap and wrap round |
 | USP video popup *(brief)* | `data-video-popup` on the Play Video button (`ui.js`, `partials/video-popup.njk`): a video file, YouTube or Vimeo link in a modal dialog; dormant while the `url` is empty |
-| Co-curricular autoplay, 3–5 s | `data-stage data-stage-autoplay="4500"` (`stage.js`): a wipe between slides, paused under the pointer, on keyboard focus and off screen |
+| Co-curricular autoplay, 3–5 s | `data-stage data-stage-autoplay="4500"` (`stage.js`): a wipe between slides, paused while the pointer is on a slide's card, on keyboard focus and off screen |
 | Logo rows and Instagram reel | `data-marquee` (`marquee.js`), linear on the compositor; the graduates' rows run in opposite directions at one speed *(brief)*; the reel also takes arrows, drag and a hover pause; still under reduced motion |
 | Footer accreditation strip *(brief)* | `data-marquee="left"`, very slow; the lower band waits stuck to the foot of the screen and is uncovered as the upper band scrolls off it |
 | Accordions (FAQs) | `data-accordion` (`accordion.js`) |

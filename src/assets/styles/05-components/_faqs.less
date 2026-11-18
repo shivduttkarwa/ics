@@ -100,6 +100,8 @@
     .icon {
       width: @faqs-icon;
       height: @faqs-icon;
+      // held on its layer, so the arrow does not redraw a fraction of a pixel away as its turn ends
+      will-change: transform;
       transition: rotate var(--duration-slow) var(--ease-out), translate var(--duration-base) var(--ease-out);
     }
   }

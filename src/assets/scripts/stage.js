@@ -1,10 +1,11 @@
 // data-stage: full-width slides stacked on one another; the next one wipes in over the current while both photos drift
-import { gsap, Observer, ScrollTrigger, still, settled, landing } from "./motion.js";
+import { gsap, Observer, ScrollTrigger, still, settled } from "./motion.js";
 import { riseLines } from "./anim.js";
 
 const WIPE = { duration: 1.4, ease: "glide" };
 const DRIFT = 16; // % of its own width each photo travels during the wipe
 const ZOOM = 1.12;
+const ROLL = { duration: 0.8, ease: "glide" };
 // the wipe uncovers the copy on the left last when it comes from the right, so the copy starts later that way
 const COPY = { next: 0.7, back: 0.4, items: 0.25 };
 const CLEAR = "transform,opacity,visibility,clipPath,zIndex";
@@ -41,14 +42,32 @@ export function initStages() {
       slide.inert = i !== index;
     });
     const tone = () => { root.dataset.stageTone = slides[index].dataset.stageTone || ""; };
+    // the figure rolls in its own line, as a counter wheel: the old one out as the new one comes in, together
+    const figure = (text) => Object.assign(document.createElement("span"), { textContent: text });
     const count = (dir) => {
       if (!current) return;
-      if (still.matches || !dir) return void (current.textContent = pad(index + 1));
-      const land = landing("soft", 0.6 * current.offsetHeight);
-      gsap.timeline()
-        .to(current, { yPercent: -60 * dir, autoAlpha: 0, duration: 0.35, ease: "power2.in" })
-        .call(() => { current.textContent = pad(index + 1); })
-        .fromTo(current, { yPercent: 60 * dir }, { yPercent: 0, autoAlpha: 1, duration: 0.6 * land.cut, ease: land.ease, clearProps: "transform,opacity,visibility" });
+      const text = pad(index + 1);
+      if (still.matches || !dir || !current.children.length) return void current.replaceChildren(figure(text));
+      const leaving = Array.from(current.children);
+      const coming = figure(text);
+      current.append(coming);
+      gsap.killTweensOf(leaving);
+      // the new figure keeps its layer once landed; leaving it, the figure redrew a fraction of a pixel away
+      gsap.timeline({ defaults: { ...ROLL, force3D: true }, onComplete: () => leaving.forEach((el) => el.remove()) })
+        .to(leaving, { yPercent: -100 * dir }, 0)
+        .fromTo(coming, { yPercent: 100 * dir }, { yPercent: 0 }, 0);
+    };
+    // the wheel is as wide as the widest figure, so the slash after it never moves as the figures change width
+    const size = () => {
+      if (!current) return;
+      const widest = Math.max(...slides.map((slide, i) => {
+        const probe = figure(pad(i + 1));
+        current.append(probe);
+        const width = probe.getBoundingClientRect().width;
+        probe.remove();
+        return width;
+      }));
+      current.style.minWidth = `${(widest / parseFloat(getComputedStyle(current).fontSize)).toFixed(3)}em`;
     };
     // with no autoplay the line shows how far through the slides we are
     const place = (duration = 0) => {
@@ -165,8 +184,11 @@ export function initStages() {
       hold[key] = value;
       arm();
     };
-    root.addEventListener("pointerenter", () => set("hover", true));
-    root.addEventListener("pointerleave", () => set("hover", false));
+    // autoplay holds only while the pointer is on a slide's card
+    root.querySelectorAll("[data-stage-item]").forEach((item) => {
+      item.addEventListener("pointerenter", () => set("hover", true));
+      item.addEventListener("pointerleave", () => set("hover", false));
+    });
     root.addEventListener("focusin", (event) => set("focus", event.target.matches(".is-keyboard :focus-visible")));
     root.addEventListener("focusout", () => set("focus", false));
     document.addEventListener("visibilitychange", arm);
@@ -175,6 +197,8 @@ export function initStages() {
     mark();
     tone();
     count(0);
+    size();
+    document.fonts?.ready.then(size);
     if (total) total.textContent = pad(slides.length);
     place();
     if (!still.matches) {

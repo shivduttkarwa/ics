@@ -47,7 +47,7 @@
   border-radius: 50%;
   background: var(--btn-dot);
   color: var(--btn-arrow);
-  transition: width var(--duration-base) var(--ease-settle), height var(--duration-base) var(--ease-settle);
+  transition: width var(--duration-base) var(--ease-settle), height var(--duration-base) var(--ease-settle), margin var(--duration-base) var(--ease-settle);
   .icon {
     width: @btn-arrow;
     height: @btn-arrow;
@@ -79,6 +79,9 @@
     width: @btn-dot-open-sm;
     height: @btn-dot-open-sm;
   }
+  // the grown dot takes no more height than the small one, so a button sized to its label (a wrapping one) never grows
+  .btn:has(.btn__dot):not(.btn--open):hover .btn__dot { margin-block: ((@btn-dot - @btn-dot-open) / 2); }
+  .btn-sm:has(.btn__dot):not(.btn--open):hover .btn__dot { margin-block: ((@btn-dot - @btn-dot-open-sm) / 2); }
 }
 
 // a button pinned to the end of its row still grows to the right on hover, past that end, as every other button does

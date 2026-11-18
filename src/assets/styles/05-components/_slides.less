@@ -169,7 +169,16 @@
     min-width: 60 * @px;
     margin: 0;
     white-space: nowrap;
-    span { display: inline-block; }
+    // one layer for the whole count, so the landed figure on its own layer draws alike with the slash and total
+    will-change: transform;
+  }
+
+  // the mask the figure rolls in, one line tall, the figure at its end so the slash stays put
+  &__current {
+    display: inline-grid;
+    justify-items: end;
+    overflow: clip;
+    > * { grid-area: 1 / 1; }
   }
 
   &__progress {

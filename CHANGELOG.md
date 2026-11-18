@@ -4,6 +4,14 @@
 - A dot button pinned to the end of its row (the USPs' "View all the reasons", the news block's button) grows to the right on hover, past the row's end, as every other button does, instead of out to the left (`.btn-grow-past-end()`). The hover itself is Figma's `15841:13704`, unchanged.
 - The dot's arrow and the USP card's button row are held on their layers, so neither redraws half a pixel away as its hover motion ends.
 
+## 2026-11-18 — FAQ rows open steadily, button dot keeps its height, slides hold only on the card
+- An FAQ row opens and shuts at a steady few pixels a frame (`power1.inOut`, 0.5–0.8s by distance, still in whole pixels), where the 0.7s `glide` crept a pixel at a time at both ends and the rows below shivered; its last frame is the exact height, so nothing shifts as it goes back to auto. The answer only fades (it rose 12 and settled as it landed), the arrow is held on its layer through its turn, and the page re-measures once the browser is idle rather than on the frame the motion ends.
+- A dot button's grown dot takes no more height than the small one (negative block margins), so a button sized to its label, as the slides' card button, no longer grows 10 taller on hover and lifts its card.
+- The slides' autoplay holds only while the pointer is on a slide's card, not anywhere over the slides.
+
+## 2026-11-18 — Slide count rolls like a counter wheel
+- The slides' count rolls inside a one-line mask, the old figure out as the new one comes in together (0.8s, `glide`), instead of the old one fading off before the new one rose in, both floating unmasked. The mask is as wide as the widest figure with the figure at its end, as Museo Sans has no tabular figures ("01" is 3px narrower than "02"), so the slash and total no longer shift a pixel as a roll starts or ends; the count is held on one layer and the landed figure keeps its own, so it does not settle after it lands.
+
 ## 2026-11-18 — Journey tiles stagger their hover
 - A journey tile's line of copy and its button fade up in turn on hover, 0.2s apart, instead of together as one block; on the way out the button goes first. Neither stays on a layer at rest: held there, Chrome on Windows drew the small text in greyscale over the photo, softer than the page's ClearType text.
 
