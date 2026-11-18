@@ -120,7 +120,7 @@
     padding: @journey-tile-pad;
     overflow: hidden;
     background: var(--color-canopy-deep);
-    @media (min-width: @bp-lg) { height: @journey-tile-height; }
+    @media (min-width: @bp-lg) { height: ~"min(@{journey-tile-height}, 100svh - @{fit-room})"; }
 
     &:first-child { width: ~"min(@{journey-tile-first}, calc(100vw - @{journey-peek-first}))"; }
 

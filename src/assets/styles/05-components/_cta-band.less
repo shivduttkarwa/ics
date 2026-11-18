@@ -35,11 +35,11 @@
     }
   }
 
-  // from lg the 16:9 photo is taller than the band, so the layer's overhang shows more of it and nothing is enlarged
+  // from lg the 16:9 photo is about as tall as the layer's overhang, so it is barely enlarged
   &__layer {
     position: absolute;
     inset: 0;
-    @media (min-width: @bp-lg) { .parallax-layer(8); }
+    @media (min-width: @bp-lg) { .parallax-layer(16); }
   }
 
   &__picture {

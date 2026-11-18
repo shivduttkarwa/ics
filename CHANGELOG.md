@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-11-18 — Stacked pillars fit a short laptop
+- On a short laptop screen (1280 × 720, about 585–633 tall in the browser) the home page's stacked pillars were 609 tall, so the held pillar lost its title at the top and its buttons and quote card at the foot. Its photo now stops at the screen's height less 60, and under 640 tall its copy's gaps tighten (30 → 20, 50 → 30), so the whole pillar holds on screen; from about 700 tall nothing changes.
+- The co-curricular slides are no taller than the screen (658 → the screen's height on a short laptop), and the journey tiles no taller than the screen less 60 (585 → 536 at 585 tall). The 60 is a shared token, `@fit-room`.
+- The employment band's photo drifts twice as far with the scroll (`.parallax-layer(16)`, was 8): 16% of the band's height each way.
+
 ## 2026-11-18 — Buttons
 - A dot button pinned to the end of its row (the USPs' "View all the reasons", the news block's button) grows to the right on hover, past the row's end, as every other button does, instead of out to the left (`.btn-grow-past-end()`). The hover itself is Figma's `15841:13704`, unchanged.
 - The dot's arrow and the USP card's button row are held on their layers, so neither redraws half a pixel away as its hover motion ends.

@@ -76,7 +76,10 @@
     min-height: @slides-height;
     padding-top: @slides-pad;
     padding-bottom: @slides-pad-nav;
-    @media (min-width: @bp-lg) { padding-bottom: @slides-pad; }
+    @media (min-width: @bp-lg) {
+      min-height: ~"min(@{slides-height}, 100svh)";
+      padding-bottom: @slides-pad;
+    }
   }
 
   h2 {

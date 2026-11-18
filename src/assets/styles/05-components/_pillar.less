@@ -190,6 +190,22 @@
     }
   });
 
+  // a stacked pillar is held whole on the screen, so a short laptop caps its photo and tightens its spacing
+  &--stack &__media {
+    @media (min-width: @bp-lg) { height: ~"min(@{pillar-media-height}, 100svh - @{fit-room})"; }
+  }
+
+  &--stack &__copy,
+  &--stack &__proof {
+    @media (min-width: @bp-lg) { gap: 30 * @px; }
+    @media (min-width: @bp-lg) and (min-height: @bp-tall) { gap: 50 * @px; }
+  }
+
+  &--stack &__text {
+    @media (min-width: @bp-lg) { gap: 20 * @px; }
+    @media (min-width: @bp-lg) and (min-height: @bp-tall) { gap: 30 * @px; }
+  }
+
   &__frame {
     position: absolute;
     inset: 0;
