@@ -4,6 +4,9 @@
 - A dot button pinned to the end of its row (the USPs' "View all the reasons", the news block's button) grows to the right on hover, past the row's end, as every other button does, instead of out to the left (`.btn-grow-past-end()`). The hover itself is Figma's `15841:13704`, unchanged.
 - The dot's arrow and the USP card's button row are held on their layers, so neither redraws half a pixel away as its hover motion ends.
 
+## 2026-11-18 — Journey tiles stagger their hover
+- A journey tile's line of copy and its button fade up in turn on hover, 0.2s apart, instead of together as one block; on the way out the button goes first. Neither stays on a layer at rest: held there, Chrome on Windows drew the small text in greyscale over the photo, softer than the page's ClearType text.
+
 ## 2026-11-18 — Stacked pillars raise their titles, photos drift
 - Pillars #02 and #03 raise their title line by line as #01 does, once the rising edge has uncovered half of it (it was simply uncovered). Their figures no longer count: only Pillar #01 counts. The rest is as before: the lead, copy, proof points and buttons brighten from 35% as the pillar docks, the photo and quote are uncovered as they stand.
 - Every stacked pillar's photo drifts with the scroll again (the same 4% travel), driven by the stack across the whole time its pillar is on screen, from its first showing until the next one holds over it, set in the same frame as Lenis's scroll (or on a `scroll(root)` timeline without Lenis), so it no longer jumps under the hold and the wipe.
