@@ -49,7 +49,10 @@ function build(el) {
       beforeResize(swiper) {
         swiper.params.spaceBetween = designPx(gap);
       },
-      slideChange: mark,
+      slideChange(swiper) {
+        mark(swiper);
+        el.dispatchEvent(new CustomEvent("slider:change", { detail: { index: swiper.activeIndex } }));
+      },
     },
   });
   if (total) total.textContent = pad(swiper.slides.length);

@@ -79,7 +79,8 @@
   gap: 25 * @px;
   height: auto;
   padding: 20 * @px;
-  overflow: hidden;
+  // clip, not hidden: a hidden card is a scroll container, and its photos' parallax ran on the card instead of the page
+  overflow: clip;
   border-radius: var(--radius-lg);
   background: var(--color-moss-10);
   @media (min-width: @bp-md) {
