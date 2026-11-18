@@ -147,11 +147,13 @@
     align-items: center;
     justify-content: space-between;
     width: ~"min(@{journey-tile}, calc(100vw - @{journey-peek}))";
-    height: @journey-tile-height-sm;
+    // a short screen lowers the tile; the row then stretches every tile to the one whose copy runs longest
+    height: auto;
+    min-height: ~"min(@{journey-tile-height-sm}, 100svh - @{fit-room})";
     padding: @journey-tile-pad;
     overflow: hidden;
     background: var(--color-canopy-deep);
-    @media (min-width: @bp-lg) { height: ~"min(@{journey-tile-height}, 100svh - @{fit-room})"; }
+    @media (min-width: @bp-lg) { min-height: ~"min(@{journey-tile-height}, 100svh - @{fit-room})"; }
 
     &--narrow { width: ~"min(@{journey-tile-first}, calc(100vw - @{journey-peek-first}))"; }
 

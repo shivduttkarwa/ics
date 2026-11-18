@@ -186,11 +186,12 @@
     flex-direction: column;
     justify-content: flex-end;
     aspect-ratio: 390 / 520;
-    max-height: @pillar-media-height;
+    max-height: ~"min(@{pillar-media-height}, 100svh - @{fit-room})";
     padding: 20 * @px;
     @media (min-width: @bp-lg) {
       flex: 0 0 @pillar-media-width;
       height: var(--pillar-media-height);
+      max-height: none;
       aspect-ratio: auto;
     }
   }

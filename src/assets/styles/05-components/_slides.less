@@ -73,7 +73,7 @@
     flex-direction: column;
     justify-content: space-between;
     gap: 40 * @px;
-    min-height: @slides-height;
+    min-height: ~"min(@{slides-height}, 100svh)";
     padding-top: @slides-pad;
     padding-bottom: @slides-pad-nav;
     @media (min-width: @bp-lg) {

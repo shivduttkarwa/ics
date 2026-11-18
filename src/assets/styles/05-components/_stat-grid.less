@@ -39,10 +39,8 @@
     grid-auto-rows: 1fr;
     gap: 40 * @px 20 * @px;
     width: 100%;
-    @media (min-width: @bp-lg) {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 40 * @px;
-    }
+    @media (min-width: @bp-md) { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    @media (min-width: @bp-lg) { gap: 40 * @px; }
   }
 
   &__item {

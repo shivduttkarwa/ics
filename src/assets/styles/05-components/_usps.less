@@ -66,11 +66,13 @@
   position: relative;
   isolation: isolate;
   width: ~"min(@{usp-card-width}, calc(100vw - @{usp-card-peek}))";
-  height: @usp-card-height;
+  height: ~"min(@{usp-card-height}, 100svh - @{fit-room})";
+  min-height: min-content;
   padding: @usp-card-pad;
   overflow: hidden;
   border-radius: var(--radius-lg);
   background: var(--color-canopy-deep);
+  color: var(--color-white);
 
   &::after {
     content: "";

@@ -7,9 +7,12 @@
 
   &__frame {
     position: relative;
+    width: 100%;
     aspect-ratio: 1280 / 779;
+    max-height: ~"calc(100svh - @{fit-room})";
     overflow: hidden;
     border-radius: var(--radius-lg);
+    @media (min-width: @bp-lg) { max-height: none; }
   }
 
   &__layer { .parallax-layer(6); }

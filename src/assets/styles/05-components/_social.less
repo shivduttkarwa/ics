@@ -44,8 +44,9 @@
 
   &__tile {
     flex: none;
-    width: @social-tile-width;
-    height: @social-tile-height;
+    // the posts are drawn as posters, so a short screen shrinks the tile whole rather than crop it
+    width: ~"min(@{social-tile-width}, (100svh - @{fit-room}) * 352 / 469)";
+    height: ~"min(@{social-tile-height}, 100svh - @{fit-room})";
     overflow: hidden;
     border-radius: var(--radius-lg);
   }

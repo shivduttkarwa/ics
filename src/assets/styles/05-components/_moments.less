@@ -39,7 +39,7 @@
     display: flex;
     flex-direction: column;
     gap: 40 * @px;
-    @media (min-width: @bp-lg) {
+    @media (min-width: @bp-md) {
       flex-direction: row;
       align-items: center;
     }
@@ -49,12 +49,14 @@
     position: relative;
     overflow: hidden;
     aspect-ratio: 510 / 637;
+    max-height: ~"calc(100svh - @{fit-room})";
     border-radius: var(--radius-lg);
-    @media (min-width: @bp-md) { max-width: @moments-photo-width; }
+    @media (min-width: @bp-md) { flex: 0 0 45%; }
     @media (min-width: @bp-lg) {
       flex: 0 0 @moments-photo-width;
       aspect-ratio: auto;
       height: @moments-photo-height;
+      max-height: none;
     }
   }
 

@@ -95,7 +95,9 @@
   &__photo {
     position: relative;
     isolation: isolate;
+    justify-self: stretch;
     aspect-ratio: 390 / 253;
+    max-height: ~"calc(100svh - @{fit-room})";
     margin-top: -@news-tuck;
     overflow: hidden;
     border-radius: var(--radius-lg);
@@ -103,6 +105,7 @@
       grid-column: 2 / 4;
       grid-row: 2;
       aspect-ratio: auto;
+      max-height: none;
       margin-top: 0;
       // 840 × 545 from a strut, not aspect-ratio, so the row can stretch the photo when the card runs longer
       &::before {

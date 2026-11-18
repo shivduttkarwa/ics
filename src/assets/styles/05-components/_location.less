@@ -100,11 +100,13 @@
     position: relative;
     display: block;
     aspect-ratio: 550 / 771;
+    max-height: ~"calc(100svh - @{fit-room})";
     overflow: hidden;
     border-radius: var(--radius-lg);
-    @media (min-width: @bp-md) { max-width: @location-map-width; }
+    @media (min-width: @bp-md) { aspect-ratio: 4 / 3; }
     @media (min-width: @bp-lg) {
       flex: 0 0 @location-map-width;
+      max-height: none;
       aspect-ratio: auto;
     }
   }

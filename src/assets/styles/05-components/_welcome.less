@@ -15,9 +15,11 @@
     display: flex;
     flex-direction: column;
     gap: 50 * @px;
-    @media (min-width: @bp-lg) {
+    @media (min-width: @bp-md) {
       flex-direction: row;
       align-items: center;
+    }
+    @media (min-width: @bp-lg) {
       justify-content: space-between;
       max-width: @welcome-row;
       margin-inline: auto;
@@ -27,10 +29,12 @@
   &__media {
     position: relative;
     aspect-ratio: 550 / 640;
-    @media (min-width: @bp-md) { max-width: @welcome-media-width; }
+    max-height: ~"calc(100svh - @{fit-room})";
+    @media (min-width: @bp-md) { flex: 0 0 45%; }
     @media (min-width: @bp-lg) {
       flex: 0 0 @welcome-media-width;
       height: @welcome-media-height;
+      max-height: none;
       aspect-ratio: auto;
     }
   }
@@ -51,6 +55,7 @@
     flex-direction: column;
     align-items: flex-start;
     min-width: 0;
+    @media (min-width: @bp-md) { flex: 1 1 0; }
     @media (min-width: @bp-lg) { flex: 0 0 @welcome-copy-width; }
   }
 

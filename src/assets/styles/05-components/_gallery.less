@@ -20,7 +20,7 @@
 
   &__slide {
     position: relative;
-    width: ~"min(@{gallery-slide-width}, 100vw - 2 * var(--gutter))";
+    width: ~"min(@{gallery-slide-width}, 100vw - 2 * var(--gutter), (100svh - @{fit-room}) * 846 / 585)";
     aspect-ratio: 846 / 585;
     overflow: hidden;
     border-radius: var(--radius-lg);

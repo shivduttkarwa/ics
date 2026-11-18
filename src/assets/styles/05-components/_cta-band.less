@@ -14,7 +14,7 @@
   --cta-band-shade: var(--color-black-50);
   position: relative;
   display: flex;
-  min-height: @cta-band-height-sm;
+  min-height: ~"min(@{cta-band-height-sm}, 100svh)";
   overflow: clip;
   background: var(--color-canopy-deep);
   color: var(--color-white);

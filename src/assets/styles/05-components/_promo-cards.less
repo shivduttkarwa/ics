@@ -58,7 +58,8 @@
 
 .promo-card {
   width: ~"min(@{promo-card-width}, calc(100vw - @{promo-card-peek}))";
-  height: @promo-card-height;
+  height: ~"min(@{promo-card-height}, 100svh - @{fit-room})";
+  min-height: min-content;
 
   &__link {
     position: relative;
