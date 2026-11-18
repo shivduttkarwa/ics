@@ -19,7 +19,7 @@
           <li class="menu__item{% if item.children and item.current %} is-open{% endif %}" data-menu-row>
             {% if item.children %}
             <button class="menu__link" type="button" aria-expanded="{% if item.current %}true{% else %}false{% endif %}" aria-controls="menu-sub-{{ loop.index }}">
-              <span class="menu__label">{{ item.label }}</span>
+              <span class="menu__label"><span class="menu__word">{{ item.label }}</span><span class="menu__word menu__word--open" aria-hidden="true">{{ item.label }}</span></span>
               <svg class="menu__arrow" aria-hidden="true"><use href="#icon-arrow-diagonal"></use></svg>
             </button>
             <div class="menu__sub" id="menu-sub-{{ loop.index }}">
@@ -31,7 +31,7 @@
             </div>
             {% else %}
             <a class="menu__link"{% if item.url %} href="{{ item.url }}"{% endif %}{% if item.current %} aria-current="page"{% endif %}>
-              <span class="menu__label">{{ item.label }}</span>
+              <span class="menu__label"><span class="menu__word">{{ item.label }}</span><span class="menu__word menu__word--open" aria-hidden="true">{{ item.label }}</span></span>
               <svg class="menu__arrow" aria-hidden="true"><use href="#icon-arrow-diagonal"></use></svg>
             </a>
             {% endif %}
