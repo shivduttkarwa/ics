@@ -17,6 +17,8 @@
       "label": "Why ICS?",
       "url": "/why.html",
       "children": [
+        { "label": "Why choose ICS", "url": "/why.html" },
+        { "label": "Results and pathways", "url": "/results.html" },
         { "label": "Wellbeing and care", "url": "" },
         { "label": "Our people", "url": "" }
       ]

@@ -100,12 +100,13 @@
   }
 
   &__frame {
+    position: relative;
     aspect-ratio: 550 / 640;
     overflow: hidden;
     border-radius: var(--radius-lg);
     @media (min-width: @bp-lg) {
       aspect-ratio: auto;
-      height: @story-photo-height;
+      height: ~"min(@{story-photo-height}, 100svh - @{fit-room} - 2 * @{story-pad})";
     }
     &--more {
       order: 2;
@@ -113,6 +114,8 @@
       @media (min-width: @bp-lg) { height: @story-photo-more-height; }
     }
   }
+
+  &__layer { .parallax-layer(8); }
 
   &__img { .img-cover(); }
 

@@ -20,8 +20,8 @@
         {% for story in value.stories %}
         <li class="story swiper-slide" data-story>
           <div class="story__media">
-            <div class="story__frame">{% set img = story.image %}{% set cls = "story__img" %}{% include "snippets/image.njk" %}</div>
-            {% if story.image_secondary %}<div class="story__frame story__frame--more" data-story-more>{% set img = story.image_secondary %}{% set cls = "story__img" %}{% include "snippets/image.njk" %}</div>{% endif %}
+            <div class="story__frame" data-anim-parallax-trigger><div class="story__layer" data-anim="parallax">{% set img = story.image %}{% set cls = "story__img" %}{% include "snippets/image.njk" %}</div></div>
+            {% if story.image_secondary %}<div class="story__frame story__frame--more" data-story-more data-anim-parallax-trigger><div class="story__layer" data-anim="parallax">{% set img = story.image_secondary %}{% set cls = "story__img" %}{% include "snippets/image.njk" %}</div></div>{% endif %}
           </div>
           <div class="story__copy" data-story-copy>
             <h3>{{ story.title | safe }}</h3>

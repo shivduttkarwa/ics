@@ -1,4 +1,4 @@
-<ul class="bullets" data-anim-group="fade-up">
+<ul class="bullets" data-anim-group="fade-up" data-anim-stack-dim>
   {% for bullet in bullets %}
   <li class="bullets__item{% if bullet.text %} bullets__item--text{% endif %}">
     <span class="bullets__icon" aria-hidden="true"><svg class="icon"><use href="#icon-{{ bullet.icon }}"></use></svg></span>

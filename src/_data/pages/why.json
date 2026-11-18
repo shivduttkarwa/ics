@@ -37,6 +37,7 @@
       "type": "pillar",
       "value": {
         "theme": "canopy",
+        "stack": true,
         "spread": false,
         "media_height": 750,
         "title": "Strong outcomes <em>without the premium price.</em>",
@@ -103,6 +104,7 @@
       "type": "pillar",
       "value": {
         "theme": "beach",
+        "stack": true,
         "spread": false,
         "media_height": 640,
         "title": "<em>Real faith</em>,<br> not just values.",
@@ -149,6 +151,7 @@
       "type": "pillar",
       "value": {
         "theme": "white",
+        "stack": true,
         "spread": false,
         "media_height": 648,
         "title": "A community that <em>knows <br>your child.</em>",

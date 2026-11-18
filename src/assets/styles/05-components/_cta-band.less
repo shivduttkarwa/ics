@@ -19,11 +19,11 @@
   color: var(--color-white);
   @media (min-width: @bp-lg) {
     --cta-band-shade: var(--gradient-band);
-    min-height: @cta-band-height;
+    min-height: ~"min(@{cta-band-height}, 100svh)";
   }
 
   &--682 {
-    @media (min-width: @bp-lg) { min-height: @cta-band-height-tall; }
+    @media (min-width: @bp-lg) { min-height: ~"min(@{cta-band-height-tall}, 100svh)"; }
   }
 
   &__media {

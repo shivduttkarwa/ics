@@ -22,7 +22,7 @@
   overflow: clip;
   color: var(--color-white);
   background: var(--color-canopy-deep);
-  @media (min-width: @bp-lg) { min-height: @page-hero-height; }
+  @media (min-width: @bp-lg) { min-height: ~"min(@{page-hero-height}, 100svh)"; }
 
   &--deep { --page-hero-shade: var(--gradient-page-hero); }
 

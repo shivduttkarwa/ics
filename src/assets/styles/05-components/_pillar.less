@@ -8,12 +8,19 @@
 // Figma sets each proof point's width by hand so its label wraps as drawn
 @pillar-stat-widths: 112, 122, 140, 150, 151, 156, 178;
 
+// a stacked pillar on a short laptop tightens its copy by --pillar-fit
+.pillar-gap(@size) {
+  @gap: @size * @px;
+  gap: calc(@gap * var(--pillar-fit, 1));
+}
+
 .pillar {
   --pillar-bg: var(--color-white);
   --pillar-title: var(--color-canopy);
   --pillar-ink: var(--color-coal);
   --pillar-figure: var(--color-canopy);
   --pillar-rule: var(--color-moss);
+  --pillar-media-height: @pillar-media-height;
   padding: 20 * @px 0;
   background: var(--pillar-bg);
   color: var(--pillar-ink);
@@ -50,7 +57,7 @@
     min-width: 0;
     @media (min-width: @bp-lg) {
       flex: 0 0 @pillar-copy-width;
-      gap: 50 * @px;
+      .pillar-gap(50);
     }
   }
 
@@ -62,14 +69,14 @@
     gap: 51 * @px;
     @media (min-width: @bp-lg) {
       justify-content: space-between;
-      gap: 50 * @px;
+      .pillar-gap(50);
     }
   }
 
   &__text {
     display: flex;
     flex-direction: column;
-    gap: 30 * @px;
+    .pillar-gap(30);
   }
 
   h2 {
@@ -91,16 +98,19 @@
 
   // the Why ICS pillars: a bullet list in place of the copy, 30 under the title and 40 above the button;
   // seven bullets sit 10 apart under a title 40 away, four sit 20 apart
-  &--bullets &__copy { gap: 40 * @px; }
-  &--compact &__text { gap: 40 * @px; }
+  &--bullets &__copy { .pillar-gap(40); }
+  &--compact &__text { .pillar-gap(40); }
 
-  .bullets { color: var(--pillar-title); }
-  &--compact .bullets { gap: 10 * @px; }
+  .bullets {
+    .pillar-gap(20);
+    color: var(--pillar-title);
+  }
+  &--compact .bullets { .pillar-gap(10); }
 
   &__proof {
     display: flex;
     flex-direction: column;
-    gap: 50 * @px;
+    .pillar-gap(50);
   }
 
   // below lg the row runs off the screen's right edge, as the phone frames draw it, and scrolls by hand; the room below keeps it from clipping the items as they rise in
@@ -180,30 +190,23 @@
     padding: 20 * @px;
     @media (min-width: @bp-lg) {
       flex: 0 0 @pillar-media-width;
-      height: @pillar-media-height;
+      height: var(--pillar-media-height);
       aspect-ratio: auto;
     }
   }
   each(@pillar-media-heights, {
-    &--media-@{value} .pillar__media {
-      @media (min-width: @bp-lg) { height: @value * @px; }
-    }
+    @height: @value * @px;
+    &--media-@{value} { --pillar-media-height: @height; }
   });
 
   // a stacked pillar is held whole on the screen, so a short laptop caps its photo and tightens its spacing
+  &--stack {
+    @media (min-width: @bp-lg) { --pillar-fit: 0.6; }
+    @media (min-width: @bp-lg) and (min-height: @bp-tall) { --pillar-fit: 1; }
+  }
+
   &--stack &__media {
-    @media (min-width: @bp-lg) { height: ~"min(@{pillar-media-height}, 100svh - @{fit-room})"; }
-  }
-
-  &--stack &__copy,
-  &--stack &__proof {
-    @media (min-width: @bp-lg) { gap: 30 * @px; }
-    @media (min-width: @bp-lg) and (min-height: @bp-tall) { gap: 50 * @px; }
-  }
-
-  &--stack &__text {
-    @media (min-width: @bp-lg) { gap: 20 * @px; }
-    @media (min-width: @bp-lg) and (min-height: @bp-tall) { gap: 30 * @px; }
+    @media (min-width: @bp-lg) { height: ~"min(var(--pillar-media-height), 100svh - @{fit-room})"; }
   }
 
   &__frame {

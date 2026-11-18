@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-11-18 — Why ICS and HSC Results fit a short laptop, stack and drift as the home page
+- The Why page's three pillars stack as the home page's do (`stack: true`); their bullet lists dim in with the copy (`data-anim-stack-dim` on the bullets). A stacked pillar's copy gaps now close to 60% under 640 tall through one factor (`--pillar-fit`), so the Why page's 40 / 10 gaps tighten as the home page's 30 / 50 do, and its photo keeps its own `media_height` (`--pillar-media-height`) under the screen cap.
+- A stacked section whose content is still taller than the screen (the Why page's seven-bullet pillar at 585 tall) holds with its foot 24px above the screen's foot instead of centred and cut at both ends.
+- On a short laptop the inner-page hero and the CTA band stop at the screen's height, and the testimonial tiles and a story's photo stop at the screen less 60, so each shows whole; from about 700 tall nothing changes.
+- The Where-next cards' photos and the stories' photos drift 8% with the scroll on a parallax layer, as the pillar and news photos do.
+- The menu's Why ICS? section lists "Why choose ICS" and "Results and pathways" first.
+
 ## 2026-11-18 — Stacked pillars fit a short laptop
 - On a short laptop screen (1280 × 720, about 585–633 tall in the browser) the home page's stacked pillars were 609 tall, so the held pillar lost its title at the top and its buttons and quote card at the foot. Its photo now stops at the screen's height less 60, and under 640 tall its copy's gaps tighten (30 → 20, 50 → 30), so the whole pillar holds on screen; from about 700 tall nothing changes.
 - The co-curricular slides are no taller than the screen (658 → the screen's height on a short laptop), and the journey tiles no taller than the screen less 60 (585 → 536 at 585 tall). The 60 is a shared token, `@fit-room`.

@@ -4,8 +4,8 @@
     <ul class="where-next__list" data-anim-group="rise">
       {% for card in value.cards %}
       <li class="where-next__card">
-        <a class="where-next__link"{% if card.url %} href="{{ card.url }}"{% endif %}>
-          <span class="where-next__media">{% set img = card.image %}{% set cls = "where-next__img" %}{% include "snippets/image.njk" %}</span>
+        <a class="where-next__link"{% if card.url %} href="{{ card.url }}"{% endif %} data-anim-parallax-trigger>
+          <span class="where-next__media"><span class="where-next__layer" data-anim="parallax">{% set img = card.image %}{% set cls = "where-next__img" %}{% include "snippets/image.njk" %}</span></span>
           <span class="where-next__bar"><span class="where-next__label">{{ card.label }}</span><svg class="icon" aria-hidden="true"><use href="#icon-arrow-diagonal"></use></svg></span>
         </a>
       </li>

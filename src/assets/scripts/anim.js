@@ -575,6 +575,7 @@ function setupProgress(root) {
 
 // without scroll timelines the uncovering follows Lenis here instead of running in CSS
 const TIMELINE = typeof CSS !== "undefined" && CSS.supports("animation-timeline", "scroll()");
+const STACK_FOOT = 24; // px left under a stacked section's content when it is taller than the screen
 
 function setupStacks(root) {
   const runs = [];
@@ -644,8 +645,9 @@ function stackRun(panels) {
       const pull = prev ? Math.max(0, prev.height + prev.hold - view) : 0;
       pulled += pull;
       const top = box.top - pulled;
-      // held with its content centred on the screen, never lower than its top on the top of the screen
-      const hold = Math.min(0, Math.round((view - (box.end - box.pad)) / 2 - box.pad));
+      // held with its content centred on the screen, never lower than its top on the top of the screen; content taller than the screen holds with its foot in view, its top already seen on the way in
+      const content = box.end - box.pad;
+      const hold = Math.min(0, Math.round(content <= view ? (view - content) / 2 - box.pad : view - STACK_FOOT - box.end));
       marks.push({ top, height: box.height, hold, stick: top - hold, pad: box.pad, pull });
     });
     // the photo drifts across the whole time its section is on screen: from its first showing until the next one holds over it
