@@ -46,7 +46,7 @@ const REVEAL = {
 REVEAL.clip = REVEAL["wipe-down"];
 
 // no fade: a line is solid as it clears the mask's edge, which is what reads as rising from under it
-const LINES = { from: 150, duration: 1.1, ease: "soft", stagger: 0.11, fade: 0 };
+const LINES = { from: 150, duration: 1.4, ease: "soft", stagger: 0.11, fade: 0 };
 const PIECES = { duration: 0.9, stagger: { words: 0.045, chars: 0.018 } };
 const COUNTER = { duration: 2.2, ease: "power2.out" };
 

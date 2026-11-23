@@ -61,6 +61,11 @@ for (const step of stepsArg.split(",")) {
   else if (kind === "wheel") await send("Input.dispatchMouseEvent", { type: "mouseWheel", x: +width / 2, y: +height / 2, deltaX: 0, deltaY: +arg });
   else if (kind === "click") await send("Runtime.evaluate", { expression: `document.querySelector(${JSON.stringify(arg)})?.click()` });
   else if (kind === "eval") await send("Runtime.evaluate", { expression: arg });
+  else if (kind === "hover") {
+    const where = await send("Runtime.evaluate", { expression: `(() => { const b = document.querySelector(${JSON.stringify(arg)}).getBoundingClientRect(); return [b.left + b.width / 2, b.top + b.height / 2]; })()`, returnByValue: true });
+    const [x, y] = where.result.result.value;
+    await send("Input.dispatchMouseEvent", { type: "mouseMoved", x, y });
+  }
   else if (kind === "page") {
     const total = (await send("Runtime.evaluate", { expression: "document.documentElement.scrollHeight", returnByValue: true })).result.result.value;
     for (let y = 0; y < total; y += +height) {

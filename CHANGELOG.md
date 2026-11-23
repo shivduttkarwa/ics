@@ -6,6 +6,8 @@
 - The announcement sheet is fully out after 160px of scroll (run 120, back 50). The FAQ rows lift with `fade-up-soft` on held layers, so their hairlines no longer shimmer.
 - The footer clips its stuck lower band's corner fill, which showed as a dark strip over the section above while the footer came into view. The pillar photo's foot shade reaches past its frame, so no light hairline shows at its bottom edge.
 - The menu's Enrol section is replaced by "All links", every built page, for testing.
+- Title lines rise over 1.4s (was 1.1s), and the home hero's title takes the section titles' 0.11s stagger (was 0.2s).
+- The footer buttons' hover dot grows to 20 in place, its centre and the label held still; the CTA cards' buttons grow theirs to 36 with a 16 arrow (the kit's 42 elsewhere). `.qa/frames.mjs` takes a `hover:<selector>` step.
 
 ## 2026-11-18 — Faith and the Internal Page Blocks
 - The Faith page (`/faith.html`, Figma `15694:13352`), linked from the header's and menu's Our Faith, every "Our Faith" card and row, and the "Faith at ICS" buttons: the hero (Figma's 1920 photo under the `medium` shade), the statement band, the new `moments` block (the three-state Pinned Section, `15694:17682`: a day in the life held on screen from lg while each moment is uncovered over the last, `moments.js`), the Why page's faith and community pillars with leaf bullets, the testimonials ("What our parents say"), the FAQs, Where next, Keep exploring and the CTA cards.

@@ -6,6 +6,8 @@
 @cta-cards-pad-low-bottom: 22 * @px;
 @cta-cards-photo: 328 * @px;
 @cta-cards-body: 417 * @px;
+@cta-cards-dot: 36 * @px;
+@cta-cards-arrow: 16 * @px;
 
 .cta-cards {
   --focus-ring: var(--color-moss);
@@ -103,6 +105,18 @@
     display: flex;
     justify-content: center;
     width: 100%;
+    .btn__dot .icon {
+      width: @cta-cards-arrow;
+      height: @cta-cards-arrow;
+    }
+    // a smaller grown dot than the kit's 42, 8 clear of the pill above and below
+    @media @fine {
+      &:has(.btn__dot):not(.btn--open):hover .btn__dot {
+        width: @cta-cards-dot;
+        height: @cta-cards-dot;
+        margin-block: ((@btn-dot - @cta-cards-dot) / 2);
+      }
+    }
   }
   .btn-canopy {
     .btn-variant(var(--color-moss); var(--color-canopy); var(--color-canopy); var(--color-moss));

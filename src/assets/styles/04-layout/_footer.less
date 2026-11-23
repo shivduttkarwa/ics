@@ -181,12 +181,16 @@
       width: @footer-btn-arrow;
       height: @footer-btn-arrow;
     }
-    // the grown dot keeps the 5 clear of the edges the full-size buttons keep
+    // the dot grows in place: its centre and the label stay where they were
     @media @fine {
-      &:has(.btn__dot):not(.btn--open):hover .btn__dot {
-        width: @footer-btn-dot;
-        height: @footer-btn-dot;
-        margin-block: ((@btn-dot - @footer-btn-dot) / 2);
+      &:has(.btn__dot):not(.btn--open):hover {
+        padding-left: (@btn-inset-sm - (@footer-btn-dot - @btn-dot) / 2);
+        .btn__dot {
+          width: @footer-btn-dot;
+          height: @footer-btn-dot;
+          margin-block: ((@btn-dot - @footer-btn-dot) / 2);
+          margin-right: ((@btn-dot - @footer-btn-dot) / 2);
+        }
       }
     }
   }
