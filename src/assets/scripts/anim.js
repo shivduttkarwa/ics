@@ -427,11 +427,14 @@ const STARTS = new WeakMap(); // a start of its own, as a scroll position (stack
 function watch(unit) {
   const el = unit.el;
   const start = startOf(el);
+  const trigger = el.closest("[data-anim-trigger]") || el;
+  // clamped, a piece already on the first screen starts at 0, which a page at rest never passes
+  const onFirstScreen = window.scrollY < 20 && trigger.getBoundingClientRect().top < window.innerHeight;
   ScrollTrigger.create({
-    trigger: el.closest("[data-anim-trigger]") || el,
+    trigger,
     // clamped, so a piece at the very foot of the page still starts when the page can scroll no further; a plain number
     // is a scroll position (the announcement bar, uncovered from under the hero wherever it sits)
-    start: STARTS.get(el) || (Number.isNaN(+start) ? `clamp(${start})` : +start),
+    start: STARTS.get(el) || (Number.isNaN(+start) ? (onFirstScreen ? start : `clamp(${start})`) : +start),
     end: "max",
     once: true,
     onEnter: () => enqueue(unit),

@@ -1,6 +1,10 @@
 @page-hero-height: 800 * @px;
 // no phone frame: a shorter band with the title at its foot, in the home hero's phone proportions
 @page-hero-height-sm: 560 * @px;
+// on the designer's 960-tall screen the 800 band leaves 160 for the statement band's title and copy; every screen keeps that room
+@page-hero-room: 160 * @px;
+// below lg: the statement band's 50 of padding and two lines of its title
+@page-hero-room-sm: 134 * @px;
 @page-hero-foot: 57 * @px;
 @page-hero-foot-sm: 40 * @px;
 @page-hero-title-width: 1121 * @px;
@@ -18,11 +22,15 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  min-height: ~"min(@{page-hero-height-sm}, 100svh)";
+  min-height: ~"min(@{page-hero-height-sm}, 100svh - @{page-hero-room-sm})";
+  padding-top: @hero-header-room-sm;
   overflow: clip;
   color: var(--color-white);
   background: var(--color-canopy-deep);
-  @media (min-width: @bp-lg) { min-height: ~"min(@{page-hero-height}, 100svh)"; }
+  @media (min-width: @bp-lg) {
+    min-height: ~"min(@{page-hero-height}, 100svh - @{page-hero-room})";
+    padding-top: @hero-header-room;
+  }
 
   &--deep { --page-hero-shade: var(--gradient-page-hero); }
   &--medium { --page-hero-shade: var(--gradient-hero); }
