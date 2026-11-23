@@ -103,8 +103,17 @@ function initScroll(opts) {
 // data-anim-group: the direct children (or the [data-anim-item]s inside) become reveals of the group's type, in order
 const PASSED = ["data-anim-tier", "data-anim-start", "data-anim-start-mobile", "data-anim-media"];
 
+// shown at once on a page reached from another of the site's pages (the header carries over)
+function carries(el) {
+  return el.hasAttribute("data-anim-carry") && document.documentElement.classList.contains("anim-carried");
+}
+
 function expandGroups(root) {
   scoped(root, "[data-anim-group]").forEach((group) => {
+    if (carries(group)) {
+      bind(group);
+      return;
+    }
     const type = group.getAttribute("data-anim-group") || "fade-up";
     const gap = number(group, "data-anim-stagger", ITEMS);
     const marked = Array.from(group.querySelectorAll("[data-anim-item]"));
@@ -731,7 +740,7 @@ function setup(root, opts = {}) {
   scoped(root, '[data-anim="reveal"]').forEach((el) => {
     // data-anim-media: the reveal only runs where this query matches at load
     const media = attr(el, "data-anim-media");
-    if (media && !window.matchMedia(media).matches) {
+    if ((media && !window.matchMedia(media).matches) || carries(el)) {
       bind(el);
       el.classList.add("is-revealed");
       return;

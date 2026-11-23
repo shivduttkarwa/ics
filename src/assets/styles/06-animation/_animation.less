@@ -5,6 +5,9 @@ html.anim-ready:not(.anim-reduced) {
   [data-anim-group] > :not([data-anim], .is-revealed) {
     visibility: hidden;
   }
+
+  // reached from another of the site's pages, what carries over (the header) is simply there
+  &.anim-carried [data-anim-carry] > * { visibility: visible; }
 }
 
 // the clip reaches below the descenders, so nothing is cut while a line rises; LINES.from in anim.js starts it clear of this edge
