@@ -1,7 +1,7 @@
 # Changelog
 
 ## 2026-11-23 — Motion fixes and horizontal moments
-- The Faith page's moments pass across the screen from the right as the page scrolls (from lg), each photo drifting in its frame and the incoming copy settling as it arrives; they no longer wipe up over each other.
+- The Faith page's moments roll over each other from the right as the page scrolls (from lg), the pillars' stack turned sideways: the moment on screen holds still while the next one's edge sweeps in and uncovers its content where it rests, each photo drifting in its frame. An incoming moment's copy fades in from the right, item after item, on the compositor, once half of it is uncovered. They no longer wipe up over each other, and no longer slide across as one row, whose text shivered.
 - Split titles: the line mask reaches below the descenders and lines start 150% down, so tails no longer snap in as a line lands.
 - The announcement sheet is fully out after 160px of scroll (run 120, back 50). The FAQ rows lift with `fade-up-soft` on held layers, so their hairlines no longer shimmer.
 - The footer clips its stuck lower band's corner fill, which showed as a dark strip over the section above while the footer came into view. The pillar photo's foot shade reaches past its frame, so no light hairline shows at its bottom edge.
