@@ -3,6 +3,8 @@
 @footer-wordmark-height: 68 * @px;
 @footer-social: 48 * @px;
 @footer-btn-height: 30 * @px;
+@footer-btn-dot: 20 * @px;
+@footer-btn-arrow: 12 * @px;
 @footer-mark-height: 65 * @px;
 @footer-mark-gap: 74 * @px;
 
@@ -175,6 +177,18 @@
     .tap-area();
     flex: none;
     height: @footer-btn-height;
+    .btn__dot .icon {
+      width: @footer-btn-arrow;
+      height: @footer-btn-arrow;
+    }
+    // the grown dot keeps the 5 clear of the edges the full-size buttons keep
+    @media @fine {
+      &:has(.btn__dot):not(.btn--open):hover .btn__dot {
+        width: @footer-btn-dot;
+        height: @footer-btn-dot;
+        margin-block: ((@btn-dot - @footer-btn-dot) / 2);
+      }
+    }
   }
 
   &__links {
