@@ -17,10 +17,10 @@
     display: flex;
     flex-direction: column;
     gap: 25 * @px;
-    // Figma sets the copy 580 in, 80 short of the container's right edge
     @media (min-width: @bp-lg) {
       flex-direction: row;
       align-items: flex-start;
+      justify-content: space-between;
       gap: @pinned-gap;
     }
   }
@@ -36,11 +36,6 @@
   // Figma sets the band straight under a banner, with no foot to tuck under
   .banner + & {
     @media (min-width: @bp-lg) { padding-top: 80 * @px; }
-  }
-
-  // spread: the copy column flush with the container's right edge (HSC Results), instead of 69 after the title
-  &--spread &__inner {
-    @media (min-width: @bp-lg) { justify-content: space-between; }
   }
 
   // both columns give way on a desktop narrower than 1440

@@ -148,3 +148,9 @@
     }
   }
 }
+
+// the phone frame tucks the news 20 under the questions' rounded foot
+.faqs + .news {
+  padding-top: (75 - 20) * @px;
+  @media (min-width: @bp-lg) { padding-top: 100 * @px; }
+}

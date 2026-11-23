@@ -113,3 +113,8 @@
     margin-top: 20 * @px;
   }
 }
+
+// Figma lays the band 24 over the foot of the questions above it
+.faqs + .cta-band {
+  @media (min-width: @bp-lg) { margin-top: -24 * @px; }
+}

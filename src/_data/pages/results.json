@@ -38,7 +38,6 @@
     {
       "type": "pinned",
       "value": {
-        "spread": true,
         "title": "ICS is regularly <em>one of the top schools</em> in the Illawarra for HSC results",
         "text": "Our graduates go on to university, TAFE, apprenticeships and work, and they leave knowing who they are.",
         "button": null
@@ -478,9 +477,9 @@
           {
             "image": {
               "src": "/assets/images/why/next-faith.webp",
-              "alt": "Secondary students in a discussion circle with their teacher",
+              "alt": "Students reading their Bibles together in a small group in the chapel",
               "width": 1256,
-              "height": 962
+              "height": 1116
             },
             "label": "Our Faith",
             "url": "/faith.html"

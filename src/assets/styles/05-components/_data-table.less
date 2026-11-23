@@ -51,3 +51,8 @@
 
   tbody td { .type-body-3(); }
 }
+
+// Figma tucks the table 18 under the steps' rounded foot
+.steps + .data-table {
+  @media (min-width: @bp-lg) { padding-top: (120 - 18) * @px; }
+}

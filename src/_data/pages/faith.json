@@ -29,7 +29,6 @@
     {
       "type": "pinned",
       "value": {
-        "spread": true,
         "title": "Faith isn’t a subject here. <br><em>Faith is everything to us.</em>",
         "text": "Christian faith shapes how teachers greet your child each morning and how classmates are taught to treat each other. At ICS, the truth of the Bible shapes how we approach everything.",
         "button": null
@@ -262,9 +261,9 @@
           {
             "image": {
               "src": "/assets/images/why/next-faith.webp",
-              "alt": "Secondary students in a discussion circle with their teacher",
+              "alt": "Students reading their Bibles together in a small group in the chapel",
               "width": 1256,
-              "height": 962
+              "height": 1116
             },
             "label": "Our Faith",
             "url": "/faith.html"

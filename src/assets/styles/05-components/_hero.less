@@ -145,10 +145,21 @@
     }
   }
 
+  // a phone held sideways has no room for the title above a stuck bar, so there the bar follows the title, 30 under it
+  &__more {
+    order: 1;
+    @media (min-height: @bp-short) { order: 0; }
+  }
+
   &__actions {
-    position: sticky;
-    bottom: 20 * @px;
+    position: relative;
     z-index: 1;
+    margin-top: 30 * @px;
+    @media (min-height: @bp-short) {
+      position: sticky;
+      bottom: 20 * @px;
+      margin-top: 0;
+    }
     display: flex;
     gap: 10 * @px;
     padding: 10 * @px;

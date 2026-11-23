@@ -123,3 +123,8 @@
     @media (min-width: @bp-lg) { .btn-variant(var(--color-canopy); var(--color-white); var(--color-moss); var(--color-canopy)); }
   }
 }
+
+// the inner pages tuck the upper footer 16 under Keep Exploring's rounded foot
+.keep-exploring + .cta-cards--low {
+  @media (min-width: @bp-lg) { padding-top: @cta-cards-pad-low-top - 16 * @px; }
+}

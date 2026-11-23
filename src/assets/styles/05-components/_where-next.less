@@ -91,3 +91,8 @@
     }
   }
 }
+
+// Figma tucks the block 18 under a rounded foot
+.rounded-foot + .where-next {
+  @media (min-width: @bp-lg) { padding-top: (100 - 18) * @px; }
+}

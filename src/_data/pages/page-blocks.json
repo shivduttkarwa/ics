@@ -38,7 +38,6 @@
     {
       "type": "pinned",
       "value": {
-        "spread": true,
         "title": "Get in touch with us. <br><em>We’d love to hear from you.</em>",
         "text": "We haven't built ICS on grand buildings or prestige. Our money and energy go into good teaching and real relationships with students. That's how our results stay strong while our fees stay modest.",
         "button": null
@@ -281,7 +280,6 @@
       "type": "pinned",
       "value": {
         "theme": "beach",
-        "spread": true,
         "title": "Get in touch with us. <br><em>We’d love to hear from you.</em>",
         "text": "We haven't built ICS on grand buildings or prestige. Our money and energy go into good teaching and real relationships with students. That's how our results stay strong while our fees stay modest.",
         "button": null
@@ -321,9 +319,9 @@
           {
             "image": {
               "src": "/assets/images/why/next-faith.webp",
-              "alt": "Secondary students in a discussion circle with their teacher",
+              "alt": "Students reading their Bibles together in a small group in the chapel",
               "width": 1256,
-              "height": 962
+              "height": 1116
             },
             "label": "Our Faith",
             "url": "/faith.html"

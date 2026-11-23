@@ -188,3 +188,9 @@
     @media (min-width: @bp-lg) { display: block; }
   }
 }
+
+// the phone frame tucks the cards 19 under the bar's rounded foot
+.announcement + .usps {
+  padding-top: (75 - 19) * @px;
+  @media (min-width: @bp-lg) { padding-top: 103 * @px; }
+}

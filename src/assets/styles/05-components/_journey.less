@@ -242,3 +242,14 @@
     .last-mb-0();
   }
 }
+
+// Figma tucks the block 19 under the band's rounded foot
+.pinned + .journey--intro .journey__head {
+  @media (min-width: @bp-lg) { padding-top: (120 - 19) * @px; }
+}
+
+// the phone frame tucks the block 14 under the pillar's rounded foot
+.pillar + .journey h2 {
+  padding-top: (75 - 14) * @px;
+  @media (min-width: @bp-lg) { padding-top: 0; }
+}

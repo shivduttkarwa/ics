@@ -67,10 +67,10 @@ pages:
     fields: {}   # body: page_hero (shade none, breadcrumbs), pinned, feature_grid (theme canopy, buttons), location, faqs (theme white, button), contact_form, cta_band, where_next, keep_exploring, cta_cards (position low)
   faith:
     figma: "15694:13352 (Faith Landing); 15694:17682 (Pinned Sections, the three moments); no phone frame"
-    fields: {}   # body: page_hero (shade medium), pinned (spread), moments, pillar × 2 (stack, bullets, leaf icons; the first with shade), testimonials, faqs (theme white), where_next, keep_exploring, cta_cards (position low)
+    fields: {}   # body: page_hero (shade medium), pinned, moments, pillar × 2 (stack, bullets, leaf icons; the first with shade), testimonials, faqs (theme white), where_next, keep_exploring, cta_cards (position low)
   page_blocks:
     figma: "15513:9960 (Internal Page Blocks); no phone frame"
-    fields: {}   # a kit page, not in the menu: page_hero (shade medium, breadcrumbs), pinned (spread), media_text × 2, cta_band (height 633), faqs (theme white), usps (theme white), banner, pinned (theme beach), intro_columns, where_next, keep_exploring, cta_cards (position low)
+    fields: {}   # a kit page, not in the menu: page_hero (shade medium, breadcrumbs), pinned, media_text × 2, cta_band (height 633), faqs (theme white), usps (theme white), banner, pinned (theme beach), intro_columns, where_next, keep_exploring, cta_cards (position low)
   page_blocks_2:
     figma: "15550:32965 (Internal Page Blocks, second); no phone frame"
     fields: {}   # a kit page, not in the menu: page_hero, pinned, quote_band (theme white), photo, body_text, author, gallery, promo_cards, media_text (boxed), where_next, keep_exploring, cta_cards (position low)
@@ -108,9 +108,8 @@ blocks:
     template: blocks/pinned.njk
     fields:
       theme: ChoiceBlock(choices=["deep", "beach"], default="deep")   # beach: Ulises Light title and canopy copy on beach light, 80 above when it follows a banner (Internal Page Blocks, 15550:32942)
-      spread: BooleanBlock(required=False)   # from lg the copy column sits on the container's right edge (HSC Results, 15621:13291); off, 69 after the title (Why ICS)
       title: RichTextBlock(features=["italic"])   # Ulises Book 35, 511 wide
-      text: TextBlock   # Museo Sans 300 20, 620 wide, 580 in from the container's left edge (or flush right with spread)
+      text: TextBlock   # Museo Sans 300 20, 620 wide, on the container's right edge from lg
       button: StructBlock(text, url, style, required=False)   # 25 under the text; Figma draws one hidden
 
   stat_grid:

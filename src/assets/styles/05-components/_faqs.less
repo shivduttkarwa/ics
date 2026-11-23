@@ -144,3 +144,8 @@
 
   &__more { margin-top: 50 * @px; }
 }
+
+// Figma tucks the questions 18 under the table's rounded foot
+.data-table + .faqs {
+  @media (min-width: @bp-lg) { padding-top: (120 - 18) * @px; }
+}

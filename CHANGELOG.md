@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-11-23 — Figma audit
+- Every page compared with its Figma frame at 1440 (and the home page at 430). Fixed: the statement band's copy column sits on the container's right edge on every page, as Figma now draws it (the `pinned` `spread` field is gone); the Why page's upper footer takes the `low` cards like the other inner pages; every "Our Faith" card shows Figma's chapel photo.
+- Sections tucked under the rounded foot above them, as Figma lays its frames: after the statement band (steps, journey intro, welcome, contact details), key dates and the FAQs on Enrol, Where next after a rounded foot, the CTA band over Enrol's FAQs, the upper footer under Keep Exploring; on the phone the USPs, the journey and the news. Enrol, Entry Points and Our People now sit within 1px of Figma down the page, the phone home page within 4px. The frame slop left as is is listed in the handoff (Rounded feet).
+- Phones and tablets held sideways checked (568×320 to 1366×1024): on a screen under 480 tall the home hero's CTA bar follows the title instead of sticking over it, which hid the title's last line at 320 tall. Token `@bp-short`.
+
 ## 2026-11-23 — Motion fixes and horizontal moments
 - The Faith page's moments roll over each other from the right as the page scrolls (from lg), the pillars' stack turned sideways: the moment on screen holds still while the next one's edge sweeps in and uncovers its content where it rests, each photo drifting in its frame. An incoming moment's copy fades in from the right, item after item, on the compositor, once half of it is uncovered. They no longer wipe up over each other, and no longer slide across as one row, whose text shivered.
 - Split titles: the line mask reaches below the descenders and lines start 150% down, so tails no longer snap in as a line lands.

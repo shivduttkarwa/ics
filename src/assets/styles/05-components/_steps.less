@@ -60,3 +60,8 @@
     gap: 10 * @px;
   }
 }
+
+// Figma tucks the steps 17 under the band's rounded foot
+.pinned + .steps {
+  @media (min-width: @bp-lg) { padding-top: (117 - 17) * @px; }
+}

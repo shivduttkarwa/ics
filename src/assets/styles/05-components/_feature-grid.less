@@ -77,3 +77,8 @@
     padding-top: 50 * @px;
   }
 }
+
+// Figma tucks the block 20 under the band's rounded foot
+.pinned + .feature-grid {
+  @media (min-width: @bp-lg) { padding-top: (120 - 20) * @px; }
+}

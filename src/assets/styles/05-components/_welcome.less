@@ -82,3 +82,8 @@
 
   &__button { margin-top: 40 * @px; }
 }
+
+// Figma tucks the block 17 under the band's rounded foot
+.pinned + .welcome {
+  @media (min-width: @bp-lg) { padding-top: (120 - 17) * @px; }
+}
