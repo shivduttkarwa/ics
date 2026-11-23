@@ -14,6 +14,22 @@
   "header_button": { "text": "Book a tour", "url": "", "style": "moss" },
   "nav": [
     {
+      "label": "All links",
+      "url": "",
+      "children": [
+        { "label": "Home", "url": "/index.html" },
+        { "label": "Why ICS", "url": "/why.html" },
+        { "label": "Results and pathways", "url": "/results.html" },
+        { "label": "Our people", "url": "/people.html" },
+        { "label": "Faith", "url": "/faith.html" },
+        { "label": "Enrolling at ICS", "url": "/enrol.html" },
+        { "label": "Entry points", "url": "/entry-points.html" },
+        { "label": "Contact us", "url": "/contact.html" },
+        { "label": "Internal page blocks", "url": "/page-blocks.html" },
+        { "label": "Internal page blocks 2", "url": "/page-blocks-2.html" }
+      ]
+    },
+    {
       "label": "Why ICS?",
       "url": "/why.html",
       "children": [
@@ -26,14 +42,6 @@
     { "label": "Our Faith", "url": "/faith.html" },
     { "label": "Learning", "url": "" },
     { "label": "Life at ICS", "url": "" },
-    {
-      "label": "Enrol",
-      "url": "/enrol.html",
-      "children": [
-        { "label": "Enrolling at ICS", "url": "/enrol.html" },
-        { "label": "Entry points", "url": "/entry-points.html" }
-      ]
-    },
     { "label": "Contact Us", "url": "/contact.html" }
   ],
   "menu_buttons": [

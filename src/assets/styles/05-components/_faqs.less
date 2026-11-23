@@ -46,6 +46,9 @@
     @media (min-width: @bp-lg) { grid-column: 3; }
   }
 
+  &__item,
+  &__more { will-change: transform; }
+
   &__item {
     position: relative;
     // rules sit on the row's edges without adding to its height, as Figma's zero-height lines

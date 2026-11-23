@@ -217,7 +217,9 @@
     border-radius: var(--radius-lg);
     &::after {
       content: "";
-      .cover();
+      position: absolute;
+      // past the frame's edge, so the shade still covers the photo's layer when it lands between pixels
+      inset: -2 * @px;
       background: var(--gradient-photo-foot);
       pointer-events: none;
     }

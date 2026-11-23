@@ -1,8 +1,8 @@
 @moments-photo-width: 510 * @px;
 @moments-photo-height: 637 * @px;
 @moments-copy-pad: 80 * @px;
-// the scroll each panel holds for before the next is uncovered
-@moments-step: 90svh;
+// the scroll over which each panel passes across the screen
+@moments-step: 110svh;
 
 .moments {
   background: var(--color-canopy);
@@ -126,7 +126,7 @@
   }
 }
 
-// from lg the block holds on screen and each panel is uncovered over the one before (moments.js)
+// from lg the block holds on screen and its panels pass across it from the right as the page scrolls (moments.js)
 .moments.is-pinned {
   @media (min-width: @bp-lg) {
     height: calc(100svh + (var(--moments-count, 1) - 1) * @moments-step);
@@ -136,13 +136,13 @@
     .moments__stage {
       position: sticky;
       top: 0;
-      display: grid;
+      display: flex;
       height: 100svh;
     }
 
     .moments__item {
       display: flex;
-      grid-area: 1 / 1;
+      flex: 0 0 100%;
       align-items: center;
       padding: 0;
     }
@@ -151,6 +151,7 @@
 
     .moments__frame { height: ~"min(@{moments-photo-height}, 100svh - 2 * @{fit-room})"; }
 
-    .moments__photo { transform-origin: 50% 60%; }
+    // wider than its frame, so it can drift across it
+    .moments__photo { inset: 0 -7%; }
   }
 }

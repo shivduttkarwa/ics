@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-11-23 — Motion fixes and horizontal moments
+- The Faith page's moments pass across the screen from the right as the page scrolls (from lg), each photo drifting in its frame and the incoming copy settling as it arrives; they no longer wipe up over each other.
+- Split titles: the line mask reaches below the descenders and lines start 150% down, so tails no longer snap in as a line lands.
+- The announcement sheet is fully out after 160px of scroll (run 120, back 50). The FAQ rows lift with `fade-up-soft` on held layers, so their hairlines no longer shimmer.
+- The footer clips its stuck lower band's corner fill, which showed as a dark strip over the section above while the footer came into view. The pillar photo's foot shade reaches past its frame, so no light hairline shows at its bottom edge.
+- The menu's Enrol section is replaced by "All links", every built page, for testing.
+
 ## 2026-11-18 — Faith and the Internal Page Blocks
 - The Faith page (`/faith.html`, Figma `15694:13352`), linked from the header's and menu's Our Faith, every "Our Faith" card and row, and the "Faith at ICS" buttons: the hero (Figma's 1920 photo under the `medium` shade), the statement band, the new `moments` block (the three-state Pinned Section, `15694:17682`: a day in the life held on screen from lg while each moment is uncovered over the last, `moments.js`), the Why page's faith and community pillars with leaf bullets, the testimonials ("What our parents say"), the FAQs, Where next, Keep exploring and the CTA cards.
 - The two Internal Page Blocks frames as kit pages, out of the menu: `/page-blocks.html` (`15513:9960`) and `/page-blocks-2.html` (`15550:32965`). New blocks `media_text` (text beside a photo, either side, or boxed as the large promo), `banner`, `intro_columns`, `photo`, `body_text`, `author`, `gallery` (centred looping slides with a caption) and `promo_cards`; new variants `pinned` theme beach, `quote_band` theme white, `usps` theme white, `cta_band` height 633, `pillar` shade.

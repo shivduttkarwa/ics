@@ -3,7 +3,7 @@
     <div class="faqs__title">
       <h2 data-anim="split">{{ value.title | safe }}</h2>
     </div>
-    <div class="faqs__list" data-accordion data-accordion-closed-mobile data-anim-group="fade-up">
+    <div class="faqs__list" data-accordion data-accordion-closed-mobile data-anim-group="fade-up-soft">
       {% for item in value.items %}
       <div class="faqs__item{% if loop.first and not value.all_closed %} is-open{% endif %}" data-accordion-item>
         <h3>

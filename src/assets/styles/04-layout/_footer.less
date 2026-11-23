@@ -8,6 +8,8 @@
 
 .site-footer {
   --focus-ring: var(--color-moss);
+  // the stuck lower band's corner fill would otherwise poke above the footer over the section before it
+  overflow: clip;
   color: var(--color-white);
 
   &__upper {

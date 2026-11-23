@@ -7,13 +7,10 @@ html.anim-ready:not(.anim-reduced) {
   }
 }
 
-// the mask's clip reaches past the line's box above and at the sides, so italic overhangs are not cut while it rises, but is
-// tight at the foot, where the line emerges, as the menu's rows are: descenders are cut while a line rises and complete as
-// it lands, when its clip comes off. SplitText's inline overflow: clip is replaced, as padding with negative margins
-// collapsed between the lines and spread them apart
+// the clip reaches below the descenders, so nothing is cut while a line rises; LINES.from in anim.js starts it clear of this edge
 .anim-line-mask {
   overflow: visible !important;
-  clip-path: inset(-0.14em -0.12em 0);
+  clip-path: inset(-0.14em -0.12em -0.25em);
 }
 
 [data-anim="progress"] { --anim-progress: 1; }
