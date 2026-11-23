@@ -91,6 +91,7 @@
       .glass();
       padding: @header-pill-pad;
       border-radius: var(--radius-pill);
+      transition: background-color var(--duration-base) ease;
     }
     .btn {
       display: none;
@@ -108,6 +109,7 @@
     border-radius: var(--radius-pill);
     background: var(--color-white);
     color: var(--color-canopy);
+    transition: color var(--duration-base) ease, box-shadow var(--duration-base) ease;
     .icon {
       width: 30 * @px;
       height: 18 * @px;
@@ -120,6 +122,18 @@
     }
     @media @fine {
       &:hover .icon { scale: 0.86 1; }
+    }
+  }
+
+  // over a light ground (header.js): the white burger turns canopy and the clear pill takes a faint tint, so neither disappears
+  &__tools.is-light {
+    @media (min-width: @bp-lg) { background-color: var(--color-black-5); }
+  }
+  &__tools.is-light &__menu {
+    box-shadow: inset 0 0 0 1 * @px var(--color-black-10);
+    @media (min-width: @bp-lg) {
+      box-shadow: none;
+      color: var(--color-canopy);
     }
   }
 
