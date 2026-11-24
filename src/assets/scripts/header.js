@@ -5,7 +5,11 @@ export function initHeader() {
   const header = document.querySelector(".site-header");
   const tools = header?.querySelector(".site-header__tools");
   if (!header || !tools) return;
-  const measure = () => header.style.setProperty("--header-tools", `${tools.offsetWidth}px`);
+  const measure = () => {
+    const width = `${tools.offsetWidth}px`;
+    header.style.setProperty("--header-tools", width);
+    try { sessionStorage.setItem("header-tools", width); } catch (e) {}
+  };
   measure();
   window.addEventListener("resize", measure);
   document.fonts?.ready.then(measure);

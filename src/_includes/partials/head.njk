@@ -8,6 +8,8 @@
 <link rel="icon" href="/assets/icons/favicon.ico" sizes="32x32">
 <link rel="icon" href="/assets/icons/crest.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+<link rel="preload" href="/assets/fonts/museo-sans-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/museo-sans-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/main.css">
 <script>
   (function (d) {
@@ -17,6 +19,9 @@
     // reached from another of the site's pages (not a reload): the header carries over, still
     try {
       if (document.referrer && new URL(document.referrer).origin === location.origin && (!entry || entry.type !== "reload")) d.classList.add("anim-carried");
+      // the pill's width as header.js last measured it, so the bar is laid out right from the first frame
+      var tools = sessionStorage.getItem("header-tools");
+      if (tools) d.style.setProperty("--header-tools", tools);
     } catch (e) {}
     // a link to a section opens on it, with no smooth scroll down from the top past sections still waiting to reveal
     if (location.hash.length > 1 && (!entry || entry.type === "navigate")) {
@@ -25,7 +30,6 @@
     }
     addEventListener("load", function () {
       setTimeout(function () { if (!d.hasAttribute("data-anim-live")) d.classList.remove("anim-ready"); }, 800);
-    });
-  })(document.documentElement);
+    });  })(document.documentElement);
 </script>
 <noscript><style>[data-anim]{visibility:visible !important}</style></noscript>

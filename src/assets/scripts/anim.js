@@ -424,7 +424,26 @@ function flush() {
   });
   const hold = window.scrollY < 20 ? Math.max(0, holdUntil - gsap.ticker.time) : 0;
   const step = visible.length > 1 ? Math.min(STAGGER, SPREAD / (visible.length - 1)) : 0;
-  visible.forEach((unit, i) => unit.play(hold + i * step + number(unit.el, "data-anim-delay", 0)));
+  const play = () => visible.forEach((unit, i) => unit.play(i * step + number(unit.el, "data-anim-delay", 0)));
+  if (hold) afterHold(hold, play);
+  else play();
+}
+
+// first-screen reveals wait for the entrance, unless the page is scrolled first
+function afterHold(hold, fn) {
+  let done = false;
+  const run = () => {
+    if (done) return;
+    done = true;
+    call.kill();
+    window.removeEventListener("scroll", onScroll);
+    fn();
+  };
+  const onScroll = () => {
+    if (window.scrollY >= 20) run();
+  };
+  const call = gsap.delayedCall(hold, run);
+  window.addEventListener("scroll", onScroll, { passive: true });
 }
 function enqueue(unit) {
   pending.push(unit);
@@ -480,7 +499,7 @@ function playEntrance(units) {
       landed = Math.max(landed, start + (number(unit.el, "data-anim-landed", 0) || (anim.deferred ? anim.duration : anim.duration())));
     });
   });
-  holdUntil = gsap.ticker.time + BASE + tl.duration() - LEAD;
+  holdUntil = gsap.ticker.time + BASE + landed - LEAD;
   entranceEnd = gsap.ticker.time + BASE + tl.duration() + 0.5;
   return tl;
 }

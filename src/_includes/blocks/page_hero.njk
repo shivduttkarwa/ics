@@ -1,5 +1,5 @@
 <section class="page-hero{% if value.shade and value.shade != 'light' %} page-hero--{{ value.shade }}{% endif %} rounded-foot" data-anim-parallax-trigger>
-  <div class="page-hero__media" aria-hidden="true" data-anim="reveal" data-anim-type="zoom-out" data-anim-tier="hero" data-anim-order="0" data-anim-landed="0.8">
+  <div class="page-hero__media" aria-hidden="true">
     <div class="page-hero__layer" data-anim="parallax" data-anim-start="top top" data-anim-disable-mobile>
       <picture class="page-hero__picture">
         {% if value.image_mobile %}<source media="(max-width: 991.98px)" srcset="{{ value.image_mobile.src }}">{% endif %}
@@ -12,7 +12,7 @@
 
   <div class="page-hero__body container">
     {% if value.breadcrumbs %}
-    <nav class="page-hero__crumbs" aria-label="Breadcrumb" data-anim="reveal" data-anim-type="fade" data-anim-tier="hero" data-anim-order="3">
+    <nav class="page-hero__crumbs" aria-label="Breadcrumb" data-anim="reveal" data-anim-type="fade" data-anim-tier="hero" data-anim-order="4" data-anim-landed="0.6">
       <ol>
         {% for crumb in value.breadcrumbs %}
         <li>{% if crumb.url and not loop.last %}<a href="{{ crumb.url }}">{{ crumb.label }}</a>{% else %}<span{% if loop.last %} aria-current="page"{% endif %}>{{ crumb.label }}</span>{% endif %}{% if not loop.last %}<svg class="icon" aria-hidden="true"><use href="#icon-angle-right"></use></svg>{% endif %}</li>
@@ -20,6 +20,6 @@
       </ol>
     </nav>
     {% endif %}
-    <h1 data-anim="split" data-anim-tier="hero" data-anim-order="2">{{ value.title | safe }}</h1>
+    <h1 data-anim="split" data-anim-tier="hero" data-anim-order="2" data-anim-landed="0.8">{{ value.title | safe }}</h1>
   </div>
 </section>
