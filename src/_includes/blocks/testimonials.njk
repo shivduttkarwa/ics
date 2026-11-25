@@ -13,7 +13,7 @@
         <li class="testimonial testimonial--video swiper-slide"{% if item.video %} data-hover-video{% endif %}>
           <div class="testimonial__media">
             {% set img = item.image %}{% set cls = "testimonial__img" %}{% include "snippets/image.njk" %}
-            {% if item.video %}<video class="testimonial__video" data-src="{{ item.video.src }}" muted loop playsinline preload="none"></video>{% endif %}
+            {% if item.video %}<video class="testimonial__video" data-src="{{ item.video.src }}" muted loop playsinline preload="none" aria-hidden="true"></video>{% endif %}
           </div>
           <a class="btn testimonial__play"{% if item.url %} href="{{ item.url }}"{% endif %}><span class="btn__label">{{ item.label }}</span><svg class="icon" aria-hidden="true"><use href="#icon-play-outline"></use></svg></a>
         </li>

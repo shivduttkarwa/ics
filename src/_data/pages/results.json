@@ -393,7 +393,9 @@
               "width": 371,
               "height": 742
             },
-            "video": null,
+            "video": {
+              "src": "/assets/video/hero-card.mp4"
+            },
             "label": "Hear from Lena",
             "url": ""
           },
@@ -411,7 +413,9 @@
               "width": 593,
               "height": 1068
             },
-            "video": null,
+            "video": {
+              "src": "/assets/video/hero-card.mp4"
+            },
             "label": "Hear from Rowan",
             "url": ""
           },
@@ -429,7 +433,9 @@
               "width": 682,
               "height": 1365
             },
-            "video": null,
+            "video": {
+              "src": "/assets/video/hero-card.mp4"
+            },
             "label": "Hear from dave",
             "url": ""
           }

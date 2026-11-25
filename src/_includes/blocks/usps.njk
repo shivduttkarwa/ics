@@ -17,7 +17,7 @@
               {% if card.image_mobile %}<source media="(max-width: 991.98px)" srcset="{{ card.image_mobile.src }}">{% endif %}
               {% set img = card.image %}{% set cls = "usp-card__img" %}{% include "snippets/image.njk" %}
             </picture>
-            {% if card.video %}<video class="usp-card__video" data-src="{{ card.video.src }}" muted loop playsinline preload="none"></video>{% endif %}
+            {% if card.video %}<video class="usp-card__video" data-src="{{ card.video.src }}" muted loop playsinline preload="none" aria-hidden="true"></video>{% endif %}
           </div>
           <h3>{{ card.title }}</h3>
           {% if card.button and card.button.text %}

@@ -204,15 +204,13 @@
     }
   }
 
-  &__card-img {
-    .img-cover();
-    transition: scale var(--duration-slow) var(--ease-out);
-  }
+  &__card-img { .zoom-img(var(--duration-slow)); }
 
   &__card-video {
     .cover();
     object-fit: cover;
     opacity: 0;
+    scale: @zoom-rest;
     transition: opacity var(--duration-slow) ease, scale var(--duration-slow) var(--ease-out);
   }
 

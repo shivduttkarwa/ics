@@ -178,7 +178,9 @@
               "width": 376,
               "height": 500
             },
-            "video": null,
+            "video": {
+              "src": "/assets/video/hero-card.mp4"
+            },
             "button": {
               "text": "Play Video",
               "url": "/assets/video/hero-card.mp4",

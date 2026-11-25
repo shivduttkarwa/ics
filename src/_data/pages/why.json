@@ -207,7 +207,9 @@
               "width": 534,
               "height": 1068
             },
-            "video": null,
+            "video": {
+              "src": "/assets/video/hero-card.mp4"
+            },
             "label": "Hear from Year 10 student",
             "url": ""
           },
@@ -225,7 +227,9 @@
               "width": 593,
               "height": 1068
             },
-            "video": null,
+            "video": {
+              "src": "/assets/video/hero-card.mp4"
+            },
             "label": "Hear from Ali",
             "url": ""
           },
@@ -243,7 +247,9 @@
               "width": 682,
               "height": 1365
             },
-            "video": null,
+            "video": {
+              "src": "/assets/video/hero-card.mp4"
+            },
             "label": "Hear from dave",
             "url": ""
           }

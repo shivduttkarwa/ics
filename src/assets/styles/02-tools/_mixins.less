@@ -36,6 +36,14 @@
   object-fit: cover;
 }
 
+// a photo that zooms on hover rests a hair over its frame: while the zoom runs Chrome draws it on a layer rounded to whole pixels, which uncovered a sliver at the frame's edge
+@zoom-rest: 1.01;
+.zoom-img(@duration: 0.9s) {
+  .img-cover();
+  scale: @zoom-rest;
+  transition: scale @duration var(--ease-out);
+}
+
 .reset-list() {
   list-style: none;
   margin: 0;
