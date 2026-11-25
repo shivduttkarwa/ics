@@ -198,41 +198,34 @@
     will-change: transform;
   }
 
-  // the title turns Book Italic as its item opens: a face cannot tween, so the leaving face slips away first, quickly,
-  // and the arriving one slides into its place a beat later, the two never doubling up
+  // the title turns Book Italic as its item opens; a face cannot tween, so the two cross-fade in place, the leaving one a little quicker
   &__label {
     position: relative;
     flex: 1 1 0;
     min-width: 0;
   }
 
-  @word-arrive: opacity var(--duration-base) var(--ease-out) var(--duration-fast), transform var(--duration-base) var(--ease-out) var(--duration-fast);
-  @word-leave: opacity var(--duration-fast) var(--ease-settle), transform var(--duration-fast) var(--ease-settle);
-
   &__word {
     display: block;
     text-box: trim-both cap alphabetic;
-    transition: @word-arrive;
+    transition: opacity var(--duration-slow) var(--ease-in-out-soft);
     &--open {
       position: absolute;
       inset: 0;
       font-weight: 400;
       font-style: italic;
       opacity: 0;
-      transform: translateX(-8 * @px);
-      transition: @word-leave;
+      transition-duration: var(--duration-base);
     }
   }
 
   &__item.is-open &__word {
     opacity: 0;
-    transform: translateX(6 * @px);
-    transition: @word-leave;
+    transition-duration: var(--duration-base);
   }
   &__item.is-open &__word--open {
     opacity: 1;
-    transform: none;
-    transition: @word-arrive;
+    transition-duration: var(--duration-slow);
   }
 
   // it turns about the arrow's own middle, which is not the middle of its box

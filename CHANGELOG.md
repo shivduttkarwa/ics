@@ -1,6 +1,7 @@
 # Changelog
 
 ## 2026-11-25 — Hero video card
+- Menu titles turn Book Italic as their item opens with a plain cross-fade in place: the leaving face fades over 0.35s and the arriving one over 0.6s (`--ease-in-out-soft`). The two faces no longer slide sideways or wait on each other.
 - Site search, in the menu only: from two letters typed, every matching page replaces the list (title and a snippet with the words marked) and the panel scrolls through them; a clear button inside the search pill (and Escape) closes the search alone, back to the list, and closing the menu clears it. The build writes `search-index.json` from each rendered page's `<main>`, leaving out the kit pages and the blocks that repeat the navigation (where next, keep exploring, CTA cards, breadcrumbs). Not in Figma: drawn from the kit.
 - Menu items follow each other closer, on both sizes: 0.04s apart coming in (was 0.07s) and 0.025s going out (was 0.04s).
 - Phone menu covers the whole screen and the closed menu always fits one screen: Figma's rhythm where the panel's content box is 680 tall or more, tighter below (`@container menu`), type sizes unchanged and every row keeping 15 under its title (the descenders drop 11 toward the rule). It is uncovered from the top down on the desktop's height curve and timing (1.3s, `fold`) with the desktop's row entrance, and rolls back up the same way. Every item's rule now fades in and out with it, on both sizes. "All links" is out of the menu for now.
