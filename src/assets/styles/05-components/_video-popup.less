@@ -1,6 +1,5 @@
 @popup-pad: 80 * @px;
 @popup-width: 1200 * @px;
-@popup-close: 48 * @px;
 
 // a USP card's Play Video and the hero's video card open their video here (ui.js)
 .video-popup {
@@ -51,29 +50,11 @@
   }
 
   &__close {
+    .close-button();
     position: absolute;
-    top: -(@popup-close / 2);
-    right: -(@popup-close / 4);
+    top: -(@close-size / 2);
+    right: -(@close-size / 4);
     z-index: 1;
-    display: grid;
-    place-items: center;
-    width: @popup-close;
-    height: @popup-close;
-    padding: 0;
-    border: 0;
-    border-radius: 50%;
-    background: var(--color-moss);
-    color: var(--color-canopy);
-    transition: scale var(--duration-slow) var(--ease-in-out-soft);
-    will-change: transform;
-    .icon {
-      width: 18 * @px;
-      height: 18 * @px;
-    }
-  }
-
-  @media @fine {
-    &__close:hover { scale: 1.06; }
   }
 }
 

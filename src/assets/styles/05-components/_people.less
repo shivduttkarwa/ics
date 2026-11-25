@@ -6,8 +6,6 @@
 @bio-width: 1062 * @px;
 @bio-photo-width: 362 * @px;
 @bio-photo-height: 424 * @px;
-@bio-close: 60 * @px;
-@bio-close-icon: 20 * @px;
 
 .people {
   padding: 75 * @px 0;
@@ -196,25 +194,8 @@
   }
 
   &__close {
-    display: grid;
+    .close-button();
     flex: none;
-    place-items: center;
-    width: @bio-close;
-    height: @bio-close;
-    padding: 0;
-    border: 0;
-    border-radius: 50%;
-    background: var(--color-white);
-    color: var(--color-forest);
-    transition: scale var(--duration-slow) var(--ease-in-out-soft);
-    will-change: transform;
-    .icon {
-      width: @bio-close-icon;
-      height: @bio-close-icon;
-    }
-    @media @fine {
-      &:hover { scale: 1.06; }
-    }
   }
 
   &__body {
