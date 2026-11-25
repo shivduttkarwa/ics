@@ -24,7 +24,7 @@
       {% endif %}
     </div>
     {% if value.actions %}
-    <div class="hero__actions" data-anim="reveal" data-anim-type="fade" data-anim-tier="hero" data-anim-order="3" data-anim-landed="0.6">
+    <div class="hero__actions" data-anim="reveal" data-anim-type="fade-up-soft" data-anim-tier="hero" data-anim-order="3" data-anim-order-mobile="2">
       {% for btn in value.actions %}{% set plain = true %}{% include "snippets/button.njk" %}{% endfor %}{% set plain = false %}
     </div>
     {% endif %}

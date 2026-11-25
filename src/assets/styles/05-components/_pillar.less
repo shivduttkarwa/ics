@@ -113,15 +113,16 @@
     .pillar-gap(50);
   }
 
-  // below lg the row runs off the screen's right edge, as the phone frames draw it, and scrolls by hand; the room below keeps it from clipping the items as they rise in
+  // below lg the row runs off the screen's right edge, as the phone frames draw it, and scrolls by hand; the room below keeps it from
+  // clipping the items as they rise in, the room above keeps the figures' round tops, which rise past their trimmed cap height
   &__stats {
     .reset-list();
     .hide-scrollbar();
     display: flex;
     align-items: flex-start;
     gap: 40 * @px;
-    margin: 0 calc(var(--gutter) * -1) -40 * @px 0;
-    padding: 0 var(--gutter) 40 * @px 0;
+    margin: -10 * @px calc(var(--gutter) * -1) -40 * @px 0;
+    padding: 10 * @px var(--gutter) 40 * @px 0;
     overflow-x: auto;
     overscroll-behavior-x: contain;
     @media (min-width: @bp-lg) {

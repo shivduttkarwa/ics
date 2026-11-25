@@ -549,11 +549,13 @@ function setupSheets(root) {
   scoped(root, '[data-anim="tuck"]').forEach((el) => {
     bind(el);
     if (still.matches) return;
-    let wait, run, back;
+    let from, wait, run, back;
+    // counted from when the foot above reaches the screen's bottom: a phone's hero runs on past the first screen
     const measure = () => {
+      from = Math.max(0, el.parentElement.getBoundingClientRect().top + window.scrollY - window.innerHeight);
       wait = designPx(number(el, "data-anim-wait", 40));
       run = designPx(number(el, "data-anim-run", 200));
-      back = designPx(number(el, "data-anim-back", 80));
+      back = designPx(number(el, variant(el, "data-anim-back"), 80));
     };
     let target = -1;
     let shown = -1;
@@ -576,8 +578,8 @@ function setupSheets(root) {
       const s = window.scrollY;
       const down = s >= last;
       last = s;
-      const out = gsap.utils.clamp(0, 1, (s - wait) / run);
-      const home = gsap.utils.clamp(0, 1, (s - wait) / back);
+      const out = gsap.utils.clamp(0, 1, (s - from - wait) / run);
+      const home = gsap.utils.clamp(0, 1, (s - from - wait) / back);
       const next = target < 0 ? out : down ? Math.max(target, out) : Math.min(target, home);
       if (next === target) return;
       target = next;
@@ -591,6 +593,7 @@ function setupSheets(root) {
     update();
     window.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", () => { measure(); update(); });
+    ScrollTrigger.addEventListener("refresh", () => { measure(); update(); });
   });
 }
 
