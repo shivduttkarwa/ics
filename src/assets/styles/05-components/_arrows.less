@@ -2,7 +2,10 @@
 @arrow-btn: 52 * @px;
 @arrow-icon: 21 * @px;
 
+// above a split title's lines, which sit on their own layers and otherwise take the clicks where the two share a row
 .arrows {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex: none;
   gap: 10 * @px;
