@@ -1,19 +1,28 @@
 <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Site menu" hidden>
   <div class="menu__backdrop" data-menu-close></div>
-  <div class="menu__panel">
+  <div class="menu__panel" data-search data-search-index="/search-index.json">
     <div class="menu__top" data-menu-row>
-      <form class="menu__search" role="search">
+      <form class="menu__search" role="search" data-search-form>
         <label class="visually-hidden" for="menu-search">Search the site</label>
         <svg class="icon" aria-hidden="true"><use href="#icon-search"></use></svg>
-        <input id="menu-search" type="search" name="q" placeholder="Search..." autocomplete="off">
+        <input id="menu-search" type="search" name="q" placeholder="Search..." autocomplete="off" aria-controls="menu-results">
+        <button class="menu__search-clear" type="button" aria-label="Clear search" data-search-clear hidden><svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg></button>
       </form>
       <button class="menu__close" type="button" data-menu-close>
         <span class="menu__close-label">Close</span>
         <span class="menu__close-icon" aria-hidden="true"><svg class="icon"><use href="#icon-close"></use></svg></span>
       </button>
     </div>
-    <div class="menu__body" data-lenis-prevent>
-      <nav class="menu__nav" aria-label="Site">
+    <div class="menu__body" data-lenis-prevent data-search-scroll>
+      <p class="visually-hidden" role="status" data-search-status data-none="No results" data-one="1 result" data-many="{n} results"></p>
+      <div class="menu__results" id="menu-results" data-search-results hidden>
+        <ul class="menu__results-list" data-search-list></ul>
+        <p class="menu__results-empty" data-search-empty hidden>No pages match that search. Try another word.</p>
+        <template data-search-row>
+          <li><a class="menu__result" data-search-link><span class="menu__result-title" data-search-title></span><span class="menu__result-text" data-search-text></span><svg class="menu__result-arrow" aria-hidden="true"><use href="#icon-arrow-diagonal"></use></svg></a></li>
+        </template>
+      </div>
+      <nav class="menu__nav" aria-label="Site" data-search-replace>
         <ul class="menu__list">
           {% for item in site.nav %}
           <li class="menu__item{% if item.children and item.current %} is-open{% endif %}" data-menu-row>

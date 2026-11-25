@@ -67,7 +67,8 @@
     background: var(--color-white-20);
     transition: background-color var(--duration-base) ease;
     &:focus-within { background: var(--color-white-30); }
-    .icon {
+    > .icon {
+      flex: none;
       width: 25 * @px;
       height: 25 * @px;
     }
@@ -87,6 +88,30 @@
         opacity: 1;
       }
       &::-webkit-search-cancel-button { display: none; }
+    }
+  }
+
+  // closes the search alone, back to the list; it shows once something is typed
+  &__search-clear {
+    .tap-area();
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: 25 * @px;
+    height: 25 * @px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: var(--color-white-20);
+    color: inherit;
+    transition: scale var(--duration-slow) var(--ease-in-out-soft);
+    will-change: transform;
+    .icon {
+      width: 10 * @px;
+      height: 10 * @px;
+    }
+    @media @fine {
+      &:hover { scale: 1.06; }
     }
   }
 
@@ -310,6 +335,74 @@
       }
     }
   }
+
+  // the search's live results (search.js) stand in for the list while the field holds a query
+  &__results {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    @media (prefers-reduced-motion: no-preference) { animation: menu-results-in var(--duration-slow) var(--ease-out) both; }
+  }
+
+  &__results-list {
+    .reset-list();
+    align-self: stretch;
+  }
+
+  &__result {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 15 * @px;
+    row-gap: 6 * @px;
+    padding: 18 * @px 0;
+    box-shadow: inset 0 -1 * @px 0 var(--color-canopy);
+    color: inherit;
+    @media (hover: hover) {
+      &:hover { color: inherit; }
+      &:hover .menu__result-arrow { translate: 3 * @px -3 * @px; }
+    }
+    mark {
+      padding: 0;
+      background: none;
+      color: var(--color-moss);
+    }
+  }
+
+  &__result-title {
+    .type-h5();
+    grid-column: 1;
+  }
+
+  &__result-text {
+    .type-body-3-light();
+    display: -webkit-box;
+    grid-column: 1;
+    overflow: hidden;
+    color: var(--color-white-75);
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  &__result-arrow {
+    grid-column: 2;
+    grid-row: 1;
+    width: 20 * @px;
+    height: 20 * @px;
+    color: var(--color-moss);
+    transition: translate var(--duration-base) var(--ease-out);
+  }
+
+  &__results-empty {
+    .type-body-3-light();
+    margin: 0;
+    padding: 18 * @px 0;
+    color: var(--color-white-75);
+  }
+}
+
+@keyframes menu-results-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 // the closed menu fits its panel (a container query reads the content box): Figma's rhythm where there is room for it, tighter below; a row keeps at least 15 under the title, as its descenders drop 11 toward the rule

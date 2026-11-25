@@ -10,7 +10,7 @@ const PROD = process.env.ELEVENTY_RUN_MODE === "build";
 function relativeUrls(html, pageUrl) {
   const up = "../".repeat(pageUrl.split("/").length - 2);
   return html
-    .replace(/\b(href|src|poster|action|data-src|data-thumb)="\/(?!\/)([^"]*)"/g, (_, attr, url) => `${attr}="${up + url || "./"}"`)
+    .replace(/\b(href|src|poster|action|data-src|data-thumb|data-search-index)="\/(?!\/)([^"]*)"/g, (_, attr, url) => `${attr}="${up + url || "./"}"`)
     .replace(/\bsrcset="([^"]*)"/g, (_, set) => `srcset="${set.replace(/(^|[\s,])\/(?!\/)/g, `$1${up}`)}"`);
 }
 
@@ -28,6 +28,44 @@ async function compileCss() {
   fs.writeFileSync("dist/assets/css/main.css", css);
 }
 
+// the site search's index (search.js), read from each rendered page; a <main> with data-search-skip is left out
+const ENTITIES = { amp: "&", lt: "<", gt: ">", quot: "\"", apos: "'", nbsp: " ", rsquo: "’", lsquo: "‘", ldquo: "“", rdquo: "”", ndash: "–", mdash: "—", hellip: "…" };
+const decode = (text) => text.replace(/&(#x[0-9a-f]+|#\d+|[a-z]+);/gi, (whole, code) => {
+  if (code[0] !== "#") return ENTITIES[code.toLowerCase()] ?? whole;
+  return String.fromCodePoint(code[1].toLowerCase() === "x" ? parseInt(code.slice(2), 16) : parseInt(code.slice(1), 10));
+});
+// inline tags join the words either side of them; every other tag is a break between words
+const textOf = (html) => decode(html
+  .replace(/<\/?(?:em|strong|i|b|a|abbr|sup|sub|small|mark|u|q|cite)\b[^>]*>/gi, "")
+  .replace(/<[^>]+>/g, " ")).replace(/\s+/g, " ").trim();
+
+function searchEntry(html, url, siteName) {
+  const main = html.match(/<main\b([^>]*)>([\s\S]*)<\/main>/i);
+  if (!main || /\bdata-search-skip\b/.test(main[1])) return null;
+  const body = main[2]
+    .replace(/<(section|nav)\b[^>]*\bdata-search-skip\b[^>]*>[\s\S]*?<\/\1>/gi, " ")
+    .replace(/<(script|style|svg|template|video|noscript)\b[\s\S]*?<\/\1>/gi, " ");
+  const title = textOf(html.match(/<title>([\s\S]*?)<\/title>/i)?.[1] || "").split(" | ").filter((part) => part !== siteName).join(" | ");
+  return {
+    url,
+    title: title || siteName,
+    description: decode(html.match(/<meta name="description" content="([^"]*)"/i)?.[1] || ""),
+    headings: [...body.matchAll(/<h([1-3])\b[^>]*>([\s\S]*?)<\/h\1>/gi)].map((m) => textOf(m[2])).filter(Boolean),
+    text: textOf(body),
+  };
+}
+
+function writeSearchIndex(results) {
+  const { name } = JSON.parse(fs.readFileSync("src/_data/site.json", "utf8"));
+  const entries = results
+    .filter(({ url, outputPath }) => url && outputPath?.endsWith(".html") && !url.startsWith("/lab/"))
+    .map(({ content, url }) => searchEntry(content, url.endsWith("/") ? `${url}index.html` : url, name))
+    .filter(Boolean)
+    .sort((a, b) => a.url.localeCompare(b.url));
+  fs.mkdirSync("dist", { recursive: true });
+  fs.writeFileSync("dist/search-index.json", JSON.stringify(entries));
+}
+
 export default function (eleventyConfig) {
   eleventyConfig.addTransform("relative-urls", function (content) {
     return (this.page.outputPath || "").endsWith(".html") ? relativeUrls(content, this.page.url) : content;
@@ -39,6 +77,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("divisibleby", (value, divisor) => Number(value) % Number(divisor) === 0);
 
   eleventyConfig.on("eleventy.before", compileCss);
+  eleventyConfig.on("eleventy.after", ({ results }) => writeSearchIndex(results));
   eleventyConfig.addWatchTarget("src/assets/styles/");
   eleventyConfig.addWatchTarget("dist/assets/js/");
 

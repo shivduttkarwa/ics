@@ -7,7 +7,7 @@
   {% include "partials/icons.njk" %}
   <a class="visually-hidden-focusable" href="#main">Skip to content</a>
   {% include "partials/header.njk" %}
-  <main id="main">
+  <main id="main"{% if search == false %} data-search-skip{% endif %}>
     {{ content | safe }}
   </main>
   {% include "partials/footer.njk" %}

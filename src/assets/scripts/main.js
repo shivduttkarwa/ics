@@ -9,6 +9,7 @@ import { initNews } from "./news.js";
 import { initCards } from "./cards.js";
 import { initStories } from "./stories.js";
 import { initMoments } from "./moments.js";
+import { initSearch } from "./search.js";
 import { initAmbientVideos, initDevicePixel, initDialogs, initEagerPhotos, initForms, initFocusMode, initHoverVideos, initScrollState, initVideoPopup } from "./ui.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -24,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initMoments();
   Anim.init();
   initMenu();
+  initSearch();
   initAccordions();
   initNews();
   initCards();

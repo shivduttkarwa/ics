@@ -12,7 +12,7 @@
 
   <div class="page-hero__body container">
     {% if value.breadcrumbs %}
-    <nav class="page-hero__crumbs" aria-label="Breadcrumb" data-anim="reveal" data-anim-type="fade" data-anim-tier="hero" data-anim-order="4" data-anim-landed="0.6">
+    <nav class="page-hero__crumbs" aria-label="Breadcrumb" data-search-skip data-anim="reveal" data-anim-type="fade" data-anim-tier="hero" data-anim-order="4" data-anim-landed="0.6">
       <ol>
         {% for crumb in value.breadcrumbs %}
         <li>{% if crumb.url and not loop.last %}<a href="{{ crumb.url }}">{{ crumb.label }}</a>{% else %}<span{% if loop.last %} aria-current="page"{% endif %}>{{ crumb.label }}</span>{% endif %}{% if not loop.last %}<svg class="icon" aria-hidden="true"><use href="#icon-angle-right"></use></svg>{% endif %}</li>
