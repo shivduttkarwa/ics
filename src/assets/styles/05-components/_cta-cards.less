@@ -111,6 +111,8 @@
     }
     // a smaller grown dot than the kit's 42, 8 clear of the pill above and below
     @media @fine {
+      // the content is centred, so the kit's narrower left inset on hover slid the whole group, arrow and all, to the left
+      &:has(.btn__dot):not(.btn--open):hover { padding-left: var(--bs-btn-padding-x); }
       &:has(.btn__dot):not(.btn--open):hover .btn__dot {
         width: @cta-cards-dot;
         height: @cta-cards-dot;

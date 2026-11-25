@@ -1,6 +1,8 @@
 # Changelog
 
 ## 2026-11-25 — Hero video card
+- CTA cards ("Make an enquiry" and its neighbours): on hover the arrow's dot slid 10 left as it grew. The button is full width with its content centred, and the kit's hover narrows the left inset (25 to 5), which moved the whole group; the cards' buttons now keep their inset, so the dot grows in place and the label steps right to make room.
+- Our People, "What our staff say": the arrows did nothing from lg, as Figma's ten tiles fill the screen exactly (five columns). The data adds six stand-in quotes (three more columns, the same staff photos), so the arrows page one column at a time; the first screen is unchanged.
 - Social: the next arrow did nothing. The section title shares the arrows' grid cell and its split lines sit on their own layers, so they lay over the button and took its clicks (the previous arrow worked only through its rotated icon). Every `.arrows` group now sits above (`position: relative; z-index: 1`).
 - News: from lg the canopy card drifts against the photo as the section scrolls (6% of its height below its place to 6% above, rising over the photo), and the photo opens with `wipe-up` as every other photo on the site does, instead of `wipe-right`.
 - The USP video card opens its video in the popup from a click anywhere on it (`data-video-card`), in a tall card-sized frame (9:16, 70% of the screen's height) as the client's reference does, not the full-width one. The popup frame takes the video's own shape, so a portrait clip stands tall, and its close button is a moss circle sitting on the frame's top-right corner. Both Play Video cards (home, page blocks) use `/assets/video/hero-card.mp4` for now.
