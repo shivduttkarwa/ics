@@ -1,0 +1,12 @@
+// the page change: the next page is uncovered over this one from the foot of the screen, as the pillars stack (the browser's view transition)
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+}
+
+@keyframes page-uncover {
+  from { clip-path: inset(100% 0% 0% 0% round var(--radius-lg) var(--radius-lg) 0rem 0rem); }
+  to { clip-path: inset(0% 0% 0% 0% round 0rem); }
+}
+
+::view-transition-old(root) { animation: none; }
+::view-transition-new(root) { animation: page-uncover 0.9s var(--ease-in-out) both; }

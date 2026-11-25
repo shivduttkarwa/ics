@@ -30,6 +30,30 @@
     }
     addEventListener("load", function () {
       setTimeout(function () { if (!d.hasAttribute("data-anim-live")) d.classList.remove("anim-ready"); }, 800);
-    });  })(document.documentElement);
+    });
+    // the page change (_page-transition.less): the entrance waits until the rising edge has passed the hero title (window.pageRevealed)
+    var revealed;
+    window.pageRevealed = new Promise(function (resolve) { revealed = resolve; });
+    if (!("onpagereveal" in window)) revealed();
+    addEventListener("pagereveal", function (e) {
+      var change = e.viewTransition, pressed = false;
+      if (!change) return revealed();
+      change.ready.then(function () { setTimeout(revealed, 450); }, revealed);
+      // the browser takes no clicks while it plays: a press ends it and the click goes where it was aimed
+      var press = function () { pressed = true; change.skipTransition(); revealed(); };
+      var click = function (ev) {
+        if (!pressed || ev.target !== d) return;
+        var hit = document.elementFromPoint(ev.clientX, ev.clientY);
+        var target = hit && hit.closest("a[href], button, summary, label, input, select, textarea");
+        if (target) target.click();
+      };
+      addEventListener("pointerdown", press, true);
+      addEventListener("click", click, true);
+      change.finished.finally(function () {
+        removeEventListener("pointerdown", press, true);
+        setTimeout(function () { removeEventListener("click", click, true); }, 1000);
+      });
+    });
+  })(document.documentElement);
 </script>
 <noscript><style>[data-anim]{visibility:visible !important}</style></noscript>

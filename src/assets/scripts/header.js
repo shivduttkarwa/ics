@@ -18,7 +18,12 @@ export function initHeader() {
   let queued = false;
   const update = () => {
     queued = false;
-    tools.classList.toggle("is-light", onLight(header, tools));
+    const light = onLight(header, tools);
+    if (light === null) {
+      setTimeout(schedule, 100);
+      return;
+    }
+    tools.classList.toggle("is-light", light);
   };
   const schedule = () => {
     if (queued) return;
@@ -35,7 +40,10 @@ function onLight(header, tools) {
   const box = tools.getBoundingClientRect();
   const x = box.right - box.height / 2;
   const y = box.top + box.height / 2;
-  for (const el of document.elementsFromPoint(x, y)) {
+  const hits = document.elementsFromPoint(x, y);
+  // mid page change only the root is hit-tested, so the ground is unknown until it has played
+  if (hits.length && !hits.some((el) => document.body.contains(el))) return null;
+  for (const el of hits) {
     if (header.contains(el)) continue;
     if (el.matches("img, video, picture, canvas, iframe")) return false;
     const style = getComputedStyle(el);

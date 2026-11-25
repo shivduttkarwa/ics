@@ -65,6 +65,7 @@ let lenis = null;
 let started = false;
 let holdUntil = 0; // ticker time before which reveals already on screen wait for the entrance
 let entranceEnd = 0; // ticker time by which the entrance has played
+let entranceWaiting = null; // a promise while the entrance is set up but not yet started
 
 // heavy work waits until the entrance has played, so it never stalls a frame of it
 function afterEntrance(fn) {
@@ -422,27 +423,33 @@ function flush() {
     unit.show(); // scrolled past already: it simply shows
     return false;
   });
-  const hold = window.scrollY < 20 ? Math.max(0, holdUntil - gsap.ticker.time) : 0;
   const step = visible.length > 1 ? Math.min(STAGGER, SPREAD / (visible.length - 1)) : 0;
   const play = () => visible.forEach((unit, i) => unit.play(i * step + number(unit.el, "data-anim-delay", 0)));
-  if (hold) afterHold(hold, play);
-  else play();
+  const held = () => {
+    const hold = window.scrollY < 20 ? Math.max(0, holdUntil - gsap.ticker.time) : 0;
+    if (hold) afterHold(hold, play);
+    else play();
+  };
+  // an entrance still waiting to start (the page change) has no landing time yet: wait for it to start first
+  if (entranceWaiting && window.scrollY < 20) afterHold(entranceWaiting, held);
+  else held();
 }
 
-// first-screen reveals wait for the entrance, unless the page is scrolled first
-function afterHold(hold, fn) {
+// first-screen reveals wait for the entrance (seconds, or a promise), unless the page is scrolled first
+function afterHold(wait, fn) {
   let done = false;
   const run = () => {
     if (done) return;
     done = true;
-    call.kill();
+    call?.kill();
     window.removeEventListener("scroll", onScroll);
     fn();
   };
   const onScroll = () => {
     if (window.scrollY >= 20) run();
   };
-  const call = gsap.delayedCall(hold, run);
+  const call = typeof wait === "number" ? gsap.delayedCall(wait, run) : null;
+  if (!call) wait.then(run, run);
   window.addEventListener("scroll", onScroll, { passive: true });
 }
 function enqueue(unit) {
@@ -810,19 +817,30 @@ const Anim = {
     const fonts = document.fonts?.ready ?? Promise.resolve();
     const go = () => {
       try {
+        let started;
+        entranceWaiting = new Promise((resolve) => { started = resolve; });
         const entrance = setup(document);
         ScrollTrigger.refresh();
         // the entrance's clock starts once the setup and its measuring are done, or they eat into its first frames; a page
         // opened in a background tab waits for its first look, as hidden the clock stands still and the timeline would
         // leap on return, its steps firing together
-        const start = () => { this.entrance = playEntrance(entrance); };
-        if (document.visibilityState !== "hidden") start();
-        else document.addEventListener("visibilitychange", function once() {
-          if (document.visibilityState === "hidden") return;
-          document.removeEventListener("visibilitychange", once);
-          start();
-        });
+        const start = () => {
+          this.entrance = playEntrance(entrance);
+          entranceWaiting = null;
+          started();
+        };
+        const begin = () => {
+          if (document.visibilityState !== "hidden") start();
+          else document.addEventListener("visibilitychange", function once() {
+            if (document.visibilityState === "hidden") return;
+            document.removeEventListener("visibilitychange", once);
+            start();
+          });
+        };
+        // a page opened by the page change waits for the head script's pageRevealed
+        Promise.resolve(window.pageRevealed).then(begin, begin);
       } catch (err) {
+        entranceWaiting = null;
         fail(err);
       }
     };

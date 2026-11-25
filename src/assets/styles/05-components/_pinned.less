@@ -56,6 +56,10 @@
     @media (min-width: @bp-lg) { flex: 0 1 @pinned-aside-width; }
   }
 
+  // held on their layers after their lift, as the hero's intro: leaving it, the text redraws and visibly snaps
+  &__text,
+  &__button { will-change: transform; }
+
   &__text {
     .type-body-1-light();
     margin: 0;
