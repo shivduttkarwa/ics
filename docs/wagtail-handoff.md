@@ -209,7 +209,7 @@ Figma lays most frames 14–24 up under the rounded foot above them, so the gap 
 - Motion: title split; the columns fade up in turn.
 
 ### photo (`blocks/photo.njk`, `_photo.less`)
-- Internal Page Blocks' full-width photo (`15564:34382`): the container's width at 1280:779, radius 20, wiping up and drifting on a parallax layer; 59 above and below from lg (25 below), an optional caption under it. (Not called "figure": Bootstrap styles `.figure`.)
+- Internal Page Blocks' full-width photo (`15564:34382`): the container's width at 1280:779, radius 20, wiping up and drifting on a strong parallax layer (16%, as the feature video); 59 above and below from lg (25 below), an optional caption under it. (Not called "figure": Bootstrap styles `.figure`.)
 
 ### body_text (`blocks/body_text.njk`, `_body-text.less`)
 - Internal Page Blocks' copy (`15564:34392`): Body 2 in a centred 630 column, paragraphs a line apart; 98 above and 32 below from lg, so it sits 157 under a photo and the author card 64 under it, as Figma spaces them. (Not called "rich-text": the FAQ answers use that utility class.)

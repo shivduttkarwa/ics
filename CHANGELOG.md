@@ -1,6 +1,7 @@
 # Changelog
 
 ## 2026-11-25 — Hero video card
+- The full-width photo block (`photo`) drifts as far as the feature video's photo: its parallax layer goes from 6% to 16%.
 - Journey tiles: the button's hover snapped on the way in and out. As a direct child of `journey__more` it took the panel's fade-and-rise transition in place of its own, so its padding jumped while its dot grew. The button now sits in `journey__action`, which carries the fade and rise; the button keeps its own hover.
 - A photo that zooms on hover no longer leaves a sliver at its frame's right edge as it zooms back out (seen on the CTA cards): while the zoom runs Chrome draws the photo on a layer rounded to whole pixels, a hair short of a fractional-width frame. Every such photo (CTA cards, hero video card, journey, people, promo cards, social, testimonials, USPs, where next) now rests at 1.01 (`.zoom-img()` in `_mixins.less`), so it always overhangs the frame.
 - The USP video cards (home, page blocks) and every testimonial video tile (Faith, Results, Why ICS) play a muted loop while hovered: their `video` is the stand-in clip, `/assets/video/hero-card.mp4`, until their own files come. The hover videos are `aria-hidden`.
