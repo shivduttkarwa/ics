@@ -1,8 +1,8 @@
 <section class="news" data-news>
   <div class="container">
     <h2 data-anim="split">{{ value.title | safe }}</h2>
-    <div class="news__body">
-      <div class="news__card">
+    <div class="news__body" data-anim-parallax-trigger>
+      <div class="news__card" data-anim="parallax" data-anim-disable-mobile>
         <ul class="news__list" data-anim-group="fade-up">
           {% for item in value.items %}
           <li class="news__item{% if item.featured %} is-active{% endif %}" data-news-item>
@@ -14,7 +14,7 @@
           {% endfor %}
         </ul>
       </div>
-      <div class="news__photo" data-anim="reveal" data-anim-type="wipe-right" data-anim-parallax-trigger>
+      <div class="news__photo" data-anim="reveal" data-anim-type="wipe-up" data-anim-parallax-trigger>
         <div class="news__layer" data-anim="parallax">
           {% for item in value.items %}
           <div class="news__frame{% if item.featured %} is-active{% endif %}" data-news-photo>

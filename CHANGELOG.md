@@ -1,6 +1,7 @@
 # Changelog
 
 ## 2026-11-25 — Hero video card
+- News: from lg the canopy card drifts against the photo as the section scrolls (6% of its height below its place to 6% above, rising over the photo), and the photo opens with `wipe-up` as every other photo on the site does, instead of `wipe-right`.
 - The USP video card opens its video in the popup from a click anywhere on it (`data-video-card`), in a tall card-sized frame (9:16, 70% of the screen's height) as the client's reference does, not the full-width one. The popup frame takes the video's own shape, so a portrait clip stands tall, and its close button is a moss circle sitting on the frame's top-right corner. Both Play Video cards (home, page blocks) use `/assets/video/hero-card.mp4` for now.
 - The video popup's close is the kit's popup close from the Staff Bio popup (60 white circle, forest cross) instead of the moss one, one mixin (`.close-button()`) shared with the bio's.
 - Every close button (menu, staff bio, video popup) has one hover: the circle swells to 1.06 and keeps its colours. The cross no longer turns, and the colour changes on hover are gone. The swell takes 0.6s on a soft in-out curve, on a held layer (at 0.35s on `--ease-out` it snapped).
