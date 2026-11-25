@@ -113,13 +113,14 @@ export function initVideoPopup() {
   const links = Array.from(document.querySelectorAll("a[data-video-popup][href]"));
   if (!dialog || !links.length) return;
   const frame = dialog.querySelector("[data-video-popup-frame]");
+  const box = dialog.querySelector("[data-video-popup-box]");
   let opener = null;
   let tl = null;
 
   const finish = () => {
     dialog.close();
     frame.replaceChildren();
-    gsap.set([dialog, frame], { clearProps: "opacity,transform" });
+    gsap.set([dialog, box], { clearProps: "opacity,transform" });
     lockScroll(false);
     opener?.focus({ preventScroll: true });
   };
@@ -129,7 +130,7 @@ export function initVideoPopup() {
     tl?.kill();
     if (still.matches) return finish();
     tl = gsap.timeline({ onComplete: finish })
-      .to(frame, { opacity: 0, y: 12, duration: 0.3, ease: "power1.in" }, 0)
+      .to(box, { opacity: 0, y: 12, duration: 0.3, ease: "power1.in" }, 0)
       .to(dialog, { opacity: 0, duration: 0.4, ease: "power1.in" }, 0.05);
   };
 
@@ -143,9 +144,9 @@ export function initVideoPopup() {
     dialog.querySelector("[data-video-popup-close]").focus();
     if (still.matches) return;
     const land = landing("soft", 24);
-    tl = gsap.timeline({ onComplete: () => gsap.set([dialog, frame], { clearProps: "opacity,transform" }) })
+    tl = gsap.timeline({ onComplete: () => gsap.set([dialog, box], { clearProps: "opacity,transform" }) })
       .fromTo(dialog, { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0)
-      .fromTo(frame, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.9 * land.cut, ease: land.ease }, 0.15);
+      .fromTo(box, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.9 * land.cut, ease: land.ease }, 0.15);
   }));
 
   dialog.querySelector("[data-video-popup-close]").addEventListener("click", close);

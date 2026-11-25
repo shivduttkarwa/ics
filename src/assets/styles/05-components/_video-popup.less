@@ -1,8 +1,8 @@
 @popup-top: 100 * @px;
 @popup-width: 1200 * @px;
-@popup-close: 60 * @px;
+@popup-close: 48 * @px;
 
-// a USP card's Play Video opens its video here (ui.js); the close button is the menu's
+// a USP card's Play Video and the hero's video card open their video here (ui.js)
 .video-popup {
   --focus-ring: var(--color-moss);
   position: fixed;
@@ -22,8 +22,12 @@
   }
   &::backdrop { background: none; }
 
-  &__frame {
+  &__box {
+    position: relative;
     width: ~"min(100%, @{popup-width}, (100svh - @{popup-top} - var(--gutter)) * 16 / 9)";
+  }
+
+  &__frame {
     aspect-ratio: 16 / 9;
     overflow: hidden;
     border-radius: var(--radius-lg);
@@ -39,35 +43,28 @@
 
   &__close {
     position: absolute;
-    top: 20 * @px;
-    right: var(--gutter);
-    display: flex;
-    align-items: center;
-    gap: 10 * @px;
-    padding: 0;
-    border: 0;
-    background: none;
-    color: inherit;
-    .type-body-3();
-  }
-
-  &__close-icon {
+    right: 0;
+    bottom: 100%;
     display: grid;
     place-items: center;
     width: @popup-close;
     height: @popup-close;
+    margin-bottom: 15 * @px;
+    padding: 0;
+    border: 0;
     border-radius: 50%;
     background: var(--color-white-20);
+    color: inherit;
     transition: background-color var(--duration-base) ease;
     .icon {
-      width: 20 * @px;
-      height: 20 * @px;
+      width: 18 * @px;
+      height: 18 * @px;
       transition: rotate var(--duration-slow) var(--ease-out);
     }
   }
 
   @media @fine {
-    &__close:hover &__close-icon {
+    &__close:hover {
       background: var(--color-white-30);
       .icon { rotate: 90deg; }
     }
