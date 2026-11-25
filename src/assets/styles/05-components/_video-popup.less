@@ -1,4 +1,6 @@
 @popup-pad: 80 * @px;
+// a phone held sideways: room for the close button above the frame and little else
+@popup-pad-sm: 40 * @px;
 @popup-width: 1200 * @px;
 
 // a USP card's Play Video and the hero's video card open their video here (ui.js)
@@ -11,7 +13,9 @@
   height: 100%;
   max-height: none;
   margin: 0;
-  padding: @popup-pad var(--gutter);
+  --popup-pad: @popup-pad-sm;
+  @media (min-height: @bp-tall) { --popup-pad: @popup-pad; }
+  padding: var(--popup-pad) var(--gutter);
   border: 0;
   background: var(--color-black-70);
   color: var(--color-white);
@@ -25,12 +29,12 @@
   &__box {
     --video-ratio: 16 / 9;
     position: relative;
-    width: ~"min(100%, @{popup-width}, (100svh - @{popup-pad} * 2) * (var(--video-ratio)))";
+    width: ~"min(100%, @{popup-width}, (100svh - var(--popup-pad) * 2) * (var(--video-ratio)))";
   }
 
   &--portrait &__box {
     --video-ratio: 9 / 16;
-    width: ~"min(100%, 70svh * 9 / 16, (100svh - @{popup-pad} * 2) * 9 / 16)";
+    width: ~"min(100%, 70svh * 9 / 16, (100svh - var(--popup-pad) * 2) * 9 / 16)";
   }
 
   &--portrait &__frame video { object-fit: cover; }

@@ -1,5 +1,7 @@
 @data-table-min: 640 * @px;
 @data-table-head-rule: 4 * @px;
+@data-table-shadow: 16 * @px;
+@data-table-shadow-cover: 40 * @px;
 
 .data-table {
   padding: 75 * @px 0;
@@ -14,10 +16,18 @@
     @media (min-width: @bp-lg) { margin-bottom: 50 * @px; }
   }
 
-  // four columns stay readable on a phone by scrolling sideways inside the block
+  // scrolls sideways on a phone; the covers scroll with the content and the shadows stay, so an edge shows a shadow only while more lies beyond it
   &__scroll {
     overflow-x: auto;
     overscroll-behavior-x: contain;
+    background:
+      linear-gradient(90deg, var(--color-beach-light) 40%, transparent) left,
+      linear-gradient(270deg, var(--color-beach-light) 40%, transparent) right,
+      radial-gradient(farthest-side at 0 50%, var(--color-black-10), transparent) left,
+      radial-gradient(farthest-side at 100% 50%, var(--color-black-10), transparent) right;
+    background-repeat: no-repeat;
+    background-size: @data-table-shadow-cover 100%, @data-table-shadow-cover 100%, @data-table-shadow 100%, @data-table-shadow 100%;
+    background-attachment: local, local, scroll, scroll;
   }
 
   table {

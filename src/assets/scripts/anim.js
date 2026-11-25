@@ -632,7 +632,17 @@ function setupStacks(root) {
     if (run) run.push(el);
     else runs.push([el]);
   });
-  runs.filter((run) => run.length > 1).forEach(stackRun);
+  runs.filter((run) => run.length > 1).forEach((panels) => {
+    if (!phone.matches) return stackRun(panels);
+    // a tablet opened upright and turned sideways crosses into the stack's range after the setup
+    const turned = () => {
+      if (phone.matches) return;
+      phone.removeEventListener("change", turned);
+      stackRun(panels);
+      ScrollTrigger.refresh();
+    };
+    phone.addEventListener("change", turned);
+  });
 }
 
 function stackRun(panels) {
