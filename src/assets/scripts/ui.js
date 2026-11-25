@@ -107,19 +107,21 @@ const embed = (url) => {
   return Object.assign(document.createElement("iframe"), { src, title: "Video", allow: "autoplay; fullscreen; picture-in-picture", allowFullscreen: true });
 };
 
-// a[data-video-popup] opens its href (a video file, a YouTube or a Vimeo link) in the popup instead of leaving the page
+// a[data-video-popup] opens its href (a video file, a YouTube or a Vimeo link) in the popup instead of leaving the page; ="portrait" opens it in a tall card-sized frame
 export function initVideoPopup() {
   const dialog = document.getElementById("video-popup");
   const links = Array.from(document.querySelectorAll("a[data-video-popup][href]"));
   if (!dialog || !links.length) return;
   const frame = dialog.querySelector("[data-video-popup-frame]");
   const box = dialog.querySelector("[data-video-popup-box]");
+  const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
   let opener = null;
-  let tl = null;
+  let turn = 0;
 
   const finish = () => {
     dialog.close();
     frame.replaceChildren();
+    box.style.removeProperty("--video-ratio");
     gsap.set([dialog, box], { clearProps: "opacity,transform" });
     lockScroll(false);
     opener?.focus({ preventScroll: true });
@@ -127,27 +129,56 @@ export function initVideoPopup() {
 
   const close = () => {
     if (!dialog.open) return;
-    tl?.kill();
+    turn++;
+    gsap.killTweensOf([dialog, box]);
     if (still.matches) return finish();
-    tl = gsap.timeline({ onComplete: finish })
-      .to(box, { opacity: 0, y: 12, duration: 0.3, ease: "power1.in" }, 0)
-      .to(dialog, { opacity: 0, duration: 0.4, ease: "power1.in" }, 0.05);
+    gsap.to(box, { opacity: 0, y: 12, duration: 0.3, ease: "power1.in" });
+    gsap.to(dialog, { opacity: 0, duration: 0.4, delay: 0.05, ease: "power1.in", onComplete: finish });
+  };
+
+  // a video file shows once its size is known, so a portrait clip opens tall instead of jumping from 16:9
+  const sized = (media) => {
+    if (!(media instanceof HTMLVideoElement)) return Promise.resolve();
+    return Promise.race([wait(1500), new Promise((resolve) => {
+      media.addEventListener("loadedmetadata", () => {
+        if (media.videoWidth) box.style.setProperty("--video-ratio", `${media.videoWidth} / ${media.videoHeight}`);
+        resolve();
+      }, { once: true });
+      media.addEventListener("error", resolve, { once: true });
+    })]);
   };
 
   links.forEach((link) => link.addEventListener("click", (event) => {
     event.preventDefault();
+    const mine = ++turn;
+    const portrait = link.dataset.videoPopup === "portrait";
     opener = link;
-    tl?.kill();
-    frame.replaceChildren(embed(link.href));
+    gsap.killTweensOf([dialog, box]);
+    const media = embed(link.href);
+    box.style.removeProperty("--video-ratio");
+    dialog.classList.toggle("video-popup--portrait", portrait);
+    frame.replaceChildren(media);
     lockScroll(true);
     dialog.showModal();
     dialog.querySelector("[data-video-popup-close]").focus();
-    if (still.matches) return;
-    const land = landing("soft", 24);
-    tl = gsap.timeline({ onComplete: () => gsap.set([dialog, box], { clearProps: "opacity,transform" }) })
-      .fromTo(dialog, { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 0)
-      .fromTo(box, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.9 * land.cut, ease: land.ease }, 0.15);
+    gsap.set(box, still.matches ? { opacity: 0 } : { opacity: 0, y: 24 });
+    if (!still.matches) gsap.fromTo(dialog, { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" });
+    Promise.all([portrait ? null : sized(media), wait(still.matches ? 0 : 150)]).then(() => {
+      if (mine !== turn) return;
+      if (still.matches) return gsap.set(box, { clearProps: "opacity,transform" });
+      const land = landing("soft", 24);
+      gsap.to(box, { opacity: 1, y: 0, duration: 0.9 * land.cut, ease: land.ease, onComplete: () => gsap.set([dialog, box], { clearProps: "opacity,transform" }) });
+    });
   }));
+
+  // a [data-video-card] opens its popup link wherever it is clicked
+  document.querySelectorAll("[data-video-card]").forEach((card) => {
+    const link = card.querySelector("a[data-video-popup][href]");
+    if (!link) return;
+    card.addEventListener("click", (event) => {
+      if (!event.target.closest("a, button")) link.click();
+    });
+  });
 
   dialog.querySelector("[data-video-popup-close]").addEventListener("click", close);
   dialog.addEventListener("click", (event) => {

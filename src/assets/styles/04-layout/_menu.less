@@ -105,19 +105,16 @@
     height: @menu-close;
     border-radius: 50%;
     background: var(--color-white-20);
-    transition: background-color var(--duration-base) ease;
+    transition: scale var(--duration-slow) var(--ease-in-out-soft);
+    will-change: transform;
     .icon {
       width: 20 * @px;
       height: 20 * @px;
-      transition: rotate var(--duration-slow) var(--ease-out);
     }
   }
 
   @media @fine {
-    &__close:hover &__close-icon {
-      background: var(--color-white-30);
-      .icon { rotate: 90deg; }
-    }
+    &__close:hover &__close-icon { scale: 1.06; }
   }
 
   // the scroller reaches into the panel's side padding so a focus ring is not cut off

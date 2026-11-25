@@ -115,7 +115,7 @@
             "video": null,
             "button": {
               "text": "Play Video",
-              "url": "",
+              "url": "/assets/video/hero-card.mp4",
               "icon": "play"
             }
           },

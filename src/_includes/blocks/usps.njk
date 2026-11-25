@@ -11,7 +11,7 @@
     <div class="usps__slider swiper" data-slider data-slider-gap="20">
       <ul class="usps__list swiper-wrapper" data-anim-group="rise">
         {% for card in value.cards %}
-        <li class="usp-card swiper-slide{% if card.button and card.button.icon == 'play' %} usp-card--video{% endif %}"{% if card.video %} data-hover-video{% endif %}>
+        <li class="usp-card swiper-slide{% if card.button and card.button.icon == 'play' %} usp-card--video{% endif %}"{% if card.video %} data-hover-video{% endif %}{% if card.button and card.button.icon == 'play' and card.button.url %} data-video-card{% endif %}>
           <div class="usp-card__media">
             <picture>
               {% if card.image_mobile %}<source media="(max-width: 991.98px)" srcset="{{ card.image_mobile.src }}">{% endif %}
@@ -23,7 +23,7 @@
           {% if card.button and card.button.text %}
           <div class="usp-card__foot">
             {% if card.button.icon == "play" %}
-            <a class="btn usp-card__play"{% if card.button.url %} href="{{ card.button.url }}" data-video-popup{% endif %}><span class="btn__label">{{ card.button.text }}</span><svg class="icon usp-card__play-solid" aria-hidden="true"><use href="#icon-play-solid"></use></svg><svg class="icon usp-card__play-outline" aria-hidden="true"><use href="#icon-play-outline"></use></svg></a>
+            <a class="btn usp-card__play"{% if card.button.url %} href="{{ card.button.url }}" data-video-popup="portrait"{% endif %}><span class="btn__label">{{ card.button.text }}</span><svg class="icon usp-card__play-solid" aria-hidden="true"><use href="#icon-play-solid"></use></svg><svg class="icon usp-card__play-outline" aria-hidden="true"><use href="#icon-play-outline"></use></svg></a>
             {% else %}
             {% set btn = card.button %}{% include "snippets/button.njk" %}
             {% endif %}

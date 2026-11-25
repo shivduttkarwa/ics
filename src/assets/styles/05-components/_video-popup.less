@@ -1,10 +1,10 @@
-@popup-top: 100 * @px;
+@popup-pad: 80 * @px;
 @popup-width: 1200 * @px;
 @popup-close: 48 * @px;
 
 // a USP card's Play Video and the hero's video card open their video here (ui.js)
 .video-popup {
-  --focus-ring: var(--color-moss);
+  --focus-ring: var(--color-white);
   position: fixed;
   inset: 0;
   width: 100%;
@@ -12,7 +12,7 @@
   height: 100%;
   max-height: none;
   margin: 0;
-  padding: @popup-top var(--gutter) var(--gutter);
+  padding: @popup-pad var(--gutter);
   border: 0;
   background: var(--color-black-70);
   color: var(--color-white);
@@ -22,13 +22,22 @@
   }
   &::backdrop { background: none; }
 
+  // the frame takes the video's own shape (ui.js sets the ratio once the file's size is known)
   &__box {
+    --video-ratio: 16 / 9;
     position: relative;
-    width: ~"min(100%, @{popup-width}, (100svh - @{popup-top} - var(--gutter)) * 16 / 9)";
+    width: ~"min(100%, @{popup-width}, (100svh - @{popup-pad} * 2) * (var(--video-ratio)))";
   }
 
+  &--portrait &__box {
+    --video-ratio: 9 / 16;
+    width: ~"min(100%, 70svh * 9 / 16, (100svh - @{popup-pad} * 2) * 9 / 16)";
+  }
+
+  &--portrait &__frame video { object-fit: cover; }
+
   &__frame {
-    aspect-ratio: 16 / 9;
+    aspect-ratio: var(--video-ratio);
     overflow: hidden;
     border-radius: var(--radius-lg);
     background: var(--color-black);
@@ -43,31 +52,28 @@
 
   &__close {
     position: absolute;
-    right: 0;
-    bottom: 100%;
+    top: -(@popup-close / 2);
+    right: -(@popup-close / 4);
+    z-index: 1;
     display: grid;
     place-items: center;
     width: @popup-close;
     height: @popup-close;
-    margin-bottom: 15 * @px;
     padding: 0;
     border: 0;
     border-radius: 50%;
-    background: var(--color-white-20);
-    color: inherit;
-    transition: background-color var(--duration-base) ease;
+    background: var(--color-moss);
+    color: var(--color-canopy);
+    transition: scale var(--duration-slow) var(--ease-in-out-soft);
+    will-change: transform;
     .icon {
       width: 18 * @px;
       height: 18 * @px;
-      transition: rotate var(--duration-slow) var(--ease-out);
     }
   }
 
   @media @fine {
-    &__close:hover {
-      background: var(--color-white-30);
-      .icon { rotate: 90deg; }
-    }
+    &__close:hover { scale: 1.06; }
   }
 }
 

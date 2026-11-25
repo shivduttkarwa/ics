@@ -206,13 +206,14 @@
     border-radius: 50%;
     background: var(--color-white);
     color: var(--color-forest);
-    transition: background-color var(--duration-base) ease;
+    transition: scale var(--duration-slow) var(--ease-in-out-soft);
+    will-change: transform;
     .icon {
       width: @bio-close-icon;
       height: @bio-close-icon;
     }
     @media @fine {
-      &:hover { background: var(--color-moss); }
+      &:hover { scale: 1.06; }
     }
   }
 
