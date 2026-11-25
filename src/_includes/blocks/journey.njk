@@ -22,7 +22,7 @@
         </div>
         <div class="journey__more">
           {% if stage.text %}<div class="journey__copy">{{ stage.text | safe }}</div>{% endif %}
-          {% set btn = stage.button %}{% include "snippets/button.njk" %}
+          {% if stage.button and stage.button.text %}<div class="journey__action">{% set btn = stage.button %}{% include "snippets/button.njk" %}</div>{% endif %}
         </div>
       </li>
       {% endfor %}
