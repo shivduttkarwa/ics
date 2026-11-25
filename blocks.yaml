@@ -89,8 +89,9 @@ blocks:
       actions: ListBlock(StructBlock(text, url, style), max_num=3)   # the phone CTA bar (Tours / Enquire / Apply), below lg only
       video_card: StructBlock(required=False)   # bottom right, from lg
         image: ImageChooserBlock   # 300 × 180 slot
+        video: DocumentChooserBlock(required=False)   # { src }: plays muted over the image while the card is hovered
         label: CharBlock   # "Watch full video"
-        url: URLBlock(required=False)   # the full video
+        url: URLBlock(required=False)   # the full video (a file, YouTube or Vimeo link), opened in the popup
 
   page_hero:
     figma: "15550:30890 (Frame 544, the 1440 × 800 band), 15550:30892 (title), 15513:14084 (Breadcrumbs, hidden on the Why ICS frame); every inner page opens with it; no phone frame"

@@ -52,8 +52,11 @@
             "width": 600,
             "height": 360
           },
+          "video": {
+            "src": "/assets/video/hero-card.mp4"
+          },
           "label": "Watch full video",
-          "url": ""
+          "url": "/assets/video/hero-card.mp4"
         }
       }
     },

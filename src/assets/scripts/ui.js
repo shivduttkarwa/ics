@@ -31,21 +31,27 @@ export function initFocusMode() {
   document.addEventListener("pointerdown", () => root.classList.toggle("is-keyboard", false), true);
 }
 
-// data-hover-video: the card's video plays under the pointer and rewinds once it has faded back out
+// data-hover-video: the card's video fades in under the pointer once it is playing and rewinds once it has faded back out
 export function initHoverVideos() {
   const pointer = window.matchMedia("(hover: hover) and (pointer: fine)");
   document.querySelectorAll("[data-hover-video]").forEach((card) => {
     const video = card.querySelector("video");
     if (!video) return;
-    card.addEventListener("pointerenter", () => {
-      if (!pointer.matches || still.matches) return;
-      if (!video.getAttribute("src")) video.src = video.dataset.src;
-      card.classList.add("is-playing");
-      video.play().catch(() => card.classList.remove("is-playing"));
-    });
-    card.addEventListener("pointerleave", () => {
+    let over = false;
+    const stop = () => {
+      over = false;
       card.classList.remove("is-playing");
       video.pause();
+    };
+    card.addEventListener("pointerenter", () => {
+      if (!pointer.matches || still.matches) return;
+      over = true;
+      if (!video.getAttribute("src")) video.src = video.dataset.src;
+      video.play().then(() => card.classList.toggle("is-playing", over), () => {});
+    });
+    card.addEventListener("pointerleave", stop);
+    card.addEventListener("click", (event) => {
+      if (event.target.closest("a[data-video-popup][href]")) stop();
     });
     video.addEventListener("transitionend", () => {
       if (!card.classList.contains("is-playing")) video.currentTime = 0;
@@ -113,6 +119,7 @@ export function initVideoPopup() {
   const finish = () => {
     dialog.close();
     frame.replaceChildren();
+    gsap.set([dialog, frame], { clearProps: "opacity,transform" });
     lockScroll(false);
     opener?.focus({ preventScroll: true });
   };
@@ -122,7 +129,7 @@ export function initVideoPopup() {
     tl?.kill();
     if (still.matches) return finish();
     tl = gsap.timeline({ onComplete: finish })
-      .to(frame, { opacity: 0, duration: 0.25, ease: "power1.in" }, 0)
+      .to(frame, { opacity: 0, y: 12, duration: 0.3, ease: "power1.in" }, 0)
       .to(dialog, { opacity: 0, duration: 0.4, ease: "power1.in" }, 0.05);
   };
 

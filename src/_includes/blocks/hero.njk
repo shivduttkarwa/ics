@@ -31,8 +31,9 @@
   </div>
 
   {% if value.video_card %}
-  <a class="hero__card"{% if value.video_card.url %} href="{{ value.video_card.url }}"{% endif %} data-anim="reveal" data-anim-type="from-right-edge" data-anim-tier="hero" data-anim-order="5" data-anim-lead="1.2" data-anim-duration="1.3">
+  <a class="hero__card"{% if value.video_card.url %} href="{{ value.video_card.url }}" data-video-popup{% endif %}{% if value.video_card.video %} data-hover-video{% endif %} data-anim="reveal" data-anim-type="from-right-edge" data-anim-tier="hero" data-anim-order="5" data-anim-lead="1.2" data-anim-duration="1.3">
     {% set img = value.video_card.image %}{% set cls = "hero__card-img" %}{% include "snippets/image.njk" %}
+    {% if value.video_card.video %}<video class="hero__card-video" data-src="{{ value.video_card.video.src }}" muted loop playsinline preload="none" aria-hidden="true"></video>{% endif %}
     <span class="hero__card-label"><svg class="icon" aria-hidden="true"><use href="#icon-play"></use></svg>{{ value.video_card.label }}</span>
   </a>
   {% endif %}
