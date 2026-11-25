@@ -10,6 +10,7 @@ const START = { default: "top 88%", secondary: "top 96%" };
 const HERO = "hero";
 const BOUND = "data-anim-bound";
 const CLEAR = "transform,opacity,visibility,clipPath,willChange,transition";
+const HOLD = "transform,opacity,visibility,clipPath,transition"; // a glide keeps its will-change, so its layer is never dropped
 const LENIS = { lerp: 0.1, smoothWheel: true, wheelMultiplier: 1, anchors: true, autoRaf: false };
 
 const fade = (duration = 0.9) => ({ autoAlpha: 1, duration, ease: "power2.out" });
@@ -21,17 +22,18 @@ const wipe = (inset) => ({
 
 // `to` is a list of tweens that start together; `inner` also moves every img and video inside
 const REVEAL = {
-  "fade-up": { from: { y: 36, autoAlpha: 0 }, to: [{ y: 0, duration: 1.15 }, fade()] },
-  // a gentle lift for first-screen copy: 25 up on the compositor while it fades, on a held layer (give the element will-change: transform)
+  // 36 up on the compositor, landing under an even fade that outlasts the move, so the sub-pixel crawl at the end plays on faint text
+  "fade-up": { from: { y: 36, autoAlpha: 0 }, glide: { axis: "y", duration: 0.9, ease: "soft", fade: 0.9, fadeEase: "none", fallback: "cubic-bezier(0.22, 1, 0.36, 1)" } },
+  // a gentle lift for first-screen copy: 25 up on the compositor while it fades, on a held layer
   "fade-up-soft": { from: { y: 25, autoAlpha: 0 }, glide: { axis: "y", duration: 0.6, ease: "rise", fade: 0.6, fadeEase: "power1.out", fallback: "cubic-bezier(0.33, 1, 0.68, 1)" } },
-  // the header's items: 24 down on the compositor, landing under the fade, on a held layer (give the element will-change: transform)
+  // the header's items: 24 down on the compositor, landing under the fade, on a held layer
   "fade-down": { from: { y: -24, autoAlpha: 0 }, glide: { axis: "y", duration: 0.7, ease: "power2.out", fade: 0.7, fadeEase: "power1.out", fallback: "cubic-bezier(0.33, 1, 0.68, 1)" } },
   "fade": { from: { autoAlpha: 0 }, to: [fade(1.2)] },
   "from-left": { from: { x: -48, autoAlpha: 0 }, to: [{ x: 0, duration: 1.2 }, fade()] },
   "from-right": { from: { x: 48, autoAlpha: 0 }, to: [{ x: 0, duration: 1.2 }, fade()] },
   "rise": { from: { y: 72, autoAlpha: 0 }, to: [{ y: 0, duration: 1.3 }, fade(1)] },
   "scale": { from: { scale: 0.94, autoAlpha: 0 }, to: [{ scale: 1, duration: 1.3 }, fade()] },
-  // from beyond the right edge on a spring, on the compositor (`glide`); give the element will-change: transform
+  // from beyond the right edge on a spring, on the compositor (`glide`)
   "from-right-edge": {
     from: { x: (i, el) => document.documentElement.clientWidth - el.getBoundingClientRect().left, autoAlpha: 0 },
     glide: { duration: 1, ease: spring(), fade: 0.4, fallback: "cubic-bezier(0.34, 1.4, 0.64, 1)" },
@@ -80,9 +82,9 @@ function scoped(root, selector) {
   return list.filter((el) => !el.hasAttribute(BOUND));
 }
 
-const settle = (el, also = []) => {
+const settle = (el, also = [], props = CLEAR) => {
   el.classList.add("is-revealed");
-  gsap.set([el, ...also], { clearProps: CLEAR });
+  gsap.set([el, ...also], { clearProps: props });
 };
 
 // an element with no box (display: none at this width) simply shows whenever it is displayed
@@ -143,12 +145,13 @@ function expandGroups(root) {
 const moves = (preset) => ["x", "y", "scale"].some((key) => key in preset.from);
 
 // a glide runs on the compositor (element.animate), so its curve holds however busy the page is; once landed it settles
-// with no change, its layer kept by the element's own will-change. The fade runs on `parts` (the glass and the plain
+// with no change, its layer held by the will-change the setup gave it. The fade runs on `parts` (the glass and the plain
 // parts beside it, as fadeParts), the element itself when it holds no glass.
 function glideUnit(el, glide, parts = [el]) {
   const axis = glide.axis || "x";
   const translate = (px) => (axis === "y" ? `translate(0px, ${px}px)` : `translate(${px}px, 0px)`);
-  const fade = { duration: glide.fade * 1000, easing: glide.fadeEase ? cssEase(glide.fadeEase, "ease-out") : "ease-out", fill: "both" };
+  const fadeEase = glide.fadeEase === "none" ? "linear" : glide.fadeEase ? cssEase(glide.fadeEase, "ease-out") : "ease-out";
+  const fade = { duration: glide.fade * 1000, easing: fadeEase, fill: "both" };
   // a deferred step: the entrance's timeline starts it with a delay on the compositor's own clock and holds a slot of `duration`
   const build = () => {
     const from = gsap.getProperty(el, axis);
@@ -161,13 +164,13 @@ function glideUnit(el, glide, parts = [el]) {
       const runs = [move, ...(glide.fade ? parts.map((part) => part.animate([{ opacity: 0 }, { opacity: 1 }], { ...fade, delay: wait })) : [])];
       gsap.set([el, ...parts], { visibility: "inherit" });
       Promise.all(runs.map((run) => run.finished)).then(() => {
-        settle(el, parts);
+        settle(el, parts, HOLD);
         runs.forEach((run) => run.cancel());
       }, () => {});
     };
     return { deferred: true, start, duration: Math.max(length, glide.fade) };
   };
-  return { el, build, play: (delay) => gsap.delayedCall(delay, () => build().start()), show: () => settle(el, parts) };
+  return { el, build, play: (delay) => gsap.delayedCall(delay, () => build().start()), show: () => settle(el, parts, HOLD) };
 }
 
 function revealUnit(el) {
@@ -178,7 +181,8 @@ function revealUnit(el) {
     const parts = fadeParts(el);
     const { autoAlpha, ...move } = preset.from;
     const fades = autoAlpha !== undefined;
-    gsap.set(el, { ...move, ...(fades ? { autoAlpha: parts[0] === el ? autoAlpha : 1 } : {}), transition: "none" });
+    // on its layer from the start and held there once landed: text leaving a layer redraws up to half a pixel away
+    gsap.set(el, { ...move, ...(fades ? { autoAlpha: parts[0] === el ? autoAlpha : 1 } : {}), transition: "none", willChange: "transform" });
     if (fades && parts[0] !== el) gsap.set(parts, { autoAlpha, transition: "none" });
     // data-anim-duration: the move takes this long and the fade keeps its share of it
     const own = number(el, "data-anim-duration", 0);

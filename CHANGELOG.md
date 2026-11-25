@@ -1,6 +1,7 @@
 # Changelog
 
 ## 2026-11-25 — Hero video card
+- Fade-up content no longer stutters as it lands. `fade-up` (the default reveal, 17 elements on the home page) ran on the main thread: through the tail of its 1.15s curve it crept in whole pixels, then dropped its layer as it landed and redrew up to half a pixel away. It is now a compositor glide like `fade-up-soft`: 36 up over 0.9s on `soft`, its tail cut, on a layer the setup holds (`will-change: transform`, kept at the settle), under an even 0.9s fade that outlasts the move, so it lands at about half opacity and turns solid once still. The FAQ rows take this default in place of `fade-up-soft`, whose hairlines and text still shimmered through the last frames at near-full opacity.
 - "All links" (every built page) is back in the menu, on both sizes, in place of Why ICS?, for testing.
 - News on phones: the photo starts wholly up under the canopy card and slides down out from under it as the page scrolls, as the announcement sheet does (`data-anim="tuck"`, wait 40, run 120, back 240), in place of the wipe-up, which stays from lg on an inner `news__wipe`. The tuck now honours `data-anim-media` and counts from the element's own place, not its parent's top.
 - News on phones: tapping another story did nothing (the swap followed a mouse pointer or focus only, and links with no URL take no focus). A tap on another row now lights it and wipes its photo in; a tap on the lit row follows its link.
