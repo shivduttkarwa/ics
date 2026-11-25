@@ -1,5 +1,6 @@
-// the main menu: a modal panel that grows out of the header's pill, its rows rising in turn; parent items open in place
-import { gsap, still, settled, landing } from "./motion.js";
+// the main menu: a modal panel that grows out of the header's pill (below lg it is uncovered from the top down), its rows
+// coming in turn; parent items open in place
+import { gsap, still, phone, settled, landing } from "./motion.js";
 import { lockScroll } from "./ui.js";
 
 const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])';
@@ -40,9 +41,12 @@ export function initMenu() {
   };
   const unclip = () => EDGES.forEach((edge) => panel.style.removeProperty(edge));
   const clipped = () => panel.style.getPropertyValue("--clip-t") !== "";
+  // below lg there is no pill to grow out of: the clip's foot runs down over the panel as the desktop's height does
+  const shut = () => px(panel.offsetHeight);
 
   // the list's items are masks while they move: each one's contents drop in from above its top edge in turn, and lift back
-  // out the same way; the other rows (the search at the top, the buttons and links at the foot) fade
+  // out the same way, each item's rule fading with it (--menu-rule); the other rows (the search at the top, the buttons and
+  // links at the foot) fade
   const items = rows.filter((row) => row.classList.contains("menu__item"));
   const inner = items.flatMap((row) => Array.from(row.children));
   const top = rows.find((row) => row.classList.contains("menu__top"));
@@ -51,19 +55,37 @@ export function initMenu() {
   const bits = foot ? Array.from(foot.querySelectorAll(".btn, .menu__links li")) : []; // the foot's buttons and links, in turn
   const MASK = "inset(0px 0px 0px 0px)";
   const above = (i, el) => -(el.parentElement.offsetHeight + 2);
-  const rowsIn = (tl, at, stagger = 0.07) => {
+  const rowsIn = (tl, at, stagger = 0.04) => {
     gsap.set(items, { clipPath: MASK });
-    items.forEach((row, i) => tl.to(row.children, { ...settled(row.firstElementChild, { y: 0, duration: 1, ease: "soft" }), force3D: true }, at + i * stagger));
+    items.forEach((row, i) => {
+      tl.to(row.children, { ...settled(row.firstElementChild, { y: 0, duration: 1, ease: "soft" }), force3D: true }, at + i * stagger)
+        .to(row, { "--menu-rule": 1, duration: 0.9, ease: "power1.out" }, at + i * stagger);
+    });
     // the search with the first item; the foot's buttons and links one by one once the last item has dropped in
     tl.to(fades, { opacity: 1, duration: 0.9, ease: "power1.out" }, at)
       .to(bits, { opacity: 1, duration: 0.7, ease: "power1.out", stagger: 0.06 }, at + items.length * stagger + 0.3);
   };
-  const rowsOut = (tl, at, stagger = 0.04) => {
-    gsap.set(items, { clipPath: MASK });
-    items.forEach((row, i) => tl.to(row.children, { y: above, duration: 0.6, ease: "power2.in", force3D: true }, at + i * stagger));
+  const rowsOut = (tl, at, stagger = 0.025) => {
+    gsap.set(items, { clipPath: MASK, transition: "none" });
+    items.forEach((row, i) => {
+      tl.to(row.children, { y: above, duration: 0.6, ease: "power2.in", force3D: true }, at + i * stagger)
+        .to(row, { "--menu-rule": 0, duration: 0.35, ease: "power1.in" }, at + i * stagger);
+    });
     tl.to(fades, { opacity: 0, duration: 0.35, ease: "power1.in" }, at);
   };
-  const rowsSettle = () => gsap.set([...items, ...inner, ...fades, ...bits], { clearProps: "clipPath,transform,opacity" });
+  const rowsSettle = () => {
+    gsap.set([...items, ...inner, ...fades, ...bits], { clearProps: "clipPath,transform,opacity,transition" });
+    items.forEach((row) => row.style.removeProperty("--menu-rule"));
+  };
+  // where a fresh open starts its rows: the items' contents above their masks, their rules and the other rows faded out
+  const rowsReady = () => {
+    gsap.set(backdrop, { autoAlpha: 0 });
+    gsap.set(inner, { y: above, force3D: true });
+    // the rule's own transition (an item opening) would trail the fade by a beat
+    gsap.set(items, { "--menu-rule": 0, transition: "none" });
+    gsap.set([top, ...bits].filter(Boolean), { opacity: 0 });
+    if (foot) gsap.set(foot, { opacity: 1 });
+  };
 
   const show = () => {
     if (open) return;
@@ -76,18 +98,25 @@ export function initMenu() {
     menu.querySelector(".menu__close").focus({ preventScroll: true });
     tl?.kill();
     if (still.matches) return;
-    const shape = shapes();
+    const shape = phone.matches ? null : shapes();
     // caught mid-close, it comes back from wherever it is; the rows' contents stay in the tree while under their masks, so focus holds
     if (fresh) {
-      gsap.set(backdrop, { autoAlpha: 0 });
-      gsap.set(inner, { y: above, force3D: true });
-      gsap.set([top, ...bits].filter(Boolean), { opacity: 0 });
-      if (foot) gsap.set(foot, { opacity: 1 });
-      if (shape) gsap.set(panel, { ...shape.pill, opacity: 0 });
+      rowsReady();
+      if (phone.matches) {
+        unclip();
+        gsap.set(panel, { "--clip-b": shut() });
+      }
+      else if (shape) gsap.set(panel, { ...shape.pill, opacity: 0 });
       else gsap.set(panel, { xPercent: AWAY });
     }
     tl = gsap.timeline({ onComplete: () => { gsap.set(panel, { clearProps: "transform,opacity" }); unclip(); rowsSettle(); } })
       .to(backdrop, { autoAlpha: 1, duration: 0.6, ease: "power1.out" }, 0);
+    // below lg it is uncovered from the top down on the desktop's height curve and timing, its rows coming in 0.4s into it
+    if (phone.matches) {
+      tl.to(panel, { "--clip-b": "0px", duration: 1.3, ease: "fold" }, 0);
+      rowsIn(tl, fresh ? 0.4 : 0.2);
+      return;
+    }
     if (!shape) {
       tl.to(panel, settled(panel, { xPercent: 0, duration: 0.9, ease: "silk" }), 0);
       rowsIn(tl, 0.25);
@@ -110,9 +139,16 @@ export function initMenu() {
     opener.focus({ preventScroll: true });
     tl?.kill();
     if (still.matches) return hide();
-    const shape = shapes();
     tl = gsap.timeline({ onComplete: hide });
     rowsOut(tl, 0);
+    // below lg, once its rows have sunk, it rolls back up from the foot as the desktop folds its height
+    if (phone.matches) {
+      if (!panel.style.getPropertyValue("--clip-b")) gsap.set(panel, { "--clip-b": "0px" });
+      tl.to(backdrop, { autoAlpha: 0, duration: 0.45, ease: "power1.in" }, 0.5)
+        .to(panel, { "--clip-b": shut, duration: 1, ease: "fold" }, 0.4);
+      return;
+    }
+    const shape = shapes();
     if (!shape) {
       tl.to(backdrop, { autoAlpha: 0, duration: 0.45, ease: "power1.in" }, 0.1)
         .to(panel, { xPercent: AWAY, duration: 0.55, ease: "power2.in" }, 0.3);

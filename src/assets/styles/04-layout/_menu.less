@@ -22,21 +22,24 @@
     touch-action: none;
   }
 
+  // below lg it covers the screen, square at rest; its rhythm tightens to the height it has (the @container rules below)
   &__panel {
+    --menu-radius: 0rem;
+    container: menu / size;
     position: absolute;
-    inset: @menu-inset;
+    inset: 0;
     display: flex;
     flex-direction: column;
-    gap: 25 * @px;
     padding: 30 * @px @menu-pad-sm @menu-pad-sm;
-    border-radius: var(--radius-lg);
+    border-radius: var(--menu-radius);
     background: var(--color-canopy-deep);
     // menu.js moves these edges apart, so the width and the height fold at their own pace; at rest the clip is the panel's own shape
-    clip-path: inset(var(--clip-t, 0px) var(--clip-r, 0px) var(--clip-b, 0px) var(--clip-l, 0px) round var(--clip-round, var(--radius-lg)));
-    @media (min-height: @bp-tall) { gap: 50 * @px; }
+    clip-path: inset(var(--clip-t, 0px) var(--clip-r, 0px) var(--clip-b, 0px) var(--clip-l, 0px) round var(--clip-round, var(--menu-radius)));
     // Figma sets the panel 7 from the top and 11 from the foot of the 1440 frame
     @media (min-width: @bp-lg) {
+      --menu-radius: var(--radius-lg);
       top: 7 * @px;
+      right: @menu-inset;
       bottom: 11 * @px;
       left: auto;
       width: @menu-width;
@@ -49,6 +52,7 @@
     flex: none;
     align-items: center;
     gap: 30 * @px;
+    margin-bottom: 25 * @px;
   }
 
   &__search {
@@ -117,22 +121,24 @@
     &__close:hover &__close-icon { scale: 1.06; }
   }
 
-  // the scroller reaches into the panel's side padding so a focus ring is not cut off
+  // the scroller reaches into the panel's side padding so a focus ring is not cut off, and below the foot by as much as the
+  // buttons' tap areas overhang them, or that overhang let the menu scroll a few pixels
+  @menu-tap-overhang: ~"max(0rem, (var(--tap-size) - @{menu-btn-height}) / 2)";
   &__body {
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;
     justify-content: space-between;
-    gap: 40 * @px;
+    gap: 25 * @px;
     min-height: 0;
-    margin: 0 -@menu-pad-sm;
-    padding: 0 @menu-pad-sm;
+    margin: 0 -@menu-pad-sm ~"calc(-1 * @{menu-tap-overhang})";
+    padding: 0 @menu-pad-sm @menu-tap-overhang;
     overflow-y: auto;
     overscroll-behavior: contain;
     .hide-scrollbar();
     @media (min-width: @bp-lg) {
-      margin: 0 -@menu-pad;
-      padding: 0 @menu-pad;
+      margin: 0 -@menu-pad ~"calc(-1 * @{menu-tap-overhang})";
+      padding: 0 @menu-pad @menu-tap-overhang;
     }
   }
 
@@ -143,9 +149,10 @@
     @media (min-width: @bp-lg) { gap: 10 * @px; }
   }
 
-  // Figma's rule sits in the item's last pixel and takes no room; an open item has none
+  // Figma's rule sits in the item's last pixel and takes no room; an open item has none. menu.js fades it with its item
   &__item {
-    box-shadow: inset 0 -1 * @px 0 var(--color-canopy);
+    --menu-rule: 1;
+    box-shadow: inset 0 -1 * @px 0 color-mix(in srgb, var(--color-canopy) calc(var(--menu-rule) * 100%), transparent);
     transition: box-shadow var(--duration-base) ease;
     &.is-open { box-shadow: inset 0 -1 * @px 0 transparent; }
   }
@@ -156,7 +163,7 @@
     justify-content: space-between;
     gap: 10 * @px;
     width: 100%;
-    padding: 20 * @px 0;
+    padding: 15 * @px 0;
     border: 0;
     background: none;
     color: inherit;
@@ -303,6 +310,25 @@
       }
     }
   }
+}
+
+// the closed menu fits its panel (a container query reads the content box): Figma's rhythm where there is room for it, tighter below; a row keeps at least 15 under the title, as its descenders drop 11 toward the rule
+@container menu (min-height: (620 * @px)) {
+  .menu__top { margin-bottom: 40 * @px; }
+  .menu__body { gap: 30 * @px; }
+  .menu__link { padding-block: 17 * @px; }
+}
+
+@container menu (min-height: (680 * @px)) {
+  .menu__top { margin-bottom: 50 * @px; }
+  .menu__body { gap: 40 * @px; }
+  .menu__link { padding-block: 20 * @px; }
+}
+
+@media (min-width: @bp-lg) {
+  .menu__top { margin-bottom: 50 * @px; }
+  .menu__body { gap: 40 * @px; }
+  .menu__link { padding-block: 20 * @px; }
 }
 
 // lab only: a tall plain section for testing the scrolled header (blocks/lab_spacer.njk)

@@ -13,7 +13,13 @@ html.anim-ready:not(.anim-reduced) {
 // the clip reaches below the descenders, so nothing is cut while a line rises; LINES.from in anim.js starts it clear of this edge
 .anim-line-mask {
   overflow: visible !important;
-  clip-path: inset(-0.14em -0.12em -0.25em);
+  clip-path: inset(-0.14em -0.25em -0.25em);
+}
+
+// a line held on its layer keeps room for a glyph that swashes past its edge (the italic j), or a phone cuts it off at the layer
+.anim-line {
+  margin-inline: -0.25em;
+  padding-inline: 0.25em;
 }
 
 [data-anim="progress"] { --anim-progress: 1; }
