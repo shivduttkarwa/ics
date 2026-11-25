@@ -86,6 +86,12 @@ export function initNews() {
     rows.forEach((row, i) => {
       row.addEventListener("pointerenter", (event) => event.pointerType !== "touch" && show(i));
       row.addEventListener("focusin", () => show(i));
+      // a tap has no hover: the first tap on another story shows it, a tap on the one shown follows its link
+      row.addEventListener("click", (event) => {
+        if (i === current) return;
+        event.preventDefault();
+        show(i);
+      });
     });
   });
 }

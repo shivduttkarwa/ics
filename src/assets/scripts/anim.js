@@ -548,11 +548,13 @@ const TUCK_EASE = 4; // per second: 90% of the way to the target in about 0.6s
 function setupSheets(root) {
   scoped(root, '[data-anim="tuck"]').forEach((el) => {
     bind(el);
-    if (still.matches) return;
+    const media = attr(el, "data-anim-media");
+    if (still.matches || (media && !window.matchMedia(media).matches)) return;
     let from, wait, run, back;
-    // counted from when the foot above reaches the screen's bottom: a phone's hero runs on past the first screen
+    // counted from when the sheet's own place (under the foot above) reaches the screen's bottom: a phone's hero runs on past the first screen
     const measure = () => {
-      from = Math.max(0, el.parentElement.getBoundingClientRect().top + window.scrollY - window.innerHeight);
+      const place = el.getBoundingClientRect().top - new DOMMatrix(getComputedStyle(el).transform).m42;
+      from = Math.max(0, place + window.scrollY - window.innerHeight);
       wait = designPx(number(el, "data-anim-wait", 40));
       run = designPx(number(el, "data-anim-run", 200));
       back = designPx(number(el, variant(el, "data-anim-back"), 80));

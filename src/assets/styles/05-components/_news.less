@@ -103,12 +103,17 @@
     margin-top: -@news-tuck;
     overflow: hidden;
     border-radius: var(--radius-lg);
+    // below lg it slides down out from under the card as the announcement sheet does (--tuck from anim.js)
+    transform: translateY(~"calc((var(--tuck, 1) - 1) * 100%)");
+    will-change: transform;
     @media (min-width: @bp-lg) {
       grid-column: 2 / 4;
       grid-row: 2;
       aspect-ratio: auto;
       max-height: none;
       margin-top: 0;
+      transform: none;
+      will-change: auto;
       // 840 × 545 from a strut, not aspect-ratio, so the row can stretch the photo when the card runs longer
       &::before {
         content: "";
@@ -116,6 +121,11 @@
         padding-top: percentage((545 / 840));
       }
     }
+  }
+
+  &__wipe {
+    position: absolute;
+    inset: 0;
   }
 
   // the photos drift with the scroll inside the frame
