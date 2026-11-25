@@ -1,6 +1,7 @@
 # Changelog
 
 ## 2026-11-25 — Hero video card
+- "All links" (every built page) is back in the menu, on both sizes, in place of Why ICS?, for testing.
 - News on phones: the photo starts wholly up under the canopy card and slides down out from under it as the page scrolls, as the announcement sheet does (`data-anim="tuck"`, wait 40, run 120, back 240), in place of the wipe-up, which stays from lg on an inner `news__wipe`. The tuck now honours `data-anim-media` and counts from the element's own place, not its parent's top.
 - News on phones: tapping another story did nothing (the swap followed a mouse pointer or focus only, and links with no URL take no focus). A tap on another row now lights it and wipes its photo in; a tap on the lit row follows its link.
 - Phone hero: the CTA bar comes in as one strip, lifting 25 as it fades in (`fade-up-soft`, as the desktop glass button), in place of a plain fade, and takes the intro's step (`data-anim-order-mobile="2"`; the intro is off the first screen on phones), so it rises as the title's last line settles instead of after a pause.
