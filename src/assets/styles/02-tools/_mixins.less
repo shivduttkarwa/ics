@@ -29,6 +29,12 @@
   height: 100%;
 }
 
+// iOS Safari before 16 drops clip, and the slider tracks running off the screen then scrolled the page sideways
+.clip-x() {
+  overflow-x: hidden;
+  overflow-x: clip;
+}
+
 .img-cover() {
   display: block;
   width: 100%;

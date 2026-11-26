@@ -244,10 +244,10 @@ export function initForms() {
 
 export function initScrollState() {
   const root = document.documentElement;
-  const sync = () => {
-    root.classList.toggle("is-scrolled", window.scrollY > 0);
-    root.classList.toggle("is-at-foot", window.scrollY + window.innerHeight * 1.25 >= root.scrollHeight);
-  };
+  const sync = () => root.classList.toggle("is-scrolled", window.scrollY > 0);
   sync();
   window.addEventListener("scroll", sync, { passive: true });
+  // the ground turns the footer's colour as the footer comes into view: a phone's fast fling reached the end before a later switch
+  const footer = document.querySelector(".site-footer");
+  if (footer) new IntersectionObserver(([entry]) => root.classList.toggle("is-at-foot", entry.isIntersecting)).observe(footer);
 }

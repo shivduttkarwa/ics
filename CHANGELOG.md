@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-26 — Footer ground on a fast fling, no sideways scroll on older iPhones
+- Page foot: the ground turns the footer's dark green as soon as the footer comes into view (an `IntersectionObserver`), not a quarter screen from the end, so a fast fling on a phone no longer flashes white at the end. Checked at the switch, where most of the page above the footer is in view, at 414, 768, 1440 and 1920 on every page: nothing on screen shows the ground. (Switching two screens early was tried: the Enrol FAQs' corners over the photo band show the ground at 768.)
+- Sideways scroll: the slider sections (USPs, journey, testimonials, stories, staff quotes, gallery, promo cards) and the page root clip through `.clip-x()`, `overflow-x: hidden` then `clip`. iOS Safari before 16 drops `clip`, and the slider tracks running off the screen scrolled the page sideways there; current browsers keep `clip`.
+
 ## 2026-11-26 — Faster menu, phone fixes
 - Menu (from lg): it stretches left out of the pill in 0.75s (was 1.1s), drops to full height from 0.55s (was 0.8s, 1.2s long) and its rows come in from 0.95s (was 1.2s). Closing is faster too: the rows lift out in 0.45s (was 0.6s), the panel folds to the pill's height from 0.3s in 0.7s and narrows into it from 0.85s in 0.75s, 1.6s in all (was 2.45s); below lg it rolls up from 0.3s in 0.8s (1.1s in all, was 1.4s).
 - Journey tiles: both shades reach 2 past the tile, which clips them, so on an iPhone the photo no longer shows unshaded along the tile's top (iOS gives each slide its own layer, snapped to a whole pixel).
