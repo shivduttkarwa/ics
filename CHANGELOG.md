@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-11-26 — Journey tiles on whole pixels
+- Journey tiles: each is rounded down to a whole pixel wide (less than 1 narrower), so every tile edge lands on a pixel. From lg the fluid root made the edges fractional, and moving the pointer from one tile to the next showed a sliver at the photos' left and right edges while their zoom ran.
+
 ## 2026-11-26 — Smaller video popup close
 - Video popup: its close is 44 with a 16 cross (was the staff bio's 60 with a 20 cross), still on the frame's top-right corner, so it no longer looms over a portrait video on a phone. The staff bio keeps its 60.
 

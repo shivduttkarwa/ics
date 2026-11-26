@@ -146,7 +146,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    width: ~"min(@{journey-tile}, calc(100vw - @{journey-peek}))";
+    // whole-pixel widths keep every tile edge on a pixel; a fractional edge showed a sliver while a photo's zoom ran on its own layer
+    width: ~"round(down, min(@{journey-tile}, 100vw - @{journey-peek}), 1px)";
     // a short screen lowers the tile; the row then stretches every tile to the one whose copy runs longest
     height: auto;
     min-height: ~"min(@{journey-tile-height-sm}, 100svh - @{fit-room})";
@@ -155,7 +156,7 @@
     background: var(--color-canopy-deep);
     @media (min-width: @bp-lg) { min-height: ~"min(@{journey-tile-height}, 100svh - @{fit-room})"; }
 
-    &--narrow { width: ~"min(@{journey-tile-first}, calc(100vw - @{journey-peek-first}))"; }
+    &--narrow { width: ~"round(down, min(@{journey-tile-first}, 100vw - @{journey-peek-first}), 1px)"; }
 
     &::after {
       content: "";
