@@ -244,7 +244,10 @@ export function initForms() {
 
 export function initScrollState() {
   const root = document.documentElement;
-  const sync = () => root.classList.toggle("is-scrolled", window.scrollY > 0);
+  const sync = () => {
+    root.classList.toggle("is-scrolled", window.scrollY > 0);
+    root.classList.toggle("is-at-foot", window.scrollY + window.innerHeight * 1.25 >= root.scrollHeight);
+  };
   sync();
   window.addEventListener("scroll", sync, { passive: true });
 }

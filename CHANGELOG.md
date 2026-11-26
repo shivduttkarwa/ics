@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-26 — Faster menu, phone fixes
+- Menu (from lg): it stretches left out of the pill in 0.75s (was 1.1s), drops to full height from 0.55s (was 0.8s, 1.2s long) and its rows come in from 0.95s (was 1.2s). Closing is faster too: the rows lift out in 0.45s (was 0.6s), the panel folds to the pill's height from 0.3s in 0.7s and narrows into it from 0.85s in 0.75s, 1.6s in all (was 2.45s); below lg it rolls up from 0.3s in 0.8s (1.1s in all, was 1.4s).
+- Journey tiles: both shades reach 2 past the tile, which clips them, so on an iPhone the photo no longer shows unshaded along the tile's top (iOS gives each slide its own layer, snapped to a whole pixel).
+- Page foot: within a screen and a quarter of the end the page's own ground turns the footer's dark green (`is-at-foot`), so a phone's bounce past the footer and the strip under Safari's toolbar no longer show white. Checked at 414, 768, 1440 and 1920 on every page: nothing on screen there shows the ground.
+- FAQs: the first rule is canopy whether its row is open or shut, so on a phone, where every row starts shut, it reads as on the desktop instead of a faint grey line.
+
 ## 2026-11-26 — Content checked against Figma, the client's videos
 - Every page's copy checked against its Figma frame. Copy Figma does not supply now reads "[TBC]" instead of borrowed text: the journey tiles other than Figma's written one (the home page's Prep, Year 5, Secondary and Senior Years; Entry Points' Prep, Kindergarten, Year 7 and Senior Years), the HSC page's second and third graduate stories (they repeated Jeremy's), every staff quote tile but Melinda Sharpe's (they repeated her words under other names) and the unnamed tile's role, and the contact form's topics after "Enrolment". The Why page's FAQ answers 2 and 3 are Figma's (from the Faith frame, the same questions) in place of "[TBC]".
 - The client's five videos, cut for the web (720 × 1280 H.264, fast start; 206 MB to 4.8 MB): the USP video card plays the Kindergarten assembly song (with sound in its popup), and the testimonial video tiles on Why ICS, Faith and HSC Results play the four classroom clips, no page repeating one. The hero's video card keeps its landscape clip.

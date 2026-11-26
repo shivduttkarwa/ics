@@ -68,7 +68,7 @@ export function initMenu() {
   const rowsOut = (tl, at, stagger = 0.025) => {
     gsap.set(items, { clipPath: MASK, transition: "none" });
     items.forEach((row, i) => {
-      tl.to(row.children, { y: above, duration: 0.6, ease: "power2.in", force3D: true }, at + i * stagger)
+      tl.to(row.children, { y: above, duration: 0.45, ease: "power2.in", force3D: true }, at + i * stagger)
         .to(row, { "--menu-rule": 0, duration: 0.35, ease: "power1.in" }, at + i * stagger);
     });
     tl.to(fades, { opacity: 0, duration: 0.35, ease: "power1.in" }, at);
@@ -126,9 +126,9 @@ export function initMenu() {
     // corners go from the pill's round to its own and its rows come in (gsa.uk.com); width and height on one curve
     const { "--clip-t": t, "--clip-b": b, "--clip-round": round } = shape.full;
     tl.to(panel, { opacity: 1, duration: 0.3, ease: "power1.out" }, 0)
-      .to(panel, { "--clip-l": "0px", "--clip-r": "0px", duration: 1.1, ease: "fold" }, 0)
-      .to(panel, { "--clip-t": t, "--clip-b": b, "--clip-round": round, duration: 1.3, ease: "fold" }, fresh ? 0.8 : 0);
-    rowsIn(tl, fresh ? 1.2 : 0.2);
+      .to(panel, { "--clip-l": "0px", "--clip-r": "0px", duration: 0.75, ease: "fold" }, 0)
+      .to(panel, { "--clip-t": t, "--clip-b": b, "--clip-round": round, duration: 1.2, ease: "fold" }, fresh ? 0.55 : 0);
+    rowsIn(tl, fresh ? 0.95 : 0.2);
   };
 
   const close = () => {
@@ -144,8 +144,8 @@ export function initMenu() {
     // below lg, once its rows have sunk, it rolls back up from the foot as the desktop folds its height
     if (phone.matches) {
       if (!panel.style.getPropertyValue("--clip-b")) gsap.set(panel, { "--clip-b": "0px" });
-      tl.to(backdrop, { autoAlpha: 0, duration: 0.45, ease: "power1.in" }, 0.5)
-        .to(panel, { "--clip-b": shut, duration: 1, ease: "fold" }, 0.4);
+      tl.to(backdrop, { autoAlpha: 0, duration: 0.4, ease: "power1.in" }, 0.35)
+        .to(panel, { "--clip-b": shut, duration: 0.8, ease: "fold" }, 0.3);
       return;
     }
     const shape = shapes();
@@ -158,10 +158,10 @@ export function initMenu() {
     // settling on the same curve; caught mid-open it folds from wherever it is
     if (!clipped()) gsap.set(panel, shape.full);
     const { "--clip-t": t, "--clip-b": b, "--clip-l": l, "--clip-r": r, "--clip-round": round } = shape.pill;
-    tl.to(backdrop, { autoAlpha: 0, duration: 0.45, ease: "power1.in" }, 0.5)
-      .to(panel, { "--clip-t": t, "--clip-b": b, "--clip-round": round, duration: 1, ease: "fold" }, 0.4)
-      .to(panel, { "--clip-l": l, "--clip-r": r, duration: 1.1, ease: "fold" }, 1.3)
-      .to(panel, { opacity: 0, duration: 0.35, ease: "power1.in" }, 2.1);
+    tl.to(backdrop, { autoAlpha: 0, duration: 0.4, ease: "power1.in" }, 0.35)
+      .to(panel, { "--clip-t": t, "--clip-b": b, "--clip-round": round, duration: 0.7, ease: "fold" }, 0.3)
+      .to(panel, { "--clip-l": l, "--clip-r": r, duration: 0.75, ease: "fold" }, 0.85)
+      .to(panel, { opacity: 0, duration: 0.25, ease: "power1.in" }, 1.35);
   };
 
   openers.forEach((button) => button.addEventListener("click", () => {

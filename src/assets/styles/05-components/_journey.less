@@ -8,6 +8,8 @@
 @journey-peek-first: 70 * @px;
 @journey-title-width: 740 * @px;
 @journey-lead-width: 493 * @px;
+// the shades reach past the tile's clip: iOS snaps each slide's layer to a pixel and the zoomed photo showed unshaded at the top
+@journey-shade-bleed: 2 * @px;
 
 @journey-more-stagger: 0.2s;
 
@@ -161,7 +163,7 @@
     &::after {
       content: "";
       position: absolute;
-      inset: 0;
+      inset: -(@journey-shade-bleed);
       z-index: -1;
       background: var(--gradient-tile-open);
       opacity: 0;
@@ -185,7 +187,8 @@
     z-index: -1;
     &::after {
       content: "";
-      .cover();
+      position: absolute;
+      inset: -(@journey-shade-bleed);
       background: var(--gradient-tile-top);
     }
   }

@@ -22,6 +22,8 @@ html {
 body {
   position: relative;
   background: var(--color-background);
+  // past the page's end (a phone's bounce, Safari's toolbar) the ground shows, so at the foot it is the footer's
+  .is-at-foot & { background: var(--color-canopy-deep); }
   color: var(--color-text);
   font-family: var(--font-body);
   overflow-x: clip;

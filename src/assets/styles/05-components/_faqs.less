@@ -63,14 +63,11 @@
       content: "";
       position: absolute;
       inset: auto 0 100%;
-      border-top: 1 * @px solid var(--color-black-10);
-      transition: border-color var(--duration-base) ease;
+      border-top: 1 * @px solid var(--color-canopy);
     }
-    &:first-child.is-open::before { border-color: var(--color-canopy); }
   }
 
-  &--canopy-rules &__item::after,
-  &--canopy-rules &__item:first-child::before { border-color: var(--color-canopy); }
+  &--canopy-rules &__item::after { border-color: var(--color-canopy); }
 
   h3 {
     margin: 0;
