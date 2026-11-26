@@ -1,13 +1,13 @@
-<section class="faqs{% if value.theme == 'white' %} faqs--white{% endif %} rounded-foot">
+<section class="faqs{% if value.theme == 'white' %} faqs--white{% endif %}{% if value.dividers == 'canopy' %} faqs--canopy-rules{% endif %} rounded-foot">
   <div class="container faqs__inner">
     <div class="faqs__title">
       <h2 data-anim="split">{{ value.title | safe }}</h2>
     </div>
-    <div class="faqs__list" data-accordion data-accordion-closed-mobile data-anim-group="fade-up">
+    <div class="faqs__list" data-accordion{% if value.all_open %} data-accordion-multi{% endif %} data-accordion-closed-mobile data-anim-group="fade-up">
       {% for item in value.items %}
-      <div class="faqs__item{% if loop.first and not value.all_closed %} is-open{% endif %}" data-accordion-item>
+      <div class="faqs__item{% if value.all_open or (loop.first and not value.all_closed) %} is-open{% endif %}" data-accordion-item>
         <h3>
-          <button class="faqs__toggle" type="button" aria-expanded="{% if loop.first and not value.all_closed %}true{% else %}false{% endif %}">
+          <button class="faqs__toggle" type="button" aria-expanded="{% if value.all_open or (loop.first and not value.all_closed) %}true{% else %}false{% endif %}">
             <span class="faqs__question">{{ item.question }}</span>
             <span class="faqs__icon" aria-hidden="true"><svg class="icon"><use href="#icon-arrow-diagonal"></use></svg></span>
           </button>

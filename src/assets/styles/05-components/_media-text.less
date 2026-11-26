@@ -185,4 +185,11 @@
       padding-inline: 50 * @px;
     }
   }
+
+  &--boxed h2 {
+    .type-section-title();
+    text-box: none;
+  }
+
+  &--boxed &__lead { .type-body-1-light(); }
 }

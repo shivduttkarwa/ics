@@ -181,6 +181,11 @@
     }
   }
 
+  &--fit-buttons &__buttons {
+    align-items: flex-start;
+    .btn__dot { display: grid; }
+  }
+
   &__media {
     position: relative;
     display: flex;
@@ -257,6 +262,24 @@
     blockquote {
       .type-quote-small();
       margin: 0;
+    }
+  }
+
+  // the phone frames' cards; from lg every pillar keeps one card so it stands still as the stack wipes over it
+  &__media--inset {
+    padding: 24 * @px 25 * @px;
+    @media (min-width: @bp-lg) { padding: 20 * @px; }
+  }
+
+  &__quote--inset,
+  &__quote--even {
+    gap: 20 * @px;
+    padding: 20 * @px 26 * @px;
+    border-radius: 14 * @px;
+    @media (min-width: @bp-lg) {
+      gap: 14 * @px;
+      padding: 20 * @px 30 * @px;
+      border-radius: 15 * @px;
     }
   }
 

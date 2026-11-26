@@ -67,7 +67,9 @@
 
   &__message {
     .type-announcement();
+    max-width: 365 * @px;
     text-box: trim-both cap alphabetic;
+    @media (min-width: @bp-lg) { max-width: none; }
   }
 
   .btn { flex: none; }

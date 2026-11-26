@@ -107,9 +107,11 @@
     a { .tap-area(); }
     a,
     span:not([aria-current]) { font-weight: 900; }
+    // Figma's chevron takes only its glyph's 10 of width; the sprite draws it in a 16 square
     .icon {
       width: 16 * @px;
       height: 16 * @px;
+      margin-inline: -3 * @px;
     }
     @media (hover: hover) {
       a:hover { color: var(--color-moss); }

@@ -57,7 +57,7 @@
             "time": "8:15am",
             "title": "<strong>Secondary Pastoral Care Groups</strong>",
             "text": "Secondary students meet in small Pastoral Care groups led by a teacher who stays with them across the year — not a rotating roster.",
-            "note": "Bible study, discussion, the ordinary business of checking in on each other. Small enough that nobody is anonymous.",
+            "note": "Bible study, discussion, the ordinary business of checking in <br>on each other. Small enough that nobody is anonymous.",
             "image": {
               "src": "/assets/images/faith/moment-pastoral-care.webp",
               "alt": "Secondary students singing on stage in front of their year group",
@@ -242,6 +242,7 @@
       "type": "faqs",
       "value": {
         "theme": "white",
+        "all_open": true,
         "title": "You might be <em>wondering...</em>",
         "items": [
           {

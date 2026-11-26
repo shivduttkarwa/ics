@@ -69,6 +69,9 @@
     &:first-child.is-open::before { border-color: var(--color-canopy); }
   }
 
+  &--canopy-rules &__item::after,
+  &--canopy-rules &__item:first-child::before { border-color: var(--color-canopy); }
+
   h3 {
     margin: 0;
     font: inherit;

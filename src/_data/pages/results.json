@@ -193,6 +193,7 @@
       "type": "faqs",
       "value": {
         "theme": "white",
+        "dividers": "canopy",
         "title": "You might be <em>wondering...</em>",
         "items": [
           {

@@ -165,3 +165,12 @@
     .moments__photo { inset: 0 -7%; }
   }
 }
+
+// Figma tucks the block 23 under the band above, so the band paints over it
+.rounded-foot + .moments {
+  @media (min-width: @bp-lg) { margin-top: -23 * @px; }
+}
+
+.rounded-foot:has(+ .moments) {
+  @media (min-width: @bp-lg) { z-index: 1; }
+}

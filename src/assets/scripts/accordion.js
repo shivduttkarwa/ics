@@ -1,4 +1,4 @@
-// data-accordion: one [data-accordion-item] open at a time; its [data-accordion-panel] eases open and shut
+// data-accordion: one [data-accordion-item] open at a time (data-accordion-multi: each on its own); its [data-accordion-panel] eases open and shut
 import { gsap, still, phone } from "./motion.js";
 
 const toggleOf = (item) => item.querySelector("[aria-expanded]");
@@ -12,6 +12,7 @@ const pace = (distance) => gsap.utils.clamp(0.5, 0.8, Math.abs(distance) / 320);
 export function initAccordions() {
   document.querySelectorAll("[data-accordion]").forEach((root) => {
     const items = [...root.querySelectorAll("[data-accordion-item]")].filter((item) => toggleOf(item));
+    const multi = root.hasAttribute("data-accordion-multi");
     const moves = new WeakMap(); // each panel's move, so a row caught mid-move is taken over
     const mark = (item, open) => {
       item.classList.toggle("is-open", open);
@@ -43,7 +44,7 @@ export function initAccordions() {
       toggleOf(item).addEventListener("click", () => {
         const open = !item.classList.contains("is-open");
         // heights are read before any class changes, so a row caught mid-move carries on from where it is
-        const changes = items
+        const changes = (multi ? [item] : items)
           .map((other) => ({ other, on: open && other === item, from: panelOf(other)?.offsetHeight ?? 0 }))
           .filter(({ other, on }) => on !== other.classList.contains("is-open"));
         changes.forEach(({ other, on }) => mark(other, on));

@@ -3,7 +3,7 @@
 # Types are Wagtail block classes. figma = node id on page 15417:12061 of El5cAszLdnHFyIKN6g9uOc.
 # image = { src, alt, width, height } → ImageChooserBlock. video = { src, poster } → a document or URL block.
 # button = { text, url, style, size, icon } → StructBlock(text: CharBlock, url: URLBlock, style: ChoiceBlock, size: ChoiceBlock(required=False), icon: ChoiceBlock(required=False)).
-#   icon "none" drops the dot (Figma's outline buttons carry none); "arrow" is the plain label-and-arrow button; "play" the USP video card's button; "open" draws the dot already grown into the arrow circle (the HSC download button).
+#   icon "none" drops the dot (Figma's outline buttons carry none); "arrow" is the plain label-and-arrow button; "arrow-angle" the same with a solid chevron below lg (the home announcement, as the phone frame draws it); "play" the USP video card's button; "open" draws the dot already grown into the arrow circle (the HSC download button).
 # title fields marked RichTextBlock(features=["italic"]) hold italic words as <em> and are rendered without the <p>; a <br> in the static data is the designer's forced line, honoured from lg only.
 
 settings:
@@ -110,6 +110,7 @@ blocks:
     fields:
       theme: ChoiceBlock(choices=["deep", "beach"], default="deep")   # beach: Ulises Light title and canopy copy on beach light, 80 above when it follows a banner (Internal Page Blocks, 15550:32942)
       title: RichTextBlock(features=["italic"])   # Ulises Book 35, 511 wide
+      italic: ChoiceBlock(choices=["book", "light"], default="book", required=False)   # light: the title's italic words in Ulises Light Italic (the "Get in touch" bands: Contact and both Internal Page Blocks frames)
       text: TextBlock   # Museo Sans 300 20, 620 wide, on the container's right edge from lg
       button: StructBlock(text, url, style, required=False)   # 25 under the text; Figma draws one hidden
 
@@ -389,6 +390,7 @@ blocks:
         label: RichTextBlock(features=["bold"])   # one short line of copy, rendered without the <p>; bold is Museo Sans 500
         width: ChoiceBlock(choices=[112, 122, 140, 150, 151, 156, 178], required=False)   # the column in design px, which decides how the label wraps; Figma sets each by hand; empty = 151, the kit component
       buttons: ListBlock(StructBlock(text, url, style, icon), max_num=2)   # the outline button carries icon "none" ("Our fees"); below lg they stack full width with no dots
+      buttons_fit: BooleanBlock(required=False)   # below lg the buttons keep their own width and dot, as the phone frame draws Pillar #03
       image: ImageChooserBlock(required)   # the 550 × 750 photo (390 × 520 below lg), cropped around its centre; give it a focal point
       image_mobile: ImageChooserBlock(required=False)   # below lg, only where the phone frame draws another photo (Pillar #02)
       video: DocumentChooserBlock(required=False)   # muted loop over the image while on screen (Figma's Pillar #02 is a video fill); { src, poster }
@@ -397,6 +399,7 @@ blocks:
         name: CharBlock
         role: CharBlock(required=False)
         avatar: ImageChooserBlock(required=False)   # 40 round
+        style: ChoiceBlock(choices=["", "inset", "even"], required=False)   # below lg, as the phone frames draw each card: empty is Pillar #01's (30 / 20 padding, 14 gap, radius 15, 20 in); "even" Pillar #03's (26 / 20, 20 gap, radius 14) and "inset" Pillar #02's (the same, 25 in); from lg every card is Pillar #01's, so it stands still through the stack
 
   journey:
     figma: "15699:23363 (desktop), 15337:7691 (Stages Card: normal + hover), 15417:13672 (all cards), 15513:27184 (phone), 15699:14979 (Entry Points, with text)"
@@ -446,6 +449,8 @@ blocks:
       title: RichTextBlock(features=["italic"])
       button: StructBlock(text, url, style, required=False)   # 50 under the list (Contact: "View more transport info", moss)
       all_closed: BooleanBlock(required=False)   # every row starts shut, as Enrol draws them; otherwise the first opens at load from lg
+      all_open: BooleanBlock(required=False)   # every row starts open from lg and each opens and shuts on its own, as Faith draws them
+      dividers: ChoiceBlock(choices=["forest", "canopy"], default="forest", required=False)   # canopy: every rule canopy, the first too while shut (Why ICS, HSC Results, Enrol)
       items: ListBlock(StructBlock)   # below lg every row starts shut, as the phone frame
         question: CharBlock
         answer: RichTextBlock

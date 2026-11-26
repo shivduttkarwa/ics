@@ -38,6 +38,7 @@
     {
       "type": "pinned",
       "value": {
+        "italic": "light",
         "title": "Get in touch with us. <br><em>We’d love to hear from you.</em>",
         "text": "We haven't built ICS on grand buildings or prestige. Our money and energy go into good teaching and real relationships with students. That's how our results stay strong while our fees stay modest.",
         "button": null

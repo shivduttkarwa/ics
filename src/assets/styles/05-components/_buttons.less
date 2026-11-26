@@ -130,6 +130,15 @@
     height: 40 * @px;
     &:hover > .icon { translate: 3 * @px 0; }
   }
+  > .btn__angle {
+    width: 20 * @px;
+    height: 20 * @px;
+    @media (min-width: @bp-lg) { display: none; }
+  }
+  > .btn__arrow {
+    display: none;
+    @media (min-width: @bp-lg) { display: block; }
+  }
 }
 
 // Button Rounded Solid

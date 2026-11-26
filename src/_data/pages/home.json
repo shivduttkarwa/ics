@@ -69,7 +69,7 @@
           "text": "Book interviews",
           "url": "",
           "style": "white",
-          "icon": "arrow"
+          "icon": "arrow-angle"
         }
       }
     },
@@ -309,6 +309,7 @@
           "text": "“Quote from recent graduate on teachers, faith or where they are now.”",
           "name": "Example Name",
           "role": "ICS Parent",
+          "style": "inset",
           "avatar": {
             "src": "/assets/images/home/pillar-quote-avatar.webp",
             "alt": "",
@@ -324,6 +325,7 @@
         "theme": "white",
         "stack": true,
         "spread": false,
+        "buttons_fit": true,
         "title": "A community that <em>knows<br> your child.</em>",
         "lead": "Every student at ICS belongs to a small pastoral care group with a teacher who stays with them. If your child needs extra support, our own psychologist, counsellors and occupational therapist are on site.",
         "text": "<p>Parents are partners here. You'll get to know your child's teachers and they'll get to know your family.</p>",
@@ -363,6 +365,7 @@
           "text": "“Quote from current parent on their child being known or on pastoral care, 30 to 40 words.”",
           "name": "Example Name",
           "role": "ICS Parent",
+          "style": "even",
           "avatar": {
             "src": "/assets/images/home/pillar-quote-avatar.webp",
             "alt": "",

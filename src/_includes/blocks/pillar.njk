@@ -1,4 +1,4 @@
-<section class="pillar pillar--{{ value.theme | default('white') }}{% if value.spread %} pillar--spread{% endif %}{% if value.stack %} pillar--stack{% endif %}{% if value.bullets %} pillar--bullets{% endif %}{% if value.bullets and value.bullets | length > 5 %} pillar--compact{% endif %}{% if value.media_height %} pillar--media-{{ value.media_height }}{% endif %}{% if value.shade %} pillar--shade{% endif %} rounded-foot"{% if value.stack %} data-anim="stack"{% endif %}>
+<section class="pillar pillar--{{ value.theme | default('white') }}{% if value.spread %} pillar--spread{% endif %}{% if value.stack %} pillar--stack{% endif %}{% if value.bullets %} pillar--bullets{% endif %}{% if value.bullets and value.bullets | length > 5 %} pillar--compact{% endif %}{% if value.media_height %} pillar--media-{{ value.media_height }}{% endif %}{% if value.shade %} pillar--shade{% endif %}{% if value.buttons_fit %} pillar--fit-buttons{% endif %} rounded-foot"{% if value.stack %} data-anim="stack"{% endif %}>
   <div class="container">
     <div class="pillar__inner">
       <div class="pillar__copy">
@@ -28,7 +28,7 @@
         </div>
       </div>
 
-      <div class="pillar__media">
+      <div class="pillar__media{% if value.quote and value.quote.style == 'inset' %} pillar__media--inset{% endif %}">
         <div class="pillar__frame" data-anim="reveal" data-anim-type="wipe-up" data-anim-parallax-trigger>
           <div class="pillar__layer" data-anim="parallax">
             <picture class="pillar__picture">
@@ -39,7 +39,7 @@
           </div>
         </div>
         {% if value.quote and value.quote.text %}
-        <figure class="pillar__quote" data-anim="reveal" data-anim-delay="0.5">
+        <figure class="pillar__quote{% if value.quote.style %} pillar__quote--{{ value.quote.style }}{% endif %}" data-anim="reveal" data-anim-delay="0.5">
           <blockquote>{{ value.quote.text }}</blockquote>
           <figcaption class="pillar__author">
             {% set img = value.quote.avatar %}{% set cls = "pillar__avatar" %}{% include "snippets/image.njk" %}

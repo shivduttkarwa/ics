@@ -117,6 +117,16 @@
   @media (min-width: @bp-lg) { font-size: 60 * @px; }
 }
 
+// the home hero title: as type-h1, 35 on a phone held sideways (no frame), where 45 pushes the CTA bar off the screen
+.type-hero-title() {
+  .type-serif(300);
+  line-height: 1.1;
+  letter-spacing: -0.05em;
+  font-size: 35 * @px;
+  @media (min-height: @bp-short) { font-size: 45 * @px; }
+  @media (min-width: @bp-lg) { font-size: 60 * @px; }
+}
+
 // the inner-page hero titles: Ulises Book 75 / 1.1, −5%
 .type-page-title() {
   .type-serif(400);

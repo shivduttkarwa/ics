@@ -3,6 +3,7 @@
 @story-media-width: 550 * @px;
 @story-photo-height: 640 * @px;
 @story-photo-more-height: 403 * @px;
+@story-tab-ring: 0.5 * @px;
 
 .stories {
   --arrow-bg: var(--color-beach-light);
@@ -41,7 +42,7 @@
   &__tab {
     .btn-variant(transparent; var(--color-canopy); transparent; transparent; var(--color-canopy));
     --bs-btn-hover-bg: var(--color-beach-light);
-    --btn-ring-width: var(--device-px, 1px);
+    --btn-ring-width: @story-tab-ring;
     &[aria-current="true"] {
       .btn-variant(var(--color-canopy); var(--color-white); transparent; transparent; var(--color-canopy));
     }

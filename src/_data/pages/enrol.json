@@ -48,7 +48,7 @@
           },
           {
             "title": "Meet with us",
-            "text": "You and your child will have a relaxed chat with [TBC: the Principal, or the Director of K-6 or 7-12] so we can get to know your family and talk about your child's needs."
+            "text": "You and your child will have a relaxed chat with [TBC: the Principal, or the Director of K-\u20606 or 7-\u206012] so we can get to know your family and talk about your child's needs."
           },
           {
             "title": "Accept your offer",
@@ -134,6 +134,7 @@
       "type": "faqs",
       "value": {
         "theme": "white",
+        "dividers": "canopy",
         "title": "You might be <em>wondering...</em>",
         "items": [
           {

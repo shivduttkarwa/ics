@@ -7,6 +7,7 @@
     {
       "type": "page_hero",
       "value": {
+        "shade": "medium",
         "image": {
           "src": "/assets/images/why/why-hero-1920.webp",
           "srcset": "/assets/images/why/why-hero-1280.webp 1280w, /assets/images/why/why-hero-1920.webp 1920w",
@@ -260,6 +261,7 @@
       "type": "faqs",
       "value": {
         "theme": "white",
+        "dividers": "canopy",
         "title": "You might be <em>wondering...</em>",
         "items": [
           {

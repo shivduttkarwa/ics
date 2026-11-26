@@ -12,6 +12,7 @@
 // the pill sits where the bar's row would put it: centred on the crest, at the bar's inset
 @header-tools-top-sm: (@header-pad-sm + (@header-crest - @header-menu) / 2);
 @header-tools-top: (@header-pad + (@header-crest - @header-menu-height - 2 * @header-pill-pad) / 2);
+@header-bar-sm: (2 * @header-pad-sm + @header-crest);
 
 .site-header {
   --focus-ring: var(--color-moss);
@@ -20,10 +21,17 @@
   right: 0;
   left: 0;
   z-index: var(--z-header);
+  // below lg the logo holds with the home hero's photo through its scroll room, as Figma's "Hero - On Scroll" (--hero-height from header.js)
+  height: ~"max(@{header-bar-sm}, var(--hero-height, 0px) - 100lvh + @{header-bar-sm})";
   color: var(--color-white);
+  pointer-events: none;
+  @media (min-width: @bp-lg) { height: auto; }
 
   // the bar scrolls away with the page, keeping the pill's room at its right (--header-tools, measured by header.js)
   &__bar {
+    position: sticky;
+    top: 0;
+    pointer-events: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;

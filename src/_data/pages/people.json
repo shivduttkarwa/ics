@@ -421,10 +421,10 @@
           },
           {
             "image": {
-              "src": "/assets/images/why/next-learning.webp",
-              "alt": "A teacher working with students at their laptops",
-              "width": 1179,
-              "height": 903
+              "src": "/assets/images/why/next-classroom.webp",
+              "alt": "Students working together around tables in a classroom",
+              "width": 1256,
+              "height": 1116
             },
             "label": "Learning",
             "url": ""

@@ -5,10 +5,12 @@ export function initHeader() {
   const header = document.querySelector(".site-header");
   const tools = header?.querySelector(".site-header__tools");
   if (!header || !tools) return;
+  const hero = document.querySelector(".hero");
   const measure = () => {
     const width = `${tools.offsetWidth}px`;
     header.style.setProperty("--header-tools", width);
     try { sessionStorage.setItem("header-tools", width); } catch (e) {}
+    if (hero) header.style.setProperty("--hero-height", `${hero.offsetHeight}px`);
   };
   measure();
   window.addEventListener("resize", measure);
