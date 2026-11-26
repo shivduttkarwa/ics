@@ -189,8 +189,7 @@
             "type": "select",
             "options": [
               "Enrolment",
-              "Booking a tour",
-              "Something else"
+              "[TBC: further options]"
             ],
             "required": false
           },

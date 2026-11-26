@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-26 — Content checked against Figma, the client's videos
+- Every page's copy checked against its Figma frame. Copy Figma does not supply now reads "[TBC]" instead of borrowed text: the journey tiles other than Figma's written one (the home page's Prep, Year 5, Secondary and Senior Years; Entry Points' Prep, Kindergarten, Year 7 and Senior Years), the HSC page's second and third graduate stories (they repeated Jeremy's), every staff quote tile but Melinda Sharpe's (they repeated her words under other names) and the unnamed tile's role, and the contact form's topics after "Enrolment". The Why page's FAQ answers 2 and 3 are Figma's (from the Faith frame, the same questions) in place of "[TBC]".
+- The client's five videos, cut for the web (720 × 1280 H.264, fast start; 206 MB to 4.8 MB): the USP video card plays the Kindergarten assembly song (with sound in its popup), and the testimonial video tiles on Why ICS, Faith and HSC Results play the four classroom clips, no page repeating one. The hero's video card keeps its landscape clip.
+
 ## 2026-11-26 — Journey tiles on whole pixels
 - Journey tiles: each is rounded down to a whole pixel wide (less than 1 narrower), so every tile edge lands on a pixel. From lg the fluid root made the edges fractional, and moving the pointer from one tile to the next showed a sliver at the photos' left and right edges while their zoom ran.
 

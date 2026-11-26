@@ -160,11 +160,11 @@
               "width": 738,
               "height": 547
             },
-            "title": "Jeremy Smark <em>Dux</em>",
-            "lead": "Jeremy joined ICS in Year 6 and quickly embraced the opportunities to learn and grow within the school community. He has valued experiences that challenged him, from collaborative projects to creative pursuits, and has appreciated the friendships and support that have shaped his journey.",
-            "summary": "Academically, Jeremy’s inquisitive nature and determined effort have driven him to excel in a rigorous program that includes advanced mathematics, sciences, and languages.",
-            "story": "<p>Academically, Jeremy’s inquisitive nature and determined effort have driven him to excel in a rigorous program that includes advanced mathematics, sciences, and languages. His achievements reflect both intellectual curiosity and perseverance. Highlights include representing Australia in international problem-solving competitions, earning distinctions in national academic challenges, and participating in elite programs that extend learning well beyond the classroom. These experiences showcase his love of learning and his ability to thrive when faced with complex ideas and demanding expectations.</p><p>Beyond academics, Jeremy has embraced opportunities to serve and lead. His faith has been a guiding influence, shaping how he approaches study and life with humility and purpose. He has contributed to the school community through leadership roles, mentoring younger students, and fostering a culture of encouragement and integrity. Jeremy also pursued creative and technical interests, from performing in orchestras to engaging in engineering and robotics projects, demonstrating a commitment to growth across diverse fields.</p><p>Jeremy’s time at ICS reflects a balance of academic excellence, character development, and service. His achievements are a testament to his curiosity, resilience, and desire to use his gifts for the benefit of others.</p>",
-            "button_label": "Read Jeremy’s Story"
+            "title": "[TBC: graduate name]",
+            "lead": "[TBC: story to come from the school.]",
+            "summary": "[TBC]",
+            "story": "<p>[TBC: story to come from the school.]</p>",
+            "button_label": "Read [TBC]’s Story"
           },
           {
             "tag": "compassionate",
@@ -180,11 +180,11 @@
               "width": 738,
               "height": 547
             },
-            "title": "Jeremy Smark <em>Dux</em>",
-            "lead": "Jeremy joined ICS in Year 6 and quickly embraced the opportunities to learn and grow within the school community. He has valued experiences that challenged him, from collaborative projects to creative pursuits, and has appreciated the friendships and support that have shaped his journey.",
-            "summary": "Academically, Jeremy’s inquisitive nature and determined effort have driven him to excel in a rigorous program that includes advanced mathematics, sciences, and languages.",
-            "story": "<p>Academically, Jeremy’s inquisitive nature and determined effort have driven him to excel in a rigorous program that includes advanced mathematics, sciences, and languages. His achievements reflect both intellectual curiosity and perseverance. Highlights include representing Australia in international problem-solving competitions, earning distinctions in national academic challenges, and participating in elite programs that extend learning well beyond the classroom. These experiences showcase his love of learning and his ability to thrive when faced with complex ideas and demanding expectations.</p><p>Beyond academics, Jeremy has embraced opportunities to serve and lead. His faith has been a guiding influence, shaping how he approaches study and life with humility and purpose. He has contributed to the school community through leadership roles, mentoring younger students, and fostering a culture of encouragement and integrity. Jeremy also pursued creative and technical interests, from performing in orchestras to engaging in engineering and robotics projects, demonstrating a commitment to growth across diverse fields.</p><p>Jeremy’s time at ICS reflects a balance of academic excellence, character development, and service. His achievements are a testament to his curiosity, resilience, and desire to use his gifts for the benefit of others.</p>",
-            "button_label": "Read Jeremy’s Story"
+            "title": "[TBC: graduate name]",
+            "lead": "[TBC: story to come from the school.]",
+            "summary": "[TBC]",
+            "story": "<p>[TBC: story to come from the school.]</p>",
+            "button_label": "Read [TBC]’s Story"
           }
         ]
       }
@@ -395,7 +395,7 @@
               "height": 742
             },
             "video": {
-              "src": "/assets/video/hero-card.mp4"
+              "src": "/assets/video/classroom-presenting.mp4"
             },
             "label": "Hear from Lena",
             "url": ""
@@ -415,7 +415,7 @@
               "height": 1068
             },
             "video": {
-              "src": "/assets/video/hero-card.mp4"
+              "src": "/assets/video/classroom-group.mp4"
             },
             "label": "Hear from Rowan",
             "url": ""
@@ -435,7 +435,7 @@
               "height": 1365
             },
             "video": {
-              "src": "/assets/video/hero-card.mp4"
+              "src": "/assets/video/classroom-desks.mp4"
             },
             "label": "Hear from dave",
             "url": ""

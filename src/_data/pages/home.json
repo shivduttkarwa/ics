@@ -113,11 +113,11 @@
               "height": 500
             },
             "video": {
-              "src": "/assets/video/hero-card.mp4"
+              "src": "/assets/video/assembly-song.mp4"
             },
             "button": {
               "text": "Play Video",
-              "url": "/assets/video/hero-card.mp4",
+              "url": "/assets/video/assembly-song.mp4",
               "icon": "play"
             }
           },
@@ -389,7 +389,7 @@
               "width": 720,
               "height": 1440
             },
-            "text": "<p>From a nervous first day in Prep to a confident last day in Year 12, your child is never starting over. They’re known at every step and each stage builds on the last, so the journey feels like one story.</p>",
+            "text": "<p>[TBC: copy to come from the school.]</p>",
             "button": {
               "text": "Discover Prep",
               "url": "",
@@ -422,7 +422,7 @@
               "width": 333,
               "height": 599
             },
-            "text": "<p>From a nervous first day in Prep to a confident last day in Year 12, your child is never starting over. They’re known at every step and each stage builds on the last, so the journey feels like one story.</p>",
+            "text": "<p>[TBC: copy to come from the school.]</p>",
             "button": {
               "text": "Discover Year 5 entry",
               "url": "",
@@ -438,7 +438,7 @@
               "width": 387,
               "height": 696
             },
-            "text": "<p>From a nervous first day in Prep to a confident last day in Year 12, your child is never starting over. They’re known at every step and each stage builds on the last, so the journey feels like one story.</p>",
+            "text": "<p>[TBC: copy to come from the school.]</p>",
             "button": {
               "text": "Discover Secondary",
               "url": "",
@@ -454,7 +454,7 @@
               "width": 592,
               "height": 1066
             },
-            "text": "<p>From a nervous first day in Prep to a confident last day in Year 12, your child is never starting over. They’re known at every step and each stage builds on the last, so the journey feels like one story.</p>",
+            "text": "<p>[TBC: copy to come from the school.]</p>",
             "button": {
               "text": "Discover Senior Years",
               "url": "",

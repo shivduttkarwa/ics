@@ -180,11 +180,11 @@
               "height": 500
             },
             "video": {
-              "src": "/assets/video/hero-card.mp4"
+              "src": "/assets/video/assembly-song.mp4"
             },
             "button": {
               "text": "Play Video",
-              "url": "/assets/video/hero-card.mp4",
+              "url": "/assets/video/assembly-song.mp4",
               "icon": "play"
             }
           },
