@@ -2,6 +2,8 @@
 // a phone held sideways: room for the close button above the frame and little else
 @popup-pad-sm: 40 * @px;
 @popup-width: 1200 * @px;
+@popup-close: 44 * @px;
+@popup-close-icon: 16 * @px;
 
 // a USP card's Play Video and the hero's video card open their video here (ui.js)
 .video-popup {
@@ -54,10 +56,10 @@
   }
 
   &__close {
-    .close-button();
+    .close-button(@popup-close; @popup-close-icon);
     position: absolute;
-    top: -(@close-size / 2);
-    right: -(@close-size / 4);
+    top: -(@popup-close / 2);
+    right: -(@popup-close / 4);
     z-index: 1;
   }
 }

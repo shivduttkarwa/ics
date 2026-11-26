@@ -1,11 +1,11 @@
 @close-size: 60 * @px;
 
 // the kit's popup close (Figma "Main Menu Icon Transparent" on the Staff Bio popup)
-.close-button() {
+.close-button(@size: @close-size; @icon: 20 * @px) {
   display: grid;
   place-items: center;
-  width: @close-size;
-  height: @close-size;
+  width: @size;
+  height: @size;
   padding: 0;
   border: 0;
   border-radius: 50%;
@@ -14,8 +14,8 @@
   transition: scale var(--duration-slow) var(--ease-in-out-soft);
   will-change: transform;
   .icon {
-    width: 20 * @px;
-    height: 20 * @px;
+    width: @icon;
+    height: @icon;
   }
   @media @fine {
     &:hover { scale: 1.06; }

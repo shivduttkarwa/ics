@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-11-26 — Smaller video popup close
+- Video popup: its close is 44 with a 16 cross (was the staff bio's 60 with a 20 cross), still on the frame's top-right corner, so it no longer looms over a portrait video on a phone. The staff bio keeps its 60.
+
 ## 2026-11-26 — Figma and device audit fixes
 - Audit of every page against Figma (1440, the 430 home page, menus, staff bio, expanded story, Faith moments) and on 34 phone and tablet sizes upright and sideways. Fixed from it:
 - Our People and Contact: the Where next "Learning" card shows the classroom-table photo those frames draw (`why/next-classroom.webp`, Figma's 2048 fill cut to the parallax layer), not the teacher-and-laptops one the other pages use.
