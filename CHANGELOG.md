@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-27 — Faster phone menu
+- Below lg the menu opens and closes 1.7× faster (`PHONE_PACE` in `menu.js`, a `timeScale` on the phone's open and close timelines): about 1.2s to fill (was 2s) and 0.65s to close (was 1.1s). Its shape and order are unchanged; the desktop's pill keeps its timing.
+
+## 2026-11-27 — Title lines land clean
+- Every section title: a line's rise ends while it still moves about a device pixel a frame (`arriving()` in `motion.js`: 0.47s of the 1.4s `soft` curve at 1440, 0.64s on a 3× phone) instead of crawling its last 3px over 0.7s, where the layer's text was resampled in place and shimmered, then turned crisp: the stutter at the end of every title, which cutting the tail by distance never removed. A line lands on whole device pixels and then nothing changes: its rise keeps its fill, its layer is held and its mask keeps its clip (the clip now reaches 1em above the line). Until now each line's clip came off and its rise was cancelled as it landed, which redrew the text up to a pixel away and read as the lines snapping closer on phones. The curve is sampled into keyframes instead of a CSS `linear()` easing, so Safari runs it on the compositor too. Hero titles are unchanged, at the client's ask. Measured headless at 1440 and at 390 × 3: the lines change every frame to the end, nothing after.
+
 ## 2026-11-27 — Section copy follows its title; CTA band drifts on phones; journey stops at its ends
 - Every section: what follows a title in its block (text, buttons, stats, rows) starts as the title's last line nears home (0.3s after that line starts, about three quarters up), keeping its order 0.09s apart; if it comes into view first, the title starts ahead of it. On phones the lead text could show before the title's lines had surfaced; waiting for the last line to land outright felt too long. On a fast scroll (over about 1.5 screens a second) it waits only 0.15s after the title starts, so a section reached in a hurry fills in at once, title still first. Hero entrances are unchanged.
 - CTA band: the photo drifts on phones too, 8% of the band each way (11 from lg as before); it was still below lg.
