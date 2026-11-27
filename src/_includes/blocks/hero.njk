@@ -5,7 +5,7 @@
         {% if value.image_mobile %}<source media="(max-width: 991.98px)" srcset="{{ value.image_mobile.src }}">{% endif %}
         <img class="hero__img" src="{{ value.image.src }}"{% if value.image.srcset %} srcset="{{ value.image.srcset }}" sizes="100vw"{% endif %} alt="" width="{{ value.image.width }}" height="{{ value.image.height }}" fetchpriority="high" decoding="async">
       </picture>
-      {% if value.video %}<video class="hero__video" src="{{ value.video.src }}" poster="{{ value.video.poster | default(value.image.src) }}" muted loop playsinline preload="none" data-ambient></video>{% endif %}
+      {% if value.video %}<video class="hero__video" src="{{ value.video.src }}" muted loop playsinline preload="none" data-ambient></video>{% endif %}
     </div>
     <div class="hero__shade"></div>
     <div class="hero__dim"></div>

@@ -4,6 +4,7 @@ import less from "less";
 import postcss from "postcss";
 import autoprefixer from "autoprefixer";
 import * as esbuild from "esbuild";
+import { PurgeCSS } from "purgecss";
 
 const PROD = process.env.ELEVENTY_RUN_MODE === "build";
 
@@ -14,13 +15,24 @@ function relativeUrls(html, pageUrl) {
     .replace(/\bsrcset="([^"]*)"/g, (_, set) => `srcset="${set.replace(/(^|[\s,])\/(?!\/)/g, `$1${up}`)}"`);
 }
 
+// Bootstrap trimmed to the classes the templates, data and scripts name: whole, it was 230 KB of a render-blocking stylesheet
+async function bootstrapCss() {
+  const raw = fs.readFileSync("node_modules/bootstrap/dist/css/bootstrap.min.css", "utf8");
+  const [{ css }] = await new PurgeCSS().purge({
+    content: ["src/**/*.njk", "src/**/*.json", "src/assets/scripts/**/*.js"],
+    css: [{ raw }],
+  });
+  return css;
+}
+
 async function compileCss() {
   const input = "src/assets/styles/main.less";
   const out = await less.render(fs.readFileSync(input, "utf8"), {
     filename: path.resolve(input),
     paths: ["node_modules", "src/assets/styles"],
   });
-  const prefixed = await postcss([autoprefixer]).process(out.css, { from: undefined });
+  const prefixed = await postcss([autoprefixer]).process(`${await bootstrapCss()}
+${out.css}`, { from: undefined });
   const css = PROD
     ? (await esbuild.transform(prefixed.css, { loader: "css", minify: true, legalComments: "none" })).code
     : prefixed.css;

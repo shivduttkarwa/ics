@@ -15,7 +15,6 @@
 
   {% if value.rows %}
   <div class="graduates__rows" data-anim="reveal" data-anim-type="fade">
-    {% set loading = "eager" %}
     {% for row in value.rows %}
     <div class="graduates__lane">
       <div class="graduates__track" data-marquee="{% if loop.first %}left{% else %}right{% endif %}" data-marquee-speed="35" data-marquee-pause="instant">
@@ -27,7 +26,6 @@
       </div>
     </div>
     {% endfor %}
-    {% set loading = "lazy" %}
   </div>
   {% endif %}
 </section>

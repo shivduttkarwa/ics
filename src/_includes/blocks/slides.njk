@@ -4,7 +4,7 @@
     <article class="slides__slide{% if loop.first %} is-active{% endif %}" data-stage-slide data-stage-tone="{{ slide.button.style }}" role="group" aria-roledescription="slide" aria-label="{{ loop.index }} of {{ value.slides | length }}">
       <div class="slides__media" data-stage-media>
         <img class="slides__img" src="{{ slide.image.src }}"{% if slide.image.srcset %} srcset="{{ slide.image.srcset }}" sizes="100vw"{% endif %} alt="{{ slide.image.alt }}" width="{{ slide.image.width }}" height="{{ slide.image.height }}" loading="lazy" decoding="async">
-        {% if slide.video %}<video class="slides__video" src="{{ slide.video.src }}" poster="{{ slide.video.poster | default(slide.image.src) }}" muted loop playsinline preload="none" data-ambient></video>{% endif %}
+        {% if slide.video %}<video class="slides__video" src="{{ slide.video.src }}" muted loop playsinline preload="none" data-ambient></video>{% endif %}
       </div>
       <div class="slides__shade"></div>
       <div class="slides__body container">

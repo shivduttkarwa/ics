@@ -5,7 +5,7 @@
         {% if value.image_mobile %}<source media="(max-width: 767.98px)" srcset="{{ value.image_mobile.src }}" width="{{ value.image_mobile.width }}" height="{{ value.image_mobile.height }}">{% endif %}
         <img class="cta-band__img" src="{{ value.image.src }}"{% if value.image.srcset %} srcset="{{ value.image.srcset }}" sizes="100vw"{% endif %} alt="" width="{{ value.image.width }}" height="{{ value.image.height }}" loading="lazy" decoding="async">
       </picture>
-      {% if value.video %}<video class="cta-band__video" src="{{ value.video.src }}" poster="{{ value.video.poster | default(value.image.src) }}" muted loop playsinline preload="none" data-ambient></video>{% endif %}
+      {% if value.video %}<video class="cta-band__video" src="{{ value.video.src }}" muted loop playsinline preload="none" data-ambient></video>{% endif %}
     </div>
   </div>
 

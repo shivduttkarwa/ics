@@ -900,8 +900,12 @@ const Anim = {
       fail(err);
       return this;
     }
-    // a title split in the fallback face breaks in the wrong places, so setup waits for the webfonts, briefly
-    const fonts = document.fonts?.ready ?? Promise.resolve();
+    // a title split in the fallback face breaks in the wrong places, so setup waits for the faces of every title split on the
+    // first screen, briefly; the whole page's (document.fonts.ready) held a first visit back for faces only sections further down use
+    const titles = Array.from(document.querySelectorAll('[data-anim="split"]')).filter((el) => el.getBoundingClientRect().top < window.innerHeight);
+    const face = (el) => { const s = getComputedStyle(el); return `${s.fontStyle} ${s.fontWeight} 1em ${s.fontFamily}`; };
+    const fonts = !document.fonts ? Promise.resolve()
+      : Promise.all([...new Set(titles.flatMap((el) => [el, ...el.querySelectorAll("em, strong")]).map(face))].map((f) => document.fonts.load(f)));
     const go = () => {
       try {
         let started;

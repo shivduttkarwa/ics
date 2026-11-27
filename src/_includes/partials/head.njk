@@ -10,7 +10,13 @@
 <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/museo-sans-500.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/museo-sans-700.woff2" as="font" type="font/woff2" crossorigin>
+{% set lead = p.body[0].type if p and p.body else "" %}
+{% if lead == "hero" %}
+<link rel="preload" href="/assets/fonts/ulises-light.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/ulises-light-italic.woff2" as="font" type="font/woff2" crossorigin>
+{% endif %}
 <link rel="stylesheet" href="/assets/css/main.css">
+<script src="/assets/js/main.js" defer{% if lead == "hero" %} fetchpriority="high"{% endif %}></script>
 <script>
   (function (d) {
     d.classList.add("anim-ready");

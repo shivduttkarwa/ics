@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-11-27 — Faster first load
+- Stylesheet: `main.css` carried the whole of Bootstrap (232 KB) ahead of first paint. `.eleventy.js` now trims it with PurgeCSS (new dev dependency) to the classes the templates, data and scripts use and puts it first, where `main.less` imported it: the stylesheet is 176 KB (was 385), 29 KB gzipped (was 56). Every element on all ten pages, at 1440 and 390, has the same box and computed style as before.
+- Video posters: the seven muted ambient films (hero, page hero, CTA band, pillar, slides, promo cards, feature video) no longer carry `poster`. Each sits invisible over its own photo until it plays, so the poster was never seen, but it downloaded at once wherever the film was, phones included where the film is hidden: about 250 KB on the home page competing with the first screen.
+- Graduate logos are lazy like every image below the first screen (the marquee still turns them eager a screen ahead).
+- `main.js` loads from `<head>` (`defer`): on the home page with `fetchpriority="high"`, since its LCP is the hero title, which waits for the script (Chrome does not count a photo that fills the screen); inner pages keep the default, out of their hero photo's way. The home page preloads the hero title's two faces, and the entrance waits only for the faces of the titles split on the first screen (the hero's, and on an inner page the pinned band's), not every face on the page; their lines break the same on a slow first visit as on a fast one.
+- Measured on Slow 4G with a 4× slower CPU, cache off (medians): home entrance 7.5s → 4.2s on desktop and 7.3s → 4.3s on a phone, bytes in the first 12s 1.45 MB → 1.03 MB (phone 1.52 MB → 0.57 MB), first paint 2.0s → 1.8s; Why ICS first paint 1.5s → 1.4s, LCP unchanged at 2.0s (its photo's download); Contact LCP 4.6s → 4.3s, first paint 1.9s → 1.4s. The home page's LCP is its hero film, which plays once the entrance has (by design), now at about 7s (was a button label at 10.8s).
+
 ## 2026-11-27 — Graduate logos: UTS Sport and ADF Careers from St Luke's
 - UTS Sport was cropped through the S of SPORT and the top of UTS: it is now St Luke's export of the same mark (106 × 69, set 64 × 42). ADF Careers is St Luke's vector (`adf-careers.svg`, transparent) in place of the raster on a white box. The other logos are the same files as St Luke's; Newcastle and Wollongong keep the horizontal lockups Figma draws.
 

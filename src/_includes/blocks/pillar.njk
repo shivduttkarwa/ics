@@ -35,7 +35,7 @@
               {% if value.image_mobile %}<source media="(max-width: 991.98px)" srcset="{{ value.image_mobile.src }}" width="{{ value.image_mobile.width }}" height="{{ value.image_mobile.height }}">{% endif %}
               {% set img = value.image %}{% set cls = "pillar__img" %}{% include "snippets/image.njk" %}
             </picture>
-            {% if value.video %}<video class="pillar__video" src="{{ value.video.src }}" poster="{{ value.video.poster | default(value.image.src) }}" muted loop playsinline preload="none" data-ambient></video>{% endif %}
+            {% if value.video %}<video class="pillar__video" src="{{ value.video.src }}" muted loop playsinline preload="none" data-ambient></video>{% endif %}
           </div>
         </div>
         {% if value.quote and value.quote.text %}

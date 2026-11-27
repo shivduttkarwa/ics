@@ -3,7 +3,7 @@
     <div class="feature-video__frame" data-anim="reveal" data-anim-type="wipe-up" data-anim-parallax-trigger>
       <div class="feature-video__layer" data-anim="parallax">
         {% set img = value.image %}{% set cls = "feature-video__img" %}{% include "snippets/image.njk" %}
-        {% if value.video %}<video class="feature-video__video" src="{{ value.video.src }}" poster="{{ value.video.poster | default(value.image.src) }}" muted loop playsinline preload="none" data-ambient{% if value.image.alt %} aria-label="{{ value.image.alt }}"{% endif %}></video>{% endif %}
+        {% if value.video %}<video class="feature-video__video" src="{{ value.video.src }}" muted loop playsinline preload="none" data-ambient{% if value.image.alt %} aria-label="{{ value.image.alt }}"{% endif %}></video>{% endif %}
       </div>
     </div>
   </div>
