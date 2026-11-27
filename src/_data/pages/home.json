@@ -562,7 +562,7 @@
           {
             "logos": [
               {
-                "src": "/assets/images/logos/adf-careers.webp",
+                "src": "/assets/images/logos/adf-careers.svg",
                 "alt": "ADF Careers, Australian Defence Force",
                 "width": 92,
                 "height": 47,
@@ -579,7 +579,7 @@
                 "src": "/assets/images/logos/uts-sport.webp",
                 "alt": "UTS Sport",
                 "width": 64,
-                "height": 43,
+                "height": 42,
                 "url": "https://www.activateuts.com.au/sport"
               },
               {

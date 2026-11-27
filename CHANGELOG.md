@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-11-27 — Graduate logos: UTS Sport and ADF Careers from St Luke's
+- UTS Sport was cropped through the S of SPORT and the top of UTS: it is now St Luke's export of the same mark (106 × 69, set 64 × 42). ADF Careers is St Luke's vector (`adf-careers.svg`, transparent) in place of the raster on a white box. The other logos are the same files as St Luke's; Newcastle and Wollongong keep the horizontal lockups Figma draws.
+
 ## 2026-11-27 — Menu back to Figma, buttons linked
 - "All links" is out of the menu; Why ICS? is back with Figma's children (Wellbeing and care, Our people).
 - Every button, menu item and header link without a URL now goes to the nearest built page (128 links in the pages, plus the header, menu and footer): Book a tour and enquiries to Contact, applying, fees and the prospectus to Enrol, entry stages to Entry points, Learning to Results and pathways, Life at ICS and the co-curricular slides to Why ICS, jobs and the welcome to Our people. Directions and the contact map open Google Maps; Contact's "Send message" jumps to the form. What still has no link (it needs a real URL or file) is listed in the handoff under "Links in the static build".
