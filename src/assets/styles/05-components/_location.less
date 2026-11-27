@@ -51,7 +51,8 @@
     display: flex;
     flex-direction: column;
     gap: 5 * @px;
-    padding: 10 * @px 0 20 * @px;
+    // Figma's rule sits inside the row's 10
+    padding: (10 - 1) * @px 0 20 * @px;
     border-top: 1 * @px solid var(--color-canopy);
     @media (min-width: @bp-sm) {
       flex-direction: row;

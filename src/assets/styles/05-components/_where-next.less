@@ -95,3 +95,8 @@
 .rounded-foot + .where-next {
   @media (min-width: @bp-lg) { padding-top: (100 - 18) * @px; }
 }
+
+// white on white the foot does not show, and Figma's Why frame lays the block untucked
+.faqs--white + .where-next {
+  @media (min-width: @bp-lg) { padding-top: 100 * @px; }
+}

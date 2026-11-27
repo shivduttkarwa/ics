@@ -8,10 +8,11 @@
       "type": "page_hero",
       "value": {
         "image": {
-          "src": "/assets/images/enrol/enrol-hero.webp",
+          "src": "/assets/images/enrol/enrol-hero-1920.webp",
+          "srcset": "/assets/images/enrol/enrol-hero-1280.webp 1280w, /assets/images/enrol/enrol-hero-1920.webp 1920w",
           "alt": "",
-          "width": 1440,
-          "height": 680
+          "width": 1920,
+          "height": 1080
         },
         "image_mobile": {
           "src": "/assets/images/enrol/enrol-hero-mobile.webp",

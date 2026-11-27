@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-11-27 — Final Figma sweep at 1440
+- Every page captured at 1440 × 960 and set against Figma's render of its frame, section by section; the phone home page against its 430 frame; every page walked at 1920 × 945 with motion on.
+- Enrol and Contact heroes: the still under the film is now the film's opening frame at the film's size (Enrol 1920 × 1080 with a 1280 copy, Contact 1280 × 638). The old stills were 1440 × 680 crops of another moment, enlarged 29% to fill the hero, so the page opened tight and then faded into a wider, different shot as the film started.
+- Second Internal Page Blocks page: the hero shows Figma's photo, the three girls (`blocks/image-children.webp`, Figma's fill at its centred crop), not the Faith hero's.
+- Why ICS: Where next sits 18 lower, as Figma lays it under the white FAQs with no tuck (Faith's frame tucks it 9; the build now leaves it untucked after any white FAQ list).
+- Contact: the travel rows take their rule inside their 10 of padding, as Figma does, so the four rows no longer grow the block 4 and push the FAQs and the form down; the form's fields are Figma's 34 tall under a mouse (were 33.4).
+- Handoff: noted that Our People's upper footer sits at y 0 of its Figma frame (hidden under the hero), and that Figma's "Input Content" field text is the component's default.
+
 ## 2026-11-27 — Staff quotes readable on every screen
 - "What our staff say": the quote ran out of its tile below 1400 (at 375 a 120-wide column with the name cut off; at 768 the name gone; at 1024 the quote cut). Columns are now three quarters of the screen below md with the next peeking in, two and a half from md, four from lg, Figma's five from xxl. A quote still too long scrolls inside its tile with the name kept in view; 30 between quote and name below md.
 - `cards.js`: a tapped tile cut off by the screen edge in a slider glides fully into view as it opens (staff quotes, journey).

@@ -8,18 +8,12 @@
       "type": "page_hero",
       "value": {
         "image": {
-          "src": "/assets/images/faith/faith-hero-1920.webp",
-          "srcset": "/assets/images/faith/faith-hero-1280.webp 1280w, /assets/images/faith/faith-hero-1920.webp 1920w",
+          "src": "/assets/images/blocks/image-children.webp",
           "alt": "",
-          "width": 1920,
-          "height": 1080
+          "width": 1600,
+          "height": 974
         },
-        "image_mobile": {
-          "src": "/assets/images/faith/faith-hero-mobile.webp",
-          "alt": "",
-          "width": 900,
-          "height": 1013
-        },
+        "image_mobile": null,
         "video": null,
         "shade": "medium",
         "title": "Internal page <br><em>example headline</em>",

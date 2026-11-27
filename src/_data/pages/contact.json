@@ -10,8 +10,8 @@
         "image": {
           "src": "/assets/images/contact/contact-hero.webp",
           "alt": "",
-          "width": 1440,
-          "height": 679
+          "width": 1280,
+          "height": 638
         },
         "image_mobile": {
           "src": "/assets/images/contact/contact-hero-mobile.webp",

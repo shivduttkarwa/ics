@@ -1,5 +1,6 @@
 @contact-form-select-room: 30 * @px;
 @contact-form-area: 102 * @px;
+@contact-form-control: 34 * @px;
 @contact-form-chevron: 16 * @px;
 
 .contact-form {
@@ -85,7 +86,7 @@
     background: transparent;
     color: var(--color-coal);
     appearance: none;
-    @media @fine { min-height: 0; }
+    @media @fine { min-height: @contact-form-control; }
     &::placeholder {
       color: var(--color-coal);
       opacity: 1;
