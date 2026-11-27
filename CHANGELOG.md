@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-11-27 — Faster phone menu
+- Below lg the menu opens and closes 1.4× faster (`PHONE_PACE` in `menu.js`, a `timeScale` on the phone's open and close timelines): about 1.45s to fill (was 2s) and 0.8s to close (was 1.1s). Its shape and order are unchanged; the desktop's pill keeps its timing.
+
 ## 2026-11-27 — Form dropdown and error messages
 - Dropdowns: a select in a form is now a listbox in the kit's look (the native select stays hidden and carries the value). It is a white rounded panel under the field with a beach-light highlight, and the chosen option is marked with the moss dot. It opens upward when there is more room above, and works with the keyboard and screen readers.
 - Error messages: the browser's bubbles are replaced by a message under each wrong field in a deepened flame red with a small dot before it, and the field's line turns the same red. Submitting focuses the first mistake; a message clears as soon as the field is put right. The contact form's name and message fields have their own wording.
