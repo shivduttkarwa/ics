@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-27 — Page change teardown moved off the hero title
+- The page change's transition is kept alive for 3.2s by a no-op hold on the old snapshot (nothing changes on screen after the 0.9s uncover). The browser tears a transition's layers down as it ends and drops a frame or two there; ending at 0.9s, that hit the hero title's rising lines and read as the title stuttering on every page change. The entrance's timing is unchanged: the title still rises as the edge passes it; the page scrolls and a press still ends the transition at once.
+- The ambient films (the inner heroes' and the home hero's background, the pillar) start once the entrance has played (`Anim.played`), not as soon as they are on screen: arriving by a page change, a hero film's first frames came about 1.2s in, under the title's rising lines, and halved the frame rate; on a fresh load they came only once the title had landed, which is why only page changes stuttered.
+
 ## 2026-11-27 — Section copy follows its title; CTA band drifts on phones; journey stops at its ends
 - Every section: what follows a title in its block (text, buttons, stats, rows) starts as the title's last line nears home (0.3s after that line starts, about three quarters up), keeping its order 0.09s apart; if it comes into view first, the title starts ahead of it. On phones the lead text could show before the title's lines had surfaced; waiting for the last line to land outright felt too long. On a fast scroll (over about 1.5 screens a second) it waits only 0.15s after the title starts, so a section reached in a hurry fills in at once, title still first. Hero entrances are unchanged.
 - CTA band: the photo drifts on phones too, 8% of the band each way (11 from lg as before); it was still below lg.

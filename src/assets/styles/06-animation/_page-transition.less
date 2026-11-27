@@ -8,5 +8,10 @@
   to { clip-path: inset(0% 0% 0% 0% round 0rem); }
 }
 
-::view-transition-old(root) { animation: none; }
+// the old snapshot's hold keeps the transition alive past the uncover, changing nothing on screen: the browser drops a frame or two as it tears a transition down, and at 0.9s that hit the hero title's rising lines
+@keyframes page-hold {
+  from, to { opacity: 1; }
+}
+
+::view-transition-old(root) { animation: page-hold 3.2s linear both; }
 ::view-transition-new(root) { animation: page-uncover 0.9s var(--ease-in-out) both; }

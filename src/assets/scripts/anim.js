@@ -73,6 +73,8 @@ let started = false;
 let holdUntil = 0; // ticker time before which reveals already on screen wait for the entrance
 let entranceEnd = 0; // ticker time by which the entrance has played
 let entranceWaiting = null; // a promise while the entrance is set up but not yet started
+let markPlayed = null;
+const played = new Promise((resolve) => { markPlayed = resolve; });
 
 // heavy work waits until the entrance has played, so it never stalls a frame of it
 function afterEntrance(fn) {
@@ -873,6 +875,7 @@ function revealEverything() {
 const Anim = {
   lenis: null,
   entrance: null, // the page entrance's GSAP timeline, once it has started
+  played, // resolves once the entrance has played: at once without one, under reduced motion, or if the setup fails
 
   init(opts = {}) {
     if (started) return this;
@@ -882,11 +885,13 @@ const Anim = {
     root.setAttribute("data-anim-live", "");
     if (still.matches) {
       root.classList.add("anim-reduced");
+      markPlayed();
       return this;
     }
     const fail = (err) => {
       console.error("[anim] failed, showing everything", err);
       revealEverything();
+      markPlayed();
     };
     try {
       initScroll(opts);
@@ -910,6 +915,7 @@ const Anim = {
           this.entrance = playEntrance(entrance);
           entranceWaiting = null;
           started();
+          afterEntrance(markPlayed);
         };
         const begin = () => {
           if (document.visibilityState !== "hidden") start();

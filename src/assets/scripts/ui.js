@@ -77,11 +77,13 @@ export function initAmbientVideos() {
   const videos = Array.from(document.querySelectorAll("video[data-ambient]"));
   if (!videos.length) return;
   const onScreen = new WeakSet();
+  // a film waits for the entrance: its first frames arriving under the hero title's rising lines dropped frames
+  let armed = false;
   const sync = (video) => {
     if (still.matches) {
       video.pause();
       video.currentTime = 0;
-    } else if (onScreen.has(video)) {
+    } else if (onScreen.has(video) && armed) {
       video.play().catch(() => {});
     } else {
       video.pause();
@@ -97,6 +99,10 @@ export function initAmbientVideos() {
     view.observe(video);
   });
   still.addEventListener("change", () => videos.forEach(sync));
+  Anim.played.then(() => {
+    armed = true;
+    videos.forEach(sync);
+  });
 }
 
 const embed = (url) => {
