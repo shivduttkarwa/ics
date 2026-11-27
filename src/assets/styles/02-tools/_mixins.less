@@ -105,6 +105,14 @@
   backdrop-filter: blur(var(--blur-glass));
 }
 
+// Firefox blurs what lies behind an isolated card, not the card's own photo: glass inside one keeps its fill, unblurred
+.glass-in-card() {
+  @supports (-moz-appearance: none) {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
 // Figma's 0.5 inside strokes: one device pixel, so a 2x screen draws the hairline and a 1x screen a crisp 1px
 .hairline(@color) {
   box-shadow: inset 0 0 0 var(--device-px, 1px) @color;

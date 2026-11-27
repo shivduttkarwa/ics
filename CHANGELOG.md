@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-11-27 — Frosted buttons inside cards in Firefox
+- Firefox blurs what lies behind an isolated card (`isolation: isolate`, rounded and clipped), not the card's own photo, so frosted parts inside one filled flat with the section's ground: the USP "Play video" button showed solid green on canopy and the testimonial tiles' play buttons solid white on white, their white label lost. In Firefox only (`.glass-in-card()`, `@supports (-moz-appearance: none)`) those parts drop the blur and keep their white 20% fill over the photo: the USP and testimonial play buttons, the journey tiles' tags and the Where Next bars. Chrome and Safari keep the blur.
+
 ## 2026-11-27 — No light line under the CTA band
 - On a screen drawn at a fraction (a zoomed or scaled view, such as a device preview at 69%), the band's last pixel row was only part covered, so the page's white showed through as a light line between the band and the section under it. The section after the band now reaches 2 up behind it in its own ground (`.cta-band + *::before`, z-index −1, as the rounded feet do), so that row blends the photo with the next section's green.
 
