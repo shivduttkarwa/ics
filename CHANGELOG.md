@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-11-27 — Leaders' photos land without a snap on phones
+- On touch the always-showing bio button split the card's fade around its glass, so the photo faded on its own and snapped as it landed (the desktop fix of the same name only covered a hidden bar). The button now waits hidden until its card has landed and then fades in; the card rises and fades as one piece.
+
 ## 2026-11-27 — Final Figma sweep at 1440
 - Every page captured at 1440 × 960 and set against Figma's render of its frame, section by section; the phone home page against its 430 frame; every page walked at 1920 × 945 with motion on.
 - Enrol and Contact heroes: the still under the film is now the film's opening frame at the film's size (Enrol 1920 × 1080 with a 1280 copy, Contact 1280 × 638). The old stills were 1440 × 680 crops of another moment, enlarged 29% to fill the hero, so the page opened tight and then faded into a wider, different shot as the film started.
