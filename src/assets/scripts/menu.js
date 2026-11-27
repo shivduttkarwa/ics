@@ -169,8 +169,27 @@ export function initMenu() {
     show();
   }));
   menu.querySelectorAll("[data-menu-close]").forEach((el) => el.addEventListener("click", close));
+  // a link that loads another page leaves the menu open for the next page to uncover itself over; closing it played the
+  // fold for as long as the page took to arrive, and the page change then caught it half-shut
+  const leaves = (link, event) => {
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return false;
+    if (link.target && link.target !== "_self") return false;
+    if (link.hasAttribute("download")) return false;
+    const to = new URL(link.href, location.href);
+    return !(to.hash && to.origin === location.origin && to.pathname === location.pathname && to.search === location.search);
+  };
   menu.addEventListener("click", (event) => {
-    if (event.target.closest("a[href]")) close();
+    const link = event.target.closest("a[href]");
+    if (link && !leaves(link, event)) close();
+  });
+  // Back restores this page as it was left, menu open: it is put away at once
+  window.addEventListener("pageshow", (event) => {
+    if (!event.persisted || !open) return;
+    open = false;
+    tl?.kill();
+    expanded(false);
+    outside().forEach((el) => { el.inert = false; });
+    hide();
   });
   menu.querySelector(".menu__search")?.addEventListener("submit", (event) => {
     if (!event.currentTarget.getAttribute("action")) event.preventDefault();

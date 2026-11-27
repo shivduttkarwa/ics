@@ -6,6 +6,9 @@
 - The test clips are out of the data (`hero-card`, `assembly-song`, `classroom-*`): the hero's video card, the Faith tiles and the HSC Lena and Dave tiles have no video, as in Figma.
 - `promo_cards`: an optional `video` per card (muted loop over the photo while on screen, growing with it on hover); the Sport card's still is now the clip's first frame, not the stand-in photo.
 
+## 2026-11-27 — Menu stays put as a page link loads
+- Menu: a link to another page no longer closes it. Every link closed it, so on the live site the fold played while the next page loaded and the page change then caught it half-shut; locally the page arrived before the fold showed. Now the next page uncovers itself over the open menu, as it did locally. A link within the page, a new-tab click or a download still closes it, and Back puts it away at once (`pageshow`). Checked in headless Chrome with 800ms of latency: open until the next page replaces it, shut after Back.
+
 ## 2026-11-27 — Leaders' photos land without a snap
 - Our People's leaders (and any card whose frosted bar shows only on hover): on a desktop the card fades in as one piece. Its fade was split around the glass bar as if the bar were showing, so the hidden "View full bio" bar faded in over the photo through the entrance and vanished as it landed, and the photo, faded on a layer of its own, was redrawn a fraction of a pixel away (its 1.01 rest zoom resampled). Filmed in headless Chrome at 1920: the jump as the card lands went from up to 227 levels over 18,000–35,000 pixels to nothing above an ordinary fade step (`fadeParts` in `motion.js`). Not the parallax: the leaders' photos have none.
 
