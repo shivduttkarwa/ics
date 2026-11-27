@@ -123,7 +123,7 @@ export function initMenu() {
       return;
     }
     // it grows left out of the pill at the pill's height, and once that has settled grows down to its full height as its
-    // corners go from the pill's round to its own and its rows come in (gsa.uk.com); width and height on one curve
+    // corners go from the pill's round to its own and its rows come in; width and height on one curve
     const { "--clip-t": t, "--clip-b": b, "--clip-round": round } = shape.full;
     tl.to(panel, { opacity: 1, duration: 0.3, ease: "power1.out" }, 0)
       .to(panel, { "--clip-l": "0px", "--clip-r": "0px", duration: 0.75, ease: "fold" }, 0)
