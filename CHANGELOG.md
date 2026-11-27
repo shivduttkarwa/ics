@@ -6,6 +6,12 @@
 - The test clips are out of the data (`hero-card`, `assembly-song`, `classroom-*`): the hero's video card, the Faith tiles and the HSC Lena and Dave tiles have no video, as in Figma.
 - `promo_cards`: an optional `video` per card (muted loop over the photo while on screen, growing with it on hover); the Sport card's still is now the clip's first frame, not the stand-in photo.
 
+## 2026-11-27 — Hero video card plays the hero film
+- Home hero: the "Watch full video" card plays the client's hero film (`home-hero.mp4`) muted while hovered and opens it in the popup (`video_card.video`, `video_card.url`), at the client's ask; Figma's card has no video file of its own.
+
+## 2026-11-27 — Body text paragraphs rise in turn
+- Body text (second Internal Page Blocks page): each paragraph rises on its own as it comes into view (`data-anim-group="fade-up"`), instead of the whole body rising as one block.
+
 ## 2026-11-27 — Menu stays put as a page link loads
 - Menu: a link to another page no longer closes it. Every link closed it, so on the live site the fold played while the next page loaded and the page change then caught it half-shut; locally the page arrived before the fold showed. Now the next page uncovers itself over the open menu, as it did locally. A link within the page, a new-tab click or a download still closes it, and Back puts it away at once (`pageshow`). Checked in headless Chrome with 800ms of latency: open until the next page replaces it, shut after Back.
 

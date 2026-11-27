@@ -215,6 +215,7 @@ Figma lays most frames 14–24 up under the rounded foot above them, so the gap 
 
 ### body_text (`blocks/body_text.njk`, `_body-text.less`)
 - Internal Page Blocks' copy (`15564:34392`): Body 2 in a centred 630 column, paragraphs a line apart; 98 above and 32 below from lg, so it sits 157 under a photo and the author card 64 under it, as Figma spaces them. (Not called "rich-text": the FAQ answers use that utility class.)
+- Motion: each paragraph (each top-level element of the rich text) rises on its own as it comes into view, in turn with any beside it (`data-anim-group="fade-up"` on `.body-text__body`), not the whole body as one.
 
 ### author (`blocks/author.njk`, `_author.less`)
 - Internal Page Blocks' author card (`15564:34395`): centred, 846 wide, beach light, radius 10, padded 50 (25 below lg): the photo (129 wide, as tall as the copy, radius 20) and, 25 on, the name (Heading 4) over the role (Museo Sans 700 14 caps), 25 to the bio (Body 2, black 75%). 32 above and below from lg. Below sm the photo sits over the copy at 129:153.
