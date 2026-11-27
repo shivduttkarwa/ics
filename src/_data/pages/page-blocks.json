@@ -97,10 +97,17 @@
       "type": "cta_band",
       "value": {
         "image": {
-          "src": "/assets/images/blocks/cta-classroom.webp",
+          "src": "/assets/images/people/cta-meet-1600.webp",
+          "srcset": "/assets/images/people/cta-meet-1280.webp 1280w, /assets/images/people/cta-meet-1600.webp 1600w",
           "alt": "",
           "width": 1600,
-          "height": 703
+          "height": 903
+        },
+        "image_mobile": {
+          "src": "/assets/images/people/cta-meet-mobile.webp",
+          "alt": "",
+          "width": 539,
+          "height": 903
         },
         "video": null,
         "eyebrow": "",

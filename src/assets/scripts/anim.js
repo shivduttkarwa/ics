@@ -29,6 +29,8 @@ const REVEAL = {
   // the header's items: 24 down on the compositor, landing under the fade, on a held layer
   "fade-down": { from: { y: -24, autoAlpha: 0 }, glide: { axis: "y", duration: 0.7, ease: "power2.out", fade: 0.7, fadeEase: "power1.out", fallback: "cubic-bezier(0.33, 1, 0.68, 1)" } },
   "fade": { from: { autoAlpha: 0 }, to: [fade(1.2)] },
+  // the same fade in place on the compositor, for first-screen text a page change's busy frames must not stall
+  "fade-still": { from: { autoAlpha: 0 }, glide: { axis: "y", duration: 1.2, ease: "soft", fade: 1.2, fadeEase: "power2.out", fallback: "cubic-bezier(0.22, 1, 0.36, 1)" } },
   "from-left": { from: { x: -48, autoAlpha: 0 }, to: [{ x: 0, duration: 1.2 }, fade()] },
   "from-right": { from: { x: 48, autoAlpha: 0 }, to: [{ x: 0, duration: 1.2 }, fade()] },
   "rise": { from: { y: 72, autoAlpha: 0 }, to: [{ y: 0, duration: 1.3 }, fade(1)] },
@@ -160,8 +162,8 @@ function glideUnit(el, glide, parts = [el]) {
     const length = glide.duration * (easing ? cut : 1);
     const start = (delay = 0) => {
       const wait = delay * 1000;
-      const move = el.animate([{ transform: translate(from) }, { transform: "none" }], { duration: length * 1000, delay: wait, easing: easing || glide.fallback, fill: "both" });
-      const runs = [move, ...(glide.fade ? parts.map((part) => part.animate([{ opacity: 0 }, { opacity: 1 }], { ...fade, delay: wait })) : [])];
+      const runs = glide.fade ? parts.map((part) => part.animate([{ opacity: 0 }, { opacity: 1 }], { ...fade, delay: wait })) : [];
+      if (from) runs.unshift(el.animate([{ transform: translate(from) }, { transform: "none" }], { duration: length * 1000, delay: wait, easing: easing || glide.fallback, fill: "both" }));
       gsap.set([el, ...parts], { visibility: "inherit" });
       Promise.all(runs.map((run) => run.finished)).then(() => {
         settle(el, parts, HOLD);

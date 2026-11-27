@@ -40,11 +40,11 @@
     }
   }
 
-  // from lg the 16:9 photo is about as tall as the layer's overhang, so it is barely enlarged
+  // 11 is as far as a 16:9 photo reaches at 1440 unenlarged; more drift zooms it and crops its top
   &__layer {
     position: absolute;
     inset: 0;
-    @media (min-width: @bp-lg) { .parallax-layer(16); }
+    @media (min-width: @bp-lg) { .parallax-layer(11); }
   }
 
   &__picture {
@@ -53,8 +53,12 @@
     display: block;
   }
 
+  // a band wider than Figma's must lose the extra off the foot, not the heads
   &__img,
-  &__video { .img-cover(); }
+  &__video {
+    .img-cover();
+    @media (min-width: @bp-lg) { object-position: 50% 0; }
+  }
 
   &__video {
     position: absolute;

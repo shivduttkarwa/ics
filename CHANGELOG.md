@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-11-27 — Breadcrumbs fade smoothly after a page change
+- Inner-page breadcrumbs: they fade in on the compositor (`fade-still`, the same 1.2s fade in place) instead of GSAP's main-thread `fade`. After a page change their fade starts as the transition ends, when the page is busiest, so a stalled frame held them faint and the timeline then jumped them to full; a reload had no such burst. The compositor's fade is scheduled when the entrance starts, as the title's lines are.
+
+## 2026-11-27 — Employment band photo framed as in Figma
+- CTA band, from lg: the photo is anchored to its top (`object-position: 50% 0`) instead of centred. On a wide screen the band is wider than Figma's (1904 × 734 on a 1920 screen against Figma's 1440 × 662), so the centred 16:9 photo lost about 16% off its top and cut through the heads whatever the parallax; now the extra comes off the foot. At 1440 the framing is Figma's (checked against Figma's render of `15513:12252`).
+- CTA band: the photo drifts 11% of the band's height each way (`.parallax-layer(11)`, was 16), as far as a 16:9 photo reaches at 1440 without being enlarged; at 16 it was zoomed 8%.
+- Internal Page Blocks band: its photo was a 1600 × 703 export of the band itself, with no room to drift, so the layer enlarged it 22%. It now takes Figma's actual fill, the same 16:9 photo as Our People and Contact (`cta-meet`, with its phone crop below md); `blocks/cta-classroom.webp` is removed.
+- Every band checked against its Figma frame at 1440 (home, Our People, Contact, Enrol, HSC Results, Internal Page Blocks): the same photo and framing, Enrol and HSC Results within 2–4% (their 682 band reaches a little past the photo's height). At 1920 every band keeps the heads whole.
+- Figma's home and HSC Results bands are video fills (16:9); the build shows their stills until the video files are supplied (`video: { src, poster }`), which Figma's tools cannot export.
+
 ## 2026-11-27 — Home hero entrance tightened
 - Home hero: the intro starts 0.5s before the title's last line lands (was 0.4s) and the header drops in with it instead of after the action buttons, so the header lands about 2.2s in (was about 2.9s). The action buttons and the video card keep their times; on a phone the card still comes as the title lands. The header's own step (4) is unchanged, so inner pages play as before.
 
