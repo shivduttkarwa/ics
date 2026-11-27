@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-11-27 — Home hero entrance tightened
+- Home hero: the intro starts 0.5s before the title's last line lands (was 0.4s) and the header drops in with it instead of after the action buttons, so the header lands about 2.2s in (was about 2.9s). The action buttons and the video card keep their times; on a phone the card still comes as the title lands. The header's own step (4) is unchanged, so inner pages play as before.
+
 ## 2026-11-26 — Footer ground on a fast fling, no sideways scroll on older iPhones
 - Page foot: the ground turns the footer's dark green as soon as the footer comes into view (an `IntersectionObserver`), not a quarter screen from the end, so a fast fling on a phone no longer flashes white at the end. Checked at the switch, where most of the page above the footer is in view, at 414, 768, 1440 and 1920 on every page: nothing on screen shows the ground. (Switching two screens early was tried: the Enrol FAQs' corners over the photo band show the ground at 768.)
 - Sideways scroll: the slider sections (USPs, journey, testimonials, stories, staff quotes, gallery, promo cards) and the page root clip through `.clip-x()`, `overflow-x: hidden` then `clip`. iOS Safari before 16 drops `clip`, and the slider tracks running off the screen scrolled the page sideways there; current browsers keep `clip`.

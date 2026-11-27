@@ -16,22 +16,22 @@
       <h1 data-anim="split" data-anim-tier="hero" data-anim-order="1">{{ value.title | safe }}</h1>
     </div>
     <div class="hero__more">
-      {% if value.text %}<p class="hero__text" data-anim="reveal" data-anim-type="fade-up-soft" data-anim-tier="hero" data-anim-order="2" data-anim-lead="0">{{ value.text }}</p>{% endif %}
+      {% if value.text %}<p class="hero__text" data-anim="reveal" data-anim-type="fade-up-soft" data-anim-tier="hero" data-anim-order="4" data-anim-lead="0.5">{{ value.text }}</p>{% endif %}
       {% if value.button and value.button.text %}
-      <div class="hero__buttons" data-anim="reveal" data-anim-type="fade-up-soft" data-anim-tier="hero" data-anim-order="2" data-anim-delay="0.2">
+      <div class="hero__buttons" data-anim="reveal" data-anim-type="fade-up-soft" data-anim-tier="hero" data-anim-order="4" data-anim-delay="0.2">
         {% set btn = value.button %}{% include "snippets/button.njk" %}
       </div>
       {% endif %}
     </div>
     {% if value.actions %}
-    <div class="hero__actions" data-anim="reveal" data-anim-type="fade-up-soft" data-anim-tier="hero" data-anim-order="3" data-anim-order-mobile="2">
+    <div class="hero__actions" data-anim="reveal" data-anim-type="fade-up-soft" data-anim-tier="hero" data-anim-order="5" data-anim-order-mobile="4" data-anim-lead="0.6" data-anim-lead-mobile="0.5">
       {% for btn in value.actions %}{% set plain = true %}{% include "snippets/button.njk" %}{% endfor %}{% set plain = false %}
     </div>
     {% endif %}
   </div>
 
   {% if value.video_card %}
-  <a class="hero__card"{% if value.video_card.url %} href="{{ value.video_card.url }}" data-video-popup{% endif %}{% if value.video_card.video %} data-hover-video{% endif %} data-anim="reveal" data-anim-type="from-right-edge" data-anim-tier="hero" data-anim-order="5" data-anim-lead="1.2" data-anim-duration="1.3">
+  <a class="hero__card"{% if value.video_card.url %} href="{{ value.video_card.url }}" data-video-popup{% endif %}{% if value.video_card.video %} data-hover-video{% endif %} data-anim="reveal" data-anim-type="from-right-edge" data-anim-tier="hero" data-anim-order="6" data-anim-lead="1.2" data-anim-lead-mobile="0.3" data-anim-duration="1.3">
     {% set img = value.video_card.image %}{% set cls = "hero__card-img" %}{% include "snippets/image.njk" %}
     {% if value.video_card.video %}<video class="hero__card-video" data-src="{{ value.video_card.video.src }}" muted loop playsinline preload="none" aria-hidden="true"></video>{% endif %}
     <span class="hero__card-label"><svg class="icon" aria-hidden="true"><use href="#icon-play"></use></svg>{{ value.video_card.label }}</span>
