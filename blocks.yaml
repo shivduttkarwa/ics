@@ -250,6 +250,7 @@ blocks:
     figma: "15657:27040 (Contact: 'Send us a message'), 15667:26169 / 15667:26167 (Form Input Field: text, multiline); no phone frame"
     template: blocks/contact_form.njk
     fields:
+      anchor: CharBlock(required=False)   # the section's id, so a button elsewhere on the page can link to it ("#send-a-message")
       title: RichTextBlock(features=["italic"])   # Ulises Light 60 / 1.1, −4% (all italic in Figma)
       text: TextBlock(required=False)   # Body 2, coal
       image: ImageChooserBlock(required)   # the left half from lg, full height, cover, drifting on a parallax layer; 4:3 above the form below lg
@@ -424,7 +425,7 @@ blocks:
       title: RichTextBlock(features=["italic"])
       text: TextBlock
       button: StructBlock(text, url, style)   # "Where ICS graduates go", moss with the dot at every size
-      rows: ListBlock(StructBlock(logos: ListBlock(ImageChooserBlock)))   # two rows in Figma; the first runs right to left, the second left to right, both at one slow speed, the second starting 100 in
+      rows: ListBlock(StructBlock(logos: ListBlock(StructBlock(image: ImageChooserBlock, url: URLBlock(required=False)))))   # a logo with a url links to the organisation's site in a new tab; two rows in Figma; the first runs right to left, the second left to right, both at one slow speed, the second starting 100 in
         # a logo's alt is the organisation's name; its width is its size in design px (Figma sizes each logo by eye), the file about twice that
 
   slides:

@@ -7,26 +7,18 @@
   "header_links": [
     { "label": "Why ICS", "url": "/why.html" },
     { "label": "Our Faith", "url": "/faith.html" },
-    { "label": "Learning", "url": "" },
-    { "label": "Life at ICS", "url": "" },
+    { "label": "Learning", "url": "/results.html" },
+    { "label": "Life at ICS", "url": "/why.html" },
     { "label": "Enrol", "url": "/enrol.html" }
   ],
-  "header_button": { "text": "Book a tour", "url": "", "style": "moss" },
+  "header_button": { "text": "Book a tour", "url": "/contact.html", "style": "moss" },
   "nav": [
     {
-      "label": "All links",
-      "url": "",
+      "label": "Why ICS?",
+      "url": "/why.html",
       "children": [
-        { "label": "Home", "url": "/index.html" },
-        { "label": "Why ICS", "url": "/why.html" },
-        { "label": "Results and pathways", "url": "/results.html" },
-        { "label": "Our people", "url": "/people.html" },
-        { "label": "Faith", "url": "/faith.html" },
-        { "label": "Enrolling at ICS", "url": "/enrol.html" },
-        { "label": "Entry points", "url": "/entry-points.html" },
-        { "label": "Contact us", "url": "/contact.html" },
-        { "label": "Internal page blocks", "url": "/page-blocks.html" },
-        { "label": "Internal page blocks 2", "url": "/page-blocks-2.html" }
+        { "label": "Wellbeing and care", "url": "/why.html" },
+        { "label": "Our people", "url": "/people.html" }
       ]
     },
     {
@@ -38,24 +30,24 @@
       ]
     },
     { "label": "Our Faith", "url": "/faith.html" },
-    { "label": "Learning", "url": "" },
-    { "label": "Life at ICS", "url": "" },
+    { "label": "Learning", "url": "/results.html" },
+    { "label": "Life at ICS", "url": "/why.html" },
     { "label": "Contact Us", "url": "/contact.html" }
   ],
   "menu_buttons": [
-    { "text": "Book a tour", "url": "", "style": "moss", "size": "small" },
-    { "text": "Make an enquiry", "url": "", "style": "moss", "size": "small" },
-    { "text": "Apply to enrol", "url": "", "style": "moss", "size": "small" }
+    { "text": "Book a tour", "url": "/contact.html", "style": "moss", "size": "small" },
+    { "text": "Make an enquiry", "url": "/contact.html", "style": "moss", "size": "small" },
+    { "text": "Apply to enrol", "url": "/enrol.html", "style": "moss", "size": "small" }
   ],
   "menu_links": [
     { "label": "Parent Portal", "url": "" },
-    { "label": "Employment", "url": "" },
+    { "label": "Employment", "url": "/people.html" },
     { "label": "Contact Us", "url": "/contact.html" }
   ],
   "socials": [
-    { "network": "facebook", "label": "Facebook", "url": "" },
-    { "network": "instagram", "label": "Instagram", "url": "" },
-    { "network": "linkedin", "label": "LinkedIn", "url": "" }
+    { "network": "facebook", "label": "Facebook", "url": "https://www.facebook.com/illawarracs/" },
+    { "network": "instagram", "label": "Instagram", "url": "https://www.instagram.com/illawarrachristianschool/" },
+    { "network": "linkedin", "label": "LinkedIn", "url": "https://www.linkedin.com/school/illawarra-christian-school/" }
   ],
   "footer": {
     "statement": "Exceptional Christian Education where <em>every student is known</em>.",
@@ -64,7 +56,7 @@
       "title": "Visit Us",
       "label": "College Campus",
       "address": ["4 Tyalla Place", "Cordeaux Heights NSW 2526"],
-      "button": { "text": "Directions", "url": "", "style": "white", "size": "small" }
+      "button": { "text": "Directions", "url": "https://www.google.com/maps/dir/?api=1&destination=Illawarra+Christian+School%2C+4+Tyalla+Place%2C+Cordeaux+Heights+NSW+2526", "style": "white", "size": "small" }
     },
     "contact": {
       "title": "Contact Us",
@@ -77,19 +69,19 @@
     },
     "links_title": "Next Steps",
     "links": [
-      { "label": "Prospectus", "url": "" },
-      { "label": "Book a Tour", "url": "" },
-      { "label": "Enrolment Enquiry", "url": "" },
+      { "label": "Prospectus", "url": "/enrol.html" },
+      { "label": "Book a Tour", "url": "/contact.html" },
+      { "label": "Enrolment Enquiry", "url": "/contact.html" },
       { "label": "Parent Portal", "url": "" },
-      { "label": "Employment", "url": "" }
+      { "label": "Employment", "url": "/people.html" }
     ],
     "logos": [
-      { "src": "/assets/images/logos/footer-ice.svg", "alt": "Illawarra Christian Education", "width": 150, "height": 65, "url": "" },
-      { "src": "/assets/images/logos/footer-cen.webp", "alt": "Christian Education National", "width": 150, "height": 65, "url": "" },
-      { "src": "/assets/images/logos/footer-aacs.svg", "alt": "Australian Association of Christian Schools", "width": 150, "height": 65, "url": "" },
-      { "src": "/assets/images/logos/footer-isnsw.svg", "alt": "Independent Schools NSW", "width": 150, "height": 65, "url": "" },
-      { "src": "/assets/images/logos/footer-nqs-exceeding.svg", "alt": "Rated Exceeding, National Quality Standard", "width": 125, "height": 65, "url": "" },
-      { "src": "/assets/images/logos/footer-nesa.svg", "alt": "NSW Education Standards Authority", "width": 146, "height": 65, "url": "" }
+      { "src": "/assets/images/logos/footer-ice.svg", "alt": "Illawarra Christian Education", "width": 150, "height": 65, "url": "https://www.ics.nsw.edu.au/community/association/" },
+      { "src": "/assets/images/logos/footer-cen.webp", "alt": "Christian Education National", "width": 150, "height": 65, "url": "https://cen.edu.au/" },
+      { "src": "/assets/images/logos/footer-aacs.svg", "alt": "Australian Association of Christian Schools", "width": 150, "height": 65, "url": "https://aacs.net.au/" },
+      { "src": "/assets/images/logos/footer-isnsw.svg", "alt": "Independent Schools NSW", "width": 150, "height": 65, "url": "https://www.isnsw.edu.au/" },
+      { "src": "/assets/images/logos/footer-nqs-exceeding.svg", "alt": "Rated Exceeding, National Quality Standard", "width": 125, "height": 65, "url": "https://www.acecqa.gov.au/nqf/national-quality-standard" },
+      { "src": "/assets/images/logos/footer-nesa.svg", "alt": "NSW Education Standards Authority", "width": 146, "height": 65, "url": "https://www.educationstandards.nsw.edu.au/" }
     ],
     "copyright": "© 2026 Illawarra Christian School",
     "operator": "Operated by Illawarra Christian Education",
@@ -97,6 +89,6 @@
     "legal_links": [
       { "label": "ICS Policies", "url": "" }
     ],
-    "credit": { "label": "Design", "url": "" }
+    "credit": { "label": "Design", "url": "https://cimarketing.com.au/" }
   }
 }

@@ -84,7 +84,7 @@
         ],
         "button": {
           "text": "Discover faith at ICS on a School Tour",
-          "url": "",
+          "url": "/contact.html",
           "style": "moss"
         },
         "image": {
@@ -117,12 +117,12 @@
         "text": "Join a close team and a supportive community where you’ll know your students by name and grow your career.",
         "button": {
           "text": "Work with us",
-          "url": "",
+          "url": "/people.html",
           "style": "glass"
         },
         "button_secondary": {
           "text": "View current roles",
-          "url": "",
+          "url": "/people.html",
           "style": "outline-white"
         },
         "height": 633
@@ -155,7 +155,7 @@
         "title": "Ask families <em>why</em> they chose ICS and you’ll hear answers like these.",
         "button": {
           "text": "View all the reasons",
-          "url": "",
+          "url": "/why.html",
           "style": "moss"
         },
         "cards": [
@@ -170,7 +170,7 @@
             "video": null,
             "button": {
               "text": "Discover more",
-              "url": "",
+              "url": "/enrol.html",
               "style": "white"
             }
           },
@@ -208,7 +208,7 @@
             "video": null,
             "button": {
               "text": "Discover more",
-              "url": "",
+              "url": "/faith.html",
               "style": "white"
             }
           },
@@ -223,7 +223,7 @@
             "video": null,
             "button": {
               "text": "Discover more",
-              "url": "",
+              "url": "/people.html",
               "style": "white"
             }
           },
@@ -238,7 +238,7 @@
             "video": null,
             "button": {
               "text": "Discover more",
-              "url": "",
+              "url": "/results.html",
               "style": "white"
             }
           },
@@ -253,7 +253,7 @@
             "video": null,
             "button": {
               "text": "Discover more",
-              "url": "",
+              "url": "/contact.html",
               "style": "white"
             }
           },
@@ -268,7 +268,7 @@
             "video": null,
             "button": {
               "text": "Discover more",
-              "url": "",
+              "url": "/why.html",
               "style": "white"
             }
           }
@@ -346,7 +346,7 @@
               "height": 903
             },
             "label": "Learning",
-            "url": ""
+            "url": "/results.html"
           }
         ]
       }
@@ -362,11 +362,11 @@
           },
           {
             "label": "Learning",
-            "url": ""
+            "url": "/results.html"
           },
           {
             "label": "Life at ICS",
-            "url": ""
+            "url": "/why.html"
           }
         ]
       }
@@ -388,7 +388,7 @@
             "text": "Walk the campus, meet our teachers and see what a school day at ICS is really like.",
             "button": {
               "text": "Book a tour",
-              "url": "",
+              "url": "/contact.html",
               "style": "canopy"
             }
           },
@@ -404,7 +404,7 @@
             "text": "Ask us anything about fees, year levels or what to expect. Our enrolments team is happy to help.",
             "button": {
               "text": "Make an enquiry",
-              "url": "",
+              "url": "/contact.html",
               "style": "canopy"
             }
           },
@@ -420,7 +420,7 @@
             "text": "Complete your application online and secure your child’s place. Early applications keep more options open.",
             "button": {
               "text": "Apply to enrol",
-              "url": "",
+              "url": "/enrol.html",
               "style": "canopy"
             }
           }

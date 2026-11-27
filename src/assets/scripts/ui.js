@@ -20,6 +20,14 @@ export function initDevicePixel() {
   set();
 }
 
+export function initExternalLinks() {
+  document.querySelectorAll('a[href^="http"]').forEach((link) => {
+    if (link.origin === location.origin) return;
+    link.target = "_blank";
+    link.relList.add("noopener");
+  });
+}
+
 // typing in a field is not keyboard navigation, or a phone's own keyboard would bring the rings back
 export function initFocusMode() {
   const root = document.documentElement;

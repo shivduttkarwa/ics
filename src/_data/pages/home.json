@@ -27,23 +27,23 @@
         "text": "Illawarra Christian School is a Prep-12 school in Cordeaux Heights, Wollongong. Our students do well, they're known by name, and they grow up in a Christian community that cares about them. Our fees are lower than you might expect for an independent school.",
         "button": {
           "text": "Welcome to ICS",
-          "url": "",
+          "url": "/people.html",
           "style": "glass"
         },
         "actions": [
           {
             "text": "Tours",
-            "url": "",
+            "url": "/contact.html",
             "style": "moss"
           },
           {
             "text": "Enquire",
-            "url": "",
+            "url": "/contact.html",
             "style": "moss"
           },
           {
             "text": "Apply",
-            "url": "",
+            "url": "/enrol.html",
             "style": "moss"
           }
         ],
@@ -69,7 +69,7 @@
         "text": "Parent-teacher interviews open for booking this week. Choose a time that suits your family.",
         "button": {
           "text": "Book interviews",
-          "url": "",
+          "url": "/enrol.html",
           "style": "white",
           "icon": "arrow-angle"
         }
@@ -81,7 +81,7 @@
         "title": "Ask families <em>why</em> they chose ICS and you’ll hear answers like these.",
         "button": {
           "text": "View all the reasons",
-          "url": "",
+          "url": "/why.html",
           "style": "moss"
         },
         "cards": [
@@ -96,7 +96,7 @@
             "video": null,
             "button": {
               "text": "Discover more",
-              "url": "",
+              "url": "/enrol.html",
               "style": "white"
             }
           },
@@ -134,7 +134,7 @@
             "video": null,
             "button": {
               "text": "Discover more",
-              "url": "",
+              "url": "/faith.html",
               "style": "white"
             }
           },
@@ -149,7 +149,7 @@
             "video": null,
             "button": {
               "text": "Discover more",
-              "url": "",
+              "url": "/people.html",
               "style": "white"
             }
           },
@@ -164,7 +164,7 @@
             "video": null,
             "button": {
               "text": "Discover more",
-              "url": "",
+              "url": "/results.html",
               "style": "white"
             }
           },
@@ -179,7 +179,7 @@
             "video": null,
             "button": {
               "text": "Discover more",
-              "url": "",
+              "url": "/contact.html",
               "style": "white"
             }
           },
@@ -194,7 +194,7 @@
             "video": null,
             "button": {
               "text": "Discover more",
-              "url": "",
+              "url": "/why.html",
               "style": "white"
             }
           }
@@ -235,7 +235,7 @@
           },
           {
             "text": "Our fees",
-            "url": "",
+            "url": "/enrol.html",
             "style": "outline-moss",
             "icon": "none"
           }
@@ -290,7 +290,7 @@
         "buttons": [
           {
             "text": "How faith is lived at ICS",
-            "url": "",
+            "url": "/faith.html",
             "style": "moss"
           }
         ],
@@ -353,7 +353,7 @@
         "buttons": [
           {
             "text": "Wellbeing and care",
-            "url": "",
+            "url": "/why.html",
             "style": "moss"
           }
         ],
@@ -396,7 +396,7 @@
             "text": "<p>[TBC: copy to come from the school.]</p>",
             "button": {
               "text": "Discover Prep",
-              "url": "",
+              "url": "/entry-points.html",
               "style": "white"
             },
             "narrow": true
@@ -413,7 +413,7 @@
             "text": "<p>Small classes and a strong focus on reading, writing and maths, with specialist music and Japanese teachers.</p>",
             "button": {
               "text": "Discover Primary",
-              "url": "",
+              "url": "/entry-points.html",
               "style": "white"
             }
           },
@@ -429,7 +429,7 @@
             "text": "<p>[TBC: copy to come from the school.]</p>",
             "button": {
               "text": "Discover Year 5 entry",
-              "url": "",
+              "url": "/entry-points.html",
               "style": "white"
             }
           },
@@ -445,7 +445,7 @@
             "text": "<p>[TBC: copy to come from the school.]</p>",
             "button": {
               "text": "Discover Secondary",
-              "url": "",
+              "url": "/entry-points.html",
               "style": "white"
             }
           },
@@ -461,7 +461,7 @@
             "text": "<p>[TBC: copy to come from the school.]</p>",
             "button": {
               "text": "Discover Senior Years",
-              "url": "",
+              "url": "/entry-points.html",
               "style": "white"
             }
           }
@@ -469,12 +469,12 @@
         "buttons": [
           {
             "text": "Enrolment Process",
-            "url": "",
+            "url": "/enrol.html",
             "style": "moss"
           },
           {
             "text": "Book a Tour",
-            "url": "",
+            "url": "/contact.html",
             "style": "outline-moss",
             "icon": "none"
           }
@@ -488,7 +488,7 @@
         "text": "ICS students go on to outstanding local, national and international universities as well as incredible futures in trades, sports, building and defence.",
         "button": {
           "text": "Where ICS graduates go",
-          "url": "",
+          "url": "/results.html",
           "style": "moss"
         },
         "rows": [
@@ -498,55 +498,64 @@
                 "src": "/assets/images/logos/uow.svg",
                 "alt": "University of Wollongong Australia",
                 "width": 141,
-                "height": 46
+                "height": 46,
+                "url": "https://www.uow.edu.au/"
               },
               {
                 "src": "/assets/images/logos/usyd.webp",
                 "alt": "The University of Sydney",
                 "width": 117,
-                "height": 42
+                "height": 42,
+                "url": "https://www.sydney.edu.au/"
               },
               {
                 "src": "/assets/images/logos/unsw.webp",
                 "alt": "UNSW Sydney",
                 "width": 104,
-                "height": 45
+                "height": 45,
+                "url": "https://www.unsw.edu.au/"
               },
               {
                 "src": "/assets/images/logos/uts.webp",
                 "alt": "UTS, University of Technology Sydney",
                 "width": 132,
-                "height": 57
+                "height": 57,
+                "url": "https://www.uts.edu.au/"
               },
               {
                 "src": "/assets/images/logos/macquarie.webp",
                 "alt": "Macquarie University",
                 "width": 116,
-                "height": 34
+                "height": 34,
+                "url": "https://www.mq.edu.au/"
               },
               {
                 "src": "/assets/images/logos/acu.webp",
                 "alt": "ACU, Australian Catholic University",
                 "width": 103,
-                "height": 28
+                "height": 28,
+                "url": "https://www.acu.edu.au/"
               },
               {
                 "src": "/assets/images/logos/icms.webp",
                 "alt": "ICMS, International College of Management Sydney",
                 "width": 121,
-                "height": 38
+                "height": 38,
+                "url": "https://www.icms.edu.au/"
               },
               {
                 "src": "/assets/images/logos/torrens.webp",
                 "alt": "Torrens University Australia",
                 "width": 111,
-                "height": 44
+                "height": 44,
+                "url": "https://www.torrens.edu.au/"
               },
               {
                 "src": "/assets/images/logos/newcastle.webp",
                 "alt": "The University of Newcastle Australia",
                 "width": 130,
-                "height": 44
+                "height": 44,
+                "url": "https://www.newcastle.edu.au/"
               }
             ]
           },
@@ -556,43 +565,50 @@
                 "src": "/assets/images/logos/adf-careers.webp",
                 "alt": "ADF Careers, Australian Defence Force",
                 "width": 92,
-                "height": 47
+                "height": 47,
+                "url": "https://www.adfcareers.gov.au/"
               },
               {
                 "src": "/assets/images/logos/megt.webp",
                 "alt": "MEGT",
                 "width": 109,
-                "height": 83
+                "height": 83,
+                "url": "https://www.megt.com.au/"
               },
               {
                 "src": "/assets/images/logos/uts-sport.webp",
                 "alt": "UTS Sport",
                 "width": 64,
-                "height": 43
+                "height": 43,
+                "url": "https://www.activateuts.com.au/sport"
               },
               {
                 "src": "/assets/images/logos/american-summers.webp",
                 "alt": "American Summers",
                 "width": 116,
-                "height": 57
+                "height": 57,
+                "url": "https://www.americansummers.com/"
               },
               {
                 "src": "/assets/images/logos/multiplex.webp",
                 "alt": "Multiplex",
                 "width": 146,
-                "height": 28
+                "height": 28,
+                "url": "https://www.multiplex.global/"
               },
               {
                 "src": "/assets/images/logos/master-builders.webp",
                 "alt": "Master Builders Australia",
                 "width": 164,
-                "height": 39
+                "height": 39,
+                "url": "https://www.masterbuilders.com.au/"
               },
               {
                 "src": "/assets/images/logos/wisetech.webp",
                 "alt": "WiseTech Global",
                 "width": 108,
-                "height": 43
+                "height": 43,
+                "url": "https://www.wisetechglobal.com/"
               }
             ]
           }
@@ -623,7 +639,7 @@
             },
             "button": {
               "text": "Explore Sport",
-              "url": "",
+              "url": "/why.html",
               "style": "moss"
             }
           },
@@ -642,7 +658,7 @@
             },
             "button": {
               "text": "Hear Our Music",
-              "url": "",
+              "url": "/why.html",
               "style": "white"
             }
           },
@@ -662,7 +678,7 @@
             },
             "button": {
               "text": "See Drama and Visual Arts",
-              "url": "",
+              "url": "/why.html",
               "style": "white"
             }
           },
@@ -681,7 +697,7 @@
             },
             "button": {
               "text": "Explore Languages",
-              "url": "",
+              "url": "/results.html",
               "style": "white"
             }
           },
@@ -700,7 +716,7 @@
             },
             "button": {
               "text": "Explore Camps and the Outdoors",
-              "url": "",
+              "url": "/why.html",
               "style": "white"
             }
           },
@@ -720,7 +736,7 @@
             },
             "button": {
               "text": "Explore Leadership",
-              "url": "",
+              "url": "/why.html",
               "style": "white"
             }
           },
@@ -740,7 +756,7 @@
             },
             "button": {
               "text": "Explore Competitions and Enrichment",
-              "url": "",
+              "url": "/results.html",
               "style": "white"
             }
           }
@@ -757,7 +773,7 @@
             "answer": "<p>No. ICS fees are well below those of many independent schools in the region. Tuition for 2027 starts at [TBC: $X] a year, and there are sibling discounts and payment plans through Edstart.</p>",
             "button": {
               "text": "View our fees",
-              "url": "",
+              "url": "/enrol.html",
               "style": "moss"
             }
           },
@@ -845,7 +861,7 @@
         "text": "Follow along with <em>life at ICS</em> on social media",
         "posts": [
           {
-            "url": "",
+            "url": "https://www.instagram.com/illawarrachristianschool/",
             "image": {
               "src": "/assets/images/home/social-1.webp",
               "alt": "Instagram post: introducing our 2027 School Captains, Abby, Miriam, Joshua and Piper",
@@ -854,7 +870,7 @@
             }
           },
           {
-            "url": "",
+            "url": "https://www.instagram.com/illawarrachristianschool/",
             "image": {
               "src": "/assets/images/home/social-2.webp",
               "alt": "Instagram post: Charlie and the Chocolate Factory, less than 30 tickets remaining",
@@ -863,7 +879,7 @@
             }
           },
           {
-            "url": "",
+            "url": "https://www.instagram.com/illawarrachristianschool/",
             "image": {
               "src": "/assets/images/home/social-3.webp",
               "alt": "Instagram post: four students dressed for the school formal",
@@ -872,7 +888,7 @@
             }
           },
           {
-            "url": "",
+            "url": "https://www.instagram.com/illawarrachristianschool/",
             "image": {
               "src": "/assets/images/home/social-4.webp",
               "alt": "Instagram post: Go well, Year 12! The 2026 HSC exams begin today",
@@ -881,7 +897,7 @@
             }
           },
           {
-            "url": "",
+            "url": "https://www.instagram.com/illawarrachristianschool/",
             "image": {
               "src": "/assets/images/home/social-5.webp",
               "alt": "Instagram post: state champions, four years in a row",
@@ -890,7 +906,7 @@
             }
           },
           {
-            "url": "",
+            "url": "https://www.instagram.com/illawarrachristianschool/",
             "image": {
               "src": "/assets/images/home/social-6.webp",
               "alt": "Instagram post: a student beside the timber giraffe lamp she made",
@@ -925,12 +941,12 @@
         "text": "Join a close team and a supportive community where you’ll know your students by name and grow your career.",
         "button": {
           "text": "Work with us",
-          "url": "",
+          "url": "/people.html",
           "style": "glass"
         },
         "button_secondary": {
           "text": "View current roles",
-          "url": "",
+          "url": "/people.html",
           "style": "outline-white"
         }
       }
@@ -952,7 +968,7 @@
             "text": "Walk the campus, meet our teachers and see what a school day at ICS is really like.",
             "button": {
               "text": "Book a tour",
-              "url": "",
+              "url": "/contact.html",
               "style": "canopy"
             }
           },
@@ -968,7 +984,7 @@
             "text": "Ask us anything about fees, year levels or what to expect. Our enrolments team is happy to help.",
             "button": {
               "text": "Make an enquiry",
-              "url": "",
+              "url": "/contact.html",
               "style": "canopy"
             }
           },
@@ -984,7 +1000,7 @@
             "text": "Complete your application online and secure your child’s place. Early applications keep more options open.",
             "button": {
               "text": "Apply to enrol",
-              "url": "",
+              "url": "/enrol.html",
               "style": "canopy"
             }
           }

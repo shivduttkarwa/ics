@@ -280,55 +280,64 @@
                 "src": "/assets/images/logos/uow.svg",
                 "alt": "University of Wollongong Australia",
                 "width": 141,
-                "height": 46
+                "height": 46,
+                "url": "https://www.uow.edu.au/"
               },
               {
                 "src": "/assets/images/logos/usyd.webp",
                 "alt": "The University of Sydney",
                 "width": 117,
-                "height": 42
+                "height": 42,
+                "url": "https://www.sydney.edu.au/"
               },
               {
                 "src": "/assets/images/logos/unsw.webp",
                 "alt": "UNSW Sydney",
                 "width": 104,
-                "height": 45
+                "height": 45,
+                "url": "https://www.unsw.edu.au/"
               },
               {
                 "src": "/assets/images/logos/uts.webp",
                 "alt": "UTS, University of Technology Sydney",
                 "width": 132,
-                "height": 57
+                "height": 57,
+                "url": "https://www.uts.edu.au/"
               },
               {
                 "src": "/assets/images/logos/macquarie.webp",
                 "alt": "Macquarie University",
                 "width": 116,
-                "height": 34
+                "height": 34,
+                "url": "https://www.mq.edu.au/"
               },
               {
                 "src": "/assets/images/logos/acu.webp",
                 "alt": "ACU, Australian Catholic University",
                 "width": 103,
-                "height": 28
+                "height": 28,
+                "url": "https://www.acu.edu.au/"
               },
               {
                 "src": "/assets/images/logos/icms.webp",
                 "alt": "ICMS, International College of Management Sydney",
                 "width": 121,
-                "height": 38
+                "height": 38,
+                "url": "https://www.icms.edu.au/"
               },
               {
                 "src": "/assets/images/logos/torrens.webp",
                 "alt": "Torrens University Australia",
                 "width": 111,
-                "height": 44
+                "height": 44,
+                "url": "https://www.torrens.edu.au/"
               },
               {
                 "src": "/assets/images/logos/newcastle.webp",
                 "alt": "The University of Newcastle Australia",
                 "width": 130,
-                "height": 44
+                "height": 44,
+                "url": "https://www.newcastle.edu.au/"
               }
             ]
           },
@@ -338,43 +347,50 @@
                 "src": "/assets/images/logos/adf-careers.webp",
                 "alt": "ADF Careers, Australian Defence Force",
                 "width": 92,
-                "height": 47
+                "height": 47,
+                "url": "https://www.adfcareers.gov.au/"
               },
               {
                 "src": "/assets/images/logos/megt.webp",
                 "alt": "MEGT",
                 "width": 109,
-                "height": 83
+                "height": 83,
+                "url": "https://www.megt.com.au/"
               },
               {
                 "src": "/assets/images/logos/uts-sport.webp",
                 "alt": "UTS Sport",
                 "width": 64,
-                "height": 43
+                "height": 43,
+                "url": "https://www.activateuts.com.au/sport"
               },
               {
                 "src": "/assets/images/logos/american-summers.webp",
                 "alt": "American Summers",
                 "width": 116,
-                "height": 57
+                "height": 57,
+                "url": "https://www.americansummers.com/"
               },
               {
                 "src": "/assets/images/logos/multiplex.webp",
                 "alt": "Multiplex",
                 "width": 146,
-                "height": 28
+                "height": 28,
+                "url": "https://www.multiplex.global/"
               },
               {
                 "src": "/assets/images/logos/master-builders.webp",
                 "alt": "Master Builders Australia",
                 "width": 164,
-                "height": 39
+                "height": 39,
+                "url": "https://www.masterbuilders.com.au/"
               },
               {
                 "src": "/assets/images/logos/wisetech.webp",
                 "alt": "WiseTech Global",
                 "width": 108,
-                "height": 43
+                "height": 43,
+                "url": "https://www.wisetechglobal.com/"
               }
             ]
           }
@@ -464,12 +480,12 @@
         "text": "Apply today and give your child a place where they are known, cared for and encouraged to grow and flourish.",
         "button": {
           "text": "Apply now to enrol",
-          "url": "",
+          "url": "/enrol.html",
           "style": "glass"
         },
         "button_secondary": {
           "text": "Download Prospectus",
-          "url": "",
+          "url": "/enrol.html",
           "style": "outline-white"
         }
       }
@@ -497,7 +513,7 @@
               "height": 903
             },
             "label": "Learning",
-            "url": ""
+            "url": "/results.html"
           }
         ]
       }
@@ -513,11 +529,11 @@
           },
           {
             "label": "Learning",
-            "url": ""
+            "url": "/results.html"
           },
           {
             "label": "Life at ICS",
-            "url": ""
+            "url": "/why.html"
           }
         ]
       }
@@ -539,7 +555,7 @@
             "text": "Walk the campus, meet our teachers and see what a school day at ICS is really like.",
             "button": {
               "text": "Book a tour",
-              "url": "",
+              "url": "/contact.html",
               "style": "canopy"
             }
           },
@@ -555,7 +571,7 @@
             "text": "Ask us anything about fees, year levels or what to expect. Our enrolments team is happy to help.",
             "button": {
               "text": "Make an enquiry",
-              "url": "",
+              "url": "/contact.html",
               "style": "canopy"
             }
           },
@@ -571,7 +587,7 @@
             "text": "Complete your application online and secure your child’s place. Early applications keep more options open.",
             "button": {
               "text": "Apply to enrol",
-              "url": "",
+              "url": "/enrol.html",
               "style": "canopy"
             }
           }

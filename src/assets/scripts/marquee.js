@@ -1,6 +1,6 @@
 // data-marquee="left|right": the track's one list is cloned to fill the lane and runs as a compositor animation,
 // so it never stutters while the page is busy. Optional in the [data-marquee-scope]: [data-marquee-prev] / [data-marquee-next]
-// step one item; data-marquee-pause slows it to a stop under the pointer; data-marquee-drag lets it be dragged and flicked.
+// step one item; data-marquee-pause slows it to a stop under the pointer (="instant": stops it on the spot); data-marquee-drag lets it be dragged and flicked.
 import { gsap, still, fine } from "./motion.js";
 
 const SPEED = 40; // design px per second; data-marquee-speed overrides
@@ -20,10 +20,13 @@ export function initMarquees() {
     const way = reverse ? -1 : 1;
     const speed = parseFloat(track.dataset.marqueeSpeed || SPEED);
     const pauses = track.hasAttribute("data-marquee-pause");
+    // "instant" stops on the spot, as St Luke's logos do: easing the rate every frame made thin vector logos flicker
+    const halts = track.dataset.marqueePause === "instant";
     let run = null;
     let span = 0; // from one list's start to the next one's
     let visible = false;
     let hovered = false;
+    let focused = false;
     let dragging = false;
     let stepping = null;
     const state = { time: 0 };
@@ -31,10 +34,23 @@ export function initMarquees() {
     const length = () => run.effect.getComputedTiming().duration;
     const wrap = (time) => ((time % length()) + length()) % length();
     const rate = (value, duration = 0.6) => run && gsap.to(run, { playbackRate: value, duration, ease: "power1.out", overwrite: true });
+    const held = () => pauses && (hovered || focused);
     const sync = () => {
       if (!run || stepping || dragging) return;
-      if (visible) run.play();
+      if (visible && !(halts && held())) run.play();
       else run.pause();
+    };
+    const hold = () => {
+      if (stepping || dragging) return;
+      if (!halts) return rate(0);
+      gsap.killTweensOf(run);
+      sync();
+    };
+    const release = () => {
+      if (held() || stepping || dragging) return;
+      if (!halts) return rate(1, 1);
+      if (run) run.playbackRate = 1;
+      sync();
     };
     // picks the pace back up from a standstill, unless the pointer is resting on a row that pauses
     const resume = () => {
@@ -42,7 +58,7 @@ export function initMarquees() {
       gsap.killTweensOf(run);
       run.playbackRate = 0;
       sync();
-      if (!(pauses && hovered)) rate(1, 1.2);
+      if (!held()) rate(1, 1.2);
     };
 
     const build = () => {
@@ -72,7 +88,7 @@ export function initMarquees() {
         { duration: (span / (speed * scale)) * 1000, iterations: Infinity, direction: reverse ? "reverse" : "normal" }
       );
       run.currentTime = progress * length();
-      if (pauses && hovered) run.playbackRate = 0;
+      if (held() && !halts) run.playbackRate = 0;
       sync();
     };
 
@@ -105,12 +121,23 @@ export function initMarquees() {
       lane.addEventListener("pointerenter", (event) => {
         if (event.pointerType === "touch" || !fine.matches) return;
         hovered = true;
-        if (!stepping && !dragging) rate(0);
+        hold();
       });
       lane.addEventListener("pointerleave", () => {
         if (!hovered) return;
         hovered = false;
-        if (!stepping && !dragging) rate(1, 1);
+        release();
+      });
+      // keyboard focus only: a clicked logo keeps focus while its site opens in a new tab, which would hold the row still
+      lane.addEventListener("focusin", (event) => {
+        if (!event.target.matches(":focus-visible")) return;
+        focused = true;
+        hold();
+      });
+      lane.addEventListener("focusout", (event) => {
+        if (!focused || lane.contains(event.relatedTarget)) return;
+        focused = false;
+        release();
       });
     }
 

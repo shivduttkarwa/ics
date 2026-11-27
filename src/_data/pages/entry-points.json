@@ -61,7 +61,7 @@
             "text": "<p>[TBC: copy to come from the school.]</p>",
             "button": {
               "text": "Discover Prep",
-              "url": "",
+              "url": "/entry-points.html",
               "style": "white"
             },
             "narrow": true
@@ -78,7 +78,7 @@
             "text": "<p>[TBC: copy to come from the school.]</p>",
             "button": {
               "text": "Discover Primary",
-              "url": "",
+              "url": "/entry-points.html",
               "style": "white"
             },
             "narrow": true
@@ -95,7 +95,7 @@
             "text": "<p>Year 5 is one of the main entry points at ICS. Starting two years before high school gives your child time to settle in and make good friends before Year 7. Students who join in Year 5 can take on leadership roles in Year 6, such as house captain, the service team or helping lead assemblies. When they start Year 7, they're already at home on the campus.</p><p>If moving earlier than you planned is a worry financially, please talk to us. There is one set fee with no hidden extras, and with sibling discounts and Edstart payment plans many families find it more manageable than they expected.</p>",
             "button": {
               "text": "Discover Primary",
-              "url": "",
+              "url": "/entry-points.html",
               "style": "white"
             }
           },
@@ -111,7 +111,7 @@
             "text": "<p>[TBC: copy to come from the school.]</p>",
             "button": {
               "text": "Discover Secondary",
-              "url": "",
+              "url": "/entry-points.html",
               "style": "white"
             }
           },
@@ -127,7 +127,7 @@
             "text": "<p>[TBC: copy to come from the school.]</p>",
             "button": {
               "text": "Discover Senior Years",
-              "url": "",
+              "url": "/entry-points.html",
               "style": "white"
             }
           }
@@ -165,7 +165,7 @@
               "height": 722
             },
             "label": "Learning",
-            "url": ""
+            "url": "/results.html"
           }
         ]
       }
@@ -181,11 +181,11 @@
           },
           {
             "label": "Learning",
-            "url": ""
+            "url": "/results.html"
           },
           {
             "label": "Life at ICS",
-            "url": ""
+            "url": "/why.html"
           }
         ]
       }
@@ -207,7 +207,7 @@
             "text": "Walk the campus, meet our teachers and see what a school day at ICS is really like.",
             "button": {
               "text": "Book a tour",
-              "url": "",
+              "url": "/contact.html",
               "style": "canopy"
             }
           },
@@ -223,7 +223,7 @@
             "text": "Ask us anything about fees, year levels or what to expect. Our enrolments team is happy to help.",
             "button": {
               "text": "Make an enquiry",
-              "url": "",
+              "url": "/contact.html",
               "style": "canopy"
             }
           },
@@ -239,7 +239,7 @@
             "text": "Complete your application online and secure your child’s place. Early applications keep more options open.",
             "button": {
               "text": "Apply to enrol",
-              "url": "",
+              "url": "/enrol.html",
               "style": "canopy"
             }
           }

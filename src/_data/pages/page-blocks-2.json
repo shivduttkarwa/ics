@@ -157,7 +157,7 @@
         "cards": [
           {
             "title": "Drama and <br>Creative Arts",
-            "url": "",
+            "url": "/why.html",
             "image": {
               "src": "/assets/images/blocks/promo-drama.webp",
               "alt": "A student performing on stage in the school musical",
@@ -167,7 +167,7 @@
           },
           {
             "title": "Sport",
-            "url": "",
+            "url": "/why.html",
             "image": {
               "src": "/assets/images/blocks/promo-sport.webp",
               "alt": "A netball game on an indoor court",
@@ -180,7 +180,7 @@
           },
           {
             "title": "Duke of Edinburgh Program",
-            "url": "",
+            "url": "/why.html",
             "image": {
               "src": "/assets/images/blocks/promo-duke.webp",
               "alt": "A Duke of Edinburgh group on a granite outcrop in the mountains",
@@ -190,7 +190,7 @@
           },
           {
             "title": "Clubs and Activities",
-            "url": "",
+            "url": "/why.html",
             "image": {
               "src": "/assets/images/blocks/promo-clubs.webp",
               "alt": "Students walking along a beach at sunrise",
@@ -246,7 +246,7 @@
               "height": 903
             },
             "label": "Learning",
-            "url": ""
+            "url": "/results.html"
           }
         ]
       }
@@ -262,11 +262,11 @@
           },
           {
             "label": "Learning",
-            "url": ""
+            "url": "/results.html"
           },
           {
             "label": "Life at ICS",
-            "url": ""
+            "url": "/why.html"
           }
         ]
       }
@@ -288,7 +288,7 @@
             "text": "Walk the campus, meet our teachers and see what a school day at ICS is really like.",
             "button": {
               "text": "Book a tour",
-              "url": "",
+              "url": "/contact.html",
               "style": "canopy"
             }
           },
@@ -304,7 +304,7 @@
             "text": "Ask us anything about fees, year levels or what to expect. Our enrolments team is happy to help.",
             "button": {
               "text": "Make an enquiry",
-              "url": "",
+              "url": "/contact.html",
               "style": "canopy"
             }
           },
@@ -320,7 +320,7 @@
             "text": "Complete your application online and secure your child’s place. Early applications keep more options open.",
             "button": {
               "text": "Apply to enrol",
-              "url": "",
+              "url": "/enrol.html",
               "style": "canopy"
             }
           }

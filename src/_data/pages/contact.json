@@ -56,7 +56,7 @@
             "text": "<p>4 Tyalla Place<br>Cordeaux Heights NSW 2526</p>",
             "button": {
               "text": "Get directions",
-              "url": "",
+              "url": "https://www.google.com/maps/dir/?api=1&destination=Illawarra+Christian+School%2C+4+Tyalla+Place%2C+Cordeaux+Heights+NSW+2526",
               "style": "outline-white",
               "icon": "none"
             }
@@ -76,7 +76,7 @@
             "text": "<p>Write to us with any questions or if you need help with something specific.<br><a href=\"mailto:reception@ics.nsw.edu.au\">reception@ics.nsw.edu.au</a></p>",
             "button": {
               "text": "Send message",
-              "url": "",
+              "url": "#send-a-message",
               "style": "outline-white",
               "icon": "none"
             }
@@ -119,7 +119,7 @@
         ],
         "button": {
           "text": "Open route in Google Maps",
-          "url": "",
+          "url": "https://www.google.com/maps/dir/?api=1&destination=Illawarra+Christian+School%2C+4+Tyalla+Place%2C+Cordeaux+Heights+NSW+2526",
           "style": "moss"
         },
         "image": {
@@ -128,7 +128,7 @@
           "width": 1556,
           "height": 975
         },
-        "map_url": ""
+        "map_url": "https://www.google.com/maps/dir/?api=1&destination=Illawarra+Christian+School%2C+4+Tyalla+Place%2C+Cordeaux+Heights+NSW+2526"
       }
     },
     {
@@ -152,7 +152,7 @@
         ],
         "button": {
           "text": "View more transport info",
-          "url": "",
+          "url": "https://www.google.com/maps/dir/?api=1&destination=Illawarra+Christian+School%2C+4+Tyalla+Place%2C+Cordeaux+Heights+NSW+2526&travelmode=transit",
           "style": "moss"
         }
       }
@@ -160,6 +160,7 @@
     {
       "type": "contact_form",
       "value": {
+        "anchor": "send-a-message",
         "title": "<em>Send us a message</em>",
         "text": "We’re in Cordeaux Heights, about ten minutes from the centre of Wollongong. Come and see the campus for yourself.",
         "action": "",
@@ -239,12 +240,12 @@
         "text": "The best way to see who we are is to visit. Walk the campus and meet the people who’ll know your child.",
         "button": {
           "text": "Book a tour",
-          "url": "",
+          "url": "/contact.html",
           "style": "glass"
         },
         "button_secondary": {
           "text": "Join our team",
-          "url": "",
+          "url": "/people.html",
           "style": "outline-white"
         }
       }
@@ -272,7 +273,7 @@
               "height": 1116
             },
             "label": "Learning",
-            "url": ""
+            "url": "/results.html"
           }
         ]
       }
@@ -288,11 +289,11 @@
           },
           {
             "label": "Learning",
-            "url": ""
+            "url": "/results.html"
           },
           {
             "label": "Life at ICS",
-            "url": ""
+            "url": "/why.html"
           }
         ]
       }
@@ -314,7 +315,7 @@
             "text": "Walk the campus, meet our teachers and see what a school day at ICS is really like.",
             "button": {
               "text": "Book a tour",
-              "url": "",
+              "url": "/contact.html",
               "style": "canopy"
             }
           },
@@ -330,7 +331,7 @@
             "text": "Ask us anything about fees, year levels or what to expect. Our enrolments team is happy to help.",
             "button": {
               "text": "Make an enquiry",
-              "url": "",
+              "url": "/contact.html",
               "style": "canopy"
             }
           },
@@ -346,7 +347,7 @@
             "text": "Complete your application online and secure your child’s place. Early applications keep more options open.",
             "button": {
               "text": "Apply to enrol",
-              "url": "",
+              "url": "/enrol.html",
               "style": "canopy"
             }
           }

@@ -58,7 +58,7 @@
         "role": "Principal",
         "button": {
           "text": "Book a tour",
-          "url": "",
+          "url": "/contact.html",
           "style": "moss"
         }
       }
@@ -396,12 +396,12 @@
         "text": "The best way to see who we are is to visit. Walk the campus and meet the people who’ll know your child.",
         "button": {
           "text": "Book a tour",
-          "url": "",
+          "url": "/contact.html",
           "style": "glass"
         },
         "button_secondary": {
           "text": "Join our team",
-          "url": "",
+          "url": "/people.html",
           "style": "outline-white"
         }
       }
@@ -429,7 +429,7 @@
               "height": 1116
             },
             "label": "Learning",
-            "url": ""
+            "url": "/results.html"
           }
         ]
       }
@@ -445,11 +445,11 @@
           },
           {
             "label": "Learning",
-            "url": ""
+            "url": "/results.html"
           },
           {
             "label": "Life at ICS",
-            "url": ""
+            "url": "/why.html"
           }
         ]
       }
@@ -471,7 +471,7 @@
             "text": "Walk the campus, meet our teachers and see what a school day at ICS is really like.",
             "button": {
               "text": "Book a tour",
-              "url": "",
+              "url": "/contact.html",
               "style": "canopy"
             }
           },
@@ -487,7 +487,7 @@
             "text": "Ask us anything about fees, year levels or what to expect. Our enrolments team is happy to help.",
             "button": {
               "text": "Make an enquiry",
-              "url": "",
+              "url": "/contact.html",
               "style": "canopy"
             }
           },
@@ -503,7 +503,7 @@
             "text": "Complete your application online and secure your child’s place. Early applications keep more options open.",
             "button": {
               "text": "Apply to enrol",
-              "url": "",
+              "url": "/enrol.html",
               "style": "canopy"
             }
           }

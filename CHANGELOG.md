@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-27 — Menu back to Figma, buttons linked
+- "All links" is out of the menu; Why ICS? is back with Figma's children (Wellbeing and care, Our people).
+- Every button, menu item and header link without a URL now goes to the nearest built page (128 links in the pages, plus the header, menu and footer): Book a tour and enquiries to Contact, applying, fees and the prospectus to Enrol, entry stages to Entry points, Learning to Results and pathways, Life at ICS and the co-curricular slides to Why ICS, jobs and the welcome to Our people. Directions and the contact map open Google Maps; Contact's "Send message" jumps to the form. What still has no link (it needs a real URL or file) is listed in the handoff under "Links in the static build".
+- Socials (footer and the home page's Instagram block) go to the school's Facebook, Instagram and LinkedIn; the six accreditation logos and the sixteen graduate logos go to their organisations' sites (the graduates block's logos can now carry a `url`); the "Design" credit links to CI Marketing. Every link to another site opens in a new tab (`initExternalLinks()` in `ui.js`).
+- The graduate and footer logo rows stop on the spot under the pointer, and while a logo has keyboard focus, and run on at full speed after, as St Luke's do (`data-marquee-pause="instant"`; easing the rate every frame made the thin logos flicker). The Instagram reel keeps its eased stop.
+
 ## 2026-11-27 — Frosted buttons inside cards in Firefox
 - Firefox blurs what lies behind an isolated card (`isolation: isolate`, rounded and clipped), not the card's own photo, so frosted parts inside one filled flat with the section's ground: the USP "Play video" button showed solid green on canopy and the testimonial tiles' play buttons solid white on white, their white label lost. In Firefox only (`.glass-in-card()`, `@supports (-moz-appearance: none)`) those parts drop the blur and keep their white 20% fill over the photo: the USP and testimonial play buttons, the journey tiles' tags and the Where Next bars. Chrome and Safari keep the blur.
 

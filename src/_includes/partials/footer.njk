@@ -57,7 +57,7 @@
 
   <div class="site-footer__lower">
     <div class="site-footer__logos">
-      <div class="site-footer__track" data-marquee="left" data-marquee-speed="30">
+      <div class="site-footer__track" data-marquee="left" data-marquee-speed="30" data-marquee-pause="instant">
         <ul class="site-footer__marks">
           {% for logo in site.footer.logos %}
           <li>{% if logo.url %}<a href="{{ logo.url }}" target="_blank" rel="noopener">{% endif %}{% set img = logo %}{% set cls = "site-footer__mark" %}{% include "snippets/image.njk" %}{% if logo.url %}</a>{% endif %}</li>

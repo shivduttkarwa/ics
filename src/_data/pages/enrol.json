@@ -61,17 +61,17 @@
         "buttons": [
           {
             "text": "Apply now",
-            "url": "",
+            "url": "/enrol.html",
             "style": "moss"
           },
           {
             "text": "Book a tour",
-            "url": "",
+            "url": "/contact.html",
             "style": "white"
           },
           {
             "text": "Download the prospectus",
-            "url": "",
+            "url": "/enrol.html",
             "style": "outline-white",
             "icon": "none"
           }
@@ -179,12 +179,12 @@
         "text": "Apply today and give your child a place where they are known, cared for and encouraged to grow and flourish.",
         "button": {
           "text": "Apply now to enrol",
-          "url": "",
+          "url": "/enrol.html",
           "style": "glass"
         },
         "button_secondary": {
           "text": "Download Prospectus",
-          "url": "",
+          "url": "/enrol.html",
           "style": "outline-white"
         }
       }
@@ -212,7 +212,7 @@
               "height": 722
             },
             "label": "Learning",
-            "url": ""
+            "url": "/results.html"
           }
         ]
       }
@@ -228,11 +228,11 @@
           },
           {
             "label": "Learning",
-            "url": ""
+            "url": "/results.html"
           },
           {
             "label": "Life at ICS",
-            "url": ""
+            "url": "/why.html"
           }
         ]
       }
@@ -254,7 +254,7 @@
             "text": "Walk the campus, meet our teachers and see what a school day at ICS is really like.",
             "button": {
               "text": "Book a tour",
-              "url": "",
+              "url": "/contact.html",
               "style": "canopy"
             }
           },
@@ -270,7 +270,7 @@
             "text": "Ask us anything about fees, year levels or what to expect. Our enrolments team is happy to help.",
             "button": {
               "text": "Make an enquiry",
-              "url": "",
+              "url": "/contact.html",
               "style": "canopy"
             }
           },
@@ -286,7 +286,7 @@
             "text": "Complete your application online and secure your child’s place. Early applications keep more options open.",
             "button": {
               "text": "Apply to enrol",
-              "url": "",
+              "url": "/enrol.html",
               "style": "canopy"
             }
           }
