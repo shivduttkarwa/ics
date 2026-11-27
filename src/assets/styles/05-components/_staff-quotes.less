@@ -1,4 +1,5 @@
 @staff-tile-arrow: 24 * @px;
+@staff-column-min: 225 * @px;
 
 .staff-quotes {
   --focus-ring: var(--color-canopy);
@@ -35,7 +36,7 @@
   &__column {
     display: flex;
     flex-direction: column;
-    width: 75%;
+    width: ~"max(56%, @{staff-column-min})";
     @media (min-width: @bp-md) { width: 40%; }
     @media (min-width: @bp-lg) { width: 25%; }
     @media (min-width: @bp-xxl) { width: 20%; }
@@ -70,8 +71,12 @@
   &__arrow {
     position: absolute;
     z-index: 1;
-    top: 19 * @px;
-    right: 19 * @px;
+    top: 15 * @px;
+    right: 15 * @px;
+    @media (min-width: @bp-md) {
+      top: 19 * @px;
+      right: 19 * @px;
+    }
     width: @staff-tile-arrow;
     height: @staff-tile-arrow;
     transition: rotate var(--duration-slow) var(--ease-out);
@@ -80,10 +85,11 @@
   &__copy {
     position: absolute;
     z-index: 1;
-    inset: 23 * @px 49 * @px 19 * @px 19 * @px;
+    inset: 20 * @px 44 * @px 15 * @px 15 * @px;
+    @media (min-width: @bp-md) { inset: 23 * @px 49 * @px 19 * @px 19 * @px; }
     display: flex;
     flex-direction: column;
-    gap: 30 * @px;
+    gap: 20 * @px;
     @media (min-width: @bp-md) { gap: 61 * @px; }
     pointer-events: none;
     opacity: 0;

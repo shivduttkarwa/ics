@@ -493,13 +493,14 @@
   font-size: 16 * @px;
 }
 
-// the staff quote tiles, as Our People draws the component at 94%: Ulises Book Italic 24 / 1.2, −3%
+// the staff quote tiles, as Our People draws the component at 94%: Ulises Book Italic 24 / 1.2, −3%; 18 below md (no phone frame)
 .type-staff-quote() {
   .type-serif(400);
   font-style: italic;
   line-height: 1.2;
   letter-spacing: -0.03em;
-  font-size: 24 * @px;
+  font-size: 18 * @px;
+  @media (min-width: @bp-md) { font-size: 24 * @px; }
 }
 
 // the staff quote tiles' name and role: Museo Sans 900 and 300 13 / 1.4, the role in caps

@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-11-27 — Smaller staff quote tiles on phones
+- "What our staff say" below md: columns are 56% of the screen, never under 225 (were three quarters: 322 tiles at 430, a column of two 644 tall). The quote steps down to 18 (24 from md), the tile's insets to 15 at the sides and the arrow 15 in, 20 between quote and name. Checked at 320, 360, 375, 390 and 430: every quote fits its open tile with the name in view, no sideways scroll.
+
 ## 2026-11-27 — Leaders' photos land without a snap on phones
 - On touch the always-showing bio button split the card's fade around its glass, so the photo faded on its own and snapped as it landed (the desktop fix of the same name only covered a hidden bar). The button now waits hidden until its card has landed and then fades in; the card rises and fades as one piece.
 
