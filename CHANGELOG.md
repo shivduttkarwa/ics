@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-27 — No light line under the CTA band
+- On a screen drawn at a fraction (a zoomed or scaled view, such as a device preview at 69%), the band's last pixel row was only part covered, so the page's white showed through as a light line between the band and the section under it. The section after the band now reaches 2 up behind it in its own ground (`.cta-band + *::before`, z-index −1, as the rounded feet do), so that row blends the photo with the next section's green.
+
+## 2026-11-27 — News photo stays under its card on tablets
+- Below lg the news photo slides down out from under the card by its own height; on a tablet (iPad, 768–991) it is taller than the card, so its top showed above the card, over the section title, until it had slid out. The part moved up is now clipped by the same amount (`clip-path` on `.news__photo`, driven by `--tuck`), so it always comes out of the card's foot; phones look as before.
+
 ## 2026-11-27 — Author card on phones
 - Below sm the author card is a compact header: the photo (80 wide, 129:153) beside the name and role, the bio across the full card under them, padded 20 (was the 129 photo stacked over the copy, padded 25). From sm it is Figma's card as before.
 

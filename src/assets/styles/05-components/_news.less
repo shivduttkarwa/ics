@@ -105,6 +105,8 @@
     border-radius: var(--radius-lg);
     // below lg it slides down out from under the card as the announcement sheet does (--tuck from anim.js)
     transform: translateY(~"calc((var(--tuck, 1) - 1) * 100%)");
+    // the part moved up is clipped too: on a tablet the photo is taller than the card and showed above it
+    clip-path: inset(~"calc((1 - var(--tuck, 1)) * 100%)" 0 0);
     will-change: transform;
     @media (min-width: @bp-lg) {
       grid-column: 2 / 4;
@@ -113,6 +115,7 @@
       max-height: none;
       margin-top: 0;
       transform: none;
+      clip-path: none;
       will-change: auto;
       // 840 × 545 from a strut, not aspect-ratio, so the row can stretch the photo when the card runs longer
       &::before {

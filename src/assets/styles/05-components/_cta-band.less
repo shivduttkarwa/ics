@@ -121,3 +121,17 @@
 .faqs + .cta-band {
   @media (min-width: @bp-lg) { margin-top: -24 * @px; }
 }
+
+// a scaled screen part-covers the band's last pixel row: the next section's ground behind it keeps the page's white out
+.cta-band + * { position: relative; }
+
+.cta-band + *::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  right: 0;
+  bottom: 100%;
+  left: 0;
+  height: 2 * @px;
+  background: inherit;
+}
