@@ -1,6 +1,6 @@
 // Lenis smooth scroll + GSAP reveals, split titles, counters and parallax, driven by data-anim-* (docs/animation.md)
 import Lenis from "lenis";
-import { gsap, ScrollTrigger, SplitText, still, phone, fine, settled, glassy, fadeParts, landing, arriving, keyframes, cssEase, spring, designPx } from "./motion.js";
+import { gsap, ScrollTrigger, SplitText, still, phone, fine, settled, glassy, fadeParts, landing, cssEase, spring, designPx } from "./motion.js";
 
 const STAGGER = 0.09; // between reveals that come into view together
 const SPREAD = 0.6; // the longest a batch of them may take to start
@@ -52,9 +52,8 @@ const REVEAL = {
 };
 REVEAL.clip = REVEAL["wipe-down"];
 
-// no fade: a line is solid as it clears the mask's edge, which is what reads as rising from under it; `slot` is the time
-// a section title's line took to land before its crawl was cut, so content played at once (Anim.add) keeps its timing
-const LINES = { from: 150, duration: 1.4, ease: "soft", stagger: 0.11, fade: 0, slot: 0.9 };
+// no fade: a line is solid as it clears the mask's edge, which is what reads as rising from under it
+const LINES = { from: 150, duration: 1.4, ease: "soft", stagger: 0.11, fade: 0 };
 const PIECES = { duration: 0.9, stagger: { words: 0.045, chars: 0.018 } };
 const COUNTER = { duration: 2.2, ease: "power2.out" };
 
@@ -305,7 +304,7 @@ export function riseLines(el, vars = {}) {
 // their layers once landed: text on a layer is drawn up to half a pixel from where the page draws it, so a line leaving
 // its layer, or the markup going back, visibly shifted the title (St Luke's holds its hero rows on layers the same way).
 // The markup goes back only when the width changes and the lines must rewrap.
-function heroLines(el, { stagger, fade, onComplete }) {
+function glideLines(el, { stagger, fade, onComplete }) {
   const { lines, revert } = splitLines(el);
   let runs = [];
   gsap.set(lines, { yPercent: LINES.from, autoAlpha: 0, willChange: "transform" });
@@ -347,70 +346,15 @@ function heroLines(el, { stagger, fade, onComplete }) {
   return { build, play: () => build().start(), show: done };
 }
 
-// the offset that lands a line on whole device pixels, so its layer's last frame is what a redraw of it would give
-const aligned = (line) => {
-  const dpr = window.devicePixelRatio || 1;
-  const snap = (v) => (Math.round(v * dpr) - v * dpr) / dpr;
-  return [snap(line.getBoundingClientRect().left), snap(line.parentElement.getBoundingClientRect().top)];
-};
-
-// a landed line keeps its rise's fill, its layer and its mask's clip: any change there redraws it up to a pixel away
-function glideLines(el, { stagger, fade, onComplete }) {
-  const { lines, revert } = splitLines(el);
-  let runs = [];
-  gsap.set(lines, { yPercent: LINES.from, autoAlpha: 0, willChange: "transform" });
-  gsap.set(el, { autoAlpha: 1 });
-  const unsplit = () => {
-    runs.forEach((run) => run.cancel());
-    revert();
-  };
-  const done = () => {
-    onComplete?.();
-    const width = window.innerWidth;
-    const rewrap = () => {
-      if (window.innerWidth === width) return;
-      window.removeEventListener("resize", rewrap);
-      unsplit();
-    };
-    window.addEventListener("resize", rewrap);
-  };
-  const build = () => {
-    const from = (lines[0].parentElement.getBoundingClientRect().height * LINES.from) / 100;
-    const { ease, cut } = arriving(LINES.ease, from, LINES.duration);
-    const length = LINES.duration * cut;
-    const fadeFor = fade || LINES.fade;
-    const start = (wait = 0) => {
-      runs = lines.flatMap((line, i) => {
-        const delay = (wait + i * stagger) * 1000;
-        const [x, y] = aligned(line);
-        const move = line.animate(keyframes(ease, length, (p) => ({ transform: `translate(${x}px, ${y + from * (1 - p)}px)` })), { duration: length * 1000, delay, fill: "both" });
-        const show = fadeFor ? [line.animate(keyframes(fade ? "none" : "power1.out", fadeFor, (p) => ({ opacity: p })), { duration: fadeFor * 1000, delay, fill: "both" })] : [];
-        return [move, ...show];
-      });
-      gsap.set(lines, fadeFor ? { visibility: "inherit" } : { autoAlpha: 1 });
-      Promise.all(runs.map((run) => run.finished)).then(done, () => {});
-    };
-    return { deferred: true, start, duration: (lines.length - 1) * stagger + Math.max(LINES.slot, length, fadeFor) };
-  };
-  return {
-    build,
-    play: () => build().start(),
-    show: () => {
-      unsplit();
-      onComplete?.();
-    },
-  };
-}
-
 function splitUnit(el) {
   const type = attr(el, "data-anim-type", "lines");
   const opts = { stagger: number(el, "data-anim-stagger", LINES.stagger), fade: number(el, "data-anim-fade", 0), onComplete: () => settle(el) };
   // a hero title is split during setup, so no split lands in a frame of the entrance
   if (type === "lines" && tierOf(el) === HERO) {
-    const glide = heroLines(el, opts);
+    const glide = glideLines(el, opts);
     return { el, build: glide.build, play: (delay) => gsap.delayedCall(delay, glide.play), show: glide.show };
   }
-  // a section title is split as it starts, so its lines are read from the layout of that moment, and lands as glideLines does
+  // every other title glides the same way, split as it starts, so its lines are read from the layout of that moment
   if (type === "lines") {
     let glide = null;
     const make = () => (glide = glideLines(el, opts));

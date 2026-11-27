@@ -10,10 +10,10 @@ html.anim-ready:not(.anim-reduced) {
   &.anim-carried [data-anim-carry] > * { visibility: visible; }
 }
 
-// the clip stays once a line has landed, so it reaches well clear of the glyphs; LINES.from in anim.js starts a line below its foot
+// the clip reaches below the descenders, so nothing is cut while a line rises; LINES.from in anim.js starts it clear of this edge
 .anim-line-mask {
   overflow: visible !important;
-  clip-path: inset(-1em -0.25em -0.25em);
+  clip-path: inset(-0.14em -0.25em -0.25em);
 }
 
 // a line held on its layer keeps room for a glyph that swashes past its edge (the italic j), or a phone cuts it off at the layer

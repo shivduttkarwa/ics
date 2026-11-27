@@ -64,35 +64,6 @@ export function cssEase(ease, fallback, steps = 40) {
   return `linear(${points.join(", ")})`;
 }
 
-// the move ends while it still glides at PACE device px a second (about a pixel a frame): a layer crawling slower is resampled in place and shimmers
-export const PACE = 60;
-export function arriving(ease, distance, duration, pace = PACE) {
-  const curve = gsap.parseEase(ease);
-  const span = Math.abs(distance);
-  if (!(span > 0 && duration > 0)) return { ease: curve, cut: 1 };
-  const slope = ((pace / (window.devicePixelRatio || 1)) * duration) / span;
-  const step = 1 / 400;
-  const rate = (p) => (curve(Math.min(1, p + step)) - curve(p - step)) / (Math.min(1, p + step) - (p - step));
-  let cut = 0;
-  for (let p = 1; p >= 2 * step; p -= step) {
-    if (rate(p) >= slope) {
-      cut = p;
-      break;
-    }
-  }
-  if (!cut) return landing(ease, span);
-  if (cut >= 1 - step) return { ease: curve, cut: 1 };
-  const end = curve(cut);
-  return { ease: (p) => curve(p * cut) / end, cut };
-}
-
-// a curve sampled into WAAPI keyframes about every 10ms, so the compositor runs it exactly, linear() or not
-export function keyframes(ease, duration, frame) {
-  const curve = gsap.parseEase(ease);
-  const steps = Math.min(120, Math.max(12, Math.ceil(duration * 100)));
-  return Array.from({ length: steps + 1 }, (_, i) => ({ ...frame(curve(i / steps)), offset: i / steps }));
-}
-
 // a damped spring: it arrives in about a quarter of the tween, swings about 8% past and comes back to rest, for something
 // that should land with a little give. It ends at its first rest after the swing, with that rest as home: the fainter
 // swings after it, a couple of pixels over a third of a second, read as the thing shifting once it had landed

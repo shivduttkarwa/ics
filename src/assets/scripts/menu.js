@@ -5,7 +5,6 @@ import { lockScroll } from "./ui.js";
 
 const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])';
 const AWAY = 105; // % of the panel's width: clear of the screen's edge, inset included
-const PHONE_PACE = 1.7; // below lg the panel opens and closes this much faster than the desktop's timing, which felt slow on a phone
 
 export function initMenu() {
   const menu = document.getElementById("menu");
@@ -116,7 +115,6 @@ export function initMenu() {
     if (phone.matches) {
       tl.to(panel, { "--clip-b": "0px", duration: 1.3, ease: "fold" }, 0);
       rowsIn(tl, fresh ? 0.4 : 0.2);
-      tl.timeScale(PHONE_PACE);
       return;
     }
     if (!shape) {
@@ -147,8 +145,7 @@ export function initMenu() {
     if (phone.matches) {
       if (!panel.style.getPropertyValue("--clip-b")) gsap.set(panel, { "--clip-b": "0px" });
       tl.to(backdrop, { autoAlpha: 0, duration: 0.4, ease: "power1.in" }, 0.35)
-        .to(panel, { "--clip-b": shut, duration: 0.8, ease: "fold" }, 0.3)
-        .timeScale(PHONE_PACE);
+        .to(panel, { "--clip-b": shut, duration: 0.8, ease: "fold" }, 0.3);
       return;
     }
     const shape = shapes();
