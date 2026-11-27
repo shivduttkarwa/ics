@@ -44,6 +44,8 @@ export function initMenu() {
   const clipped = () => panel.style.getPropertyValue("--clip-t") !== "";
   // below lg there is no pill to grow out of: the clip's foot runs down over the panel as the desktop's height does
   const shut = () => px(panel.offsetHeight);
+  // the panel's reach under Safari's toolbar: the roll lands at the screen's foot, then that strip is uncovered at once
+  const under = () => Math.max(panel.offsetHeight - menu.clientHeight, 0);
 
   // the list's items are masks while they move: each one's contents drop in from above its top edge in turn, and lift back
   // out the same way, each item's rule fading with it (--menu-rule); the other rows (the search at the top, the buttons and
@@ -114,7 +116,8 @@ export function initMenu() {
       .to(backdrop, { autoAlpha: 1, duration: 0.6, ease: "power1.out" }, 0);
     // below lg it is uncovered from the top down on the desktop's height curve and timing, its rows coming in 0.4s into it
     if (phone.matches) {
-      tl.to(panel, { "--clip-b": "0px", duration: 1.3, ease: "fold" }, 0);
+      tl.to(panel, { "--clip-b": px(under()), duration: 1.3, ease: "fold" }, 0)
+        .set(panel, { "--clip-b": "0px" }, 1.3);
       rowsIn(tl, fresh ? 0.4 : 0.2);
       tl.timeScale(PHONE_PACE);
       return;
@@ -145,8 +148,9 @@ export function initMenu() {
     rowsOut(tl, 0);
     // below lg, once its rows have sunk, it rolls back up from the foot as the desktop folds its height
     if (phone.matches) {
-      if (!panel.style.getPropertyValue("--clip-b")) gsap.set(panel, { "--clip-b": "0px" });
+      const foot = Math.max(parseFloat(panel.style.getPropertyValue("--clip-b")) || 0, under());
       tl.to(backdrop, { autoAlpha: 0, duration: 0.4, ease: "power1.in" }, 0.35)
+        .set(panel, { "--clip-b": px(foot) }, 0.3)
         .to(panel, { "--clip-b": shut, duration: 0.8, ease: "fold" }, 0.3)
         .timeScale(PHONE_PACE);
       return;

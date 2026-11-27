@@ -5,6 +5,8 @@
 @menu-close: 60 * @px;
 @menu-arrow: 26 * @px;
 @menu-btn-height: 30 * @px;
+// iPhone Safari paints the page, not a fixed box, under its bottom toolbar: below lg the panel's ground reaches on under it
+@menu-under: 30vh;
 
 .menu {
   --focus-ring: var(--color-moss);
@@ -27,10 +29,10 @@
     --menu-radius: 0rem;
     container: menu / size;
     position: absolute;
-    inset: 0;
+    inset: 0 0 -@menu-under;
     display: flex;
     flex-direction: column;
-    padding: 30 * @px @menu-pad-sm @menu-pad-sm;
+    padding: 30 * @px @menu-pad-sm ~"calc(@{menu-pad-sm} + @{menu-under})";
     border-radius: var(--menu-radius);
     background: var(--color-canopy-deep);
     // menu.js moves these edges apart, so the width and the height fold at their own pace; at rest the clip is the panel's own shape
