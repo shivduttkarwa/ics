@@ -322,7 +322,7 @@ blocks:
     figma: "15564:34395 (author card); no phone frame"
     template: blocks/author.njk
     fields:
-      image: ImageChooserBlock(required)   # 129 wide, as tall as the copy, radius 20
+      image: ImageChooserBlock(required)   # 129 wide, as tall as the copy, radius 20; below sm 80 wide at 129:153, beside the name
       name: CharBlock   # Heading 4
       role: CharBlock(required=False)   # Museo Sans 700 14 caps
       text: TextBlock(required=False)   # Body 2, black 75%

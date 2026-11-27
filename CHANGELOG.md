@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-11-27 — Author card on phones
+- Below sm the author card is a compact header: the photo (80 wide, 129:153) beside the name and role, the bio across the full card under them, padded 20 (was the 129 photo stacked over the copy, padded 25). From sm it is Figma's card as before.
+
 ## 2026-11-27 — Phone menu covers the strip under Safari's toolbar
 - iPhone Safari paints the page, not a fixed overlay, under its bottom toolbar, so the website showed below the open menu. Below lg the panel's ground now reaches 30vh further down (`@menu-under`), its foot padded by the same, so its content and container height are unchanged; the roll still lands at the screen's foot and that reach is uncovered as it lands (and covered first as it closes).
 - Once the phone panel has covered the screen, the page behind it is hidden and the page's ground turns the panel's colour (`is-menu-covered` on `html`); it comes back as the panel starts to roll shut. On inner pages iPhone Safari still showed the first screen's title under the open menu.

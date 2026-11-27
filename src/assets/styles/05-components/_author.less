@@ -1,32 +1,43 @@
 @author-width: 846 * @px;
 @author-photo-width: 129 * @px;
+@author-photo-width-sm: 80 * @px;
 
 .author {
   padding: 25 * @px 0;
   background: var(--color-white);
   @media (min-width: @bp-lg) { padding: 32 * @px 0; }
 
+  // below sm the photo sits beside the name and role, and the bio runs the card's width under them
   &__card {
-    display: flex;
-    flex-direction: column;
-    gap: 25 * @px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 20 * @px;
     max-width: @author-width;
     margin-inline: auto;
-    padding: 25 * @px;
+    padding: 20 * @px;
     border-radius: var(--radius-md);
     background: var(--color-beach-light);
-    @media (min-width: @bp-sm) { flex-direction: row; }
+    @media (min-width: @bp-sm) {
+      display: flex;
+      align-items: stretch;
+      gap: 25 * @px;
+      padding: 25 * @px;
+    }
     @media (min-width: @bp-lg) { padding: 50 * @px; }
   }
 
   &__photo {
     position: relative;
     flex: none;
-    width: @author-photo-width;
+    width: @author-photo-width-sm;
     aspect-ratio: 129 / 153;
     overflow: hidden;
     border-radius: var(--radius-lg);
-    @media (min-width: @bp-sm) { aspect-ratio: auto; }
+    @media (min-width: @bp-sm) {
+      width: @author-photo-width;
+      aspect-ratio: auto;
+    }
   }
 
   &__img {
@@ -36,11 +47,14 @@
   }
 
   &__copy {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    gap: 25 * @px;
-    min-width: 0;
+    display: contents;
+    @media (min-width: @bp-sm) {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      gap: 25 * @px;
+      min-width: 0;
+    }
   }
 
   &__who {
@@ -56,6 +70,7 @@
 
   &__text {
     .type-body-2();
+    grid-column: 1 / -1;
     margin: 0;
     color: var(--color-black-75);
   }
