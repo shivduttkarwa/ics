@@ -176,9 +176,12 @@
             "url": "",
             "image": {
               "src": "/assets/images/blocks/promo-sport.webp",
-              "alt": "Students running with the ball in a game of touch football",
-              "width": 826,
-              "height": 1172
+              "alt": "A netball game on an indoor court",
+              "width": 760,
+              "height": 1068
+            },
+            "video": {
+              "src": "/assets/video/page-blocks-promo.mp4"
             }
           },
           {

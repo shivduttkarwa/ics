@@ -19,7 +19,9 @@
           "width": 604,
           "height": 679
         },
-        "video": null,
+        "video": {
+          "src": "/assets/video/contact-hero.mp4"
+        },
         "shade": "none",
         "title": "Contact <br><em>Illawarra Christian School</em>",
         "breadcrumbs": [

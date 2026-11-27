@@ -394,9 +394,7 @@
               "width": 371,
               "height": 742
             },
-            "video": {
-              "src": "/assets/video/classroom-presenting.mp4"
-            },
+            "video": null,
             "label": "Hear from Lena",
             "url": ""
           },
@@ -415,7 +413,7 @@
               "height": 1068
             },
             "video": {
-              "src": "/assets/video/classroom-group.mp4"
+              "src": "/assets/video/results-testimonial.mp4"
             },
             "label": "Hear from Rowan",
             "url": ""
@@ -434,9 +432,7 @@
               "width": 682,
               "height": 1365
             },
-            "video": {
-              "src": "/assets/video/classroom-desks.mp4"
-            },
+            "video": null,
             "label": "Hear from dave",
             "url": ""
           }
@@ -460,7 +456,9 @@
           "width": 489,
           "height": 819
         },
-        "video": null,
+        "video": {
+          "src": "/assets/video/cta-families.mp4"
+        },
         "eyebrow": "",
         "title": "Join 500+ <em>wonderful</em> <br>families at ICS.",
         "text": "Apply today and give your child a place where they are known, cared for and encouraged to grow and flourish.",

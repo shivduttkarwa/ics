@@ -15,7 +15,7 @@
         {% for card in value.cards %}
         <li class="promo-card swiper-slide">
           <a class="promo-card__link"{% if card.url %} href="{{ card.url }}"{% endif %}>
-            <span class="promo-card__media">{% set img = card.image %}{% set cls = "promo-card__img" %}{% include "snippets/image.njk" %}</span>
+            <span class="promo-card__media">{% set img = card.image %}{% set cls = "promo-card__img" %}{% include "snippets/image.njk" %}{% if card.video %}<video class="promo-card__video" src="{{ card.video.src }}" poster="{{ card.video.poster | default(card.image.src) }}" muted loop playsinline preload="none" data-ambient></video>{% endif %}</span>
             <h3>{{ card.title | safe }}</h3>
           </a>
         </li>

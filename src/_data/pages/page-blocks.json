@@ -20,7 +20,9 @@
           "width": 900,
           "height": 1013
         },
-        "video": null,
+        "video": {
+          "src": "/assets/video/faith-hero.mp4"
+        },
         "shade": "medium",
         "title": "Internal page <br><em>example headline</em>",
         "breadcrumbs": [
@@ -187,11 +189,11 @@
               "height": 500
             },
             "video": {
-              "src": "/assets/video/assembly-song.mp4"
+              "src": "/assets/video/home-usp-card.mp4"
             },
             "button": {
               "text": "Play Video",
-              "url": "/assets/video/assembly-song.mp4",
+              "url": "/assets/video/home-usp-card.mp4",
               "icon": "play"
             }
           },

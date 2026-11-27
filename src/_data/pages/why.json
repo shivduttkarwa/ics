@@ -21,7 +21,9 @@
           "width": 900,
           "height": 1013
         },
-        "video": null,
+        "video": {
+          "src": "/assets/video/why-ics-hero.mp4"
+        },
         "title": "Why families choose <br><em>Illawarra Christian School</em>",
         "breadcrumbs": []
       }
@@ -144,7 +146,9 @@
           "width": 550,
           "height": 640
         },
-        "video": null,
+        "video": {
+          "src": "/assets/video/why-ics-media.mp4"
+        },
         "quote": null
       }
     },
@@ -209,7 +213,7 @@
               "height": 1068
             },
             "video": {
-              "src": "/assets/video/classroom-presenting.mp4"
+              "src": "/assets/video/why-ics-testimonial-1.mp4"
             },
             "label": "Hear from Year 10 student",
             "url": ""
@@ -229,7 +233,7 @@
               "height": 1068
             },
             "video": {
-              "src": "/assets/video/classroom-writing.mp4"
+              "src": "/assets/video/why-ics-testimonial-2.mp4"
             },
             "label": "Hear from Ali",
             "url": ""
@@ -248,9 +252,7 @@
               "width": 682,
               "height": 1365
             },
-            "video": {
-              "src": "/assets/video/classroom-desks.mp4"
-            },
+            "video": null,
             "label": "Hear from dave",
             "url": ""
           }

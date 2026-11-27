@@ -19,7 +19,9 @@
           "width": 604,
           "height": 680
         },
-        "video": null,
+        "video": {
+          "src": "/assets/video/enrol-hero.mp4"
+        },
         "shade": "none",
         "title": "Enrolling at <br><em>Illawarra Christian School</em>",
         "breadcrumbs": []

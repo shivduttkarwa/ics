@@ -20,7 +20,9 @@
           "width": 900,
           "height": 1013
         },
-        "video": null,
+        "video": {
+          "src": "/assets/video/faith-hero.mp4"
+        },
         "shade": "medium",
         "title": "Real faith, <br><em>not just values</em>.",
         "breadcrumbs": []
@@ -189,9 +191,7 @@
               "width": 682,
               "height": 1365
             },
-            "video": {
-              "src": "/assets/video/classroom-group.mp4"
-            },
+            "video": null,
             "label": "Hear from Maria",
             "url": ""
           },
@@ -209,9 +209,7 @@
               "width": 683,
               "height": 1229
             },
-            "video": {
-              "src": "/assets/video/classroom-writing.mp4"
-            },
+            "video": null,
             "label": "Hear from ethan",
             "url": ""
           },
@@ -229,9 +227,7 @@
               "width": 682,
               "height": 1365
             },
-            "video": {
-              "src": "/assets/video/classroom-desks.mp4"
-            },
+            "video": null,
             "label": "Hear from dave",
             "url": ""
           }

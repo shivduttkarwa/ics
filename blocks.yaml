@@ -345,7 +345,8 @@ blocks:
       cards: ListBlock(StructBlock)   # 413 × 585, 20 apart, running off the right of the screen; drags with momentum, arrows top right
         title: RichTextBlock(features=[])   # Ulises Light 35 / 1.1, −5%, white, 322 wide
         url: URLBlock(required=False)   # the whole card is the link
-        image: ImageChooserBlock(required)   # cover, under clear → black 30% → black 65%
+        image: ImageChooserBlock(required)   # cover, under clear → black 30% → black 65%; for a video card, the video's still
+        video: DocumentChooserBlock(required=False)   # muted loop over the image while on screen (data-ambient; Figma's Sport card is a video fill); { src, poster }
 
   announcement:
     figma: "15417:12133 (desktop content, in the 15417:12115 group), 15513:26719 (phone)"

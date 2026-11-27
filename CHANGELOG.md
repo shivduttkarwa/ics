@@ -1,5 +1,18 @@
 # Changelog
 
+## 2026-11-27 — Figma's videos in every video slot
+- The 17 video fills on "02 - Website Layouts", taken from Figma's player stream (silent re-encodes of review cuts) into `/assets/video/`, named by page and slot. Seven had a burnt-in timecode Figma's crop hides: cut as Figma frames them (the top 10.7% off the heroes, bands and campus film; both sides off the portrait cards). The HSC band, Contact hero and Sport card are trimmed before an end title, a fade and a social end card. All H.264 with fast start, no audio track, each at VMAF 95 or more against Figma's stream (103 → 79 MB).
+- Playing now: the home hero, co-curricular slide 1, the faith pillar (home, Why ICS), the home and HSC CTA bands, the Why ICS, Faith, Internal Page Blocks, Enrol and Contact heroes, Our People's campus film, the USP video card (hover and popup), the Why ICS Year 10 and Ali tiles, the HSC Rowan tile and the Sport promo card.
+- The test clips are out of the data (`hero-card`, `assembly-song`, `classroom-*`): the hero's video card, the Faith tiles and the HSC Lena and Dave tiles have no video, as in Figma.
+- `promo_cards`: an optional `video` per card (muted loop over the photo while on screen, growing with it on hover); the Sport card's still is now the clip's first frame, not the stand-in photo.
+
+## 2026-11-27 — Leaders' photos land without a snap
+- Our People's leaders (and any card whose frosted bar shows only on hover): on a desktop the card fades in as one piece. Its fade was split around the glass bar as if the bar were showing, so the hidden "View full bio" bar faded in over the photo through the entrance and vanished as it landed, and the photo, faded on a layer of its own, was redrawn a fraction of a pixel away (its 1.01 rest zoom resampled). Filmed in headless Chrome at 1920: the jump as the card lands went from up to 227 levels over 18,000–35,000 pixels to nothing above an ordinary fade step (`fadeParts` in `motion.js`). Not the parallax: the leaders' photos have none.
+
+## 2026-11-27 — Stronger parallax on the Where-next cards and the welcome photo
+- Where next: each card's photo drifts twice as far with the scroll (`.parallax-layer(16)`, was 8), 16% of the card's height each way; its layer is a third taller than the card, so the photo sits about 14% larger in it.
+- Welcome (Our People): the photo drifts 12% each way (`.parallax-layer(12)`, was 4), about 77px on its 640 frame, as far as the Where-next photos; it sits about 15% larger in its taller layer.
+
 ## 2026-11-27 — Breadcrumbs fade smoothly after a page change
 - Inner-page breadcrumbs: they fade in on the compositor (`fade-still`, the same 1.2s fade in place) instead of GSAP's main-thread `fade`. After a page change their fade starts as the transition ends, when the page is busiest, so a stalled frame held them faint and the timeline then jumped them to full; a reload had no such burst. The compositor's fade is scheduled when the entrance starts, as the title's lines are.
 

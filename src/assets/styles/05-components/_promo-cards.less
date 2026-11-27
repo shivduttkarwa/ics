@@ -88,6 +88,14 @@
     .zoom-img(var(--duration-slow));
   }
 
+  &__video {
+    .cover();
+    .zoom-img(var(--duration-slow));
+    opacity: 0;
+    transition: scale var(--duration-slow) var(--ease-out), opacity var(--duration-slow) ease;
+    &.is-live { opacity: 1; }
+  }
+
   h3 {
     .type-promo-title();
     max-width: @promo-card-title-width;
@@ -96,6 +104,7 @@
   }
 
   @media (hover: hover) {
-    &__link[href]:hover &__img { scale: 1.04; }
+    &__link[href]:hover &__img,
+    &__link[href]:hover &__video { scale: 1.04; }
   }
 }

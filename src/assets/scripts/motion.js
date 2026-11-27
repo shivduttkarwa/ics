@@ -111,12 +111,16 @@ export function glassy(el) {
 // Opacity under 1 on an ancestor cuts a backdrop-filter off from what is behind it (a backdrop root), so glass faded through
 // its wrapper shows only its tint and snaps to its blur as the fade ends. These are the parts to fade instead: the glass
 // itself and whatever beside it holds none. An element with no glass inside fades as one.
+// glass hidden at rest (a hover-only bar) counts as none, or it shows through the fade and vanishes as it lands
+const shown = (el) => getComputedStyle(el).opacity !== "0";
+const holdsGlass = (el) => Array.from(el.querySelectorAll("*")).some((child) => blurred(child) && shown(child));
 export function fadeParts(el) {
-  if (blurred(el) || !Array.from(el.querySelectorAll("*")).some(blurred)) return [el];
+  if (blurred(el) || !holdsGlass(el)) return [el];
   const parts = [];
   const walk = (node) => Array.from(node.children).forEach((child) => {
+    if (!shown(child)) return;
     if (blurred(child)) parts.push(child);
-    else if (Array.from(child.querySelectorAll("*")).some(blurred)) walk(child);
+    else if (holdsGlass(child)) walk(child);
     else parts.push(child);
   });
   walk(el);

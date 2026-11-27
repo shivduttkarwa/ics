@@ -20,7 +20,9 @@
           "width": 1600,
           "height": 1066
         },
-        "video": null,
+        "video": {
+          "src": "/assets/video/home-hero.mp4"
+        },
         "title": "<em>Excellent</em> education, <em>real</em> faith and a community that <em>knows</em> your child.",
         "text": "Illawarra Christian School is a Prep-12 school in Cordeaux Heights, Wollongong. Our students do well, they're known by name, and they grow up in a Christian community that cares about them. Our fees are lower than you might expect for an independent school.",
         "button": {
@@ -52,11 +54,9 @@
             "width": 600,
             "height": 360
           },
-          "video": {
-            "src": "/assets/video/hero-card.mp4"
-          },
+          "video": null,
           "label": "Watch full video",
-          "url": "/assets/video/hero-card.mp4"
+          "url": ""
         }
       }
     },
@@ -113,11 +113,11 @@
               "height": 500
             },
             "video": {
-              "src": "/assets/video/assembly-song.mp4"
+              "src": "/assets/video/home-usp-card.mp4"
             },
             "button": {
               "text": "Play Video",
-              "url": "/assets/video/assembly-song.mp4",
+              "url": "/assets/video/home-usp-card.mp4",
               "icon": "play"
             }
           },
@@ -304,7 +304,9 @@
           "width": 900,
           "height": 1200
         },
-        "video": null,
+        "video": {
+          "src": "/assets/video/home-media.mp4"
+        },
         "quote": {
           "text": "“Quote from recent graduate on teachers, faith or where they are now.”",
           "name": "Example Name",
@@ -609,7 +611,9 @@
               "width": 1920,
               "height": 1080
             },
-            "video": null,
+            "video": {
+              "src": "/assets/video/home-full-width-slide.mp4"
+            },
             "title": "Build <em>strength, friendships and resilience</em> on every <br>field and court.",
             "stat": {
               "figure": "XX%",
@@ -911,7 +915,9 @@
           "width": 489,
           "height": 819
         },
-        "video": null,
+        "video": {
+          "src": "/assets/video/home-cta.mp4"
+        },
         "eyebrow": "Employment",
         "title": "A <em>great</em> place <br>to teach and <br><em>close</em> to home.",
         "text": "Join a close team and a supportive community where you’ll know your students by name and grow your career.",
