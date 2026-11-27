@@ -2,6 +2,7 @@
 
 ## 2026-11-27 — Phone menu covers the strip under Safari's toolbar
 - iPhone Safari paints the page, not a fixed overlay, under its bottom toolbar, so the website showed below the open menu. Below lg the panel's ground now reaches 30vh further down (`@menu-under`), its foot padded by the same, so its content and container height are unchanged; the roll still lands at the screen's foot and that reach is uncovered as it lands (and covered first as it closes).
+- Once the phone panel has covered the screen, the page behind it is hidden and the page's ground turns the panel's colour (`is-menu-covered` on `html`); it comes back as the panel starts to roll shut. On inner pages iPhone Safari still showed the first screen's title under the open menu.
 
 ## 2026-11-27 — Faster phone menu
 - Below lg the menu opens and closes 1.4× faster (`PHONE_PACE` in `menu.js`, a `timeScale` on the phone's open and close timelines): about 1.45s to fill (was 2s) and 0.8s to close (was 1.1s). Its shape and order are unchanged; the desktop's pill keeps its timing.

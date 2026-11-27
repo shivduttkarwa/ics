@@ -20,8 +20,11 @@ export function initMenu() {
 
   const outside = () => Array.from(document.body.children).filter((el) => el !== menu);
   const expanded = (value) => openers.forEach((button) => button.setAttribute("aria-expanded", String(value)));
+  // below lg, once the panel covers the screen, the page behind it is hidden: iPhone Safari showed it under its toolbar
+  const cover = (on) => document.documentElement.classList.toggle("is-menu-covered", on);
   const hide = () => {
     menu.hidden = true;
+    cover(false);
     lockScroll(false);
   };
 
@@ -100,7 +103,7 @@ export function initMenu() {
     outside().forEach((el) => { el.inert = true; });
     menu.querySelector(".menu__close").focus({ preventScroll: true });
     tl?.kill();
-    if (still.matches) return;
+    if (still.matches) return cover(phone.matches);
     const shape = phone.matches ? null : shapes();
     // caught mid-close, it comes back from wherever it is; the rows' contents stay in the tree while under their masks, so focus holds
     if (fresh) {
@@ -117,7 +120,8 @@ export function initMenu() {
     // below lg it is uncovered from the top down on the desktop's height curve and timing, its rows coming in 0.4s into it
     if (phone.matches) {
       tl.to(panel, { "--clip-b": px(under()), duration: 1.3, ease: "fold" }, 0)
-        .set(panel, { "--clip-b": "0px" }, 1.3);
+        .set(panel, { "--clip-b": "0px" }, 1.3)
+        .call(cover, [true], 1.3);
       rowsIn(tl, fresh ? 0.4 : 0.2);
       tl.timeScale(PHONE_PACE);
       return;
@@ -150,6 +154,7 @@ export function initMenu() {
     if (phone.matches) {
       const foot = Math.max(parseFloat(panel.style.getPropertyValue("--clip-b")) || 0, under());
       tl.to(backdrop, { autoAlpha: 0, duration: 0.4, ease: "power1.in" }, 0.35)
+        .call(cover, [false], 0.3)
         .set(panel, { "--clip-b": px(foot) }, 0.3)
         .to(panel, { "--clip-b": shut, duration: 0.8, ease: "fold" }, 0.3)
         .timeScale(PHONE_PACE);

@@ -8,6 +8,11 @@
 // iPhone Safari paints the page, not a fixed box, under its bottom toolbar: below lg the panel's ground reaches on under it
 @menu-under: 30vh;
 
+html.is-menu-covered {
+  body { background: var(--color-canopy-deep); }
+  body > :not(.menu, svg) { visibility: hidden; }
+}
+
 .menu {
   --focus-ring: var(--color-moss);
   // Figma leaves the page behind the panel untouched; a tint here dims it
