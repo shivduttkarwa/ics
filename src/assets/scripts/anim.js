@@ -4,6 +4,9 @@ import { gsap, ScrollTrigger, SplitText, still, phone, fine, settled, glassy, fa
 
 const STAGGER = 0.09; // between reveals that come into view together
 const SPREAD = 0.6; // the longest a batch of them may take to start
+const FOLLOW = 0.3; // what follows a section's title starts this long after the title's last line does, as that line nears home
+const FOLLOW_FAST = 0.15; // on a fast scroll it comes this long after the title's first line instead, so nothing sits blank
+const FAST = 0.025; // a scroll moving more than this share of the screen a frame (about 1.5 screens a second) is fast
 const LEAD = 0.4; // an entrance step starts this long before the step before it has landed (data-anim-lead; negative for a pause)
 const ITEMS = 0.07; // between the items of a hero-tier group (data-anim-stagger on the group)
 const START = { default: "top 88%", secondary: "top 96%" };
@@ -417,6 +420,31 @@ function counterUnit(el) {
   return { el, build, play: build, show: restore };
 }
 
+// A section's scroll-tier titles: when each one's lines start (ticker time; null until it plays), how long after that
+// what follows it waits, and when the next reveal after it in its block may start, so its text never comes in ahead of it
+const titles = new WeakMap();
+const titleCache = new WeakMap();
+function titleOf(el) {
+  if (titleCache.has(el)) return titleCache.get(el);
+  let found = null;
+  const block = el.closest("main > *, body > footer");
+  if (block) {
+    for (const title of block.querySelectorAll('[data-anim="split"]')) {
+      if (!(title.compareDocumentPosition(el) & Node.DOCUMENT_POSITION_FOLLOWING) || title.contains(el)) break;
+      if (titles.has(title)) found = title;
+    }
+  }
+  titleCache.set(el, found);
+  return found;
+}
+
+// seconds from a title's start until what follows it may start: its last line starts, then lands
+function followOf(title) {
+  const lh = parseFloat(getComputedStyle(title).lineHeight) || title.getBoundingClientRect().height;
+  const lines = Math.max(1, Math.round(title.getBoundingClientRect().height / lh));
+  return (lines - 1) * number(title, "data-anim-stagger", LINES.stagger) + FOLLOW;
+}
+
 // Reveals that come into view on the same tick start one after another in page order
 let pending = [];
 let flushing = null;
@@ -425,12 +453,42 @@ function flush() {
   const batch = pending.sort((a, b) => (a.el.compareDocumentPosition(b.el) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1));
   pending = [];
   const visible = batch.filter((unit) => {
+    const own = titles.get(unit.el);
+    if (own && own.at !== null) return false; // started early, ahead of what follows it
     if (unit.el.getBoundingClientRect().bottom >= 0) return true;
+    if (own) own.at = own.chain = -Infinity;
     unit.show(); // scrolled past already: it simply shows
     return false;
   });
   const step = visible.length > 1 ? Math.min(STAGGER, SPREAD / (visible.length - 1)) : 0;
-  const play = () => visible.forEach((unit, i) => unit.play(i * step + number(unit.el, "data-anim-delay", 0)));
+  const play = () => {
+    const now = gsap.ticker.time;
+    const fast = Math.abs(lenis?.velocity || 0) > window.innerHeight * FAST;
+    visible.forEach((unit, i) => {
+      let at = i * step + number(unit.el, "data-anim-delay", 0);
+      const own = titles.get(unit.el);
+      if (own) {
+        if (own.at !== null) return;
+        own.at = now + at;
+        own.follow = followOf(unit.el);
+      } else {
+        const title = titleOf(unit.el);
+        const state = title && titles.get(title);
+        if (state) {
+          // its title has not come in yet: it starts now, first
+          if (state.at === null) {
+            state.at = now + at;
+            state.follow = followOf(title);
+            state.unit.play(at);
+          }
+          const wait = state.at + (fast ? Math.min(FOLLOW_FAST, state.follow) : state.follow);
+          at = Math.max(at, wait - now, state.chain - now);
+          state.chain = now + at + (step || STAGGER);
+        }
+      }
+      unit.play(at);
+    });
+  };
   const held = () => {
     const hold = window.scrollY < 20 ? Math.max(0, holdUntil - gsap.ticker.time) : 0;
     if (hold) afterHold(hold, play);
@@ -782,7 +840,10 @@ function setup(root, opts = {}) {
     (tierOf(el) === HERO || opts.immediate ? entrance : scroll).push(unit);
   };
   scoped(root, '[data-anim="split"]').forEach((el) => {
-    if (!skipped(el)) add(el, splitUnit(el));
+    if (skipped(el)) return;
+    const unit = splitUnit(el);
+    if (unit && tierOf(el) !== HERO && !opts.immediate) titles.set(el, { unit, at: null, follow: 0, chain: -Infinity });
+    add(el, unit);
   });
   scoped(root, '[data-anim="reveal"]').forEach((el) => {
     // data-anim-media: the reveal only runs where this query matches at load

@@ -42,8 +42,7 @@
 
   // 11 is as far as a 16:9 photo reaches at 1440 unenlarged; more drift zooms it and crops its top
   &__layer {
-    position: absolute;
-    inset: 0;
+    .parallax-layer(8);
     @media (min-width: @bp-lg) { .parallax-layer(11); }
   }
 

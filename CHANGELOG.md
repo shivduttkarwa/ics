@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-11-27 — Section copy follows its title; CTA band drifts on phones; journey stops at its ends
+- Every section: what follows a title in its block (text, buttons, stats, rows) starts as the title's last line nears home (0.3s after that line starts, about three quarters up), keeping its order 0.09s apart; if it comes into view first, the title starts ahead of it. On phones the lead text could show before the title's lines had surfaced; waiting for the last line to land outright felt too long. On a fast scroll (over about 1.5 screens a second) it waits only 0.15s after the title starts, so a section reached in a hurry fills in at once, title still first. Hero entrances are unchanged.
+- CTA band: the photo drifts on phones too, 8% of the band each way (11 from lg as before); it was still below lg.
+- Journey tiles: the slider no longer rewinds from the last tile to the first; the arrows stop and dim at each end.
+
 ## 2026-11-27 — Smaller staff quote tiles on phones
 - "What our staff say" below md: columns are 56% of the screen, never under 225 (were three quarters: 322 tiles at 430, a column of two 644 tall). The quote steps down to 18 (24 from md), the tile's insets to 15 at the sides and the arrow 15 in, 20 between quote and name. Checked at 320, 360, 375, 390 and 430: every quote fits its open tile with the name in view, no sideways scroll.
 

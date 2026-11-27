@@ -1,6 +1,6 @@
 <section class="cta-band{% if value.height %} cta-band--{{ value.height }}{% endif %}" data-anim-parallax-trigger>
   <div class="cta-band__media" aria-hidden="true" data-anim="reveal" data-anim-type="zoom-out">
-    <div class="cta-band__layer" data-anim="parallax" data-anim-disable-mobile>
+    <div class="cta-band__layer" data-anim="parallax">
       <picture class="cta-band__picture">
         {% if value.image_mobile %}<source media="(max-width: 767.98px)" srcset="{{ value.image_mobile.src }}" width="{{ value.image_mobile.width }}" height="{{ value.image_mobile.height }}">{% endif %}
         <img class="cta-band__img" src="{{ value.image.src }}"{% if value.image.srcset %} srcset="{{ value.image.srcset }}" sizes="100vw"{% endif %} alt="" width="{{ value.image.width }}" height="{{ value.image.height }}" loading="lazy" decoding="async">

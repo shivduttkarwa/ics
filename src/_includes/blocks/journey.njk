@@ -9,7 +9,7 @@
       <button class="arrow-btn arrow-btn--next" type="button" aria-label="Next stage" data-slider-next><svg class="icon" aria-hidden="true"><use href="#icon-arrow-right"></use></svg></button>
     </div>
   </div>
-  <div class="journey__slider swiper" data-slider data-slider-mode="snap" data-slider-rewind>
+  <div class="journey__slider swiper" data-slider data-slider-mode="snap">
     <ul class="journey__list swiper-wrapper" data-anim-group="wipe-up" data-tiles>
       {% for stage in value.stages %}
       <li class="journey__tile{% if stage.narrow %} journey__tile--narrow{% endif %} swiper-slide" data-tile>
