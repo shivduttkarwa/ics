@@ -31,6 +31,8 @@
 @radius-lg: 20 * @px;
 // Figma's background blur 40 is a CSS blur of 20
 @blur-glass: 20 * @px;
+@shadow-panel-y: 20 * @px;
+@shadow-panel-blur: 50 * @px;
 
 :root {
   --color-canopy: #0c4b40;
@@ -64,11 +66,15 @@
   --color-scrim: #383838;
   --color-canopy-90: rgba(12, 75, 64, 0.9);
   --color-canopy-40: rgba(12, 75, 64, 0.4);
+  --color-canopy-15: rgba(12, 75, 64, 0.15);
+  --color-canopy-10: rgba(12, 75, 64, 0.1);
   --color-moss-30: rgba(166, 210, 34, 0.3);
   --color-moss-20: rgba(166, 210, 34, 0.2);
   --color-moss-10: rgba(166, 210, 34, 0.1);
   // Figma's canopy under 40% black: the announcement bar
   --color-canopy-deep: #072d26;
+  // flame deepened to clear 4.5:1 on white and beach light
+  --color-error: #c51717;
 
   --color-primary: var(--color-canopy);
   --color-accent: var(--color-moss);
@@ -111,6 +117,7 @@
   --radius-md: @radius-md;
   --radius-lg: @radius-lg;
   --blur-glass: @blur-glass;
+  --shadow-panel: 0 @shadow-panel-y @shadow-panel-blur var(--color-canopy-15);
   --focus-ring: var(--color-canopy);
 
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);

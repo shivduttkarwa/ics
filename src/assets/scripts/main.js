@@ -10,7 +10,8 @@ import { initCards } from "./cards.js";
 import { initStories } from "./stories.js";
 import { initMoments } from "./moments.js";
 import { initSearch } from "./search.js";
-import { initAmbientVideos, initDevicePixel, initDialogs, initEagerPhotos, initForms, initFocusMode, initHoverVideos, initScrollState, initVideoPopup } from "./ui.js";
+import { initAmbientVideos, initDevicePixel, initDialogs, initEagerPhotos, initFocusMode, initHoverVideos, initScrollState, initVideoPopup } from "./ui.js";
+import { initForms } from "./forms.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   initFocusMode();

@@ -254,7 +254,7 @@ blocks:
       text: TextBlock(required=False)   # Body 2, coal
       image: ImageChooserBlock(required)   # the left half from lg, full height, cover, drifting on a parallax layer; 4:3 above the form below lg
       action: URLBlock(required=False)   # in Wagtail the form page's own URL; empty in the static build, where submitting stays on the page
-      fields: ListBlock(StructBlock)   # Wagtail form fields: label (caps), name, type (text, email, tel, select, textarea), autocomplete, required, options (select), placeholder (textarea)
+      fields: ListBlock(StructBlock)   # Wagtail form fields: label (caps), name, type (text, email, tel, select, textarea), autocomplete, required, options (select), placeholder (textarea; a select's empty first option), error (optional: the message when a required field is left empty)
       submit: StructBlock(text, style)   # "Send message", moss, full width
 
   moments:

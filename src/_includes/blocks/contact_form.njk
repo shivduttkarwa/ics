@@ -13,17 +13,19 @@
         <div class="field">
           <label class="field__label" for="form-{{ field.name }}">{{ field.label }}</label>
           {% if field.type == 'textarea' %}
-          <textarea class="field__control field__control--area" id="form-{{ field.name }}" name="{{ field.name }}" rows="4"{% if field.placeholder %} placeholder="{{ field.placeholder }}"{% endif %}{% if field.required %} required{% endif %}></textarea>
+          <textarea class="field__control field__control--area" id="form-{{ field.name }}" name="{{ field.name }}" rows="4"{% if field.placeholder %} placeholder="{{ field.placeholder }}"{% endif %}{% if field.required %} required{% endif %}{% if field.error %} data-error="{{ field.error }}"{% endif %}></textarea>
           {% elif field.type == 'select' %}
           <span class="field__select">
-            <select class="field__control" id="form-{{ field.name }}" name="{{ field.name }}"{% if field.required %} required{% endif %}>
+            <select class="field__control" id="form-{{ field.name }}" name="{{ field.name }}"{% if field.required %} required{% endif %}{% if field.error %} data-error="{{ field.error }}"{% endif %}>
+              {% if field.placeholder %}<option value=""{% if field.required %} disabled{% endif %} selected>{{ field.placeholder }}</option>{% endif %}
               {% for option in field.options %}<option>{{ option }}</option>{% endfor %}
             </select>
             <svg class="icon" aria-hidden="true"><use href="#icon-angle-right"></use></svg>
           </span>
           {% else %}
-          <input class="field__control" type="{{ field.type }}" id="form-{{ field.name }}" name="{{ field.name }}"{% if field.autocomplete %} autocomplete="{{ field.autocomplete }}"{% endif %}{% if field.required %} required{% endif %}>
+          <input class="field__control" type="{{ field.type }}" id="form-{{ field.name }}" name="{{ field.name }}"{% if field.autocomplete %} autocomplete="{{ field.autocomplete }}"{% endif %}{% if field.required %} required{% endif %}{% if field.error %} data-error="{{ field.error }}"{% endif %}>
           {% endif %}
+          <p class="field__error" id="form-{{ field.name }}-error" hidden></p>
         </div>
         {% endfor %}
         <button class="btn btn-{{ value.submit.style | default('moss') }} contact-form__submit" type="submit"><span class="btn__dot" aria-hidden="true"><svg class="icon"><use href="#icon-arrow-right"></use></svg></span><span class="btn__label">{{ value.submit.text }}</span></button>

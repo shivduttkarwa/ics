@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-11-27 — Form dropdown and error messages
+- Dropdowns: a select in a form is now a listbox in the kit's look (the native select stays hidden and carries the value). It is a white rounded panel under the field with a beach-light highlight, and the chosen option is marked with the moss dot. It opens upward when there is more room above, and works with the keyboard and screen readers.
+- Error messages: the browser's bubbles are replaced by a message under each wrong field in a deepened flame red with a small dot before it, and the field's line turns the same red. Submitting focuses the first mistake; a message clears as soon as the field is put right. The contact form's name and message fields have their own wording.
+- New: `_field.less` (the field styles, moved out of `_contact-form.less`), `forms.js` (replaces `initForms` in `ui.js`), `--color-error`, `--shadow-panel`, `type-field-error`. Details in the handoff under contact_form.
+
 ## 2026-11-27 — Page change teardown moved off the hero title
 - The page change's transition is kept alive for 3.2s by a no-op hold on the old snapshot (nothing changes on screen after the 0.9s uncover). The browser tears a transition's layers down as it ends and drops a frame or two there; ending at 0.9s, that hit the hero title's rising lines and read as the title stuttering on every page change. The entrance's timing is unchanged: the title still rises as the edge passes it; the page scrolls and a press still ends the transition at once.
 - The ambient films (the inner heroes' and the home hero's background, the pillar) start once the entrance has played (`Anim.played`), not as soon as they are on screen: arriving by a page change, a hero film's first frames came about 1.2s in, under the title's rising lines, and halved the frame rate; on a fresh load they came only once the title had landed, which is why only page changes stuttered.

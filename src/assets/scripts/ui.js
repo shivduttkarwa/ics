@@ -244,10 +244,6 @@ export function initDialogs() {
 }
 
 // a form whose action is not set yet (the static build) stays on the page
-export function initForms() {
-  document.querySelectorAll("form[data-form]:not([action])").forEach((form) => form.addEventListener("submit", (event) => event.preventDefault()));
-}
-
 export function initScrollState() {
   const root = document.documentElement;
   const sync = () => root.classList.toggle("is-scrolled", window.scrollY > 0);

@@ -1,0 +1,192 @@
+@field-control: 34 * @px;
+@field-area: 102 * @px;
+@field-select-room: 30 * @px;
+@field-chevron: 16 * @px;
+@field-list-gap: 10 * @px;
+@field-list-max: 284 * @px;
+@field-list-shift: 8 * @px;
+@field-option: 40 * @px;
+@field-dot: 10 * @px;
+@field-error-dot: 8 * @px;
+@field-error-shift: 4 * @px;
+
+// Figma's "Form Input Field": a caps label over an underlined control
+.field {
+  --field-line: var(--color-canopy);
+  display: flex;
+  flex-direction: column;
+  gap: 5 * @px;
+
+  &.is-invalid { --field-line: var(--color-error); }
+
+  &__label {
+    .type-field-label();
+    color: var(--color-canopy);
+    text-box: trim-both cap alphabetic;
+  }
+
+  &__control {
+    .type-control();
+    width: 100%;
+    min-height: var(--tap-size);
+    padding: 5 * @px 0;
+    border: 0;
+    border-bottom: 1 * @px solid var(--field-line);
+    border-radius: 0;
+    background: transparent;
+    color: var(--color-coal);
+    appearance: none;
+    transition: border-color var(--duration-base) ease, box-shadow var(--duration-base) ease;
+    @media @fine { min-height: @field-control; }
+    &:focus-visible {
+      outline: 0;
+      box-shadow: inset 0 -1 * @px 0 var(--field-line);
+    }
+    &::placeholder {
+      color: var(--color-coal);
+      opacity: 1;
+    }
+    &--area {
+      height: @field-area;
+      resize: vertical;
+    }
+  }
+
+  &__select {
+    position: relative;
+    display: block;
+    .field__control { padding-right: @field-select-room; }
+    > .icon {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      width: @field-chevron;
+      height: @field-chevron;
+      color: var(--color-canopy);
+      rotate: 90deg;
+      translate: 0 -50%;
+      pointer-events: none;
+      transition: rotate var(--duration-base) var(--ease-out);
+    }
+    &.is-open {
+      z-index: 3;
+      > .icon { rotate: -90deg; }
+      > .field__trigger { box-shadow: inset 0 -1 * @px 0 var(--field-line); }
+    }
+  }
+
+  &__trigger {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  &__value {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__list {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    max-height: ~"min(@{field-list-max}, var(--field-list-room, @{field-list-max}))";
+    margin: @field-list-gap 0 0;
+    padding: 10 * @px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    list-style: none;
+    border: 1 * @px solid var(--color-canopy-10);
+    border-radius: var(--radius-md);
+    background: var(--color-white);
+    box-shadow: var(--shadow-panel);
+    opacity: 0;
+    visibility: hidden;
+    translate: 0 -@field-list-shift;
+    transition: opacity var(--duration-fast) ease, translate var(--duration-fast) ease, visibility 0s linear var(--duration-fast);
+  }
+
+  &__select.is-up > &__list {
+    top: auto;
+    bottom: 100%;
+    margin: 0 0 @field-list-gap;
+    translate: 0 @field-list-shift;
+  }
+
+  &__select.is-open > &__list {
+    opacity: 1;
+    visibility: visible;
+    translate: none;
+    transition: opacity var(--duration-base) var(--ease-out), translate var(--duration-slow) var(--ease-out), visibility 0s;
+  }
+
+  &__option {
+    .type-control();
+    display: flex;
+    align-items: center;
+    gap: 10 * @px;
+    min-height: var(--tap-size);
+    padding: 5 * @px 15 * @px;
+    border-radius: var(--radius-sm);
+    color: var(--color-coal);
+    cursor: pointer;
+    transition: background-color var(--duration-fast) ease, color var(--duration-fast) ease;
+    @media @fine { min-height: @field-option; }
+    &::before {
+      content: "";
+      flex: none;
+      width: @field-dot;
+      height: @field-dot;
+      border-radius: 50%;
+      background: var(--color-moss);
+      scale: 0;
+      transition: scale var(--duration-base) var(--ease-out);
+    }
+    &.is-active { background: var(--color-beach-light); }
+    &[aria-selected="true"] {
+      color: var(--color-canopy);
+      font-weight: 500;
+      &::before { scale: 1; }
+    }
+  }
+
+  &__error {
+    .type-field-error();
+    display: flex;
+    align-items: flex-start;
+    gap: 10 * @px;
+    margin: 5 * @px 0 0;
+    color: var(--color-error);
+    animation: field-error-in var(--duration-slow) var(--ease-out) both;
+    &::before {
+      content: "";
+      flex: none;
+      width: @field-error-dot;
+      height: @field-error-dot;
+      margin-top: ~"calc(0.7em - @{field-error-dot} / 2)";
+      border-radius: 50%;
+      background: currentColor;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__list,
+    &__select.is-up > &__list { translate: none; }
+    &__option::before { transition: none; }
+    &__error { animation-name: field-error-fade; }
+  }
+}
+
+@keyframes field-error-in {
+  from {
+    opacity: 0;
+    translate: 0 -@field-error-shift;
+  }
+}
+
+@keyframes field-error-fade {
+  from { opacity: 0; }
+}

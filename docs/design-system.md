@@ -18,6 +18,8 @@ The site uses the file's "premium" palette. The older "primary" swatches (blues,
 | white / black alphas | WhiteAlpha/*, BlackAlpha/* | | frosted fills (white 20%), image shades (the inner-page hero: black 25%), hairlines (white 20%) |
 | `--color-moss-10`, `--color-moss-20`, `--color-moss-30` | | | the graduate story cards; the bullet and stat icon squares; the Arrow circle's rest fill |
 
+Forms add `--color-error` (`#c51717`, the flame deepened to clear 4.5:1 on white and beach light; the kit has no error colour), `--color-canopy-10` / `--color-canopy-15` and `--shadow-panel` (the dropdown list's lift: 0 20 50 canopy 15%).
+
 The announcement bar's ground is canopy under 40% black (`--color-canopy-deep`, `#072d26`). Image shades are black linear gradients, one token each: `--gradient-hero` (the hero and the slides), `--gradient-hero-sm` (the phone hero), `--gradient-card-top` (USP cards), `--gradient-tile-top` and `--gradient-tile-open` (journey tiles, at rest and open), `--gradient-photo-foot` (pillar photos), `--gradient-band` (the employment band from lg), `--gradient-page-hero` (the deeper inner-page hero: black 40% fading out to the right over black 30%). The scrolled header bar is `color-mix()` of canopy-deep at 88% over the glass blur.
 
 ## Type
@@ -90,6 +92,7 @@ Also in the frames but not needed as fonts: Ulises Heavy (one 120px quote mark: 
 | Pull quote (Entry Points) | Ulises Light Italic; Museo Sans 700 caps | 35 / 1.4 / −3% (25 below md); 12 / 1.4 / +10% | | `type-pull-quote`, `type-attribution` |
 | Table Row values (Contact) | Museo Sans 300 | 16 / 1.5 / −1% | 16 | `type-row-text` |
 | Form field labels | Museo Sans 700 caps | 14 / 1 / +2% | 14 | `type-field-label` |
+| Form error messages (not in Figma) | Museo Sans 500 | 14 / 1.4 / 0 | 14 | `type-field-error` |
 | Moments' time and title (Faith) | Ulises Book (Italic / Bold) | 60 / 1.1 / −4% | 45 | `type-moment-title` |
 | A light 20 lead (moments, media-text) | Museo Sans 300 | 20 / 1.4 / −3% | 20 | `type-lead-light` |
 | A note under 18 copy | Ulises Medium Italic | 18 / 1.4 / −3% | 18 | `type-note-small` |
