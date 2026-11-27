@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-11-27 — Staff quotes readable on every screen
+- "What our staff say": the quote ran out of its tile below 1400 (at 375 a 120-wide column with the name cut off; at 768 the name gone; at 1024 the quote cut). Columns are now three quarters of the screen below md with the next peeking in, two and a half from md, four from lg, Figma's five from xxl. A quote still too long scrolls inside its tile with the name kept in view; 30 between quote and name below md.
+- `cards.js`: a tapped tile cut off by the screen edge in a slider glides fully into view as it opens (staff quotes, journey).
+
+## 2026-11-27 — Our People bio button on phones
+- Below md the always-on "View full bio" bar wrapped to two lines and covered half of each face on the two-up cards; it is now a 44 frosted circle with the arrow in the photo's corner, its glass tinted black 25% so it holds on light photos, the label kept for screen readers. From md the bar is unchanged.
+
 ## 2026-11-27 — Figma's videos in every video slot
 - The 17 video fills on "02 - Website Layouts", taken from Figma's player stream (silent re-encodes of review cuts) into `/assets/video/`, named by page and slot. Seven had a burnt-in timecode Figma's crop hides: cut as Figma frames them (the top 10.7% off the heroes, bands and campus film; both sides off the portrait cards). The HSC band, Contact hero and Sport card are trimmed before an end title, a fade and a social end card. All H.264 with fast start, no audio track, each at VMAF 95 or more against Figma's stream (103 → 79 MB).
 - Playing now: the home hero, co-curricular slide 1, the faith pillar (home, Why ICS), the home and HSC CTA bands, the Why ICS, Faith, Internal Page Blocks, Enrol and Contact heroes, Our People's campus film, the USP video card (hover and popup), the Why ICS Year 10 and Ali tiles, the HSC Rowan tile and the Sport promo card.

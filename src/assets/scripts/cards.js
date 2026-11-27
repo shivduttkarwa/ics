@@ -1,6 +1,15 @@
 // [data-tiles]: with no hover, a tap on a [data-tile] opens its copy and button and shuts the others
 import { fine } from "./motion.js";
 
+// a tile cut off by the screen edge in a slider glides fully into view as it opens
+const reveal = (list, tile) => {
+  const swiper = list.closest(".swiper")?.swiper;
+  const slide = tile.closest(".swiper-slide");
+  if (!swiper || !slide) return;
+  const box = slide.getBoundingClientRect();
+  if (box.left < 0 || box.right > document.documentElement.clientWidth) swiper.slideTo(swiper.slides.indexOf(slide));
+};
+
 export function initCards() {
   document.querySelectorAll("[data-tiles]").forEach((list) => {
     list.addEventListener("click", (event) => {
@@ -11,6 +20,7 @@ export function initCards() {
       const open = !tile.classList.contains("is-open");
       list.querySelectorAll(".is-open").forEach((other) => other.classList.remove("is-open"));
       tile.classList.toggle("is-open", open);
+      if (open) reveal(list, tile);
     });
   });
 }
